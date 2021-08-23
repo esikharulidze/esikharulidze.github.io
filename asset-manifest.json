@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/static/css/main.57c5e2b9.chunk.css",
+    "main.js": "/static/js/main.149a7b77.chunk.js",
+    "main.js.map": "/static/js/main.149a7b77.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.c08e6280.js",
+    "runtime-main.js.map": "/static/js/runtime-main.c08e6280.js.map",
+    "static/js/2.9b8519ae.chunk.js": "/static/js/2.9b8519ae.chunk.js",
+    "static/js/2.9b8519ae.chunk.js.map": "/static/js/2.9b8519ae.chunk.js.map",
+    "static/js/3.8a55fb8b.chunk.js": "/static/js/3.8a55fb8b.chunk.js",
+    "static/js/3.8a55fb8b.chunk.js.map": "/static/js/3.8a55fb8b.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.57c5e2b9.chunk.css.map": "/static/css/main.57c5e2b9.chunk.css.map",
+    "static/js/2.9b8519ae.chunk.js.LICENSE.txt": "/static/js/2.9b8519ae.chunk.js.LICENSE.txt",
+    "static/media/index.scss": "/static/media/Poppins-SemiBold.cce5625b.ttf",
+    "static/media/BecomeAnAuthorImg.2b89178f.png": "/static/media/BecomeAnAuthorImg.2b89178f.png",
+    "static/media/Facebook.c8b11029.svg": "/static/media/Facebook.c8b11029.svg",
+    "static/media/Google.b9361a38.svg": "/static/media/Google.b9361a38.svg",
+    "static/media/SVG-subcribe2.473cccf0.png": "/static/media/SVG-subcribe2.473cccf0.png",
+    "static/media/Twitter.5de92974.svg": "/static/media/Twitter.5de92974.svg",
+    "static/media/about-hero-right.2b89178f.png": "/static/media/about-hero-right.2b89178f.png",
+    "static/media/hero-right.2b89178f.png": "/static/media/hero-right.2b89178f.png",
+    "static/media/line-awesome.css": "/static/media/la-solid-900.a8130346.svg",
+    "static/media/placeholder-large-dark-h.473cccf0.png": "/static/media/placeholder-large-dark-h.473cccf0.png",
+    "static/media/placeholder-large-dark.ab6902b6.png": "/static/media/placeholder-large-dark.ab6902b6.png",
+    "static/media/placeholder-large-h.2b89178f.png": "/static/media/placeholder-large-h.2b89178f.png",
+    "static/media/placeholder-large.ed676656.png": "/static/media/placeholder-large.ed676656.png",
+    "static/media/podcast.7e9308bf.jpg": "/static/media/podcast.7e9308bf.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c08e6280.js",
+    "static/js/2.9b8519ae.chunk.js",
+    "static/css/main.57c5e2b9.chunk.css",
+    "static/js/main.149a7b77.chunk.js"
+  ]
+}
