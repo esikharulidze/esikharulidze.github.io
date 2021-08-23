@@ -2,7 +2,7 @@
   "name": "nc-maz",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://chisnghiax.com/ncmaz",
+  "homepage": "https://esikharulidze.github.io",
   "dependencies": {
     "@craco/craco": "^6.1.2",
     "@glidejs/glide": "^3.4.1",
@@ -38,7 +38,9 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "component": " npx generate-react-cli component"
+    "component": " npx generate-react-cli component",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -69,6 +71,7 @@
     "@types/react-router-dom": "^5.1.7",
     "@types/redux-logger": "^3.0.8",
     "autoprefixer": "^9.8.6",
+    "gh-pages": "^3.2.3",
     "node-sass": "^5.0.0",
     "postcss": "^7.0.36",
     "redux-logger": "^3.0.6",
