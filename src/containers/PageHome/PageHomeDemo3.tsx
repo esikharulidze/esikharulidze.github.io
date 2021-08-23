@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import SectionVideos from "./SectionVideos";
 import SectionSliderPosts from "./SectionSliderPosts";
 import { DEMO_CATEGORIES } from "data/taxonomies";
@@ -20,6 +20,7 @@ import SectionGridCategoryBox from "components/SectionGridCategoryBox/SectionGri
 import SectionMagazine8 from "./SectionMagazine8";
 import SectionMagazine9 from "./SectionMagazine9";
 import BgGlassmorphism from "components/BgGlassmorphism/BgGlassmorphism";
+import {getPosts, getCategories} from 'utils/firebase'
 
 // DEMO DATA
 const POSTS = DEMO_POSTS;
@@ -30,10 +31,26 @@ const MAGAZINE1_POSTS = POSTS.filter((_, i) => i >= 0 && i < 8);
 //
 
 const PageHomeDemo3: React.FC = () => {
+  const [posts, setPosts] = useState([])
+  const [categories, setCategories] = useState([])
+
   useEffect(() => {
     const $body = document.querySelector("body");
     if ($body) {
       $body.className = "theme-fuchsia-blueGrey";
+    }
+    try {
+      getPosts().then(posts => {
+        console.log(posts)
+        setPosts(posts)
+      })
+      getCategories().then(categories => {
+        console.log(categories)
+        setCategories(categories)
+      })
+      
+    } catch(e) {
+      console.log('errpr', e)
     }
     return () => {
       if ($body) {
@@ -76,11 +93,12 @@ const PageHomeDemo3: React.FC = () => {
 
 
          {/* === SECTION 8 === */}
+         
          <SectionLatestPosts
-          posts={DEMO_POSTS.filter((_, i) => i > 8 && i < 14)}
-          widgetPosts={DEMO_POSTS.filter((_, i) => i > 2 && i < 7)}
-          categories={DEMO_CATEGORIES.filter((_, i) => i > 2 && i < 8)}
-          tags={DEMO_CATEGORIES}
+          posts={posts}
+          widgetPosts={posts}
+          categories={categories}
+          tags={categories}
           // postCardName="card7"
           // gridClass="sm:grid-cols-2"
           className="pb-16 lg:pb-28"
