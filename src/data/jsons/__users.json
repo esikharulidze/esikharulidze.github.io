@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "firstName": "ელენე",
+    "lastName": "სიხარულიძე",
+    "displayName": "ელენე სიხარულიძე",
+    "email": "elene@sikharulidze.ge",
+    "gender": "ქალი",
+    "avatar": "https://robohash.org/doloremaliquidquia.png?size=150x150&set=set1",
+    "bgImage": "https://images.pexels.com/photos/912410/pexels-photo-912410.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    "count": 40,
+    "href": "/author/the-demo-author-slug",
+    "desc": "There’s no stopping the tech giant. Apple now opens its 100th store in China.There’s no stopping the tech giant.",
+    "jobName": "ფსიქოლოგი, არტ-თერაპევტი"
+  },
+  {
+    "id": 2,
+    "firstName": "ეკატერინე",
+    "lastName": "ჩიქოვანი",
+    "displayName": "ეკატერინე ჩიქოვანი",
+    "email": "ekaterine@animus.ge",
+    "gender": "ქალი",
+    "avatar": "https://robohash.org/assumendasintperferendis.png?size=150x150&set=set1",
+    "count": 113,
+    "href": "/author/the-demo-author-slug",
+    "desc": "There’s no stopping the tech giant. Apple now opens its 100th store in China.There’s no stopping the tech giant.",
+    "jobName": "ფილოლოგი",
+    "bgImage": "https://images.pexels.com/photos/7354542/pexels-photo-7354542.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+  },
+  {
+    "id": 3,
+    "firstName": "ხატია",
+    "lastName": "მარჯანიძე",
+    "displayName": "ხატია მარჯანიძე",
+    "email": "khatia@animus.ge",
+    "gender": "ქალი",
+    "avatar": "https://robohash.org/uttemporibusnisi.png?size=150x150&set=set1",
+    "count": 43,
+    "href": "/author/the-demo-author-slug",
+    "desc": "There’s no stopping the tech giant. Apple now opens its 100th store in China.There’s no stopping the tech giant.",
+    "jobName": "სტაჟიორი ფსიქოლოგიის მიმართულებით",
+    "bgImage": "https://images.pexels.com/photos/3651577/pexels-photo-3651577.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+  }
+]
