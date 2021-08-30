@@ -1,0 +1,48 @@
+[
+    {
+      "id": 1,
+      "name": "ინდივიდუალური",
+      "href": "/archive/the-demo-archive-slug",
+      "thumbnail": "https://i.ibb.co/g4DFgYG/Induvidual.png",
+      "count": 13,
+      "color": "indigo",
+      "description": "პირადი ტიპის შეხვედრა"
+    },
+    {
+      "id": 2,
+      "name": "წყვილებისთვის",
+      "href": "/archive/the-demo-archive-slug",
+      "thumbnail": "https://i.ibb.co/Bc3Hjtw/Couple.png",
+      "count": 16,
+      "color": "red",
+      "description": "ფსიქოკონსულტაცია"
+    },
+    {
+      "id": 3,
+      "name": "მოზარდებისთვის",
+      "href": "/archive/the-demo-archive-slug",
+      "thumbnail": "https://i.ibb.co/sbZ86ms/Children.png",
+      "count": 15,
+      "color": "yellow",
+      "description": "ბავშვები & თინეიჯერები"
+    },
+    {
+      "id": 4,
+      "name": "მშობლებისთვის",
+      "href": "/archive/the-demo-archive-slug",
+      "thumbnail": "https://i.ibb.co/Sv0tJ65/Family.png",
+      "count": 21,
+      "color": "pink",
+      "description": "აღზრდის მეთოდები"
+    },
+    {
+        "id": 5,
+        "name": "ჯგუფური კურსი",
+        "href": "/archive/the-demo-archive-slug",
+        "thumbnail": "https://i.ibb.co/1rbgqFL/Group.png",
+        "count": 21,
+        "color": "green",
+        "description": "ფსიქოგანათლება"
+      }
+  ]
+  

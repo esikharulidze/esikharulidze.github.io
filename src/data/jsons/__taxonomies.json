@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "კითხვარები",
+    "href": "/archive/the-demo-archive-slug",
+    "thumbnail": "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=550&q=80",
+    "count": 13,
+    "color": "indigo"
+  },
+  {
+    "id": 2,
+    "name": "იოგა",
+    "href": "/archive/the-demo-archive-slug",
+    "thumbnail": "https://images.unsplash.com/photo-1485841890310-6a055c88698a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=550&q=80",
+    "count": 16,
+    "color": "red"
+  },
+  {
+    "id": 3,
+    "name": "ჯანმრთელობა",
+    "href": "/archive/the-demo-archive-slug",
+    "thumbnail": "https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80",
+    "count": 15,
+    "color": "yellow"
+  },
+  {
+    "id": 4,
+    "name": "თვითგანვითარება",
+    "href": "/archive/the-demo-archive-slug",
+    "thumbnail": "https://images.unsplash.com/photo-1491406213019-05b162a72c20?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80",
+    "count": 21,
+    "color": "pink"
+  },
+  {
+    "id": 5,
+    "name": "მედიტაციები",
+    "href": "/archive/the-demo-archive-slug",
+    "thumbnail": "https://images.unsplash.com/photo-1528297506728-9533d2ac3fa4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+    "count": 16,
+    "color": "pink"
+  },
+  {
+    "id": 6,
+    "name": "აღზრდა",
+    "href": "/archive/the-demo-archive-slug",
+    "thumbnail": "https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80",
+    "count": 25,
+    "color": "blue"
+  },
+  {
+    "id": 7,
+    "name": "კვლევები",
+    "href": "/archive/the-demo-archive-slug",
+    "thumbnail": "https://images.unsplash.com/photo-1498049794561-7780e7231661?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
+    "count": 14,
+    "color": "gray"
+  },
+  {
+    "id": 8,
+    "name": "გამოწვევები",
+    "href": "/archive/the-demo-archive-slug",
+    "thumbnail": "https://images.unsplash.com/photo-1512686096451-a15c19314d59?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80",
+    "count": 4,
+    "color": "purple"
+  },
+  {
+    "id": 9,
+    "name": "ურთიერთობები",
+    "href": "/archive/the-demo-archive-slug",
+    "thumbnail": "https://images.unsplash.com/photo-1546015018-8f2e2f225773?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80",
+    "count": 7,
+    "color": "red"
+  }
+]
