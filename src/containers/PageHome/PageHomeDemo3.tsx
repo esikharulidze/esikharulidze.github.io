@@ -20,6 +20,7 @@ import SectionGridCategoryBox from "components/SectionGridCategoryBox/SectionGri
 import SectionMagazine8 from "./SectionMagazine8";
 import SectionMagazine9 from "./SectionMagazine9";
 import BgGlassmorphism from "components/BgGlassmorphism/BgGlassmorphism";
+import SectionSubscribe from "components/SectionSubscribe/SectionSubscribe";
 
 
 // DEMO DATA
@@ -124,14 +125,21 @@ const PageHomeDemo3: React.FC = () => {
           posts={DEMO_POSTS_AUDIO.filter((_, i) => i < 6)}
         />
 
+        {/* === SECTION 1 === */}
+        <SectionSubscribe2 className="pb-16 lg:pb-28" />
+
         {/* === SECTION 9 === */}
-        {/* <div className="relative py-16">
+        <div className="relative py-16">
           <BackgroundSection />
           <SectionMagazine9
             posts={DEMO_POSTS_AUDIO.filter((_, i) => i >= 6 && i < 16)}
           />
-        </div> */}
-
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         {/* === SECTION 1 === */}
         {/* <SectionVideos className="py-16 lg:py-28" /> */}
 
@@ -151,10 +159,6 @@ const PageHomeDemo3: React.FC = () => {
           rightImg={BecomeAnAuthorImg}
         /> */}
 
-       
-
-        {/* === SECTION 1 === */}
-        {/* <SectionSubscribe2 className="pb-16 lg:pb-28" /> */}
       </div>
     </div>
   );

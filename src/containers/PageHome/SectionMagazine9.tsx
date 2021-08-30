@@ -20,8 +20,8 @@ const SectionMagazine9: FC<SectionMagazine9Props> = ({
 }) => {
   return (
     <div className={`nc-SectionMagazine9 relative ${className}`}>
-      <Heading desc={"Click on music icon and enjoy music or podcast"}>
-        Listen to audio live
+      <Heading desc={"მოუსმინე სარელაქსაციო და სამოტივაციო მელოდიებს "}>
+        თემატური მელოდიები
       </Heading>
       <div className={`grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8`}>
         <Card9 ratio="aspect-w-4 aspect-h-3 " post={posts[0]} />

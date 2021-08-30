@@ -21,10 +21,10 @@ const SectionMagazine8: FC<SectionMagazine8Props> = ({
   return (
     <div className={`nc-SectionMagazine8 relative ${className}`}>
       <Heading
-        desc={"Click on music icon and enjoy music or podcast"}
+        desc={"მოუსმინეთ საინტერესო დისკუსიებს და მედიტაციებს"}
         className="mb-14 text-neutral-900 dark:text-neutral-50"
       >
-        Listen to podcasts live
+        აუდიო პოდკასტები 🦜
       </Heading>
       <div className={`grid sm:grid-cols-6 gap-6 md:gap-8`}>
         <Card16Podcast

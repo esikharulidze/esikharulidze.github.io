@@ -7,6 +7,7 @@ import { Helmet } from "react-helmet";
 import SectionSubscribe2 from "components/SectionSubscribe2/SectionSubscribe2";
 import BgGlassmorphism from "components/BgGlassmorphism/BgGlassmorphism";
 import BackgroundSection from "components/BackgroundSection/BackgroundSection";
+import SectionGridCategoryBox from "components/SectionGridCategoryBox/SectionGridCategoryBox";
 
 export interface PageAboutProps {
   className?: string;
@@ -38,10 +39,10 @@ const PageAbout: FC<PageAboutProps> = ({ className = "" }) => {
 
         <div className="relative py-16">
           <BackgroundSection />
-          <SectionStatistic />
+          <SectionGridCategoryBox />
         </div>
 
-        <SectionSubscribe2 />
+        {/* <SectionSubscribe2 /> */}
       </div>
     </div>
   );
