@@ -19,7 +19,7 @@ const PageAbout: FC<PageAboutProps> = ({ className = "" }) => {
       data-nc-id="PageAbout"
     >
       <Helmet>
-        <title>About || Blog Magazine React Template</title>
+        <title>Animus.ge - ინტელექტი ადამიანს მიღმა</title>
       </Helmet>
 
       {/* ======== BG GLASS ======== */}
@@ -28,9 +28,10 @@ const PageAbout: FC<PageAboutProps> = ({ className = "" }) => {
       <div className="container py-16 lg:py-28 space-y-16 lg:space-y-28">
         <SectionHero
           rightImg={rightImg}
-          heading="👋 About Us."
+          displayImg={true}
+          heading="👋 ჩვენ შესახებ."
           btnText=""
-          subHeading="We’re impartial and independent, and every day we create distinctive, world-class programmes and content which inform, educate and entertain millions of people in the around the world."
+          subHeading='ანიმუსი - არის ახალი იდეა ფსიქოთერაპიულ სივრცეში. ჩვენ ვეხმარებით ადამიანს საკუთარი რესურსების აღმოჩენის გზით, ფსიქოლოგიური გამოწვევების გადაჭრაში და თვითგანვითარებაში.'
         />
 
         <SectionFounder />

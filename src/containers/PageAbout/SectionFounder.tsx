@@ -12,10 +12,10 @@ export interface People {
 const FOUNDER_DEMO: People[] = [
   {
     id: "1",
-    name: `Niamh O'Shea`,
-    job: "Co-founder and Chief Executive",
+    name: `ელენე სიხარულიძე`,
+    job: "დამფუძნებელი & ფსიქოლოგი",
     avatar:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80",
+      "https://i.ibb.co/X70QT9N/elene.jpg",
   },
   {
     id: "4",

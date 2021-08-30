@@ -6,6 +6,7 @@ export interface SectionHeroProps {
   rightImg: string;
   heading: ReactNode;
   subHeading: string;
+  displayImg?: boolean;
   btnText: string;
 }
 
@@ -15,6 +16,7 @@ const SectionHero: FC<SectionHeroProps> = ({
   heading,
   subHeading,
   btnText,
+  displayImg=true,
 }) => {
   return (
     <div
@@ -32,7 +34,7 @@ const SectionHero: FC<SectionHeroProps> = ({
           {!!btnText && <ButtonPrimary href="/login">{btnText}</ButtonPrimary>}
         </div>
         <div className="flex-grow">
-          <img className="w-full" src={rightImg} alt="" />
+          {displayImg  && <img className="w-full" src={rightImg} alt="" />}
         </div>
       </div>
     </div>

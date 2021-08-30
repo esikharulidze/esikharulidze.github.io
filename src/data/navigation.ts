@@ -316,7 +316,7 @@ export const NAVIGATION_DEMO: NavItemType[] = [
   },
   {
     id: ncNanoId(),
-    href: "#",
+    href: "/about",
     name: "ცენტრის შესახებ",
   },
 
@@ -327,7 +327,7 @@ export const NAVIGATION_DEMO: NavItemType[] = [
   },
   {
     id: ncNanoId(),
-    href: "#",
+    href: "/contact",
     name: "კონტაქტი",
   }
 ];
