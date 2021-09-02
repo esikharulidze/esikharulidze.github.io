@@ -66,7 +66,7 @@ const PageSearchV2: FC<PageSearchV2Props> = ({ className = "" }) => {
     <div className={`nc-PageSearchV2 ${className}`} data-nc-id="PageSearchV2">
       <HeadBackgroundCommon className="h-24 2xl:h-28" />
       <Helmet>
-        <title>Nc || Search Page Template</title>
+        <title>Animus.ge - ძიება</title>
       </Helmet>
       <div className="container">
         <header className="max-w-2xl mx-auto -mt-10 flex flex-col lg:-mt-7">

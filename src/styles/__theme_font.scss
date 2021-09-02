@@ -134,6 +134,60 @@
   src: url("../fonts/Be_Vietnam/BeVietnam-Bold.ttf");
 }
 
+// FONT FACE --Contractica
+@font-face {
+  font-family: TBCContractica;
+  font-weight: 300;
+  src: url("../fonts/Contractica/TBCContractica-Light.ttf");
+}
+@font-face {
+  font-family: TBCContractica;
+  font-weight: 400;
+  src: url("../fonts/Contractica/TBCContractica-Regular.ttf");
+}
+@font-face {
+  font-family: TBCContractica;
+  font-weight: 500;
+  src: url("../fonts/Contractica/TBCContractica-Medium.ttf");
+}
+@font-face {
+  font-family: TBCContractica;
+  font-weight: 900;
+  src: url("../fonts/Contractica/TBCContractica-Black.ttf");
+}
+@font-face {
+  font-family: TBCContractica;
+  font-weight: 700;
+  src: url("../fonts/Contractica/TBCContractica-Bold.ttf");
+}
+
+// FONT FACE --ContracticaCAPS
+@font-face {
+  font-family: TBCContracticaCAPS;
+  font-weight: 300;
+  src: url("../fonts/Contractica/TBCContracticaCAPS-Light.ttf");
+}
+@font-face {
+  font-family: TBCContracticaCAPS;
+  font-weight: 400;
+  src: url("../fonts/Contractica/TBCContracticaCAPS-Regular.ttf");
+}
+@font-face {
+  font-family: TBCContracticaCAPS;
+  font-weight: 500;
+  src: url("../fonts/Contractica/TBCContracticaCAPS-Medium.ttf");
+}
+@font-face {
+  font-family: TBCContracticaCAPS;
+  font-weight: 900;
+  src: url("../fonts/Contractica/TBCContracticaCAPS-Black.ttf");
+}
+@font-face {
+  font-family: TBCContracticaCAPS;
+  font-weight: 700;
+  src: url("../fonts/Contractica/TBCContracticaCAPS-Bold.ttf");
+}
+
 //
 html body {
   @apply font-body antialiased;
@@ -147,8 +201,8 @@ h4 {
 }
 
 :root {
-  --font-display: Poppins;
-  --font-body: Poppins;
+  --font-display: TBCContracticaCAPS;
+  --font-body: TBCContractica;
 }
 
 .theme-animals {

@@ -13,7 +13,7 @@
     "bookmark": { "count": 3007, "isBookmarked": false },
     "like": { "count": 3366, "isLiked": true },
     "authorId": 3,
-    "categoriesId": [3, 12],
+    "categoriesId": [3],
     "postType": "standard"
   },
   {
@@ -30,7 +30,7 @@
     "bookmark": { "count": 3751, "isBookmarked": false },
     "like": { "count": 3024, "isLiked": false },
     "authorId": 1,
-    "categoriesId": [4, 13],
+    "categoriesId": [4],
     "postType": "video",
     "videoUrl": "https://www.youtube.com/watch?v=U5afsxvz75c"
   },
@@ -48,7 +48,7 @@
     "bookmark": { "count": 76, "isBookmarked": false },
     "like": { "count": 222, "isLiked": false },
     "authorId": 1,
-    "categoriesId": [4, 13],
+    "categoriesId": [4],
     "postType": "standard"
   },
   {
@@ -65,7 +65,7 @@
     "bookmark": { "count": 264, "isBookmarked": true },
     "like": { "count": 3735, "isLiked": true },
     "authorId": 1,
-    "categoriesId": [5, 14],
+    "categoriesId": [5],
     "postType": "standard"
   },
   {
@@ -82,7 +82,7 @@
     "bookmark": { "count": 733, "isBookmarked": false },
     "like": { "count": 3569, "isLiked": true },
     "authorId": 1,
-    "categoriesId": [10, 19],
+    "categoriesId": [9],
     "postType": "video",
     "videoUrl": "https://www.youtube.com/watch?v=dBsicD0ItD0&t=32s"
   },

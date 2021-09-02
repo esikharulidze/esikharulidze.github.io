@@ -3,7 +3,7 @@ import ModalCategories from "./ModalCategories";
 import ModalTags from "./ModalTags";
 import { DEMO_POSTS } from "data/posts";
 import { PostDataType, TaxonomyType } from "data/types";
-import { DEMO_CATEGORIES, DEMO_TAGS } from "data/taxonomies";
+import { DEMO_CATEGORIES, DEMO_TAGS, DEMO_TRENDS } from "data/taxonomies";
 import Pagination from "components/Pagination/Pagination";
 import ButtonPrimary from "components/Button/ButtonPrimary";
 import ArchiveFilterListBox from "components/ArchiveFilterListBox/ArchiveFilterListBox";
@@ -41,6 +41,8 @@ const PageArchive: FC<PageArchiveProps> = ({ className = "" }) => {
         <title>Archive || Blog Magazine React Template</title>
       </Helmet>
 
+
+
       {/* HEADER */}
       <div className="w-full px-2 xl:max-w-screen-2xl mx-auto">
         <div className="rounded-3xl relative aspect-w-16 aspect-h-16 sm:aspect-h-9 lg:aspect-h-8 xl:aspect-h-6 overflow-hidden ">
@@ -60,6 +62,7 @@ const PageArchive: FC<PageArchiveProps> = ({ className = "" }) => {
         </div>
       </div>
       {/* ====================== END HEADER ====================== */}
+      
 
       <div className="container py-16 lg:py-28 space-y-16 lg:space-y-28">
         <div>
@@ -90,22 +93,22 @@ const PageArchive: FC<PageArchiveProps> = ({ className = "" }) => {
 
         {/* MORE SECTIONS */}
         {/* === SECTION 5 === */}
-        <div className="relative py-16">
+        {/* <div className="relative py-16">
           <BackgroundSection />
           <SectionGridCategoryBox
-            categories={DEMO_CATEGORIES.filter((_, i) => i < 10)}
+            categories={DEMO_TRENDS.filter((_, i) => i < 10)}
           />
           <div className="text-center mx-auto mt-10 md:mt-16">
             <ButtonSecondary>მაჩვენე მეტი</ButtonSecondary>
           </div>
-        </div>
+        </div> */}
 
         {/* === SECTION 5 === */}
-        <SectionSliderNewAuthors
+        {/* <SectionSliderNewAuthors
           heading="Top elite authors"
           subHeading="Discover our elite writers"
           authors={DEMO_AUTHORS.filter((_, i) => i < 10)}
-        />
+        /> */}
 
         {/* SUBCRIBES */}
         <SectionSubscribe2 />

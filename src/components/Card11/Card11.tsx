@@ -24,6 +24,8 @@ const Card11: FC<Card11Props> = ({
 
   const [isHover, setIsHover] = useState(false);
 
+  console.log(categories)
+
   return (
     <div
       className={`nc-Card11 relative flex flex-col group [ nc-box-has-hover ] [ nc-dark-box-bg-has-hover ] ${className}`}
@@ -39,9 +41,9 @@ const Card11: FC<Card11Props> = ({
         </div>
       </div>
       <Link to={href} className="absolute inset-0"></Link>
-      {/* <span className="absolute top-3 inset-x-3">
+      <span className="absolute top-3 inset-x-3">
         <CategoryBadgeList categories={categories} />
-      </span> */}
+      </span>
 
       <div className="p-4 flex flex-col flex-grow space-y-3">
         {!hiddenAuthor ? (
