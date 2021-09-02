@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.b19dc3ba.chunk.css",
-    "main.js": "/static/js/main.a6f9a61d.chunk.js",
-    "main.js.map": "/static/js/main.a6f9a61d.chunk.js.map",
+    "main.css": "/static/css/main.30afd59f.chunk.css",
+    "main.js": "/static/js/main.cb23305a.chunk.js",
+    "main.js.map": "/static/js/main.cb23305a.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.32251176.js",
     "runtime-main.js.map": "/static/js/runtime-main.32251176.js.map",
     "static/js/2.f4c13636.chunk.js": "/static/js/2.f4c13636.chunk.js",
@@ -10,9 +10,9 @@
     "static/js/3.233788b0.chunk.js": "/static/js/3.233788b0.chunk.js",
     "static/js/3.233788b0.chunk.js.map": "/static/js/3.233788b0.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.b19dc3ba.chunk.css.map": "/static/css/main.b19dc3ba.chunk.css.map",
+    "static/css/main.30afd59f.chunk.css.map": "/static/css/main.30afd59f.chunk.css.map",
     "static/js/2.f4c13636.chunk.js.LICENSE.txt": "/static/js/2.f4c13636.chunk.js.LICENSE.txt",
-    "static/media/index.scss": "/static/media/Poppins-SemiBold.cce5625b.ttf",
+    "static/media/index.scss": "/static/media/TBCContracticaCAPS-Regular.5b84f43d.ttf",
     "static/media/BecomeAnAuthorImg.2b89178f.png": "/static/media/BecomeAnAuthorImg.2b89178f.png",
     "static/media/Facebook.1a707b6f.svg": "/static/media/Facebook.1a707b6f.svg",
     "static/media/Google.14c804f8.svg": "/static/media/Google.14c804f8.svg",
@@ -30,7 +30,7 @@
   "entrypoints": [
     "static/js/runtime-main.32251176.js",
     "static/js/2.f4c13636.chunk.js",
-    "static/css/main.b19dc3ba.chunk.css",
-    "static/js/main.a6f9a61d.chunk.js"
+    "static/css/main.30afd59f.chunk.css",
+    "static/js/main.cb23305a.chunk.js"
   ]
 }
