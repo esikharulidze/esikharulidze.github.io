@@ -33,6 +33,7 @@ import PageSingleAudio from "containers/PageSingleAudio/PageSingleAudio";
 import PageSingleVideo from "containers/PageSingleVideo/PageSingleVideo";
 import PageArchiveVideo from "containers/PageArchive/PageArchiveVideo";
 import PageArchiveAudio from "containers/PageArchive/PageArchiveAudio";
+import ModalCourse from "components/ModalCourse/ModalCourse";
 
 export const pages: Page[] = [
   { path: "/", exact: true, component: PageHomeDemo3 },

@@ -1,16 +1,21 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import Logo from "components/Logo/Logo";
 import Navigation from "components/Navigation/Navigation";
 import SearchDropdown from "./SearchDropdown";
 import ButtonPrimary from "components/Button/ButtonPrimary";
 import MenuBar from "components/MenuBar/MenuBar";
 import DarkModeContainer from "containers/DarkModeContainer/DarkModeContainer";
+import NcModal from "components/NcModal/NcModal";
+import ModalCourse from "components/ModalCourse/ModalCourse";
 
 export interface MainNav1Props {
   isTop: boolean;
 }
 
 const MainNav1: FC<MainNav1Props> = ({ isTop }) => {
+const [isReporting, setIsReporting] = useState(false);
+const openModalReportComment = () => setIsReporting(true);
+const closeModalReportComment = () => setIsReporting(false);  
   return (
     <div
       className={`nc-MainNav1 relative z-10 ${
@@ -27,7 +32,12 @@ const MainNav1: FC<MainNav1Props> = ({ isTop }) => {
             <DarkModeContainer />
             <SearchDropdown />
             <div className="px-1" />
-            <ButtonPrimary href="/login">შეხვედრის დაჯავშნა</ButtonPrimary>
+            <ButtonPrimary onClick={openModalReportComment} href="">შეხვედრის დაჯავშნა</ButtonPrimary>
+            <ModalCourse
+            show={isReporting}
+            id={1}
+            onCloseModalReportItem={closeModalReportComment}
+            />
           </div>
           <div className="flex items-center xl:hidden">
             <MenuBar />
