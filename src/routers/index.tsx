@@ -34,6 +34,7 @@ import PageSingleVideo from "containers/PageSingleVideo/PageSingleVideo";
 import PageArchiveVideo from "containers/PageArchive/PageArchiveVideo";
 import PageArchiveAudio from "containers/PageArchive/PageArchiveAudio";
 import ModalCourse from "components/ModalCourse/ModalCourse";
+import CourseCard from "components/CourseCard/CourseCard";
 
 export const pages: Page[] = [
   { path: "/", exact: true, component: PageHomeDemo3 },

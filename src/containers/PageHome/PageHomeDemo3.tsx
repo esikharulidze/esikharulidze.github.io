@@ -21,6 +21,7 @@ import SectionMagazine8 from "./SectionMagazine8";
 import SectionMagazine9 from "./SectionMagazine9";
 import BgGlassmorphism from "components/BgGlassmorphism/BgGlassmorphism";
 import SectionSubscribe from "components/SectionSubscribe/SectionSubscribe";
+import CourseCard from "components/CourseCard/CourseCard";
 
 
 // DEMO DATA
@@ -158,6 +159,11 @@ const PageHomeDemo3: React.FC = () => {
           className="py-16 lg:py-28"
           rightImg={BecomeAnAuthorImg}
         /> */}
+
+        {/* SECTION 4 */}
+        <div className="relative py-16">
+            <BackgroundSection />
+            <CourseCard /></div>
 
       </div>
     </div>
