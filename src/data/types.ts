@@ -73,3 +73,15 @@ export interface VideoType {
   title: string;
   thumbnail: string;
 }
+
+export interface Course {
+  id: number
+  slug: string
+  coursetype: string
+  subtitle: string,
+  title: string,
+  description: string,
+  href: string,
+  rightimg: string,
+  color: string
+}

@@ -161,9 +161,9 @@ const PageHomeDemo3: React.FC = () => {
         /> */}
 
         {/* SECTION 4 */}
-        <div className="relative py-16">
+        {/* <div className="relative py-16">
             <BackgroundSection />
-            <CourseCard /></div>
+            <CourseCard /></div> */}
 
       </div>
     </div>

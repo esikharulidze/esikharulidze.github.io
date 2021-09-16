@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "slug": "slug-1",
+    "coursetype": "ინდივიდუალური",
+    "subtitle": "ინდივიდუალური",
+    "title": "ინდივიდუალური",
+    "description": "პირადი ტიპის შეხვედრა",
+    "href": "/courses/slug-1",
+    "rightimg": "https://i.ibb.co/g4DFgYG/Induvidual.png",
+    "color": "#ff000020"
+  },
+  {
+    "id": 2,
+    "slug": "slug-2",
+    "coursetype": "ინდივიდუალური",
+    "subtitle": "ინდივიდუალური",
+    "title": "ინდივიდუალური",
+    "description": "პირადი ტიპის შეხვედრა",
+    "href": "/courses/slug-2",
+    "rightimg": "https://i.ibb.co/g4DFgYG/Induvidual.png",
+    "color": "indigo"
+  },
+  {
+    "id": 3,
+    "slug": "slug-3",
+    "coursetype": "ინდივიდუალური",
+    "subtitle": "ინდივიდუალური",
+    "title": "ინდივიდუალური",
+    "description": "პირადი ტიპის შეხვედრა",
+    "href": "/courses/slug-3",
+    "rightimg": "https://i.ibb.co/g4DFgYG/Induvidual.png",
+    "color": "indigo"
+  }
+]
