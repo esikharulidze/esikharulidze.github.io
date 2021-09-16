@@ -322,7 +322,7 @@ export const NAVIGATION_DEMO: NavItemType[] = [
 
   {
     id: ncNanoId(),
-    href: "#",
+    href: "/services",
     name: "სერვისები",
   },
   {
