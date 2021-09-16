@@ -34,7 +34,7 @@ const FILTERS = [
   { name: "Most Discussed" },
   { name: "Most Viewed" },
 ];
-const TABS = ["Articles", "Favorites", "Saved"];
+const TABS = ["ყველა კურსი", "მოზარდებისთვის", "მშობლებისთვის", "ჯგუფური კურსები"];
 
 const PageCourse: FC<PageCourseProps> = ({ className = "" }) => {
   let timeOut: NodeJS.Timeout | null = null;
@@ -105,7 +105,7 @@ const PageCourse: FC<PageCourseProps> = ({ className = "" }) => {
             </Nav>
             <div className="block my-4 border-b w-full border-neutral-100 sm:hidden"></div>
             <div className="flex justify-end">
-              <ArchiveFilterListBox lists={FILTERS} />
+              {/* <ArchiveFilterListBox lists={FILTERS} /> */}
             </div>
           </div>
 
@@ -119,7 +119,7 @@ const PageCourse: FC<PageCourseProps> = ({ className = "" }) => {
           {
             DEMO_COURSES.map((item) => (
 
-          <div className="relative py-16 mt-20">
+          <div className="relative py-10 mt-5">
             {/* <BackgroundSection /> */}
             <CourseCard data={item} key={item.id} /></div>
             ))

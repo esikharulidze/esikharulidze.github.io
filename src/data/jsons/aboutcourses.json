@@ -6,9 +6,9 @@
     "subtitle": "ინდივიდუალური",
     "title": "ინდივიდუალური",
     "description": "პირადი ტიპის შეხვედრა",
-    "href": "/courses/slug-1",
+    "href": "/services/slug-1",
     "rightimg": "https://i.ibb.co/g4DFgYG/Induvidual.png",
-    "color": "#ff000020"
+    "color": "#FEE2E250"
   },
   {
     "id": 2,
@@ -17,9 +17,9 @@
     "subtitle": "ინდივიდუალური",
     "title": "ინდივიდუალური",
     "description": "პირადი ტიპის შეხვედრა",
-    "href": "/courses/slug-2",
+    "href": "/services/slug-2",
     "rightimg": "https://i.ibb.co/g4DFgYG/Induvidual.png",
-    "color": "indigo"
+    "color": "#E0E7FF50"
   },
   {
     "id": 3,
@@ -28,8 +28,8 @@
     "subtitle": "ინდივიდუალური",
     "title": "ინდივიდუალური",
     "description": "პირადი ტიპის შეხვედრა",
-    "href": "/courses/slug-3",
+    "href": "/services/slug-3",
     "rightimg": "https://i.ibb.co/g4DFgYG/Induvidual.png",
-    "color": "indigo"
+    "color": "#FEF9C350"
   }
 ]

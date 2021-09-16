@@ -17,7 +17,7 @@ const CourseCard: FC<CourseCardProps> = ({
 }) => {
   return (
     <div
-      className={`nc-SectionBecomeAnAuthor relative flex flex-col lg:flex-row items-center bg-opacity-20 rounded-lg p-10 ${className}`}
+      className={`nc-SectionBecomeAnAuthor relative flex flex-col lg:flex-row items-center dark: bg-opacity-20 rounded-3xl p-10 ${className}`}
       style={{backgroundColor: data.color}}
       data-nc-id="SectionBecomeAnAuthor"
     >
@@ -34,7 +34,7 @@ const CourseCard: FC<CourseCardProps> = ({
         <ButtonPrimary href={data.href} className="mt-8">Become an author</ButtonPrimary>
       </div>
       <div className="flex-grow">
-        <NcImage src={rightImg} />
+        <NcImage src={data.rightimg} />
       </div>
     </div>
   );
