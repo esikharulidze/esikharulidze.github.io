@@ -47,7 +47,7 @@ export const SINGLE: SinglePageType = {
     email: "elene@sikharulidze.ge",
     avatar: "",
     count: 38,
-    href: "/author-v2/the-demo-author-slug",
+    href: "/author-v2/esikharulidze",
     desc: "There’s no stopping the tech giant. Apple now opens its 100th store in China.There’s no stopping the tech giant.",
     jobName: "ფსიქოლოგი, არტ-თერაპევტი",
   },

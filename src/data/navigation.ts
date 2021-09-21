@@ -201,7 +201,7 @@ const archviePageChildrenMenus: NavItemType[] = [
       },
       {
         id: ncNanoId(),
-        href: "/author-v2/the-demo-author-slug",
+        href: "/team/slug",
         name: "Author Page 2",
       },
     ],
@@ -324,6 +324,19 @@ export const NAVIGATION_DEMO: NavItemType[] = [
     id: ncNanoId(),
     href: "/services",
     name: "სერვისები",
+    type: "dropdown",
+    children: [
+      {
+        id: ncNanoId(),
+        href: "/author/the-demo-author-slug",
+        name: "ინდივიდუალური",
+      },
+      {
+        id: ncNanoId(),
+        href: "/author-v2/the-demo-author-slug",
+        name: "ჯგუფური შეხვედრები",
+      },
+    ],
   },
   {
     id: ncNanoId(),

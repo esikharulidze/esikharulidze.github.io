@@ -73,7 +73,7 @@ const PageAuthorV2: FC<PageAuthorV2Props> = ({ className = "" }) => {
           <Avatar
             containerClassName="ring-4 ring-white dark:ring-0 shadow-lg"
             imgUrl={AUTHOR.avatar}
-            sizeClass="w-20 h-20 text-lg lg:w-28 lg:h-28 lg:text-xl"
+            sizeClass="w-40 h-40 text-lg lg:w-48 lg:h-48 lg:text-xl"
             radius="rounded-2xl"
           />
           <h2 className="block align-middle mt-4 font-semibold text-2xl text-neutral-900 lg:text-3xl dark:text-neutral-100">
@@ -109,16 +109,16 @@ const PageAuthorV2: FC<PageAuthorV2Props> = ({ className = "" }) => {
           </div> */}
 
           {/* LOOP ITEMS */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 mt-8 lg:mt-10">
+          {/* <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 mt-8 lg:mt-10">
             {activePosts.map((post) => (
               <Card11 key={post.id} post={post} />
             ))}
-          </div>
+          </div> */}
 
           {/* PAGINATION */}
           <div className="flex flex-col mt-12 lg:mt-16 space-y-5 sm:space-y-0 sm:space-x-3 sm:flex-row sm:justify-between sm:items-center">
-            <Pagination />
-            {/* <ButtonPrimary>მაჩვენე მეტი</ButtonPrimary> */}
+            {/* <Pagination />
+            <ButtonPrimary>მაჩვენე მეტი</ButtonPrimary> */}
           </div>
         </main>
 

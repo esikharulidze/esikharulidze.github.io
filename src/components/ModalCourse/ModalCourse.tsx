@@ -7,11 +7,24 @@ import { RadioGroup } from "@headlessui/react";
 import twFocusClass from "utils/twFocusClass";
 import Label from "components/Label/Label";
 import Input from "components/Input/Input";
+import Select from "components/Select/Select";
+import DropDown from 'components/DropDown'
 
 export interface ProblemPlan {
   name: string;
   id: string;
   label: string;
+  select?: Select
+}
+
+export interface Select {
+  label: string
+  default: string
+  data: {
+    id: number
+    label: string
+    value: string
+  }[]
 }
 
 export interface ModalReportItemProps {
@@ -19,17 +32,91 @@ export interface ModalReportItemProps {
   show: boolean;
   problemPlans?: ProblemPlan[];
   onCloseModalReportItem: () => void;
+  selectedPlanIndex?: number  
 }
 
 const problemPlansDemo = [
   {
     name: "ინდივიდუალური‎‏‏‎‎‎",
     id: "individual",
-    label: "ინდივიდუალური‏‏‎ ‎",
+    label: "ინდივიდუალური‏‏‎",
+    // select: {
+    //   default: "აირჩიეთ თერაპევტი",
+    //   label: 'თერაპევტი',
+    //   data: [
+    //     {
+    //       id: 1,
+    //       label: 'ელენე სიხარულიძე',
+    //       value: 'elene_sikharulidze'
+    //     },
+    //     {
+    //       id: 2,
+    //       label: 'ხატია მარჯანიძე',
+    //       value: 'khatia_marjanidze'
+    //     },
+    //     {
+    //       id: 3,
+    //       label: 'ეკატერინე ჩიქოვანი',
+    //       value: 'ekaterine_chikhovani'
+    //     },
+    //     {
+    //       id: 4,
+    //       label: 'ლევან ბეჟანიძე',
+    //       value: 'levan_bezhanidze'
+    //     },
+    //   ]
+    // }
   },
-  { name: "მოზარდები‏‏‎სთვის‏‎‏‏", id: "teens", label: "მოზარდებისთვის‏‏‎ ‎" },
-  { name: "მშობლებისთვის‏‏‎", id: "parents", label: "მშობლებისთვის‏‏‎ ‎" },
-  { name: "ჯგუფური კურსი", id: "group", label: "ჯგუფური კურსი" },
+  { name: "ზრდასრულებისთვის", id: "adults", label: "ზრდასრულებისთვის" },
+  { name: "მოზარდები‏‏‎სთვის‏‎‏‏", id: "teens", label: "მოზარდებისთვის‏‏‎‎", select:{
+    label: "კურსი",
+    default: "აირჩიეთ კურსი",
+    data: [
+      {
+        id: 1,
+        label: "კურსი 1",
+        value: "kursi_1"
+      },
+      {
+        id: 2,
+        label: "კურსი 2",
+        value: "kursi_2"
+      }
+    ]
+  } },
+  { name: "მშობლებისთვის‏‏‎", id: "parents", label: "მშობლებისთვის‏‏‎", select: {
+    label: "კურსი",
+    default: "აირჩიეთ კურსი",
+    data: [
+      {
+        id: 1,
+        label: "კურსი 1",
+        value: "kursi_1"
+      },
+      {
+        id: 2,
+        label: "კურსი 2",
+        value: "kursi_2"
+      }
+    ]  
+  } 
+  },
+  { name: "ჯგუფური შეხვედრა", id: "group", label: "ჯგუფური შეხვედრა", select: {
+    label: "კურსი",
+    default: "აირჩიეთ კურსი",
+    data: [
+      {
+        id: 1,
+        label: "კურსი 1",
+        value: "kursi_1"
+      },
+      {
+        id: 2,
+        label: "კურსი 2",
+        value: "kursi_2"
+      }
+    ]  
+  } },
 ];
 
 const ModalCourse: FC<ModalReportItemProps> = ({
@@ -37,17 +124,25 @@ const ModalCourse: FC<ModalReportItemProps> = ({
   id,
   show,
   onCloseModalReportItem,
+  selectedPlanIndex = 0
 }) => {
   const textareaRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null)
 
-  const [problemSelected, setProblemSelected] = useState(problemPlans[0]);
+  const [problemSelected, setProblemSelected] = useState(problemPlans[selectedPlanIndex]);
+
+  useEffect(() => {
+    if (selectedPlanIndex !== null) {
+      setProblemSelected(problemPlans[selectedPlanIndex])
+    }
+  }, [selectedPlanIndex])
 
   useEffect(() => {
     if (show) {
       setTimeout(() => {
-        const element: HTMLTextAreaElement | null = textareaRef.current;
+        const element: HTMLInputElement | null = inputRef.current;
         if (element) {
-          (element as HTMLTextAreaElement).focus();
+          (element as HTMLInputElement).focus();
         }
       }, 400);
     }
@@ -63,7 +158,7 @@ const ModalCourse: FC<ModalReportItemProps> = ({
 
   const renderCheckIcon = () => {
     return (
-      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
+      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
         <circle cx={12} cy={12} r={12} fill="#fff" opacity="0.2" />
         <path
           d="M7 13l3 3 7-7"
@@ -82,7 +177,7 @@ const ModalCourse: FC<ModalReportItemProps> = ({
         {/* RADIO PROBLEM PLANS */}
         <RadioGroup value={problemSelected} onChange={setProblemSelected}>
           <RadioGroup.Label className="sr-only">Problem Plans</RadioGroup.Label>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-2">
             {problemPlans.map((plan) => (
               <RadioGroup.Option
                 key={plan.name}
@@ -93,7 +188,7 @@ const ModalCourse: FC<ModalReportItemProps> = ({
                       checked
                         ? "bg-primary-6000 text-white dark:bg-primary-700"
                         : "bg-white border-t border-neutral-50 "
-                    } relative shadow-lg rounded-lg px-3 py-3 cursor-pointer flex sm:px-5 sm:py-4 focus:outline-none ` +
+                    } relative shadow-lg rounded-lg px-3 py-3 cursor-pointer flex sm:px-3 sm:py-3 focus:outline-none ` +
                     twFocusClass(true)
                   );
                 }}
@@ -136,8 +231,21 @@ const ModalCourse: FC<ModalReportItemProps> = ({
                 type="text"
                 className="mt-1 mb-4"
                 required={true}
+                ref={inputRef}
               />
             </label>
+
+            {problemSelected.id === "couple" ? <label className="block">
+              <Label>სახელი და გვარი</Label>
+
+              <Input
+                placeholder="შეიყვანეთ სახელი და გვარი"
+                type="text"
+                className="mt-1 mb-4"
+                required={true}
+                ref={inputRef}
+              />
+            </label> : <></>}
 
             <label className="block">
               <Label>ელ.ფოსტა</Label>
@@ -160,6 +268,13 @@ const ModalCourse: FC<ModalReportItemProps> = ({
                 required={true}
               />
             </label> 
+
+            {
+              problemSelected.select ? <label className='block mt-4'>
+                <Label>{problemSelected.select.label}</Label>
+                <DropDown className='cursor-pointer form-select block w-full mt-1  border-neutral-200 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white dark:border-neutral-700 dark:focus:ring-primary-6000 dark:focus:ring-opacity-25 dark:bg-neutral-900 rounded-full h-11 px-4 py-3 text-sm font-normal border' placeholder={problemSelected.select.default} data={problemSelected.select.data} />
+              </label> : (<></>)
+            }
             </div>
         </form>
 
@@ -202,7 +317,7 @@ const ModalCourse: FC<ModalReportItemProps> = ({
     <NcModal
       isOpenProp={show}
       onCloseModal={onCloseModalReportItem}
-      contentExtraClass="max-w-screen-md"
+      contentExtraClass="max-w-screen-lg"
       renderContent={renderContent}
       renderTrigger={renderTrigger}
       modalTitle="შეხვედრის დაჯავშნა"

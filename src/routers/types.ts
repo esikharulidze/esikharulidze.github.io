@@ -10,7 +10,7 @@ export interface LocationStates {
   "/archive-audio/:slug"?: {};
   //
   "/author/:slug"?: {};
-  "/author-v2/:slug"?: {};
+  "/team/:slug"?: {};
   //
   "/single/:slug"?: {};
   "/single-template-2/:slug"?: {};

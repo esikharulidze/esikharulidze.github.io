@@ -10,9 +10,9 @@
     },
     {
       "id": 2,
-      "name": "წყვილებისთვის",
+      "name": "ზრდასრულებისთვის",
       "href": "/archive/the-demo-archive-slug",
-      "thumbnail": "https://i.ibb.co/Bc3Hjtw/Couple.png",
+      "thumbnail": "https://i.ibb.co/3SrVHP0/Couple.png",
       "count": 16,
       "color": "red",
       "description": "ფსიქოკონსულტაცია"
@@ -37,12 +37,12 @@
     },
     {
         "id": 5,
-        "name": "ჯგუფური კურსი",
+        "name": "ჯგუფური შეხვედრა",
         "href": "/archive/the-demo-archive-slug",
         "thumbnail": "https://i.ibb.co/1rbgqFL/Group.png",
         "count": 21,
         "color": "green",
-        "description": "ფსიქოგანათლება"
+        "description": "თვითგანვითარება"
       }
   ]
   
