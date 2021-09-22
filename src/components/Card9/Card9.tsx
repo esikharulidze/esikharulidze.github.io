@@ -82,7 +82,7 @@ const Card9: FC<Card9Props> = ({
       <div className="absolute bottom-0 inset-x-0 p-4 flex flex-col flex-grow">
         <Link to={href} className="absolute inset-0"></Link>
         <div className="mb-3">
-          <CategoryBadgeList categories={categories} />
+          {/* <CategoryBadgeList categories={categories} /> */}
         </div>
         {renderMeta()}
       </div>

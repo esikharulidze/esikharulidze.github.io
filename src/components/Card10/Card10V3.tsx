@@ -120,7 +120,7 @@ const Card10V3: FC<Card10V3Props> = ({
         ></Link>
       </div>
       <div className="absolute top-3 inset-x-3 flex justify-between items-start space-x-4">
-        <CategoryBadgeList categories={categories} />
+        {/* <CategoryBadgeList categories={categories} /> */}
         <PostCardSaveAction postData={post} />
       </div>
 

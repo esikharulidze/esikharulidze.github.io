@@ -80,7 +80,7 @@ const Card16Podcast: FC<Card16PodcastProps> = ({
       {/* ABSOLUTE */}
       <Link to={href} className="absolute inset-0"></Link>
       <span className="absolute top-3 inset-x-3">
-        <CategoryBadgeList categories={categories} />
+        {/* <CategoryBadgeList categories={categories} /> */}
       </span>
 
       {/* MAIN CONTENT */}

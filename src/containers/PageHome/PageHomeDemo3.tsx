@@ -1,4 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import axios from 'utils/axios'
+import {BackendPost} from 'types'
 import SectionVideos from "./SectionVideos";
 import SectionSliderPosts from "./SectionSliderPosts";
 import { DEMO_CATEGORIES, DEMO_TRENDS } from "data/taxonomies";
@@ -22,6 +24,7 @@ import SectionMagazine9 from "./SectionMagazine9";
 import BgGlassmorphism from "components/BgGlassmorphism/BgGlassmorphism";
 import SectionSubscribe from "components/SectionSubscribe/SectionSubscribe";
 import CourseCard from "components/CourseCard/CourseCard";
+import { AxiosResponse } from "axios";
 
 
 // DEMO DATA
@@ -33,6 +36,7 @@ const MAGAZINE1_POSTS = POSTS.filter((_, i) => i >= 0 && i < 8);
 //
 
 const PageHomeDemo3: React.FC = () => {
+  const [posts, setPosts] = useState<BackendPost[]>([])
   useEffect(() => {
     const $body = document.querySelector("body");
     if ($body) {
@@ -44,6 +48,18 @@ const PageHomeDemo3: React.FC = () => {
       }
     };
   }, []);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        await axios.get<any, AxiosResponse<BackendPost[]>>('post').then(({data}) => {
+          setPosts(data)
+        })
+      } catch (e) {
+        console.log(e)
+      }
+    })()
+  }, [])
 
   return (
     <div className="nc-PageHomeDemo3 overflow-hidden relative">
@@ -87,6 +103,7 @@ const PageHomeDemo3: React.FC = () => {
 
          {/* === SECTION 8 === */}
          <SectionLatestPosts
+         backendPosts={posts}
           posts={DEMO_POSTS.filter((_, i) => i > 8 && i < 14)}
           widgetPosts={DEMO_POSTS.filter((_, i) => i > 2 && i < 7)}
           categories={DEMO_CATEGORIES.filter((_, i) => i > 2 && i < 8)}

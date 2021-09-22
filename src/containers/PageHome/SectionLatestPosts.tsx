@@ -17,6 +17,7 @@ import Card9 from "components/Card9/Card9";
 import Card10 from "components/Card10/Card10";
 import Card11 from "components/Card11/Card11";
 import Card14 from "components/Card14/Card14";
+import { BackendPost } from "types";
 
 // THIS IS DEMO FOR MAIN DEMO
 // OTHER DEMO WILL PASS PROPS
@@ -32,6 +33,7 @@ const authorsDemo: PostAuthorType[] = DEMO_AUTHORS.filter((_, i) => i < 5);
 
 //
 export interface SectionLatestPostsProps {
+  backendPosts?: BackendPost[]
   posts?: PostDataType[];
   widgetPosts?: PostDataType[];
   categories?: TaxonomyType[];
@@ -58,35 +60,9 @@ const SectionLatestPosts: FC<SectionLatestPostsProps> = ({
   postCardName = "card3",
   gridClass = "",
   className = "",
+  backendPosts
 }) => {
-  const renderCard = (post: PostDataType) => {
-    switch (postCardName) {
-      case "card3":
-        return (
-          <Card3
-            key={post.id}
-            className="p-3 sm:p-5 2xl:p-6 [ nc-box-has-hover ] [ nc-dark-box-bg-has-hover ]"
-            post={post}
-          />
-        );
-      case "card4":
-        return <Card4 key={post.id} post={post} />;
-      case "card7":
-        return (
-          <Card7 key={post.id} post={post} ratio="aspect-w-5 aspect-h-5" />
-        );
-      case "card9":
-        return <Card9 key={post.id} post={post} />;
-      case "card10":
-        return <Card10 key={post.id} post={post} />;
-      case "card11":
-        return <Card11 key={post.id} post={post} />;
-      case "card14":
-        return <Card14 key={post.id} post={post} />;
-      default:
-        return null;
-    }
-  };
+  console.log(backendPosts)
 
   return (
     <div className={`nc-SectionLatestPosts relative ${className}`}>
@@ -94,7 +70,10 @@ const SectionLatestPosts: FC<SectionLatestPostsProps> = ({
         <div className="w-full lg:w-3/5 xl:w-2/3 xl:pr-14">
           <Heading>ახალი სტატიები 📖</Heading>
           <div className={`grid gap-6 md:gap-8 ${gridClass}`}>
-            {posts.map((post) => renderCard(post))}
+            {/* {posts.map((post) => renderCard(post))} */}
+            {backendPosts?.length ? backendPosts.map((post, index) => <Card3  key={index}
+            className="p-3 sm:p-5 2xl:p-6 [ nc-box-has-hover ] [ nc-dark-box-bg-has-hover ]"
+            post={post} />): <></>}
           </div>
           <div className="flex flex-col mt-12 md:mt-20 space-y-5 sm:space-y-0 sm:space-x-3 sm:flex-row sm:justify-between sm:items-center">
             <Pagination />

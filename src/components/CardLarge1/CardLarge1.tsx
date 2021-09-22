@@ -42,7 +42,7 @@ const CardLarge1: FC<CardLarge1Props> = ({
           enterTo="translate-y-0 opacity-100"
         >
           <div className="p-4 sm:p-8 xl:py-14 md:px-10 bg-white bg-opacity-40 backdrop-filter backdrop-blur-lg shadow-lg rounded-3xl space-y-3 sm:space-y-5 !border-opacity-0 --  nc-dark-box-bg">
-            <CategoryBadgeList categories={categories} />
+            {/* <CategoryBadgeList categories={categories} /> */}
 
             <h2 className="nc-card-title text-xl sm:text-2xl font-semibold ">
               <Link to={href} className="line-clamp-2" title={title}>

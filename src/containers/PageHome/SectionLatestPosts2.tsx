@@ -11,6 +11,7 @@ import WidgetAuthors from "components/WidgetAuthors/WidgetAuthors";
 import WidgetPosts from "components/WidgetPosts/WidgetPosts";
 import Pagination from "components/Pagination/Pagination";
 import ButtonPrimary from "components/Button/ButtonPrimary";
+import Card4 from "components/Card4/Card4";
 
 // THIS IS DEMO FOR MAIN DEMO
 // OTHER DEMO WILL PASS PROPS
@@ -49,7 +50,7 @@ const SectionLatestPosts: FC<SectionLatestPostsProps> = ({
           </Heading>
           <div className="space-y-12">
             {posts.map((post) => (
-              <Card3 size="large" key={post.id} post={post} />
+              <Card4 key={post.id} post={post} />
             ))}
           </div>
           <div className="flex flex-col mt-20 space-y-5 sm:space-y-0 sm:space-x-3 sm:flex-row sm:justify-between sm:items-center">

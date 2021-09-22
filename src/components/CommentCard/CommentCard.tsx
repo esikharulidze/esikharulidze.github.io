@@ -9,6 +9,9 @@ import SingleCommentForm from "containers/PageSingle/SingleCommentForm";
 import ModalEditComment from "./ModalEditComment";
 import ModalDeleteComment from "./ModalDeleteComment";
 import ModalReportItem from "components/ModalReportItem/ModalReportItem";
+import { BackendComment } from "types";
+import { format } from "date-fns";
+import { ka } from "date-fns/locale";
 
 export interface CommentType {
   id: number;
@@ -25,7 +28,7 @@ export interface CommentType {
 
 export interface CommentCardProps {
   className?: string;
-  comment: CommentType;
+  comment: BackendComment;
   size?: "large" | "normal";
 }
 
@@ -34,7 +37,7 @@ const CommentCard: FC<CommentCardProps> = ({
   comment,
   size = "large",
 }) => {
-  const { author, id, date, parentId, content } = comment;
+  const { author, id, updatedAt, content, parent } = comment;
   const actions = [
     { id: "edit", name: "Edit", icon: "las la-edit" },
     { id: "reply", name: "Reply", icon: "las la-reply" },
@@ -103,11 +106,11 @@ const CommentCard: FC<CommentCardProps> = ({
         className={`nc-CommentCard flex ${className}`}
         data-nc-id="CommentCard"
         data-comment-id={id}
-        data-comment-parent-id={parentId}
+        data-comment-parent-id={parent}
       >
         <Avatar
-          imgUrl={author.avatar}
-          userName={author.displayName}
+          // imgUrl={author.avatar}
+          userName={author}
           sizeClass={`h-6 w-6 text-base ${
             size === "large" ? "sm:text-lg sm:h-8 sm:w-8" : ""
           }`}
@@ -126,13 +129,13 @@ const CommentCard: FC<CommentCardProps> = ({
             </div>
             <Link
               className="flex-shrink-0 font-semibold text-neutral-800 dark:text-neutral-100"
-              to={author.href}
+              to={author}
             >
-              {author.displayName}
+              {author}
             </Link>
             <span className="mx-2">·</span>
             <span className="text-neutral-500 dark:text-neutral-400 text-xs line-clamp-1 sm:text-sm">
-              {date}
+              {format(new Date(updatedAt), 'MMM d, yyyy', {locale: ka})}
             </span>
           </div>
 
@@ -142,32 +145,32 @@ const CommentCard: FC<CommentCardProps> = ({
           </span>
 
           {/* ACTION LIKE REPLY */}
-          {isReplying ? (
+          {/* {isReplying ? (
             renderCommentForm()
           ) : (
             <CommentCardLikeReplyContainer
               onClickReply={openReplyForm}
               comment={comment}
             />
-          )}
+          )} */}
         </div>
       </div>
 
-      <ModalEditComment
+      {/* <ModalEditComment
         show={isEditting}
         comment={comment}
         onCloseModalEditComment={closeModalEditComment}
-      />
+      /> */}
       <ModalReportItem
         show={isReporting}
         id={comment.id}
         onCloseModalReportItem={closeModalReportComment}
       />
-      <ModalDeleteComment
+      {/* <ModalDeleteComment
         show={isDeleting}
         commentId={comment.id}
         onCloseModalDeleteComment={closeModalDeleteComment}
-      />
+      /> */}
     </>
   );
 };

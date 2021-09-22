@@ -57,7 +57,7 @@ const Card2: FC<Card2Props> = ({
 
       <div className="p-4 sm:p-5 flex flex-col">
         <div className="space-y-3">
-          <CategoryBadgeList itemClass="relative" categories={categories} />
+          {/* <CategoryBadgeList itemClass="relative" categories={categories} /> */}
           <h2
             className={`nc-card-title block font-semibold text-neutral-900 dark:text-neutral-100 transition-colors ${
               size === "large" ? "text-lg sm:text-2xl" : "text-base"

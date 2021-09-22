@@ -25,7 +25,7 @@ const Card6: FC<Card6Props> = ({ className = "h-full", post }) => {
       <Link to={href} className="absolute inset-0 z-0"></Link>
       <div className="flex flex-col flex-grow">
         <div className="space-y-3 mb-4">
-          <CategoryBadgeList categories={categories} />
+          {/* <CategoryBadgeList categories={categories} /> */}
           <h2 className={`block font-semibold text-base`}>
             <Link to={href} className="line-clamp-2" title={title}>
               {title}

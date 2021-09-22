@@ -37,11 +37,13 @@ import ModalCourse from "components/ModalCourse/ModalCourse";
 import CourseCard from "components/CourseCard/CourseCard";
 import PageCourse from 'containers/PageCourse'
 import PageCourses from 'containers/PageCourses'
+import PagePost from 'containers/PagePost/PagePost'
 
 
 export const pages: Page[] = [
   { path: "/", exact: true, component: PageHomeDemo3 },
   { path: "/#", exact: true, component: PageHomeDemo3 },
+  {path: '/post/:slug', component: PagePost},
   { path: "/archive/:slug", component: PageArchive },
   {path: "/services", component: PageCourses, exact: true},
   { path: "/services/:slug", component: PageCourse},

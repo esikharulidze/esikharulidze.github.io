@@ -5,9 +5,9 @@ import Textarea from "components/Textarea/Textarea";
 
 export interface SingleCommentFormProps {
   className?: string;
-  commentId?: string;
-  onClickSubmit: (id?: string) => void;
-  onClickCancel: (id?: string) => void;
+  commentId?: number;
+  onClickSubmit: (id?: number) => void;
+  onClickCancel: (id?: number) => void;
   textareaRef?: React.MutableRefObject<null>;
   defaultValue?: string;
   rows?: number;

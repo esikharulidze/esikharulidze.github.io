@@ -42,7 +42,7 @@ const Card11: FC<Card11Props> = ({
       </div>
       <Link to={href} className="absolute inset-0"></Link>
       <span className="absolute top-3 inset-x-3">
-        <CategoryBadgeList categories={categories} />
+        {/* <CategoryBadgeList categories={categories} /> */}
       </span>
 
       <div className="p-4 flex flex-col flex-grow space-y-3">

@@ -55,7 +55,7 @@ const PageSingleVideo: FC<PageSingleVideoProps> = ({ className = "" }) => {
     return (
       <div className={`nc-SingleHeader ${className}`}>
         <div className="space-y-5 dark text-neutral-100">
-          <CategoryBadgeList itemClass="!px-3" categories={categories} />
+          {/* <CategoryBadgeList itemClass="!px-3" categories={categories} /> */}
           <SingleTitle
             mainClass="text-neutral-900 font-semibold text-3xl md:!leading-[120%] dark:text-neutral-100"
             title={title}
@@ -63,13 +63,13 @@ const PageSingleVideo: FC<PageSingleVideoProps> = ({ className = "" }) => {
 
           <div className="w-full border-b border-neutral-100 dark:border-neutral-800"></div>
           <div className="flex flex-col space-y-5">
-            <PostMeta2
+            {/* <PostMeta2
               size="large"
               className="leading-none flex-shrink-0"
               meta={SINGLE_VIDEO}
               hiddenCategories
               avatarRounded="rounded-full shadow-inner"
-            />
+            /> */}
             <SingleMetaAction2 meta={SINGLE_VIDEO} />
           </div>
         </div>

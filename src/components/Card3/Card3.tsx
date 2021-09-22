@@ -1,16 +1,17 @@
 import React, { FC } from "react";
 import NcImage from "components/NcImage/NcImage";
-import PostCardMeta from "components/PostCardMeta/PostCardMeta";
-import PostCardSaveAction from "components/PostCardSaveAction/PostCardSaveAction";
+import PostCardMeta from "./PostCardMeta";
+import PostCardSaveAction from "./PostCardSaveAction";
 import { PostDataType } from "data/types";
 import { Link } from "react-router-dom";
-import PostCardLikeAndComment from "components/PostCardLikeAndComment/PostCardLikeAndComment";
+import PostCardLikeAndComment from "./PostCardLikeAndComment";
 import CategoryBadgeList from "components/CategoryBadgeList/CategoryBadgeList";
 import PostTypeFeaturedIcon from "components/PostTypeFeaturedIcon/PostTypeFeaturedIcon";
+import { BackendPost } from "types";
 
 export interface Card3Props {
   className?: string;
-  post: PostDataType;
+  post: BackendPost;
   size?: "normal" | "large";
 }
 
@@ -21,13 +22,14 @@ const Card3: FC<Card3Props> = ({
 }) => {
   const {
     title,
-    href,
     readingTime,
-    featuredImage,
-    desc,
+    slug,
+    avatar,
+    content,
     categories,
-    postType,
   } = post;
+
+  const href = 'post/' + slug
 
   return (
     <div
@@ -51,7 +53,7 @@ const Card3: FC<Card3Props> = ({
             {size === "large" && (
               <div className="hidden sm:block sm:mt-2">
                 <span className="text-neutral-500 dark:text-neutral-400 text-base line-clamp-1">
-                  {desc}
+                  {content}
                 </span>
               </div>
             )}
@@ -61,7 +63,7 @@ const Card3: FC<Card3Props> = ({
         </div>
         <div className="flex items-center flex-wrap justify-between mt-auto">
           <PostCardLikeAndComment postData={post} />
-          <PostCardSaveAction postData={post} readingTime={readingTime} />
+          <PostCardSaveAction readingTime={post.readingTime} />
         </div>
       </div>
 
@@ -75,13 +77,13 @@ const Card3: FC<Card3Props> = ({
         <div className={`w-full h-0 aspect-h-9 sm:aspect-h-16 aspect-w-16 `}>
           <NcImage
             containerClassName="absolute inset-0"
-            src={featuredImage}
+            src={avatar}
             alt={title}
           />
           <span>
             <PostTypeFeaturedIcon
               className="absolute left-2 bottom-2"
-              postType={postType}
+              postType={'standard'}
               wrapSize="w-8 h-8"
               iconSize="w-4 h-4"
             />
