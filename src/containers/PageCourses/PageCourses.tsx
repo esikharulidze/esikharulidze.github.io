@@ -34,7 +34,7 @@ const FILTERS = [
   { name: "Most Discussed" },
   { name: "Most Viewed" },
 ];
-const TABS = ["ყველა კურსი", "მოზარდებისთვის", "მშობლებისთვის", "ჯგუფური კურსები"];
+const TABS = ["ყველა კურსი", "ზრდასრულებისთვის", "მოზარდებისთვის", "ბავშვებისთვის", "ჯგუფური კურსები"];
 
 const PageCourse: FC<PageCourseProps> = ({ className = "" }) => {
   let timeOut: NodeJS.Timeout | null = null;
@@ -66,7 +66,7 @@ const PageCourse: FC<PageCourseProps> = ({ className = "" }) => {
   return (
     <div className={`nc-PageCourse  ${className}`} data-nc-id="PageCourse">
       <Helmet>
-        <title>Author || Blog Magazine React Template</title>
+        <title>Animus.ge - სერვისები</title>
       </Helmet>
       {/* <HeadBackgroundCommon className="h-24 2xl:h-28" /> */}
       <div className="container">
@@ -77,8 +77,8 @@ const PageCourse: FC<PageCourseProps> = ({ className = "" }) => {
             sizeClass="w-20 h-20 text-lg lg:w-28 lg:h-28 lg:text-xl"
             radius="rounded-2xl"
           /> */}
-          <h2 className="block align-middle mt-4 font-semibold text-2xl text-neutral-900 lg:text-3xl dark:text-neutral-100">
-            {AUTHOR.displayName}
+          <h2 className="block align-middle mt-4 font-semibold text-3xl text-neutral-900 lg:text-5xl dark:text-neutral-100">
+            კურსები და შეხვედრები
           </h2>
           {/* <span className="mt-2 block text-sm text-neutral-6000 dark:text-neutral-300 md:text-base">
             {AUTHOR.desc}

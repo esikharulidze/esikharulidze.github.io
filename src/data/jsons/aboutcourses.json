@@ -4,8 +4,9 @@
     "slug": "slug-1",
     "coursetype": "ინდივიდუალური",
     "subtitle": "ინდივიდუალური",
-    "title": "ინდივიდუალური",
-    "description": "პირადი ტიპის შეხვედრა",
+    "title": "ემოციური ინტელექტის კურსი",
+    "price": "30₾",
+    "description": "ანიმუსი გთავაზობთ ემოციური ინტელექტის კურსს 5-დან 17 წლამდე მოზარდებისთვის.",
     "href": "/services/slug-1",
     "rightimg": "https://i.ibb.co/g4DFgYG/Induvidual.png",
     "color": "#FEE2E250"

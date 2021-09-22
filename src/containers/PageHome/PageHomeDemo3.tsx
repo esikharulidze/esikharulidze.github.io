@@ -144,20 +144,16 @@ const PageHomeDemo3: React.FC = () => {
         />
 
         {/* === SECTION 1 === */}
-        <SectionSubscribe2 className="pb-16 lg:pb-28" />
+        <SectionSubscribe2 className="pb-16 mt-10 lg:pb-28" />
 
         {/* === SECTION 9 === */}
-        <div className="relative py-16">
+        {/* <div className="relative py-16">
           <BackgroundSection />
           <SectionMagazine9
             posts={DEMO_POSTS_AUDIO.filter((_, i) => i >= 6 && i < 16)}
           />
-        </div>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
+        </div> */}
+        
         {/* === SECTION 1 === */}
         {/* <SectionVideos className="py-16 lg:py-28" /> */}
 

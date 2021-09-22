@@ -22,16 +22,16 @@ const CourseCard: FC<CourseCardProps> = ({
       data-nc-id="SectionBecomeAnAuthor"
     >
       <div className="mb-14 lg:mb-0 lg:mr-10">
-        <span className="text-xs uppercase tracking-wider font-medium text-neutral-400">
+        <span className="text-sm uppercase tracking-wider font-medium text-neutral-400">
           {data.subtitle}
         </span>
-        <h2 className="font-semibold text-xl sm:text-xl mt-3">
+        <h2 className="font-semibold text-2xl sm:text-2xl mt-3">
           {data.title}
         </h2>
-        <span className="block mt-8 text-neutral-500 dark:text-neutral-400 text-xs">
+        <span className="block mt-8 text-neutral-500 dark:text-neutral-400 text-base">
           {data.description}
         </span>
-        <ButtonPrimary href={data.href} className="mt-8">Become an author</ButtonPrimary>
+        <ButtonPrimary href={data.href} className="mt-8">გაიგე მეტი</ButtonPrimary>
       </div>
       <div className="flex-grow">
         <NcImage src={data.rightimg} />

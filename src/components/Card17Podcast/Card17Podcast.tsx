@@ -10,7 +10,7 @@ export interface Card17PodcastProps {
 }
 
 const Card17Podcast: FC<Card17PodcastProps> = ({ className = "", post }) => {
-  const { title, href, featuredImage } = post;
+  const { title, href, featuredImage, desc } = post;
 
   const renderIcon = (state?: "loading" | "playing") => {
     switch (state) {
@@ -96,7 +96,7 @@ const Card17Podcast: FC<Card17PodcastProps> = ({ className = "", post }) => {
             </span>
           </h2>
           <span className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
-            40 Episode · 110 minutes
+            {desc}
           </span>
         </div>
       </Link>

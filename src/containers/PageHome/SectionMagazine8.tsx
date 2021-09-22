@@ -35,7 +35,7 @@ const SectionMagazine8: FC<SectionMagazine8Props> = ({
           className="sm:col-span-3 lg:col-span-2"
           post={posts[1]}
         />
-        <div className="flex flex-col space-y-6 md:space-y-8 sm:col-span-6 lg:col-span-2">
+        <div className="flex flex-col space-y-3 md:space-y-3 sm:col-span-6 lg:col-span-2">
           {posts
             .filter((_, i) => i > 1 && i < 6)
             .map((p) => (

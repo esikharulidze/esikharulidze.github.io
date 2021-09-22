@@ -84,7 +84,7 @@ const problemPlansDemo = [
       }
     ]
   } },
-  { name: "მშობლებისთვის‏‏‎", id: "parents", label: "მშობლებისთვის‏‏‎", select: {
+  { name: "ბავშვებისთვის‏‏‎", id: "kids", label: "ბავშვებისთვის", select: {
     label: "კურსი",
     default: "აირჩიეთ კურსი",
     data: [

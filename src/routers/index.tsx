@@ -35,7 +35,7 @@ import PageArchiveVideo from "containers/PageArchive/PageArchiveVideo";
 import PageArchiveAudio from "containers/PageArchive/PageArchiveAudio";
 import ModalCourse from "components/ModalCourse/ModalCourse";
 import CourseCard from "components/CourseCard/CourseCard";
-import PageCourse from 'containers/PageCourse'
+import ServiceInner from "containers/ServiceInner"
 import PageCourses from 'containers/PageCourses'
 import PagePost from 'containers/PagePost/PagePost'
 
@@ -45,8 +45,8 @@ export const pages: Page[] = [
   { path: "/#", exact: true, component: PageHomeDemo3 },
   {path: '/post/:slug', component: PagePost},
   { path: "/archive/:slug", component: PageArchive },
-  {path: "/services", component: PageCourses, exact: true},
-  { path: "/services/:slug", component: PageCourse},
+  {path: "/services", component: PageSubcription, exact: true},
+  { path: "/services/:slug", component: ServiceInner},
   { path: "/archive-video/:slug", component: PageArchiveVideo },
   { path: "/archive-audio/:slug", component: PageArchiveAudio },
   //
