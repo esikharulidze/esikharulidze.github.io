@@ -101,22 +101,22 @@ const problemPlansDemo = [
     ]  
   } 
   },
-  { name: "ჯგუფური შეხვედრა", id: "group", label: "ჯგუფური შეხვედრა", select: {
-    label: "კურსი",
-    default: "აირჩიეთ კურსი",
-    data: [
-      {
-        id: 1,
-        label: "კურსი 1",
-        value: "kursi_1"
-      },
-      {
-        id: 2,
-        label: "კურსი 2",
-        value: "kursi_2"
-      }
-    ]  
-  } },
+  // { name: "ჯგუფური შეხვედრა", id: "group", label: "ჯგუფური შეხვედრა", select: {
+  //   label: "კურსი",
+  //   default: "აირჩიეთ კურსი",
+  //   data: [
+  //     {
+  //       id: 1,
+  //       label: "კურსი 1",
+  //       value: "kursi_1"
+  //     },
+  //     {
+  //       id: 2,
+  //       label: "კურსი 2",
+  //       value: "kursi_2"
+  //     }
+  //   ]  
+  // } },
 ];
 
 const ModalCourse: FC<ModalReportItemProps> = ({

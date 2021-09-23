@@ -3,7 +3,7 @@
       "id": 1,
       "name": "ინდივიდუალური",
       "href": "/archive/the-demo-archive-slug",
-      "thumbnail": "https://i.ibb.co/g4DFgYG/Induvidual.png",
+      "thumbnail": "Individual",
       "count": 13,
       "color": "indigo",
       "description": "პირადი ტიპის შეხვედრა"
@@ -12,7 +12,7 @@
       "id": 2,
       "name": "ზრდასრულებისთვის",
       "href": "/archive/the-demo-archive-slug",
-      "thumbnail": "https://i.ibb.co/3SrVHP0/Couple.png",
+      "thumbnail": "Adult",
       "count": 16,
       "color": "red",
       "description": "ფსიქოკონსულტაცია"
@@ -21,7 +21,7 @@
       "id": 3,
       "name": "მოზარდებისთვის",
       "href": "/archive/the-demo-archive-slug",
-      "thumbnail": "https://i.ibb.co/sbZ86ms/Children.png",
+      "thumbnail": "Children",
       "count": 15,
       "color": "yellow",
       "description": "ბავშვები, თინეიჯერები"
@@ -30,19 +30,10 @@
       "id": 4,
       "name": "ბავშვებისთვის",
       "href": "/archive/the-demo-archive-slug",
-      "thumbnail": "https://i.ibb.co/Sv0tJ65/Family.png",
+      "thumbnail": "kids",
       "count": 21,
       "color": "pink",
       "description": "აღზრდის მეთოდები"
-    },
-    {
-        "id": 5,
-        "name": "ჯგუფური შეხვედრა",
-        "href": "/archive/the-demo-archive-slug",
-        "thumbnail": "https://i.ibb.co/1rbgqFL/Group.png",
-        "count": 21,
-        "color": "green",
-        "description": "თვითგანვითარება"
-      }
+    }
   ]
   

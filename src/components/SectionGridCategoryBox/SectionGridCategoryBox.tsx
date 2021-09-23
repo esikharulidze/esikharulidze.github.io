@@ -61,10 +61,10 @@ const SectionGridCategoryBox: React.FC<SectionGridCategoryBoxProps> = ({
         თერაპიები და შეხვედრები
       </Heading>}
       <ModalCourse show={showModal} id={1} onCloseModalReportItem={() => setShowModal(false)} selectedPlanIndex={selectedField} />
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-3 md:gap-3">
+      <div className="grid grid-cols-2 gap-5 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-4 xl:grid-cols-4 xl:gap-6 sm:gap-3 md:gap-3 xs:gap-3">
         {categories.map((item, i) => (
           <CardComponentName
-            index={i < 5 ? `${item.count} შეთავაზება` : undefined}
+            index={i < 4 ? `${item.count} შეთავაზება` : undefined}
             key={item.id}
             taxonomy={item}
             optionalClick={() => {setSelectedField(i); setShowModal(true)}}

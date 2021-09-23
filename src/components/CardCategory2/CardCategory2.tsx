@@ -3,7 +3,10 @@ import NcImage from "components/NcImage/NcImage";
 import { TaxonomyType, TwMainColor } from "data/types";
 import { Link } from "react-router-dom";
 import Badge from "components/Badge/Badge";
-
+import ChildrenIMG from "data/serviceicons/ChildrenIMG"
+import AdultIMG from "data/serviceicons/AdultIMG"
+import IndividualIMG from "data/serviceicons/InduvidualIMG"
+import KidsIMG from "data/serviceicons/KidsIMG"
 export interface CardCategory2Props {
   className?: string;
   taxonomy: TaxonomyType;
@@ -38,16 +41,21 @@ const CardCategory2: FC<CardCategory2Props> = ({
         />
       )}
       <br/>
-      <NcImage
-        containerClassName={`flex-shrink-0 w-20 h-20 rounded-full overflow-hidden`}
-        src={thumbnail}
-      />
-      <div className="mt-3 ">
-        <h2 className={`text-base sm:text-base font-semibold `}>
+      {thumbnail == "Children" ? <ChildrenIMG/> : <></>}
+      {thumbnail == "Adult" ? <AdultIMG/> : <></>}
+      {thumbnail == "Individual" ? <IndividualIMG/> : <></>}
+      {thumbnail == "kids" ? <KidsIMG/> : <></>}
+      {/* <NcImage
+      containerClassName={`flex-shrink-0 w-20 h-20 rounded-full overflow-hidden`}
+      src={thumbnail}
+    />} */}
+      
+      <div className="mt-3">
+        <h2 className={`text-xs md:text-lg lg:text-lg xl:text-2xl font-semibold`}>
           <span className="line-clamp-1">{name}</span>
         </h2>
         <span
-          className={`block mt-[2px] text-sm text-neutral-500 dark:text-neutral-400`}
+          className={`block mt-[2px] lg:text-sm md:text-base text-xs text-neutral-500 dark:text-neutral-400`}
         >
           {description}
         </span>

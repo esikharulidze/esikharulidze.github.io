@@ -111,7 +111,7 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
           </span>
         )} */}
 
-        <NcImage className="rounded-3xl " src="https://images.unsplash.com/photo-1440778303588-435521a205bc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" />
+        <NcImage className="rounded-3xl " src="https://i.ibb.co/svMpTQp/Course-Emotion.png" />
         
         <nav className="space-y-4 mt-8 mb-3">
           {/* {pricing.description?.map((item, index) => ( */}
@@ -153,9 +153,9 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
             <ButtonPrimary>Submit</ButtonPrimary>
           ) : ( */}
           
-            <ButtonSecondary onClick={() => history.push(`/services/${pricing.slug}`)}>
+            <ButtonPrimary onClick={() => history.push(`/services/${pricing.slug}`)}>
               <h2 className="font-medium mt-1">გაიგე მეტი</h2>
-            </ButtonSecondary>
+            </ButtonPrimary>
           {/* )} */}
           {/* <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-3">
             {pricing.desc}
