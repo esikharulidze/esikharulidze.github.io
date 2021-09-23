@@ -51,7 +51,7 @@ const CardCategory2: FC<CardCategory2Props> = ({
     />} */}
       
       <div className="mt-3">
-        <h2 className={`text-xs md:text-lg lg:text-lg xl:text-2xl font-semibold`}>
+        <h2 className={`text-xs md:text-lg lg:text-lg xl:text-xl font-semibold`}>
           <span className="line-clamp-1">{name}</span>
         </h2>
         <span
