@@ -38,6 +38,7 @@ import CourseCard from "components/CourseCard/CourseCard";
 import ServiceInner from "containers/ServiceInner"
 import PageCourses from 'containers/PageCourses'
 import PagePost from 'containers/PagePost/PagePost'
+import TeamInner from "containers/TeamInner"
 
 
 export const pages: Page[] = [
@@ -51,7 +52,7 @@ export const pages: Page[] = [
   { path: "/archive-audio/:slug", component: PageArchiveAudio },
   //
   { path: "/author/:slug", component: PageAuthor },
-  { path: "/team/:slug", component: PageAuthorV2 },
+  { path: "/team/:slug", component: TeamInner },
   //
   { path: "/single/:slug", component: PageSingleTemp3Sidebar },
   {
