@@ -46,3 +46,15 @@ export interface BackendComment {
     content: string
     updatedAt: string
 }
+
+export interface BackendCourse {
+    id: string
+	title: string
+	description: string
+	slug: string
+	content?: string
+	cost?: number
+	period?: string
+	avatar?: string
+	cover?: string
+}
