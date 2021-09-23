@@ -1,4 +1,3 @@
-import { AxiosResponse } from "axios";
 import LayoutPage from "components/LayoutPage/LayoutPage";
 import NcImage from "components/NcImage/NcImage";
 import React, { FC, useEffect, useState } from "react";
