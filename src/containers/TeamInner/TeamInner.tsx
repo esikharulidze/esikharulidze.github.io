@@ -5,6 +5,9 @@ import NcImage from "components/NcImage/NcImage";
 import React, { FC, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ModalCourse from "components/ModalCourse/ModalCourse";
+import axios from 'utils/axios'
+import { AxiosResponse } from "axios";
+import { BackendUser } from "types";
 
 
 export interface ServiceInnerProps {
@@ -17,6 +20,21 @@ const ServiceInner: FC<ServiceInnerProps> = ({ className = "" }) => {
 const [isReporting, setIsReporting] = useState(false);
 const openModalReportComment = () => setIsReporting(true);
 const closeModalReportComment = () => setIsReporting(false);
+const [user, setUser] = useState<BackendUser>()
+
+const {slug} = useParams<{slug: string}>()
+
+useEffect(() => {
+  (async () => {
+    try {
+      await axios.get<any, AxiosResponse<BackendUser>>(`user/${slug}`).then(({data}) => {
+        setUser(data)
+      })
+    } catch (e) {
+
+    }
+  })()
+}, [slug])
 
   return (
     <div>
@@ -24,18 +42,19 @@ const closeModalReportComment = () => setIsReporting(false);
         <div className="grid lg:grid-cols-4 gap-8 sm:grid-cols-1 md:gird-cols-2">
           <NcImage
             className="rounded-2xl"
-            src="https://i.ibb.co/5W1kbzY/elene.jpg"
+            src={user?.avatar}
           ></NcImage>
           
           <div className="lg:col-span-3 sm:col-span-1 md:col-span-2">
             <h2 className="font-semibold text-3xl text-neutral-900 dark:text-neutral-100">
-              ელენე სიხარულიძე
+              {user?.firstName + ' ' + user?.lastName}
             </h2>
             <h2 className="block text-base text-neutral-500 sm:text-base dark:text-neutral-400 mb-2">
-              დამფუძნებელი, ფსიქოლოგი
+              {user?.jobTitle}
             </h2>
             <hr />
-            <h2 className="text-center font-semibold text-neutral-900 sm:text-base dark:text-neutral-100 mt-5">
+            {user?.about ? <div dangerouslySetInnerHTML={{__html: user?.about}}></div> : <></>}
+            {/* <h2 className="text-center font-semibold text-neutral-900 sm:text-base dark:text-neutral-100 mt-5">
               განათლება
             </h2>
             <div className="block text-base xl:text-base text-neutral-6000 dark:text-neutral-400 mt-2 ">
@@ -106,7 +125,7 @@ const closeModalReportComment = () => setIsReporting(false);
                 საუნივერსიტეტო კლინიკა და სტრესის მართვისა და მენტალური
                 ჯანმრთელობის ცენტრის ორგანიზებით.
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
 

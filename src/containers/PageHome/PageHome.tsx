@@ -175,13 +175,13 @@ const PageHome: React.FC = () => {
           <SectionVideos className="py-16 lg:py-28" />
 
           {/* === SECTION 17 === */}
-          <SectionLatestPosts
+          {/* <SectionLatestPosts
             className="pb-16 lg:pb-28"
             posts={DEMO_POSTS.filter((_, i) => i > 8 && i < 16)}
             widgetPosts={DEMO_POSTS.filter((_, i) => i > 2 && i < 7)}
             categories={DEMO_CATEGORIES.filter((_, i) => i > 2 && i < 8)}
             tags={DEMO_CATEGORIES}
-          />
+          /> */}
         </div>
         {/* ======= END CONTAINER ============= */}
       </div>

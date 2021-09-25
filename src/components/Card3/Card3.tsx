@@ -53,7 +53,8 @@ const Card3: FC<Card3Props> = ({
             {size === "large" && (
               <div className="hidden sm:block sm:mt-2">
                 <span className="text-neutral-500 dark:text-neutral-400 text-base line-clamp-1">
-                  {content}
+                  
+                  {content ? <div dangerouslySetInnerHTML={{__html: content}}></div> : <></>}
                 </span>
               </div>
             )}

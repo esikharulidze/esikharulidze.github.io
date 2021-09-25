@@ -328,13 +328,23 @@ export const NAVIGATION_DEMO: NavItemType[] = [
     children: [
       {
         id: ncNanoId(),
-        href: "/author/the-demo-author-slug",
+        href: "/services/individual",
         name: "ინდივიდუალური",
       },
       {
         id: ncNanoId(),
-        href: "/author-v2/the-demo-author-slug",
-        name: "ჯგუფური შეხვედრები",
+        href: "/services/adults",
+        name: "ზრდასრულებისთვის",
+      },
+      {
+        id: ncNanoId(),
+        href: "/services/teens",
+        name: "მოზარდებისთვის",
+      },
+      {
+        id: ncNanoId(),
+        href: "/services/kids",
+        name: "ბავშვებისთვის",
       },
     ],
   },

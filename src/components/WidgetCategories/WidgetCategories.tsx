@@ -2,10 +2,11 @@ import CardCategory1 from "components/CardCategory1/CardCategory1";
 import WidgetHeading1 from "components/WidgetHeading1/WidgetHeading1";
 import { TaxonomyType } from "data/types";
 import React, { FC } from "react";
+import { BackendCategory } from "types";
 
 export interface WidgetCategoriesProps {
   className?: string;
-  categories: TaxonomyType[];
+  categories?: BackendCategory[];
 }
 
 const WidgetCategories: FC<WidgetCategoriesProps> = ({
@@ -23,7 +24,7 @@ const WidgetCategories: FC<WidgetCategoriesProps> = ({
       />
       <div className="flow-root">
         <div className="flex flex-col divide-y divide-neutral-200 dark:divide-neutral-700">
-          {categories.map((category) => (
+          {categories?.map((category) => (
             <CardCategory1
               className="p-4 xl:p-5 hover:bg-neutral-200 dark:hover:bg-neutral-700"
               key={category.id}

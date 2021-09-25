@@ -40,7 +40,7 @@ const SingleCommentLists: FC<SingleCommentListsProps> = ({ comments }) => {
     <ul className="nc-SingleCommentLists space-y-5">
       {cmtLv1.map(renderCommentItem)}
       <ButtonPrimary className="dark:bg-primary-700 w-full">
-        View full comments (+117 comments)
+        მეტი კომენტარის ნახვა
       </ButtonPrimary>
     </ul>
   );

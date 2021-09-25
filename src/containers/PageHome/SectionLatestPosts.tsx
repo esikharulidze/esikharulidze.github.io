@@ -17,7 +17,7 @@ import Card9 from "components/Card9/Card9";
 import Card10 from "components/Card10/Card10";
 import Card11 from "components/Card11/Card11";
 import Card14 from "components/Card14/Card14";
-import { BackendPost } from "types";
+import { BackendCategory, BackendPost, BackendUser } from "types";
 
 // THIS IS DEMO FOR MAIN DEMO
 // OTHER DEMO WILL PASS PROPS
@@ -36,9 +36,9 @@ export interface SectionLatestPostsProps {
   backendPosts?: BackendPost[]
   posts?: PostDataType[];
   widgetPosts?: PostDataType[];
-  categories?: TaxonomyType[];
+  categories?: BackendCategory[];
   tags?: TaxonomyType[];
-  authors?: PostAuthorType[];
+  authors?: BackendUser[];
   gridClass?: string;
   className?: string;
   postCardName?:
@@ -54,9 +54,9 @@ export interface SectionLatestPostsProps {
 const SectionLatestPosts: FC<SectionLatestPostsProps> = ({
   posts = postsDemo,
   widgetPosts = widgetPostsDemo,
-  categories = categoriesDemo,
+  categories = [],
   tags = tagsDemo,
-  authors = authorsDemo,
+  authors = [],
   postCardName = "card3",
   gridClass = "",
   className = "",
@@ -75,16 +75,16 @@ const SectionLatestPosts: FC<SectionLatestPostsProps> = ({
             className="p-3 sm:p-5 2xl:p-6 [ nc-box-has-hover ] [ nc-dark-box-bg-has-hover ]"
             post={post} />): <></>}
           </div>
-          <div className="flex flex-col mt-12 md:mt-20 space-y-5 sm:space-y-0 sm:space-x-3 sm:flex-row sm:justify-between sm:items-center">
+          {/* <div className="flex flex-col mt-12 md:mt-20 space-y-5 sm:space-y-0 sm:space-x-3 sm:flex-row sm:justify-between sm:items-center">
             <Pagination />
             <ButtonPrimary>მაჩვენე მეტი</ButtonPrimary>
-          </div>
+          </div> */}
         </div>
         <div className="w-full space-y-7 mt-24 lg:mt-0 lg:w-2/5 lg:pl-10 xl:pl-0 xl:w-1/3 ">
           {/* <WidgetTags tags={tags} /> */}
           <WidgetAuthors authors={authors} />
           <WidgetCategories categories={categories} />
-          <WidgetPosts posts={widgetPosts} />
+          {/* <WidgetPosts posts={widgetPosts} /> */}
         </div>
       </div>
     </div>

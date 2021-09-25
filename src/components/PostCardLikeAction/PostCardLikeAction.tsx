@@ -26,7 +26,7 @@ const PostCardLikeAction: FC<PostCardLikeActionProps> = ({
           : "text-neutral-700 bg-neutral-50 dark:text-neutral-200 dark:bg-neutral-800 hover:bg-rose-50 dark:hover:bg-rose-100 hover:text-rose-600 dark:hover:text-rose-500"
       }`}
       onClick={() => onClickLike(postId)}
-      title="Liked"
+      title="მოწონებები"
       data-nc-id="PostCardLikeAction"
     >
       <svg
@@ -47,7 +47,7 @@ const PostCardLikeAction: FC<PostCardLikeActionProps> = ({
       </svg>
 
       <span
-        className={`ml-1 ${
+        className={`ml-1 mt-1 ${
           isLiked ? "text-rose-600" : "text-neutral-900 dark:text-neutral-200"
         }`}
       >

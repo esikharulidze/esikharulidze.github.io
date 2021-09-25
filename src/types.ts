@@ -23,6 +23,8 @@ export interface BackendUser {
     phone: string
     gender: string
     about: string
+    jobTitle: string
+    slug: string
     posts: BackendPost[]
     avatar?: string
 }
@@ -57,4 +59,13 @@ export interface BackendCourse {
 	period?: string
 	avatar?: string
 	cover?: string
+    service: BackendService
+}
+
+export interface BackendService {
+    id: string
+    title: string
+    slug: string
+    description: string
+    courses: BackendCourse[]
 }

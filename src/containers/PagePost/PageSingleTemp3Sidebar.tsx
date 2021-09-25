@@ -67,7 +67,7 @@ const PageSingleTemp3Sidebar: FC<PageSingleTemp3SidebarProps> = ({
             {/* <SingleContent data={SINGLE} /> */}
           </div>
           <div className="w-full mt-12 lg:mt-0 lg:w-2/5 lg:pl-10 xl:pl-0 xl:w-1/3">
-            <Sidebar />
+            {/* <Sidebar /> */}
           </div>
         </div>
 

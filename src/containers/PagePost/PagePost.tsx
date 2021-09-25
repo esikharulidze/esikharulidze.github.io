@@ -11,7 +11,7 @@ import SingleHeader from "./SingleHeader";
 import { useParams } from "react-router-dom";
 import axios from 'utils/axios'
 import { AxiosResponse } from "axios";
-import { BackendPost } from "types";
+import { BackendCategory, BackendPost } from "types";
 
 export interface PageSingleTemp3SidebarProps {
   className?: string;
@@ -29,6 +29,7 @@ const PageSingleTemp3Sidebar: FC<PageSingleTemp3SidebarProps> = ({
   const dispatch = useAppDispatch();
   const {slug} = useParams<{slug: string}>()
   const [post, setPost] = useState<BackendPost>()
+  const [categories, setCategories] = useState<BackendCategory[]>([])
 
   // UPDATE CURRENTPAGE DATA IN PAGEREDUCERS
   useEffect(() => {
@@ -50,6 +51,18 @@ const PageSingleTemp3Sidebar: FC<PageSingleTemp3SidebarProps> = ({
     })()
   }, [])
 
+
+  useEffect(() => {
+    (async () => {
+      try {
+        await axios.get<any, AxiosResponse<BackendCategory[]>>('category').then(({ data}) => {
+          setCategories(data)
+        })
+      } catch (e) {
+        console.log(e)
+      }
+    })()
+  }, []);
   return (
     <>
       <div
@@ -80,17 +93,19 @@ const PageSingleTemp3Sidebar: FC<PageSingleTemp3SidebarProps> = ({
         </header>
 
         {/* SINGLE MAIN CONTENT */}
-        <div className="container flex flex-col my-10 lg:flex-row ">
+        <div className="container justify-center flex flex-col my-10 lg:flex-row ">
           <div className="w-full lg:w-3/5 xl:w-2/3 xl:pr-20">
             {post ? <SingleContent data={post} />: <></>}
           </div>
           <div className="w-full mt-12 lg:mt-0 lg:w-2/5 lg:pl-10 xl:pl-0 xl:w-1/3">
-            <Sidebar />
+            <Sidebar 
+              categories={categories}
+            />
           </div>
         </div>
 
         {/* RELATED POSTS */}
-        <SingleRelatedPosts />
+        {/* <SingleRelatedPosts /> */}
       </div>
     </>
   );

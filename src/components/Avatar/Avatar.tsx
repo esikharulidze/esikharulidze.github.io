@@ -37,7 +37,7 @@ const Avatar: FC<AvatarProps> = ({
           alt={name}
         />
       )}
-      <span className="wil-avatar__name mb-1">{name[0]}</span>
+      <span className="wil-avatar__name mt-1">{name[0]}</span>
     </div>
   );
 };

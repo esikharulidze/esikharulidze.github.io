@@ -49,7 +49,7 @@ const PostCardCommentBtn: FC<PostCardCommentBtnProps> = ({
         ></path>
       </svg>
 
-      <span className="ml-1 text-neutral-900 dark:text-neutral-200">
+      <span className="ml-1 text-neutral-900 dark:text-neutral-200 mt-1">
         {commentCount}
       </span>
     </Link>

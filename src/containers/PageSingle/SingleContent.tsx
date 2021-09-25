@@ -64,7 +64,7 @@ const SingleContent: FC<SingleContentProps> = ({ data }) => {
         className="max-w-screen-md mx-auto pt-5"
       >
         <h3 className="text-xl font-semibold text-neutral-800 dark:text-neutral-200">
-          Responses ({commentCount})
+          კომენტარები ({commentCount})
         </h3>
         <SingleCommentForm
           onClickSubmit={(id) => console.log(id)}

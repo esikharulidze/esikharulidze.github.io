@@ -121,7 +121,7 @@ const PageHomeDemo2: React.FC = () => {
         <SectionVideos className="py-16 lg:py-28" />
 
         {/* === SECTION 8 === */}
-        <SectionLatestPosts
+        {/* <SectionLatestPosts
           className="pb-16 lg:pb-28"
           posts={DEMO_POSTS.filter((_, i) => i > 7 && i < 18)}
           widgetPosts={DEMO_POSTS.filter((_, i) => i > 2 && i < 7)}
@@ -129,7 +129,7 @@ const PageHomeDemo2: React.FC = () => {
           tags={DEMO_CATEGORIES}
           postCardName="card14"
           gridClass="sm:grid-cols-2"
-        />
+        /> */}
       </div>
     </div>
   );

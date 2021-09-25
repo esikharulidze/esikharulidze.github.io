@@ -6,6 +6,7 @@ export interface LocationStates {
   "/post/:slug"?: {}
   "/archive/:slug"?: {};
   "/services/:slug"?: {};
+  "/services/:slug/:slag"?: {};
   "/services": {};
   "/archive-video/:slug"?: {};
   "/archive-audio/:slug"?: {};

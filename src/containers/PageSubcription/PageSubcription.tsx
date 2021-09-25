@@ -5,9 +5,9 @@ import ButtonPrimary from "components/Button/ButtonPrimary";
 import ButtonSecondary from "components/Button/ButtonSecondary";
 import NcImage from "components/NcImage/NcImage";
 import axios from 'utils/axios'
-import { BackendCourse } from "types";
+import { BackendCourse, BackendService } from "types";
 import { AxiosResponse } from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 
 export interface PageSubcriptionProps {
   className?: string;
@@ -80,12 +80,19 @@ const pricings: PricingItem[] = [
   },
 ];
 
+
 const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
   const [courses, setCourses] = useState<BackendCourse[]>([])
+  const [services, setServices] = useState<BackendService[]>([])
+  const [selectedService, setSelectedService] = useState<BackendService>()
   const history = useHistory()
+  const {slug} = useParams<{slug: string}>()
   useEffect(() => {
     (async () => {
       try {
+        await axios.get<any, AxiosResponse<BackendService[]>>('service').then(({data}) => {
+          setServices(data)
+        })
         await axios.get<any, AxiosResponse<BackendCourse[]>>('course').then(({data}) => {
           setCourses(data)
         })
@@ -94,6 +101,18 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
       }
     })()
   }, [])
+  
+  useEffect(() => {
+    (async () => {
+      try {
+        await axios.get<any, AxiosResponse<BackendService>>(`service/${slug}`).then(({data}) => {
+          setSelectedService(data)
+        })
+      } catch (e) {
+        console.log(e)
+      }
+    })()
+  }, [slug])
 
   const renderPricingItem = (pricing: BackendCourse, index: number) => {
     return (
@@ -153,7 +172,7 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
             <ButtonPrimary>Submit</ButtonPrimary>
           ) : ( */}
           
-            <ButtonPrimary onClick={() => history.push(`/services/${pricing.slug}`)}>
+            <ButtonPrimary onClick={() => history.push(`/services/${pricing.service.slug || selectedService?.slug}/${pricing.slug}`)}>
               <h2 className="font-medium mt-1">გაიგე მეტი</h2>
             </ButtonPrimary>
           {/* )} */}
@@ -171,14 +190,14 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
       data-nc-id="PageSubcription"
     >
       <LayoutPage
-        subHeading="აირჩიეთ თქვენთვის სასურველი კურსი, შეხვედრა ან შეთავაზება."
-        headingEmoji="💎"
-        heading="სერვისები"
+        subHeading={selectedService ? selectedService.description : "აირჩიეთ თქვენთვის სასურველი კურსი, შეხვედრა ან შეთავაზება."}
+        // headingEmoji="💎"
+        heading={selectedService ? selectedService.title: "სერვისები"}
         isInner={false}
       >
         <section className="text-neutral-600 text-sm md:text-base overflow-hidden">
           <div className="grid lg:grid-cols-3 gap-5 xl:gap-8">
-            {courses.map(renderPricingItem)}
+            {slug ? selectedService?.courses.map(renderPricingItem) : courses.map(renderPricingItem)}
           </div>
         </section>
       </LayoutPage>

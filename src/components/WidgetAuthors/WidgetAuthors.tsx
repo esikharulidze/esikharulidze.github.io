@@ -2,10 +2,11 @@ import CardAuthor from "components/CardAuthor/CardAuthor";
 import WidgetHeading1 from "components/WidgetHeading1/WidgetHeading1";
 import { PostAuthorType } from "data/types";
 import React, { FC } from "react";
+import { BackendUser } from "types";
 
 export interface WidgetAuthorsProps {
   className?: string;
-  authors: PostAuthorType[];
+  authors: BackendUser[];
 }
 
 const WidgetAuthors: FC<WidgetAuthorsProps> = ({

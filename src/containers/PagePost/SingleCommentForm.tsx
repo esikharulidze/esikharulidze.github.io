@@ -25,7 +25,7 @@ const SingleCommentForm: FC<SingleCommentFormProps> = ({
   return (
     <form action="#" className={`nc-SingleCommentForm ${className}`}>
       <Textarea
-        placeholder="Add to discussion"
+        placeholder="ჩაერთე დისკუსიაში"
         ref={textareaRef}
         required={true}
         defaultValue={defaultValue}
@@ -33,10 +33,10 @@ const SingleCommentForm: FC<SingleCommentFormProps> = ({
       />
       <div className="mt-2 space-x-3">
         <ButtonPrimary onClick={() => onClickSubmit(commentId)} type="submit">
-          Submit
+          დამატება
         </ButtonPrimary>
         <ButtonSecondary type="button" onClick={() => onClickCancel(commentId)}>
-          Cancel
+          გაუქმება
         </ButtonSecondary>
       </div>
     </form>

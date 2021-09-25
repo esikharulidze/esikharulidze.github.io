@@ -46,8 +46,10 @@ export const pages: Page[] = [
   { path: "/#", exact: true, component: PageHomeDemo3 },
   {path: '/post/:slug', component: PagePost},
   { path: "/archive/:slug", component: PageArchive },
-  {path: "/services", component: PageSubcription, exact: true},
-  { path: "/services/:slug", component: ServiceInner},
+  {path: "/services/:slug/:slag", component: ServiceInner},
+  { path: "/services/:slug", component: PageSubcription},
+  {path: "/services", component: PageSubcription},
+
   { path: "/archive-video/:slug", component: PageArchiveVideo },
   { path: "/archive-audio/:slug", component: PageArchiveAudio },
   //

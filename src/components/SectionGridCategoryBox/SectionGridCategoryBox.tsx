@@ -1,3 +1,4 @@
+import { AxiosResponse } from "axios";
 import CardCategory1 from "components/CardCategory1/CardCategory1";
 import CardCategory2 from "components/CardCategory2/CardCategory2";
 import CardCategory3 from "components/CardCategory3/CardCategory3";
@@ -7,7 +8,10 @@ import Heading from "components/Heading/Heading";
 import ModalCourse from "components/ModalCourse/ModalCourse";
 import { DEMO_CATEGORIES, DEMO_TRENDS } from "data/taxonomies";
 import { TaxonomyType } from "data/types";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { BackendCourse, BackendService } from "types";
+import { isTemplateExpression } from "typescript";
+import axios from "utils/axios";
 
 export interface SectionGridCategoryBoxProps {
   categories?: TaxonomyType[];
@@ -31,9 +35,9 @@ const SectionGridCategoryBox: React.FC<SectionGridCategoryBoxProps> = ({
 }) => {
   let CardComponentName = CardCategory2;
   switch (categoryCardType) {
-    case "card1":
-      CardComponentName = CardCategory1;
-      break;
+    // case "card1":
+    //   CardComponentName = CardCategory1;
+    //   break;
     case "card2":
       CardComponentName = CardCategory2;
       break;
@@ -53,7 +57,24 @@ const SectionGridCategoryBox: React.FC<SectionGridCategoryBoxProps> = ({
 
   const [showModal,setShowModal] = React.useState(false)
   const [selectedField, setSelectedField] = React.useState(0)
+  const [courses, setCourses] = useState<BackendCourse[]>([])
+  const [services, setServices] = useState<BackendService[]>([])
 
+  useEffect(() => {
+    (async () => {
+      try {
+        await axios.get<any, AxiosResponse<BackendService[]>>('service').then(({data}) => {
+          setServices(data)
+        })
+        await axios.get<any, AxiosResponse<BackendCourse[]>>('course').then(({data}) => {
+          setCourses(data)
+        })
+      } catch (e) {
+        console.log(e)
+      }
+    })()
+  }, [])
+  console.log()
   return (
     
     <div className={`nc-SectionGridCategoryBox relative ${className}`}>
@@ -64,10 +85,10 @@ const SectionGridCategoryBox: React.FC<SectionGridCategoryBoxProps> = ({
       <div className="grid grid-cols-2 gap-5 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-4 xl:grid-cols-4 xl:gap-6 sm:gap-3 md:gap-3 xs:gap-3">
         {categories.map((item, i) => (
           <CardComponentName
-            index={i < 4 ? `${item.count} შეთავაზება` : undefined}
+            index={i < 4 && services.filter(service => service.title === item.name).length > 0 ? `${services.filter(service => service.title === item.name)[0].courses.length} შეთავაზება` : undefined}
             key={item.id}
             taxonomy={item}
-            optionalClick={() => {setSelectedField(i); setShowModal(true)}}
+            optionalClick={i < 1 ? () => {setSelectedField(i); setShowModal(true)}: undefined}
           />
         ))}
       </div>
@@ -76,3 +97,7 @@ const SectionGridCategoryBox: React.FC<SectionGridCategoryBoxProps> = ({
 };
 
 export default SectionGridCategoryBox;
+function setServices(data: BackendService[]) {
+  throw new Error("Function not implemented.");
+}
+

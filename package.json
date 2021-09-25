@@ -24,6 +24,7 @@
     "axios": "^0.21.4",
     "date-fns": "^2.24.0",
     "firebase": "^8.9.1",
+    "lodash.debounce": "^4.0.8",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
@@ -70,6 +71,7 @@
   },
   "devDependencies": {
     "@types/glidejs__glide": "^3.4.0",
+    "@types/lodash.debounce": "^4.0.6",
     "@types/react-router-dom": "^5.1.7",
     "@types/redux-logger": "^3.0.8",
     "autoprefixer": "^9.8.6",

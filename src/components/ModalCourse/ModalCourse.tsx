@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useRef, useState, useReducer } from "react";
 import NcModal from "components/NcModal/NcModal";
 import Textarea from "components/Textarea/Textarea";
 import ButtonPrimary from "components/Button/ButtonPrimary";
@@ -9,6 +9,7 @@ import Label from "components/Label/Label";
 import Input from "components/Input/Input";
 import Select from "components/Select/Select";
 import DropDown from 'components/DropDown'
+import debounce from 'lodash.debounce'
 
 export interface ProblemPlan {
   name: string;
@@ -24,6 +25,7 @@ export interface Select {
     id: number
     label: string
     value: string
+    slug: string
   }[]
 }
 
@@ -34,6 +36,7 @@ export interface ModalReportItemProps {
   onCloseModalReportItem: () => void;
   selectedPlanIndex?: number  
 }
+
 
 const problemPlansDemo = [
   {
@@ -67,7 +70,24 @@ const problemPlansDemo = [
     //   ]
     // }
   },
-  { name: "ზრდასრულებისთვის", id: "adults", label: "ზრდასრულებისთვის" },
+  { name: "ზრდასრულებისთვის", id: "adults", label: "ზრდასრულებისთვის", select: {
+    label: "კურსი",
+    default: "აირჩიეთ კურსი",
+    data: [
+      {
+        id: 1,
+        label: "კურსი 1",
+        value: "kursi_1",
+        slug: 'emotional-intelligence-course'
+      },
+      {
+        id: 2,
+        label: "კურსი 2",
+        value: "kursi_2",
+        slug: "emotional-intelligence-course"
+      }
+    ]  
+  }  },
   { name: "მოზარდები‏‏‎სთვის‏‎‏‏", id: "teens", label: "მოზარდებისთვის‏‏‎‎", select:{
     label: "კურსი",
     default: "აირჩიეთ კურსი",
@@ -75,12 +95,50 @@ const problemPlansDemo = [
       {
         id: 1,
         label: "კურსი 1",
-        value: "kursi_1"
+        value: "kursi_1",
+        slug: "emotional-intelligence-course"
       },
       {
         id: 2,
         label: "კურსი 2",
-        value: "kursi_2"
+        value: "kursi_2",
+        slug: "emotional-intelligence-course"
+      },
+      {
+        id: 3,
+        label: "კურსი 1",
+        value: "kursi_1",
+        slug: "emotional-intelligence-course"
+      },
+      {
+        id: 4,
+        label: "კურსი 2",
+        value: "kursi_2",
+        slug: "emotional-intelligence-course"
+      },
+      {
+        id: 5,
+        label: "კურსი 1",
+        value: "kursi_1",
+        slug: "emotional-intelligence-course"
+      },
+      {
+        id: 6,
+        label: "კურსი 2",
+        value: "kursi_2",
+        slug: "emotional-intelligence-course"
+      },
+      {
+        id: 7,
+        label: "კურსი 1",
+        value: "kursi_1",
+        slug: "emotional-intelligence-course"
+      },
+      {
+        id: 8,
+        label: "კურსი 2",
+        value: "kursi_2",
+        slug: "emotional-intelligence-course"
       }
     ]
   } },
@@ -91,12 +149,14 @@ const problemPlansDemo = [
       {
         id: 1,
         label: "კურსი 1",
-        value: "kursi_1"
+        value: "kursi_1",
+        slug: "emotional-intelligence-course"
       },
       {
         id: 2,
         label: "კურსი 2",
-        value: "kursi_2"
+        value: "kursi_2",
+        slug: "emotional-intelligence-course"
       }
     ]  
   } 
@@ -128,8 +188,9 @@ const ModalCourse: FC<ModalReportItemProps> = ({
 }) => {
   const textareaRef = useRef(null);
   const inputRef = useRef<HTMLInputElement>(null)
-
   const [problemSelected, setProblemSelected] = useState(problemPlans[selectedPlanIndex]);
+
+  const [age, setAge] = useState('')
 
   useEffect(() => {
     if (selectedPlanIndex !== null) {
@@ -177,7 +238,7 @@ const ModalCourse: FC<ModalReportItemProps> = ({
         {/* RADIO PROBLEM PLANS */}
         <RadioGroup value={problemSelected} onChange={setProblemSelected}>
           <RadioGroup.Label className="sr-only">Problem Plans</RadioGroup.Label>
-          <div className="grid grid-cols-2 lg:grid-cols-5 gap-2">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
             {problemPlans.map((plan) => (
               <RadioGroup.Option
                 key={plan.name}
@@ -223,6 +284,13 @@ const ModalCourse: FC<ModalReportItemProps> = ({
 
         <form className="grid grid-cols-1 gap-6" action="#" method="post">
           <div className="mt-8">
+            
+          {
+              problemSelected.select ? <label className='block mb-4'>
+                <Label>{problemSelected.select.label}</Label>
+                <DropDown className='cursor-pointer form-select block w-full mt-1 border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900 rounded-full h-11 px-4 py-3 text-sm font-normal border' placeholder={problemSelected.select.default} data={problemSelected.select.data} />
+              </label> : (<></>)
+            }
             <label className="block">
               <Label>სახელი და გვარი</Label>
 
@@ -248,6 +316,33 @@ const ModalCourse: FC<ModalReportItemProps> = ({
             </label> : <></>}
 
             <label className="block">
+              <Label>ასაკი</Label>
+
+              <Input
+                type="number"
+                placeholder="შეიყვანეთ ასაკი"
+                className="mt-1 mb-4"
+                required={true}
+                min={3}
+                max={100}
+                value={age || undefined}
+                onChange={({target: {value}}) => {
+                  setAge(value)
+                  debounce(() => {
+                    console.log('debounce')
+                    if (Number(value) < 3) {
+                      setAge('3')
+                    } else if (Number(value) > 100) {
+                      setAge('100')
+                    } else {
+                      setAge(value)
+                    }
+                  }, 300)
+                }}
+              />
+            </label>
+
+            <label className="block">
               <Label>ელ.ფოსტა</Label>
 
               <Input
@@ -268,13 +363,7 @@ const ModalCourse: FC<ModalReportItemProps> = ({
                 required={true}
               />
             </label> 
-
-            {
-              problemSelected.select ? <label className='block mt-4'>
-                <Label>{problemSelected.select.label}</Label>
-                <DropDown className='cursor-pointer form-select block w-full mt-1  border-neutral-200 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white dark:border-neutral-700 dark:focus:ring-primary-6000 dark:focus:ring-opacity-25 dark:bg-neutral-900 rounded-full h-11 px-4 py-3 text-sm font-normal border' placeholder={problemSelected.select.default} data={problemSelected.select.data} />
-              </label> : (<></>)
-            }
+            
             </div>
         </form>
 

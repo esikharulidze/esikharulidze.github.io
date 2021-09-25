@@ -22,7 +22,7 @@ const NcBookmark: FC<NcBookmarkProps> = ({
       data-nc-id="NcBookmark"
       data-nc-bookmark-post-id={postId}
       onClick={onClick}
-      title="Save to reading list"
+      title="გადმოწერე დოკუმენტად"
     >
       <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
         <path

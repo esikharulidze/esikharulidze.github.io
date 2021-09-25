@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from 'utils/axios'
-import {BackendPost} from 'types'
+import {BackendCategory, BackendPost, BackendUser} from 'types'
 import SectionVideos from "./SectionVideos";
 import SectionSliderPosts from "./SectionSliderPosts";
 import { DEMO_CATEGORIES, DEMO_TRENDS } from "data/taxonomies";
@@ -37,6 +37,8 @@ const MAGAZINE1_POSTS = POSTS.filter((_, i) => i >= 0 && i < 8);
 
 const PageHomeDemo3: React.FC = () => {
   const [posts, setPosts] = useState<BackendPost[]>([])
+  const [authors, setAuthors] = useState<BackendUser[]>([])
+  const [cateogries, setCategories] = useState<BackendCategory[]>([])
   useEffect(() => {
     const $body = document.querySelector("body");
     if ($body) {
@@ -55,12 +57,17 @@ const PageHomeDemo3: React.FC = () => {
         await axios.get<any, AxiosResponse<BackendPost[]>>('post').then(({data}) => {
           setPosts(data)
         })
+        await axios.get<any, AxiosResponse<BackendUser[]>>('user/all').then(({data}) => {
+          setAuthors(data)
+        })
+        await axios.get<any, AxiosResponse<BackendCategory[]>>('category').then(({ data}) => {
+          setCategories(data)
+        })
       } catch (e) {
         console.log(e)
       }
     })()
   }, [])
-
   return (
     <div className="nc-PageHomeDemo3 overflow-hidden relative">
       <Helmet>
@@ -103,14 +110,15 @@ const PageHomeDemo3: React.FC = () => {
 
          {/* === SECTION 8 === */}
          <SectionLatestPosts
-         backendPosts={posts}
+          backendPosts={posts}
           posts={DEMO_POSTS.filter((_, i) => i > 8 && i < 14)}
           widgetPosts={DEMO_POSTS.filter((_, i) => i > 2 && i < 7)}
-          categories={DEMO_CATEGORIES.filter((_, i) => i > 2 && i < 8)}
+          categories={cateogries}
           tags={DEMO_CATEGORIES}
           // postCardName="card7"
           // gridClass="sm:grid-cols-2"
           className="pb-16 lg:pb-28"
+          authors={authors}
         />
 
 

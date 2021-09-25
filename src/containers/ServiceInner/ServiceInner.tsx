@@ -11,12 +11,12 @@ export interface ServiceInnerProps {
 
 const ServiceInner: FC<ServiceInnerProps> = ({ className = "" }) => {
   const [course, setCourse] = useState<BackendCourse>()
-  const {slug} = useParams<{slug: string}>()
+  const {slag} = useParams<{slag: string}>()
 
   useEffect(() => {
     (async () => {
       try {
-        await axios.get<any, AxiosResponse<BackendCourse>>(`course/${slug}`).then(({data}) => {
+        await axios.get<any, AxiosResponse<BackendCourse>>(`course/${slag}`).then(({data}) => {
           setCourse(data)
         })
       } catch(e) {

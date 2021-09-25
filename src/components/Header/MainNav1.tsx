@@ -30,7 +30,7 @@ const closeModalReportComment = () => setIsReporting(false);
         <div className="flex-shrink-0 flex items-center justify-end text-neutral-700 dark:text-neutral-100 space-x-1">
           <div className="hidden items-center xl:flex space-x-1">
             <DarkModeContainer />
-            <SearchDropdown />
+            {/* <SearchDropdown /> */}
             <div className="px-1" />
             <ButtonPrimary onClick={openModalReportComment} href="">შეხვედრის დაჯავშნა</ButtonPrimary>
             <ModalCourse
