@@ -9,6 +9,7 @@
     "@headlessui/react": "^1.2.0",
     "@heroicons/react": "^1.0.1",
     "@reduxjs/toolkit": "^1.5.1",
+    "@sendgrid/mail": "^7.4.7",
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "@tailwindcss/forms": "^0.3.2",
     "@tailwindcss/line-clamp": "^0.2.1",
@@ -72,6 +73,7 @@
   "devDependencies": {
     "@types/glidejs__glide": "^3.4.0",
     "@types/lodash.debounce": "^4.0.6",
+    "@types/nodemailer": "^6.4.4",
     "@types/react-router-dom": "^5.1.7",
     "@types/redux-logger": "^3.0.8",
     "autoprefixer": "^9.8.6",

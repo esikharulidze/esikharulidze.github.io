@@ -27,6 +27,7 @@ import CourseCard from "components/CourseCard/CourseCard";
 import { AxiosResponse } from "axios";
 
 
+
 // DEMO DATA
 const POSTS = DEMO_POSTS;
 
@@ -34,6 +35,7 @@ const POSTS = DEMO_POSTS;
 const MAGAZINE1_TABS = ["all", "Garden", "Fitness", "Design"];
 const MAGAZINE1_POSTS = POSTS.filter((_, i) => i >= 0 && i < 8);
 //
+
 
 const PageHomeDemo3: React.FC = () => {
   const [posts, setPosts] = useState<BackendPost[]>([])
@@ -97,7 +99,7 @@ const PageHomeDemo3: React.FC = () => {
             </span>
           }
           btnText="განაგრძე კითხვა"
-          subHeading="ემოცია არის ადამიანის ფსიქიკური მდგომარეობა გარესინამდვილესა და თავისი თავისადმი... 🎈"
+          subHeading="მოგესალმებათ ანიმუსის პირველი სტატია, ცოტა ხანგრძლივი კი გამოგვივიდა, მაგრამ ვიმდევნ...🎈"
         />
         
         <SectionGridCategoryBox
