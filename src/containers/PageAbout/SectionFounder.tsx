@@ -20,16 +20,16 @@ const FOUNDER_DEMO: People[] = [
   {
     id: "4",
     name: `ეკატერინე ჩიქოვანი`,
-    job: "პედაგოგი, არტ-თერაპევტი",
+    job: "პედაგოგი, არტთერაპევტი",
     avatar:
       "https://i.ibb.co/PWFV04q/ekaterine.jpg",
   },
   {
     id: "3",
-    name: `ხატია მარჯანიძე`,
-    job: "ფსიქოლოგის ასისტენტი",
+    name: `ქეთია ბელქანია`,
+    job: "მთავარი რედაქტორი",
     avatar:
-      "https://i.ibb.co/0n77yG1/khatia.jpg",
+      "https://i.ibb.co/KVvRnbt/belkania.jpg",
   },
   {
     id: "2",

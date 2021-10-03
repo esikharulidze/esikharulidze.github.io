@@ -148,10 +148,10 @@ const PageHomeDemo3: React.FC = () => {
 
         {/* === SECTION 9 === */}
 
-        <SectionMagazine8
+        {/* <SectionMagazine8
           className="py-16"
           posts={DEMO_POSTS_AUDIO.filter((_, i) => i < 6)}
-        />
+        /> */}
 
         {/* === SECTION 1 === */}
         <SectionSubscribe2 className="pb-16 mt-10 lg:pb-28" />
