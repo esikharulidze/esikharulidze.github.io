@@ -20,10 +20,10 @@ const CardCategory2: FC<CardCategory2Props> = ({
   index,
   optionalClick
 }) => {
-  const { count, name, description, href = "/services", thumbnail, color } = taxonomy;
+  const { count, name, description, href, thumbnail, color } = taxonomy;
   return (
     <Link
-      to={'/services'}
+      to={href}
       className={`nc-CardCategory2 relative flex flex-col items-center justify-center text-center px-3 py-5 sm:p-6  [ nc-box-has-hover ] [ nc-dark-box-bg-has-hover ]  ${className}`}
       data-nc-id="CardCategory2"
       onClick={(event) => {

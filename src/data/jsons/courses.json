@@ -2,7 +2,7 @@
     {
       "id": 1,
       "name": "ინდივიდუალური",
-      "href": "/archive/the-demo-archive-slug",
+      "href": "/services/individual",
       "thumbnail": "Individual",
       "count": 13,
       "color": "indigo",
@@ -11,7 +11,7 @@
     {
       "id": 2,
       "name": "ზრდასრულებისთვის",
-      "href": "/archive/the-demo-archive-slug",
+      "href": "/services/adults",
       "thumbnail": "Adult",
       "count": 16,
       "color": "red",
@@ -20,7 +20,7 @@
     {
       "id": 3,
       "name": "მოზარდებისთვის",
-      "href": "/archive/the-demo-archive-slug",
+      "href": "/services/teens",
       "thumbnail": "Children",
       "count": 15,
       "color": "yellow",
@@ -29,7 +29,7 @@
     {
       "id": 4,
       "name": "ბავშვებისთვის",
-      "href": "/archive/the-demo-archive-slug",
+      "href": "/services/kids",
       "thumbnail": "kids",
       "count": 21,
       "color": "pink",
