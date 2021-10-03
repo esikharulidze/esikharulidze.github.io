@@ -11,6 +11,8 @@ import { useHistory, useLocation, useParams } from "react-router-dom";
 import NavItem from "components/NavItem/NavItem";
 import Nav from "components/Nav/Nav";
 import ArchiveFilterListBox from "components/ArchiveFilterListBox/ArchiveFilterListBox";
+// @ts-ignore
+import MessengerCustomerChat from 'react-messenger-customer-chat';
 
 export interface PageSubcriptionProps {
   className?: string;
@@ -111,7 +113,7 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
     return (
       <div
         key={index}
-        className={`h-full relative px-6 py-8 rounded-3xl border-2 flex flex-col overflow-hidden ${
+        className={`h-full px-6 py-8 rounded-3xl border flex flex-col overflow-visible [ nc-box-has-hover ] [ nc-dark-box-bg-has-hover ] ${
           // pricing.isPopular
           //   ? "border-primary-500"
              "border-neutral-100 dark:border-neutral-700"
@@ -124,14 +126,15 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
         )} */}
 
         <NcImage className="rounded-3xl " src="https://i.ibb.co/svMpTQp/Course-Emotion.png" />
-        <h3>{pricing.title}</h3>
-        <nav className="space-y-4 mt-8 mb-3">
+        
+        <nav className="space-y-2 mt-4">
+        <h3 className="font-semibold text-lg text-neutral-900 dark:text-neutral-100">{pricing.title}</h3>
           {/* {pricing.description?.map((item, index) => ( */}
             <li className="flex items-center" >
               {/* <span className="inline-flex flex-shrink-0 text-primary-6000">
                 <CheckIcon className="w-5 h-5" aria-hidden="true" />
               </span> */}
-              <span className="text-neutral-700 dark:text-neutral-300">
+              <span className="mb-2 text-neutral-500 dark:text-neutral-400">
                 {pricing.description}
               </span>
             </li>
@@ -150,12 +153,12 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
           ))}
         </nav> */}
         <div className="mt-2">
-          <h3 className="block text-sm uppercase tracking-widest text-neutral-6000 dark:text-neutral-300 mb-2 font-medium">
+          <h3 className="block text-xs uppercase tracking-widest text-neutral-6000 dark:text-neutral-300 mb-2 font-medium">
             ფასი
           </h3>
-          <h2 className="font-medium text-3xl leading-none flex items-center">
+          <h2 className="font-medium text-3xl leading-none  flex items-center">
             <span>{pricing.cost}₾/</span>
-            <span className="text-lg ml-1 font-normal text-neutral-500">
+            <span className="text-sm ml-1 font-normal text-neutral-500">
               {pricing.period}
             </span>
           </h2>
@@ -166,7 +169,7 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
           ) : ( */}
           
             <ButtonPrimary onClick={() => history.push(`/services/${pricing.service.slug || selectedService?.slug}/${pricing.slug}`)}>
-              <h2 className="font-medium mt-1">გაიგე მეტი</h2>
+              <h2 className="font-medium mt-1">გაიგეთ მეტი</h2>
             </ButtonPrimary>
           {/* )} */}
           {/* <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-3">
@@ -206,10 +209,15 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
             </div> */}
           {/* </div> */}
 
-        <section className="text-neutral-600 text-sm md:text-base overflow-hidden">
+        <section className="text-neutral-600 text-sm md:text-base overflow-visible">
           <div className="grid lg:grid-cols-3 gap-5 xl:gap-8">
             {slug ? selectedService?.courses.map(renderPricingItem) : courses.map(renderPricingItem)}
           </div>
+          <MessengerCustomerChat
+    pageId="116101687351405"
+    appId="592310481806103"
+  />
+
         </section>
       </LayoutPage>
     </div>
