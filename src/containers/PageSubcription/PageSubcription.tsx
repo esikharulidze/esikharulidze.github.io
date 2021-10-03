@@ -213,10 +213,7 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
           <div className="grid lg:grid-cols-3 gap-5 xl:gap-8">
             {slug ? selectedService?.courses.map(renderPricingItem) : courses.map(renderPricingItem)}
           </div>
-          <MessengerCustomerChat
-    pageId="116101687351405"
-    appId="592310481806103"
-  />
+          
 
         </section>
       </LayoutPage>

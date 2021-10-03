@@ -39,6 +39,8 @@ import ServiceInner from "containers/ServiceInner"
 import PageCourses from 'containers/PageCourses'
 import PagePost from 'containers/PagePost/PagePost'
 import TeamInner from "containers/TeamInner"
+// @ts-ignore
+import MessengerCustomerChat from 'react-messenger-customer-chat';
 
 
 export const pages: Page[] = [
@@ -125,6 +127,10 @@ const Routes = () => {
         })}
         <Route component={Page404} />
       </Switch>
+      <MessengerCustomerChat
+    pageId="116101687351405"
+    appId="592310481806103"
+  />
       <Footer />
       {/* MEDIA */}
       <MediaRunningContainer />
