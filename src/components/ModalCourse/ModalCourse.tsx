@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState, useReducer } from "react";
+import React, { FC, useEffect, useRef, useState, useReducer, FormEvent } from "react";
 import NcModal from "components/NcModal/NcModal";
 import Textarea from "components/Textarea/Textarea";
 import ButtonPrimary from "components/Button/ButtonPrimary";
@@ -10,6 +10,9 @@ import Input from "components/Input/Input";
 import Select from "components/Select/Select";
 import DropDown from 'components/DropDown'
 import debounce from 'lodash.debounce'
+import axios from 'utils/axios'
+import { AxiosResponse } from "axios";
+import { BackendCourse, BackendService, CustomerInput } from "types";
 
 export interface ProblemPlan {
   name: string;
@@ -35,6 +38,7 @@ export interface ModalReportItemProps {
   problemPlans?: ProblemPlan[];
   onCloseModalReportItem: () => void;
   selectedPlanIndex?: number  
+  initialSelectedCourse?: BackendCourse
 }
 
 
@@ -184,19 +188,32 @@ const ModalCourse: FC<ModalReportItemProps> = ({
   id,
   show,
   onCloseModalReportItem,
-  selectedPlanIndex = 0
+  selectedPlanIndex = 0,
+  initialSelectedCourse
 }) => {
   const textareaRef = useRef(null);
   const inputRef = useRef<HTMLInputElement>(null)
   const [problemSelected, setProblemSelected] = useState(problemPlans[selectedPlanIndex]);
-
+  const [courseWrapper, setCourseWrapper] = useState<BackendService>()
+  const [selectedCourse, setSelectedCourse] = useState<BackendCourse>()
+  const [name, setName] = useState('')
   const [age, setAge] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [problem, setProblem] = useState('')
+  const [parent, setParent] = useState('')
 
   useEffect(() => {
     if (selectedPlanIndex !== null) {
       setProblemSelected(problemPlans[selectedPlanIndex])
     }
   }, [selectedPlanIndex])
+
+  useEffect(() => {
+    if (initialSelectedCourse) {
+      setSelectedCourse(initialSelectedCourse)
+    }
+  }, [initialSelectedCourse])
 
   useEffect(() => {
     if (show) {
@@ -208,6 +225,34 @@ const ModalCourse: FC<ModalReportItemProps> = ({
       }, 400);
     }
   }, [show]);
+
+  const emptyState = () => {
+    setName('')
+    setAge('')
+    setEmail('')
+    setPhone('')
+    setProblem('')
+    setParent('')
+  }
+
+  useEffect(() => {
+    (async () => {
+      try {
+        emptyState()
+        if (!initialSelectedCourse) {
+          if (problemSelected.select) {
+            setSelectedCourse(undefined)
+            await axios.get<any, AxiosResponse<BackendService>>(`service/${problemSelected.id}`).then(({data}) => {
+              setCourseWrapper(data)
+            })
+          }
+
+        }
+      } catch (e) {
+        console.log(e)
+      }
+    })()
+  }, [problemSelected])
 
   const handleClickSubmitForm = () => {
     console.log({
@@ -232,11 +277,26 @@ const ModalCourse: FC<ModalReportItemProps> = ({
     );
   };
 
+  const onSubmit = (e:FormEvent) => {
+    (async () => {
+      e.preventDefault()
+      const object = {
+        name, age, email, phone, problem: problem || undefined, parent: parent || undefined, type: problemSelected.id,
+        course: selectedCourse ? selectedCourse._id : undefined
+      }
+      console.log(object, selectedCourse)
+      await axios.post<CustomerInput, any>('customer', object).then(() => {
+        console.log('done')
+      })
+      onCloseModalReportItem()
+    })()
+  }
+
   const renderContent = () => {
     return (
-      <form action="#">
+      <form onSubmit={onSubmit}>
         {/* RADIO PROBLEM PLANS */}
-        <RadioGroup value={problemSelected} onChange={setProblemSelected}>
+        {!initialSelectedCourse ? <RadioGroup value={problemSelected} onChange={setProblemSelected}>
           <RadioGroup.Label className="sr-only">Problem Plans</RadioGroup.Label>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
             {problemPlans.map((plan) => (
@@ -278,21 +338,27 @@ const ModalCourse: FC<ModalReportItemProps> = ({
               </RadioGroup.Option>
             ))}
           </div>
-        </RadioGroup>
+        </RadioGroup> : <></>}
 
         {/* FIELDS */}
 
-        <form className="grid grid-cols-1 gap-6" action="#" method="post">
+        {/* <form className="grid grid-cols-1 gap-6" action="#" method="post"> */}
           <div className="mt-8">
             
           {
               problemSelected.select ? <label className='block mb-4'>
                 <Label>{problemSelected.select.label}</Label>
-                <DropDown className='cursor-pointer form-select block w-full mt-1 border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900 rounded-full h-11 px-4 py-3 text-sm font-normal border' placeholder={problemSelected.select.default} data={problemSelected.select.data} />
+                <DropDown className={`cursor-pointer form-select block w-full mt-1 border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900 rounded-full h-11 px-4 py-3 text-sm font-normal border`} placeholder={problemSelected.select.default} data={courseWrapper!} 
+                  selectedCourse={selectedCourse}
+                  setSelectedCourse={setSelectedCourse}
+                  onShowMore={(cb) => {cb(); onCloseModalReportItem()}}
+                  disabled={!!initialSelectedCourse}
+                />
               </label> : (<></>)
             }
-            <label className="block">
-              <Label>სახელი და გვარი</Label>
+            
+            {problemSelected.id === "kids" ? <label className="block">
+              <Label>მშობლის სახელი და გვარი</Label>
 
               <Input
                 placeholder="შეიყვანეთ სახელი და გვარი"
@@ -300,20 +366,24 @@ const ModalCourse: FC<ModalReportItemProps> = ({
                 className="mt-1 mb-4"
                 required={true}
                 ref={inputRef}
-              />
-            </label>
-
-            {problemSelected.id === "couple" ? <label className="block">
-              <Label>სახელი და გვარი</Label>
-
-              <Input
-                placeholder="შეიყვანეთ სახელი და გვარი"
-                type="text"
-                className="mt-1 mb-4"
-                required={true}
-                ref={inputRef}
+                value={parent}
+                onChange={({target: { value }}) => setParent(value)}
               />
             </label> : <></>}
+
+            <label className="block">
+              <Label>{problemSelected.id === 'kids' ? 'ბავშვის ' : ''}სახელი და გვარი</Label>
+
+              <Input
+                placeholder="შეიყვანეთ სახელი და გვარი"
+                type="text"
+                className="mt-1 mb-4"
+                required={true}
+                ref={inputRef}
+                value={name}
+                onChange={({target: { value }}) => setName(value)}
+              />
+            </label>
 
             <label className="block">
               <Label>ასაკი</Label>
@@ -325,19 +395,10 @@ const ModalCourse: FC<ModalReportItemProps> = ({
                 required={true}
                 min={3}
                 max={100}
-                value={age || undefined}
+                value={age}
                 onChange={({target: {value}}) => {
                   setAge(value)
-                  debounce(() => {
-                    console.log('debounce')
-                    if (Number(value) < 3) {
-                      setAge('3')
-                    } else if (Number(value) > 100) {
-                      setAge('100')
-                    } else {
-                      setAge(value)
-                    }
-                  }, 300)
+                  
                 }}
               />
             </label>
@@ -350,6 +411,8 @@ const ModalCourse: FC<ModalReportItemProps> = ({
                 placeholder="example@animus.ge"
                 className="mt-1 mb-4"
                 required={true}
+                value={email}
+                onChange={({target: { value }}) => setEmail(value)}
               />
             </label>
 
@@ -361,11 +424,13 @@ const ModalCourse: FC<ModalReportItemProps> = ({
                 placeholder="5xx xxx xxx"
                 className="mt-1"
                 required={true}
+                value={phone}
+                onChange={({target: { value }}) => { if (value.length < 10) setPhone(value)}}
               />
             </label> 
             
             </div>
-        </form>
+        {/* </form> */}
 
         
 
@@ -381,9 +446,10 @@ const ModalCourse: FC<ModalReportItemProps> = ({
             placeholder="..."
             className="mt-4"
             ref={textareaRef}
-            required={true}
             rows={4}
             id="report-message"
+            value={problem}
+                onChange={({target: { value }}) => setProblem(value)}
           />
         </div>
         <div className="mt-4 space-x-3">

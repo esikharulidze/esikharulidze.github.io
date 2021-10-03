@@ -50,7 +50,7 @@ export interface BackendComment {
 }
 
 export interface BackendCourse {
-    id: string
+    _id: string
 	title: string
 	description: string
 	slug: string
@@ -65,7 +65,26 @@ export interface BackendCourse {
 export interface BackendService {
     id: string
     title: string
-    slug: string
+    slug: 'individual' | 'teens' | 'adults' | 'kids'
     description: string
     courses: BackendCourse[]
+}
+
+enum Type {
+	individual = 'individual',
+	adults = 'adults',
+	teens = 'teens',
+	kids = 'kids',
+	groups = 'groups'
+}
+
+export interface CustomerInput {
+    name: string
+	email: string
+	phone: string
+	age: number
+	type: Type
+	problem?: string
+	parent?: string
+	course?: string
 }

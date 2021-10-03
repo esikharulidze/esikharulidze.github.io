@@ -8,6 +8,9 @@ import axios from 'utils/axios'
 import { BackendCourse, BackendService } from "types";
 import { AxiosResponse } from "axios";
 import { useHistory, useLocation, useParams } from "react-router-dom";
+import NavItem from "components/NavItem/NavItem";
+import Nav from "components/Nav/Nav";
+import ArchiveFilterListBox from "components/ArchiveFilterListBox/ArchiveFilterListBox";
 
 export interface PageSubcriptionProps {
   className?: string;
@@ -22,71 +25,60 @@ export interface PricingItem {
   // features: string[];
   short?: string[];
 }
-
-const pricings: PricingItem[] = [
+const TABS = [
   {
-    isPopular: false,
-    name: "ფასი",
-    pricing: "180₾",
-    per: "/თვე",
-    short: ["ემოციური ინტელექტის კურსი 5-17 წლის მოზარდებისთვის."],
-    // features: ["🕗 შეხვედრების ინტენსივობა - კვირაში 2 დღე", "🎨 კურსის ხანგრძლივობა – 16 შეხვედრა.", "⏳ შეხვედრის ხანგრძლივობა – 1სთ და 30 წთ "],
-    desc: ` Literally you probably haven't heard of them jean shorts.`,
+    value: 'all',
+    label: 'ყველა'
   },
   {
-    isPopular: false,
-    name: "ფასი",
-    pricing: "90₾",
-    per: "/3 თვე",
-    short: ["ემოციური ინტელექტის კურსი 5-17 წლის მოზარდებისთვის."],
-    // features: ["🕗 შეხვედრების ინტენსივობა - კვირაში 2 დღე", "🎨 კურსის ხანგრძლივობა – 16 შეხვედრა.", "⏳ შეხვედრის ხანგრძლივობა – 1სთ და 30 წთ "],
-    desc: ` Literally you probably haven't heard of them jean shorts.`,
+    value: 'individual',
+    label: 'ინდივიდუალური'
   },
   {
-    isPopular: false,
-    name: "ფასი",
-    pricing: "250₾",
-    per: "/5 შეხვედრა",
-    short: ["ემოციური ინტელექტის კურსი 5-17 წლის მოზარდებისთვის."],
-    // features: ["🕗 შეხვედრების ინტენსივობა - კვირაში 2 დღე", "🎨 კურსის ხანგრძლივობა – 16 შეხვედრა.", "⏳ შეხვედრის ხანგრძლივობა – 1სთ და 30 წთ "],
-    desc: ` Literally you probably haven't heard of them jean shorts.`,
+    value: 'adults',
+    label: 'ზრდასრულებისთვის'
   },
   {
-    isPopular: false,
-    name: "ფასი",
-    pricing: "400₾",
-    per: "/თვე",
-    short: ["ემოციური ინტელექტის კურსი 5-17 წლის მოზარდებისთვის."],
-    // features: ["🕗 შეხვედრების ინტენსივობა - კვირაში 2 დღე", "🎨 კურსის ხანგრძლივობა – 16 შეხვედრა.", "⏳ შეხვედრის ხანგრძლივობა – 1სთ და 30 წთ "],
-    desc: ` Literally you probably haven't heard of them jean shorts.`,
+    value: 'teens',
+    label: 'მოზარდებისთვის'
   },
   {
-    isPopular: false,
-    name: "ფასი",
-    pricing: "400₾",
-    per: "/თვე",
-    short: ["ემოციური ინტელექტის კურსი 5-17 წლის მოზარდებისთვის."],
-    // features: ["🕗 შეხვედრების ინტენსივობა - კვირაში 2 დღე", "🎨 კურსის ხანგრძლივობა – 16 შეხვედრა.", "⏳ შეხვედრის ხანგრძლივობა – 1სთ და 30 წთ "],
-    desc: ` Literally you probably haven't heard of them jean shorts.`,
+    value: 'kids',
+    label: 'ბავშვებისთვის'
   },
-  {
-    isPopular: false,
-    name: "ფასი",
-    pricing: "400₾",
-    per: "/თვე",
-    short: ["ემოციური ინტელექტის კურსი 5-17 წლის მოზარდებისთვის."],
-    // features: ["🕗 შეხვედრების ინტენსივობა - კვირაში 2 დღე", "🎨 კურსის ხანგრძლივობა – 16 შეხვედრა.", "⏳ შეხვედრის ხანგრძლივობა – 1სთ და 30 წთ "],
-    desc: ` Literally you probably haven't heard of them jean shorts.`,
-  },
-];
-
-
+]
 const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
+  let timeOut: NodeJS.Timeout | null = null;
   const [courses, setCourses] = useState<BackendCourse[]>([])
   const [services, setServices] = useState<BackendService[]>([])
   const [selectedService, setSelectedService] = useState<BackendService>()
   const history = useHistory()
   const {slug} = useParams<{slug: string}>()
+  const [tabActive, setTabActive] = useState<{value: string, label: string}>(TABS[0]);
+
+  const handleClickTab = (item: {value: string, label: string}) => {
+    if (item === tabActive) {
+      return;
+    }
+    // setIsLoading(true);
+    // setTabActive(item);
+    history.push(`/services${item.value === 'all' ? '': '/' + item.value}`)
+    if (timeOut) {
+      clearTimeout(timeOut);
+    }
+    timeOut = setTimeout(() => {
+      // setIsLoading(false);
+    }, 600);
+  };
+
+  const selectInitialTab = () => {
+    if (slug) {
+      const item = TABS.filter(a => a.value === slug)
+      setTabActive(item[0])
+    }
+  }
+
+
   useEffect(() => {
     (async () => {
       try {
@@ -105,6 +97,7 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
   useEffect(() => {
     (async () => {
       try {
+        selectInitialTab()
         await axios.get<any, AxiosResponse<BackendService>>(`service/${slug}`).then(({data}) => {
           setSelectedService(data)
         })
@@ -131,7 +124,7 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
         )} */}
 
         <NcImage className="rounded-3xl " src="https://i.ibb.co/svMpTQp/Course-Emotion.png" />
-        
+        <h3>{pricing.title}</h3>
         <nav className="space-y-4 mt-8 mb-3">
           {/* {pricing.description?.map((item, index) => ( */}
             <li className="flex items-center" >
@@ -195,6 +188,24 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
         heading={selectedService ? selectedService.title: "სერვისები"}
         isInner={false}
       >
+        {/* <div className="flex flex-col sm:items-center sm:justify-between sm:flex-row mb-10"> */}
+            <Nav className="sm:space-x-2 mb-10 flex flex-wrap">
+              {TABS.map((item, index) => (
+                <NavItem
+                  key={index}
+                  isActive={tabActive === item}
+                  onClick={() => handleClickTab(item)}
+                >
+                  {item.label}
+                </NavItem>
+              ))}
+            </Nav>
+            {/* <div className="block my-4 border-b w-full border-neutral-100 sm:hidden"></div> */}
+            {/* <div className="flex justify-end">
+              <ArchiveFilterListBox lists={FILTERS} />
+            </div> */}
+          {/* </div> */}
+
         <section className="text-neutral-600 text-sm md:text-base overflow-hidden">
           <div className="grid lg:grid-cols-3 gap-5 xl:gap-8">
             {slug ? selectedService?.courses.map(renderPricingItem) : courses.map(renderPricingItem)}

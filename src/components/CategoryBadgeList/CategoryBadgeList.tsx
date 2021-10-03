@@ -1,4 +1,4 @@
-import { PostDataType } from "data/types";
+import { TwMainColor } from "data/types";
 import React, { FC } from "react";
 import Badge from "components/Badge/Badge";
 import { BackendCategory } from "types";
@@ -8,6 +8,8 @@ export interface CategoryBadgeListProps {
   itemClass?: string;
   categories: BackendCategory[];
 }
+
+const COLORS: TwMainColor[] = ['pink', 'green', 'yellow', 'red', 'indigo', 'blue', 'purple']
 
 const CategoryBadgeList: FC<CategoryBadgeListProps> = ({
   className = "flex flex-wrap space-x-2",
@@ -25,7 +27,7 @@ const CategoryBadgeList: FC<CategoryBadgeListProps> = ({
           key={index}
           name={item.title}
           href={item.slug}
-          color='red'
+          color={COLORS[index%7]}
         />
       ))}
     </div>

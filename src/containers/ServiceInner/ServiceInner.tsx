@@ -1,5 +1,7 @@
 import { AxiosResponse } from "axios";
+import ButtonPrimary from "components/Button/ButtonPrimary";
 import LayoutPage from "components/LayoutPage/LayoutPage";
+import ModalCourse from "components/ModalCourse/ModalCourse";
 import React, { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BackendCourse } from "types";
@@ -9,9 +11,19 @@ export interface ServiceInnerProps {
   className?: string;
 }
 
+const services = {
+  'individual': 0,
+  'adults': 1,
+  'teens': 2,
+  'kids': 3
+}
+
 const ServiceInner: FC<ServiceInnerProps> = ({ className = "" }) => {
   const [course, setCourse] = useState<BackendCourse>()
   const {slag} = useParams<{slag: string}>()
+  const [isReporting, setIsReporting] = useState(false);
+  const openModalReportComment = () => setIsReporting(true);
+const closeModalReportComment = () => setIsReporting(false);  
 
   useEffect(() => {
     (async () => {
@@ -37,6 +49,14 @@ const ServiceInner: FC<ServiceInnerProps> = ({ className = "" }) => {
         </p>
 
         {course?.content ? (<div style={{marginTop: 20}} dangerouslySetInnerHTML={{__html: course.content!}}></div>) : <></>}
+        <ButtonPrimary onClick={openModalReportComment} href="">შეხვედრის დაჯავშნა</ButtonPrimary>
+            <ModalCourse
+            show={isReporting}
+            id={1}
+            onCloseModalReportItem={closeModalReportComment}
+            selectedPlanIndex={services[course?.service.slug || 'individual']}
+            initialSelectedCourse={course}
+            />
       </LayoutPage>
     </div>
   );
