@@ -83,9 +83,17 @@ const SectionGridCategoryBox: React.FC<SectionGridCategoryBoxProps> = ({
       </Heading>}
       <ModalCourse show={showModal} id={1} onCloseModalReportItem={() => setShowModal(false)} selectedPlanIndex={selectedField} />
       <div className="grid grid-cols-2 gap-5 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-4 xl:grid-cols-4 xl:gap-6 sm:gap-3 md:gap-3 xs:gap-3">
+        {console.log(categories)}
         {categories.map((item, i) => (
+          item.name !== "ინდივიდუალური" ?
           <CardComponentName
             index={i < 4 && services.filter(service => service.title === item.name).length > 0 ? `${services.filter(service => service.title === item.name)[0].courses.length} შეთავაზება` : undefined}
+            key={item.id}
+            taxonomy={item}
+            optionalClick={i < 1 ? () => {setSelectedField(i); setShowModal(true)}: undefined}
+          /> : 
+          <CardComponentName
+            index={"შეხვედრის დაჯავშნა"}
             key={item.id}
             taxonomy={item}
             optionalClick={i < 1 ? () => {setSelectedField(i); setShowModal(true)}: undefined}

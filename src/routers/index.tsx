@@ -41,6 +41,7 @@ import PagePost from 'containers/PagePost/PagePost'
 import TeamInner from "containers/TeamInner"
 // @ts-ignore
 import MessengerCustomerChat from 'react-messenger-customer-chat';
+import Header from "components/Header/Header";
 
 
 export const pages: Page[] = [

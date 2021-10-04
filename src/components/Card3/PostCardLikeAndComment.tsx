@@ -34,13 +34,13 @@ const PostCardLikeAndComment: FC<PostCardLikeAndCommentProps> = ({
         onClickLike={onClickLike}
         postId={postData.id}
       />
-      <PostCardCommentBtn
+      {/* <PostCardCommentBtn  კომენტარები
         href={postData.id}
         commentCount={postData.comments.length}
         className={`${
           hiddenCommentOnMobile ? "hidden sm:flex" : "flex"
         }  ${itemClass}`}
-      />
+      /> */}
     </div>
   );
 };

@@ -6,6 +6,9 @@ import BookmarkContainer from "containers/BookmarkContainer/BookmarkContainer";
 import PostCardLikeContainer from "containers/PostCardLikeContainer/PostCardLikeContainer";
 import MainNav1 from "./MainNav1";
 import { PageItemType } from "app/pages/pages";
+import { useParams } from "react-router-dom";
+import { BackendPost } from "types";
+import axios, { AxiosResponse } from "axios";
 
 export interface HeaderProps {
   mainNavStyle?: "style1" | "style2";
@@ -23,6 +26,20 @@ const Header: FC<HeaderProps> = ({ mainNavStyle = "style1", currentPage }) => {
   //
   const [isSingleHeaderShowing, setIsSingleHeaderShowing] = useState(false);
   const [isTop, setIsTop] = useState(true);
+  const {slug} = useParams<{slug: string}>()
+  const [post, setPost] = useState<BackendPost>()
+  
+  useEffect(() => {
+    (async () => {
+      try {
+        axios.get<any,AxiosResponse<BackendPost>>(`post/${slug}`).then(({data}) => {
+          setPost(data)
+        })
+      } catch (e) {
+        console.log(e)
+      }
+    })()
+  }, [])
 
   useEffect(() => {
     if (!mainMenuRef.current) {
@@ -125,10 +142,10 @@ const Header: FC<HeaderProps> = ({ mainNavStyle = "style1", currentPage }) => {
             {/* ACTION */}
             <div className="flex items-center space-x-2 text-neutral-800 sm:space-x-3 dark:text-neutral-100">
               <PostCardLikeContainer postId={SINGLE.id} like={SINGLE.like} />
-              <BookmarkContainer
+              {/* <BookmarkContainer
                 initBookmarked={bookmark.isBookmarked}
                 postId={id}
-              />
+              /> */}
               <div className="border-l border-neutral-300 dark:border-neutral-700 h-6"></div>
               <SocialsShare
                 className="flex space-x-2"

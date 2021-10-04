@@ -14,8 +14,8 @@ const socialsDemo: SocialType[] = [
     icon: "lab la-facebook-square",
     href: "#",
   },
-  { id: "Twitter", name: "Twitter", icon: "lab la-twitter", href: "#" },
-  { id: "Youtube", name: "Youtube", icon: "lab la-youtube", href: "#" },
+  // { id: "Twitter", name: "Twitter", icon: "lab la-twitter", href: "#" },
+  // { id: "Youtube", name: "Youtube", icon: "lab la-youtube", href: "#" },
   { id: "Instagram", name: "Instagram", icon: "lab la-instagram", href: "#" },
 ];
 

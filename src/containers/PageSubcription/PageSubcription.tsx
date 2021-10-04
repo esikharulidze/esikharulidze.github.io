@@ -156,7 +156,7 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
           <h3 className="block text-xs uppercase tracking-widest text-neutral-6000 dark:text-neutral-300 mb-2 font-medium">
             ფასი
           </h3>
-          <h2 className="font-medium text-3xl leading-none  flex items-center">
+          <h2 className="font-medium text-3xl leading-none text-yellow-500 flex items-center">
             <span>{pricing.cost}₾/</span>
             <span className="text-sm ml-1 font-normal text-neutral-500">
               {pricing.period}

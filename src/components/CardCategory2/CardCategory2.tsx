@@ -45,6 +45,7 @@ const CardCategory2: FC<CardCategory2Props> = ({
       {thumbnail == "Adult" ? <AdultIMG/> : <></>}
       {thumbnail == "Individual" ? <IndividualIMG/> : <></>}
       {thumbnail == "kids" ? <KidsIMG/> : <></>}
+      
       {/* <NcImage
       containerClassName={`flex-shrink-0 w-20 h-20 rounded-full overflow-hidden`}
       src={thumbnail}

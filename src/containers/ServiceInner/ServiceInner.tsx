@@ -40,13 +40,25 @@ const closeModalReportComment = () => setIsReporting(false);
     <div>
       <LayoutPage isInner={true} heading="">
         <h2
-          className={`flex items-center text-3xl leading-[115%] md:text-3xl md:leading-[115%] font-semibold text-neutral-900 dark:text-neutral-100 mb-8`}
+          className={`flex items-center text-3xl leading-[115%] md:text-3xl md:leading-[115%] font-semibold text-neutral-900 dark:text-neutral-100 mb-4`}
         >
           {course ? course.title : (<></>)}
         </h2>
-        <p>
+        {/* <p>
           {course ? course.description : <></>}
-        </p>
+        </p> */}
+
+<div className="">
+          <h3 className="block text-xs uppercase tracking-widest text-neutral-6000 dark:text-neutral-300 mb-2 font-medium">
+            ფასი
+          </h3>
+          <h2 className="font-medium text-3xl leading-none  flex items-center">
+            <span>{course?.cost}₾/</span>
+            <span className="text-sm ml-1 font-normal text-neutral-500">
+              {course?.period}
+            </span>
+          </h2>
+        </div>
 
         {course?.content ? (<div style={{marginTop: 20}} dangerouslySetInnerHTML={{__html: course.content!}}></div>) : <></>}
         <ButtonPrimary onClick={openModalReportComment} href="">შეხვედრის დაჯავშნა</ButtonPrimary>

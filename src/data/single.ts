@@ -30,7 +30,7 @@ export const SINGLE: SinglePageType = {
   id: "eae0212192f63287e0c212",
   featuredImage:
     "https://images.unsplash.com/photo-1448387473223-5c37445527e7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1800&q=80",
-  title: "5 ნაბიჯი თავდაჯერებულობისკენ & თვითკრიტიკულობის დასაძლევად",
+  title: "5 ნაბიჯი აგია? თავდაჯერებულობისკენ & თვითკრიტიკულობის დასაძლევად",
   desc: "We’re an online magazine dedicated to covering the best in international product design. We started as a little blog back in 2002 covering student work and over time",
   date: "May 20, 2021",
   href: "/single/this-is-single-slug",

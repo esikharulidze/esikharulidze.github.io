@@ -43,7 +43,6 @@ const PageSingle: FC<PageSingleProps> = ({ className = "" }) => {
             {/* <SingleHeader pageData={SINGLE} /> */}
           </div>
         </header>
-
         {/* FEATURED IMAGE */}
         <NcImage
           containerClassName="container my-10 sm:my-12"
