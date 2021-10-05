@@ -57,7 +57,7 @@ const PageArchive: FC<PageArchiveProps> = ({ className = "" }) => {
   return (
     <div className={`nc-PageArchive ${className}`} data-nc-id="PageArchive">
       <Helmet>
-        <title>Archive || Blog Magazine React Template</title>
+        <title>Animus.ge - ინტელექტი ადამიანს მიღმა</title>
       </Helmet>
 
 
@@ -70,8 +70,8 @@ const PageArchive: FC<PageArchiveProps> = ({ className = "" }) => {
             <h2 className="inline-block align-middle text-5xl font-semibold md:text-5xl ">
               {category?.title}
             </h2>
-            <span className="block mt-2 text-neutral-300">
-              {category?.posts.length} Articles
+            <span className="block mt-2 text-neutral-6000 dark:text-neutral-400">
+              {category?.posts.length} სტატია
             </span>
             </div>
           
@@ -96,7 +96,7 @@ const PageArchive: FC<PageArchiveProps> = ({ className = "" }) => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 mt-8 lg:mt-10">
             { category?.posts.length  ? category?.posts.map((post) => (
               <Card11 key={post.id} post={post} />
-            )) :  <div>No Data</div> }
+            )) :  <div className="text-center font-medium text-neutral-6000 dark:text-neutral-400">სამწუხაროდ ამ კატეგორიაში სტატია ვერ მოიძებნა</div> }
           </div>
           
 
