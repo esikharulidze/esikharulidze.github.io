@@ -41,7 +41,7 @@ const Card11: FC<Card11Props> = ({
           {/* <PostFeaturedMedia post={post} isHover={isHover} /> */}
         </div>
       </div>
-      <Link to={slug} className="absolute inset-0"></Link>
+      <Link to={`/post/${slug}`} className="absolute inset-0"></Link>
       <span className="absolute top-3 inset-x-3">
         {/* <CategoryBadgeList categories={categories} /> */}
       </span>
@@ -53,7 +53,7 @@ const Card11: FC<Card11Props> = ({
           <span className="text-xs text-neutral-500">{updatedAt}</span>
         )} */}
         <h2 className="nc-card-title block text-base font-semibold text-neutral-900 dark:text-neutral-100 ">
-          <Link to={slug} className="line-clamp-2" title={title}>
+          <Link to={`/post/${slug}`} className="line-clamp-2" title={title}>
             {title}
           </Link>
         </h2>
