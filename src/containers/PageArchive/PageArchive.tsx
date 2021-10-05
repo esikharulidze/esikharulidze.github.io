@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import ModalCategories from "./ModalCategories";
 import ModalTags from "./ModalTags";
 import { DEMO_POSTS } from "data/posts";
@@ -16,6 +16,10 @@ import SectionGridCategoryBox from "components/SectionGridCategoryBox/SectionGri
 import ButtonSecondary from "components/Button/ButtonSecondary";
 import SectionSliderNewAuthors from "components/SectionSliderNewAthors/SectionSliderNewAuthors";
 import { DEMO_AUTHORS } from "data/authors";
+import { useParams } from "react-router-dom";
+import axios from "utils/axios";
+import { AxiosResponse } from "axios";
+import { BackendCategory } from "types";
 
 export interface PageArchiveProps {
   className?: string;
@@ -27,6 +31,8 @@ const posts: PostDataType[] = DEMO_POSTS.filter((_, i) => i < 16);
 const PageArchive: FC<PageArchiveProps> = ({ className = "" }) => {
   const PAGE_DATA: TaxonomyType = DEMO_CATEGORIES[0];
 
+  const [category, setCategory] = useState<BackendCategory>()
+
   const FILTERS = [
     { name: "Most Recent" },
     { name: "Curated by Admin" },
@@ -34,6 +40,19 @@ const PageArchive: FC<PageArchiveProps> = ({ className = "" }) => {
     { name: "Most Discussed" },
     { name: "Most Viewed" },
   ];
+  const {slug} = useParams<{slug: string}>()
+
+  useEffect(() => {
+    (async () => {
+      try {
+        await axios.get<any, AxiosResponse<BackendCategory>>(`category/${slug}`).then(({ data }) => {
+          setCategory(data)
+        })
+      } catch (e) {
+        console.log(e)
+      }
+    })()
+  }, [slug])
 
   return (
     <div className={`nc-PageArchive ${className}`} data-nc-id="PageArchive">
@@ -53,10 +72,10 @@ const PageArchive: FC<PageArchiveProps> = ({ className = "" }) => {
           />
           <div className="absolute inset-0 bg-black text-white bg-opacity-30 flex flex-col items-center justify-center">
             <h2 className="inline-block align-middle text-5xl font-semibold md:text-7xl ">
-              {PAGE_DATA.name}
+              {category?.title}
             </h2>
             <span className="block mt-4 text-neutral-300">
-              {PAGE_DATA.count} Articles
+              {category?.posts.length} Articles
             </span>
           </div>
         </div>
@@ -79,7 +98,7 @@ const PageArchive: FC<PageArchiveProps> = ({ className = "" }) => {
 
           {/* LOOP ITEMS */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 mt-8 lg:mt-10">
-            {posts.map((post) => (
+            {category?.posts.map((post) => (
               <Card11 key={post.id} post={post} />
             ))}
           </div>

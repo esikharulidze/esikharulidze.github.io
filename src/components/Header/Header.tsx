@@ -22,7 +22,7 @@ const Header: FC<HeaderProps> = ({ mainNavStyle = "style1", currentPage }) => {
   //
   let prevScrollpos = window.pageYOffset;
   //
-  const showSingleMenu = currentPage.type === "/single/:slug";
+  const showSingleMenu = currentPage.type === "/post/:slug";
   //
   const [isSingleHeaderShowing, setIsSingleHeaderShowing] = useState(false);
   const [isTop, setIsTop] = useState(true);
@@ -121,8 +121,8 @@ const Header: FC<HeaderProps> = ({ mainNavStyle = "style1", currentPage }) => {
 
   const renderSingleHeader = () => {
     if (!isSingleHeaderShowing) return null;
-    const SINGLE = currentPage.data as SinglePageType;
-    const { title, author, id, bookmark } = SINGLE;
+    const post = currentPage.data as BackendPost;
+    const { title, author, likes } = post;
     return (
       <div className="nc-SingleHeaderMenu dark relative py-4 bg-neutral-900 dark:bg-neutral-900">
         <div className="container">
@@ -130,7 +130,7 @@ const Header: FC<HeaderProps> = ({ mainNavStyle = "style1", currentPage }) => {
             <div className="hidden lg:flex items-center mr-3">
               <Avatar
                 imgUrl={author.avatar}
-                userName={author.displayName}
+                userName={author.firstName}
                 sizeClass="w-8 h-8 text-lg"
                 radius="rounded-full"
               />
@@ -141,7 +141,7 @@ const Header: FC<HeaderProps> = ({ mainNavStyle = "style1", currentPage }) => {
 
             {/* ACTION */}
             <div className="flex items-center space-x-2 text-neutral-800 sm:space-x-3 dark:text-neutral-100">
-              <PostCardLikeContainer postId={SINGLE.id} like={SINGLE.like} />
+              <PostCardLikeContainer postId={post.id} like={{count: likes, isLiked: false}} />
               {/* <BookmarkContainer
                 initBookmarked={bookmark.isBookmarked}
                 postId={id}

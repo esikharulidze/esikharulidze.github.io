@@ -50,25 +50,25 @@ const SectionMagazine2: FC<SectionMagazine2Props> = ({
       {!activePosts.length && <span>Nothing we found!</span>}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         <div className="grid gap-6">
-          {activePosts
+          {/* {activePosts
             .filter((_, i) => i < 3 && i > 0)
             .map((item, index) => {
               return (
                 <Card11 ratio="aspect-w-5 aspect-h-3" key={index} post={item} />
               );
-            })}
+            })} */}
         </div>
         <div className="lg:col-span-2">
           {activePosts[0] && <Card2 size="large" post={activePosts[0]} />}
         </div>
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-1 md:col-span-3 xl:col-span-1">
-          {activePosts
+          {/* {activePosts
             .filter((_, i) => i < 5 && i >= 3)
             .map((item, index) => {
               return (
                 <Card11 ratio="aspect-w-5 aspect-h-3" key={index} post={item} />
               );
-            })}
+            })} */}
         </div>
       </div>
     </div>

@@ -18,7 +18,7 @@ const CardCategory1: FC<CardCategory1Props> = ({
   const { posts, title, slug, avatar } = taxonomy;
   return (
     <NavLink
-      to={`/${slug}`}
+      to={`/article/${slug}`}
       className={`nc-CardCategory1 flex items-center ${className}`}
       data-nc-id="CardCategory1"
     >

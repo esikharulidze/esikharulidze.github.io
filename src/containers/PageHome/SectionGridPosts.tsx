@@ -62,7 +62,7 @@ const SectionGridPosts: FC<SectionGridPostsProps> = ({
       case "card10V2":
         return <Card10V2 key={post.id} post={post} />;
       case "card11":
-        return <Card11 key={post.id} post={post} />;
+        // return <Card11 key={post.id} post={post} />;
       case "card14":
         return <Card14 key={post.id} post={post} />;
       case "card15Podcast":

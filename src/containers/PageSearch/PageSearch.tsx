@@ -179,9 +179,9 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
 
           {/* LOOP ITEMS */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-8 mt-8 lg:mt-10">
-            {activePosts.map((post) => (
+            {/* {activePosts.map((post) => (
               <Card11 key={post.id} post={post} />
-            ))}
+            ))} */}
           </div>
 
           {/* PAGINATION */}

@@ -36,19 +36,24 @@ const PageSingleTemp3Sidebar: FC<PageSingleTemp3SidebarProps> = ({
       try {
         axios.get<any,AxiosResponse<BackendPost>>(`post/${slug}`).then(({data}) => {
           setPost(data)
+          dispatch(changeCurrentPage({ type: "/post/:slug", data }));
         })
       } catch (e) {
         console.log(e)
       }
     })()
+    return () => {
+          dispatch(changeCurrentPage({ type: "/", data: {} }));
+        };
   }, [])
   // UPDATE CURRENTPAGE DATA IN PAGEREDUCERS
-  useEffect(() => {
-    dispatch(changeCurrentPage({ type: "/single/:slug", data: SINGLE }));
-    return () => {
-      dispatch(changeCurrentPage({ type: "/", data: {} }));
-    };
-  }, []);
+  // useEffect(() => {
+
+  //   dispatch(changeCurrentPage({ type: "/post/:slug", data: SINGLE }));
+  //   return () => {
+  //     dispatch(changeCurrentPage({ type: "/", data: {} }));
+  //   };
+  // }, []);
   
 
   useEffect(() => {

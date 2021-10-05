@@ -4,7 +4,7 @@ export interface LocationStates {
   "/"?: {};
   "/#"?: {};
   "/post/:slug"?: {}
-  "/archive/:slug"?: {};
+  "/article/:slug"?: {};
   "/services/:slug"?: {};
   "/services/:slug/:slag"?: {};
   "/services": {};
