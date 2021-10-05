@@ -22,11 +22,19 @@ const DEMO_PAGINATION: CustomLink[] = [
   },
 ];
 
+
 export interface PaginationProps {
   className?: string;
+  posts?: any
 }
 
-const Pagination: FC<PaginationProps> = ({ className = "" }) => {
+const Pagination: FC<PaginationProps> = ({ className = "", posts }) => {
+
+
+  // console.log(posts.length)
+
+  // const DEMO_PAGINATION = posts.length
+
   const renderItem = (pag: CustomLink, index: number) => {
     if (index === 0) {
       // RETURN ACTIVE PAGINATION

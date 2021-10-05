@@ -20,7 +20,7 @@ const ModalCategories: FC<ModalCategoriesProps> = ({ categories }) => {
 
   return (
     <div className="nc-ModalCategories">
-      <NcModal
+      {/* <NcModal
         triggerText={
           <span>
             <span className="hidden sm:inline">Other</span> Categories
@@ -28,7 +28,7 @@ const ModalCategories: FC<ModalCategoriesProps> = ({ categories }) => {
         }
         modalTitle="Discover other categories"
         renderContent={renderModalContent}
-      />
+      /> */}
     </div>
   );
 };

@@ -63,51 +63,48 @@ const PageArchive: FC<PageArchiveProps> = ({ className = "" }) => {
 
 
       {/* HEADER */}
-      <div className="w-full px-2 xl:max-w-screen-2xl mx-auto">
-        <div className="rounded-3xl relative aspect-w-16 aspect-h-16 sm:aspect-h-9 lg:aspect-h-8 xl:aspect-h-6 overflow-hidden ">
-          <NcImage
-            containerClassName="absolute inset-0"
-            src="https://images.pexels.com/photos/2662116/pexels-photo-2662116.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-            className="object-cover w-full h-full"
-          />
-          <div className="absolute inset-0 bg-black text-white bg-opacity-30 flex flex-col items-center justify-center">
-            <h2 className="inline-block align-middle text-5xl font-semibold md:text-7xl ">
+      
+        
+      
+          <div className="flex flex-col w-full items-center mt-20">
+            <h2 className="inline-block align-middle text-5xl font-semibold md:text-5xl ">
               {category?.title}
             </h2>
-            <span className="block mt-4 text-neutral-300">
+            <span className="block mt-2 text-neutral-300">
               {category?.posts.length} Articles
             </span>
-          </div>
-        </div>
-      </div>
+            </div>
+          
+      
       {/* ====================== END HEADER ====================== */}
       
 
-      <div className="container py-16 lg:py-28 space-y-16 lg:space-y-28">
+      <div className="container py-14 lg:py-26 space-y-14 lg:space-y-26">
         <div>
           <div className="flex flex-col sm:items-center sm:justify-between sm:flex-row">
-            <div className="flex space-x-2.5">
+            {/* <div className="flex space-x-2.5">
               <ModalCategories categories={DEMO_CATEGORIES} />
               <ModalTags tags={DEMO_TAGS} />
             </div>
             <div className="block my-4 border-b w-full border-neutral-100 sm:hidden"></div>
             <div className="flex justify-end">
               <ArchiveFilterListBox lists={FILTERS} />
-            </div>
+            </div> */}
           </div>
 
           {/* LOOP ITEMS */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 mt-8 lg:mt-10">
-            {category?.posts.map((post) => (
+            { category?.posts.length  ? category?.posts.map((post) => (
               <Card11 key={post.id} post={post} />
-            ))}
+            )) :  <div>No Data</div> }
           </div>
+          
 
           {/* PAGINATIONS */}
-          <div className="flex flex-col mt-12 lg:mt-16 space-y-5 sm:space-y-0 sm:space-x-3 sm:flex-row sm:justify-between sm:items-center">
-            <Pagination />
+          {/* <div className="flex flex-col mt-12 lg:mt-16 space-y-5 sm:space-y-0 sm:space-x-3 sm:flex-row sm:justify-between sm:items-center">
+            <Pagination posts={category?.posts}/>
             <ButtonPrimary>მაჩვენე მეტი</ButtonPrimary>
-          </div>
+          </div> */}
         </div>
 
         {/* MORE SECTIONS */}

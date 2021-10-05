@@ -125,7 +125,7 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
           </span>
         )} */}
 
-        <NcImage className="rounded-3xl " src="https://i.ibb.co/svMpTQp/Course-Emotion.png" />
+        <NcImage className="rounded-3xl " src={pricing.avatar} />
         
         <nav className="space-y-2 mt-4">
         <h3 className="font-semibold text-lg text-neutral-900 dark:text-neutral-100">{pricing.title}</h3>

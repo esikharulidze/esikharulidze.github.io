@@ -9,7 +9,7 @@ import MediaAudio from "./MediaAudio";
 
 export interface PostFeaturedMediaProps {
   className?: string;
-  post: PostDataType;
+  post: any;
   isHover?: boolean;
 }
 
@@ -18,7 +18,7 @@ const PostFeaturedMedia: FC<PostFeaturedMediaProps> = ({
   post,
   isHover = false,
 }) => {
-  const { featuredImage, postType, videoUrl, galleryImgs, audioUrl } = post;
+  const { featuredImage, avatar, postType, videoUrl, galleryImgs, audioUrl } = post;
 
   const isPostMedia = () => postType === "video" || postType === "audio";
 
@@ -63,7 +63,7 @@ const PostFeaturedMedia: FC<PostFeaturedMediaProps> = ({
       className={`nc-PostFeaturedMedia relative ${className}`}
       data-nc-id="PostFeaturedMedia"
     >
-      <NcImage containerClassName="absolute inset-0" src={featuredImage} />
+      <NcImage containerClassName="absolute inset-0" src={avatar} />
       {renderContent()}
     </div>
   );

@@ -21,7 +21,7 @@ const Card11: FC<Card11Props> = ({
   hiddenAuthor = false,
   ratio = "aspect-w-4 aspect-h-3",
 }) => {
-  const { title, slug, categories, updatedAt } = post;
+  const { title, slug, avatar, categories, updatedAt } = post;
 
   const [isHover, setIsHover] = useState(false);
 
@@ -38,7 +38,7 @@ const Card11: FC<Card11Props> = ({
         className={`block flex-shrink-0 relative w-full rounded-t-xl overflow-hidden ${ratio}`}
       >
         <div>
-          {/* <PostFeaturedMedia post={post} isHover={isHover} /> */}
+          <PostFeaturedMedia post={post} isHover={isHover} />
         </div>
       </div>
       <Link to={`/post/${slug}`} className="absolute inset-0"></Link>
