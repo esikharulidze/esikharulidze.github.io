@@ -113,7 +113,7 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
     return (
       <div
         key={index}
-        className={`h-full px-6 py-8 rounded-3xl border flex flex-col overflow-visible [ nc-box-has-hover ] [ nc-dark-box-bg-has-hover ] ${
+        className={`h-full rounded-3xl border flex flex-col overflow-visible [ nc-box-has-hover ] [ nc-dark-box-bg-has-hover ] ${
           // pricing.isPopular
           //   ? "border-primary-500"
              "border-neutral-100 dark:border-neutral-700"
@@ -125,8 +125,17 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
           </span>
         )} */}
 
-        <NcImage className="rounded-3xl " src={pricing.avatar} />
-        
+        {/* <NcImage className="rounded-3xl overflow-hidden absolute inset-0" src={pricing.avatar} /> */}
+
+        <div className="relative flex-shrink-0 ">
+        <div>
+          <NcImage
+            containerClassName="rounded-t-xl flex aspect-w-7 aspect-h-5 sm:aspect-h-6 w-full h-0 overflow-hidden"
+            src={pricing.avatar}
+          />
+        </div></div>
+
+        <div className="mt-2 mb-4 ml-4 mr-4">
         <nav className="space-y-2 mt-4">
         <h3 className="font-semibold text-lg text-neutral-900 dark:text-neutral-100">{pricing.title}</h3>
           {/* {pricing.description?.map((item, index) => ( */}
@@ -156,7 +165,7 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
           <h3 className="block text-xs uppercase tracking-widest text-neutral-6000 dark:text-neutral-300 mb-2 font-medium">
             ფასი
           </h3>
-          <h2 className="font-medium text-3xl leading-none text-yellow-500 flex items-center">
+          <h2 className="font-medium text-3xl leading-none text-purple-500 flex items-center">
             <span>{pricing.cost}₾/</span>
             <span className="text-sm ml-1 font-normal text-neutral-500">
               {pricing.period}
@@ -175,6 +184,7 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
           {/* <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-3">
             {pricing.desc}
           </p> */}
+        </div>
         </div>
       </div>
     );
