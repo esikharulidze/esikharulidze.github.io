@@ -326,11 +326,11 @@ export const NAVIGATION_DEMO: NavItemType[] = [
     name: "სერვისები",
     type: "dropdown",
     children: [
-      {
-        id: ncNanoId(),
-        href: "/services/individual",
-        name: "ინდივიდუალური",
-      },
+      // {
+      //   id: ncNanoId(),
+      //   href: "/services/individual",
+      //   name: "ინდივიდუალური",
+      // },
       {
         id: ncNanoId(),
         href: "/services/adults",

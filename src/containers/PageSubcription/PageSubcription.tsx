@@ -32,10 +32,10 @@ const TABS = [
     value: 'all',
     label: 'ყველა'
   },
-  {
-    value: 'individual',
-    label: 'ინდივიდუალური'
-  },
+  // {
+  //   value: 'individual',
+  //   label: 'ინდივიდუალური'
+  // },
   {
     value: 'adults',
     label: 'ზრდასრულებისთვის'
@@ -137,7 +137,7 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
 
         <div className="mt-2 mb-4 ml-4 mr-4">
         <nav className="space-y-2 mt-4">
-        <h3 className="font-semibold text-lg text-neutral-900 dark:text-neutral-100">{pricing.title}</h3>
+        <h3 className="font-semibold text-2xl text-neutral-900 dark:text-neutral-100">{pricing.title}</h3>
           {/* {pricing.description?.map((item, index) => ( */}
             <li className="flex items-center" >
               {/* <span className="inline-flex flex-shrink-0 text-primary-6000">
@@ -165,10 +165,10 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
           <h3 className="block text-xs uppercase tracking-widest text-neutral-6000 dark:text-neutral-300 mb-2 font-medium">
             ფასი
           </h3>
-          <h2 className="font-medium text-3xl leading-none text-neutral-900 dark:text-neutral-100 flex items-center">
-            <span>{pricing.cost}₾/</span>
+          <h2 className="font-bold text-3xl leading-none text-purple-500 dark:text-purple-400 flex items-center">
+            <span>{pricing.cost}₾</span>
             <span className="text-sm ml-1 font-normal text-neutral-500">
-              {pricing.period}
+              / {pricing.period}
             </span>
           </h2>
         </div>

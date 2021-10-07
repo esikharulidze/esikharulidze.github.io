@@ -1,11 +1,13 @@
 import { AxiosResponse } from "axios";
 import ButtonPrimary from "components/Button/ButtonPrimary";
+import ButtonSecondary from "components/Button/ButtonSecondary";
 import LayoutPage from "components/LayoutPage/LayoutPage";
 import ModalCourse from "components/ModalCourse/ModalCourse";
 import React, { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BackendCourse } from "types";
 import axios from 'utils/axios'
+import {useHistory} from "react-router-dom";
 
 export interface ServiceInnerProps {
   className?: string;
@@ -24,6 +26,8 @@ const ServiceInner: FC<ServiceInnerProps> = ({ className = "" }) => {
   const [isReporting, setIsReporting] = useState(false);
   const openModalReportComment = () => setIsReporting(true);
 const closeModalReportComment = () => setIsReporting(false);  
+
+const history = useHistory();
 
   useEffect(() => {
     (async () => {
@@ -52,16 +56,20 @@ const closeModalReportComment = () => setIsReporting(false);
           <h3 className="block text-xs uppercase tracking-widest text-neutral-900 dark:text-neutral-100 mb-2 font-medium">
             ფასი
           </h3>
-          <h2 className="font-medium text-purple-500 dark:text-purple-200 text-3xl leading-none  flex items-center">
-            <span>{course?.cost}₾/</span>
+          <h2 className="font-bold text-purple-500 dark:text-purple-200 text-3xl leading-none  flex items-center">
+            <span>{course?.cost}₾</span>
             <span className="text-sm ml-1 font-medium text-neutral-500">
-              {course?.period}
+              / {course?.period}
             </span>
           </h2>
+          <hr className="mt-6 mb-6"></hr>
         </div>
-
+        
         {course?.content ? (<div style={{marginTop: 20}} dangerouslySetInnerHTML={{__html: course.content!}}></div>) : <></>}
-        <ButtonPrimary onClick={openModalReportComment} href="">შეხვედრის დაჯავშნა</ButtonPrimary>
+        
+        <div className="flex flex-row gap-2 align-center justify-items-center">
+        <ButtonPrimary className="mt-6" onClick={openModalReportComment} href="">შეხვედრის დაჯავშნა</ButtonPrimary>
+        
             <ModalCourse
             show={isReporting}
             id={1}
@@ -69,6 +77,9 @@ const closeModalReportComment = () => setIsReporting(false);
             selectedPlanIndex={services[course?.service.slug || 'individual']}
             initialSelectedCourse={course}
             />
+            <div>
+            <ButtonSecondary className="mt-6" onClick={() => history.goBack()}>უკან დაბრუნება</ButtonSecondary></div>
+            </div>
       </LayoutPage>
     </div>
   );
