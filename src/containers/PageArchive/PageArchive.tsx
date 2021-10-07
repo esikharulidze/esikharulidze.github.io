@@ -93,11 +93,11 @@ const PageArchive: FC<PageArchiveProps> = ({ className = "" }) => {
           </div>
 
           {/* LOOP ITEMS */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 mt-8 lg:mt-10">
-            { category?.posts.length  ? category?.posts.map((post) => (
+          {category?.posts.length? <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 mt-8 lg:mt-10">
+            {category?.posts.map((post) => (
               <Card11 key={post.id} post={post} />
-            )) :  <div className="text-center font-medium text-neutral-6000 dark:text-neutral-400">სამწუხაროდ ამ კატეგორიაში სტატია ვერ მოიძებნა</div> }
-          </div>
+            ))}
+          </div>: <div className="text-center font-medium text-neutral-6000 dark:text-neutral-400">სამწუხაროდ ამ კატეგორიაში სტატია ვერ მოიძებნა</div>}
           
 
           {/* PAGINATIONS */}

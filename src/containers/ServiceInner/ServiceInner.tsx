@@ -42,7 +42,7 @@ const history = useHistory();
   }, [])
   return (
     <div>
-      <LayoutPage isInner={true} heading="">
+      <LayoutPage isInner={true} heading="" cover={course?.cover}>
         <h2
           className={`flex items-center text-3xl leading-[115%] md:text-3xl md:leading-[115%] font-semibold text-neutral-900 dark:text-neutral-100 mb-4`}
         >

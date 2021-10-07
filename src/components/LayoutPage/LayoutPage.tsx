@@ -8,6 +8,7 @@ export interface LayoutPageProps {
   headingEmoji?: string;
   subHeading?: string;
   isInner?: boolean
+  cover?: string
 }
 
 const LayoutPage: FC<LayoutPageProps> = ({
@@ -16,14 +17,15 @@ const LayoutPage: FC<LayoutPageProps> = ({
   subHeading,
   headingEmoji,
   children,
-  isInner=false
+  isInner=false,
+  cover
 }) => {
   return (
     <div
       className={`nc-LayoutPage relative ${className}`}
       data-nc-id="LayoutPage"
     >
-      <HeadBackgroundCommon isInner={isInner}/>
+      <HeadBackgroundCommon isInner={isInner} cover={cover}/>
       <div className="container relative pt-10 pb-16 lg:pt-20 lg:pb-28">
         {/* HEADER */}
         <header className="text-center mx-auto">
