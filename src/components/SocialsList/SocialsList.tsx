@@ -12,11 +12,11 @@ const socialsDemo: SocialType[] = [
     id: "Facebook",
     name: "Facebook",
     icon: "lab la-facebook-square",
-    href: "#",
+    href: "https://facebook.com/animus.ge",
   },
   // { id: "Twitter", name: "Twitter", icon: "lab la-twitter", href: "#" },
   // { id: "Youtube", name: "Youtube", icon: "lab la-youtube", href: "#" },
-  { id: "Instagram", name: "Instagram", icon: "lab la-instagram", href: "#" },
+  { id: "Instagram", name: "Instagram", icon: "lab la-instagram", href: "https://instagram.com/animus.ge" },
 ];
 
 export const SOCIALS_2 = socialsDemo;
