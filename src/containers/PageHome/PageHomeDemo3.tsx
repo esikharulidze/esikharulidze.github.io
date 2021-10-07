@@ -103,8 +103,8 @@ const PageHomeDemo3: React.FC = () => {
         />
         
         <SectionGridCategoryBox
-          headingCenter={true}
-          headingDisplay={false}
+          headingCenter={false}
+          headingDisplay={true}
           categoryCardType="card2"
           className="pb-16 lg:pb-28"
           categories={DEMO_TRENDS.filter((_, i) => i < 5)}

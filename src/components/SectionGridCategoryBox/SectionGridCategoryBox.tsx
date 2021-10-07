@@ -78,8 +78,8 @@ const SectionGridCategoryBox: React.FC<SectionGridCategoryBoxProps> = ({
   return (
     
     <div className={`nc-SectionGridCategoryBox relative ${className}`}>
-      {headingDisplay && <Heading desc="აირჩიეთ თქვენთვის სასურველი თერაპიის ან შეხვედრის ტიპი" isCenter={headingCenter}>
-        თერაპიები და შეხვედრები
+      {headingDisplay && <Heading desc="აირჩიეთ თქვენთვის სასურველი შეხვედრის ან შეთავაზების ტიპი" isCenter={headingCenter}>
+        კონსულტაციები და შეხვედრები
       </Heading>}
       <ModalCourse show={showModal} id={1} onCloseModalReportItem={() => setShowModal(false)} selectedPlanIndex={selectedField} />
       <div className="grid grid-cols-2 gap-5 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-4 xl:grid-cols-4 xl:gap-6 sm:gap-3 md:gap-3 xs:gap-3">
