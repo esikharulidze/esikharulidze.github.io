@@ -22,7 +22,10 @@ const services = {
 
 const ServiceInner: FC<ServiceInnerProps> = ({ className = "" }) => {
   const [course, setCourse] = useState<BackendCourse>()
-  const {slag} = useParams<{slag: string}>()
+  const {slag, slug} = useParams<{slag: string, slug: 'individual'|
+  'adults'|
+  'teens'|
+  'kids'}>()
   const [isReporting, setIsReporting] = useState(false);
   const openModalReportComment = () => setIsReporting(true);
 const closeModalReportComment = () => setIsReporting(false);  
@@ -74,7 +77,7 @@ const history = useHistory();
             show={isReporting}
             id={1}
             onCloseModalReportItem={closeModalReportComment}
-            selectedPlanIndex={services[course?.service.slug || 'individual']}
+            selectedPlanIndex={services[slug || 'individual']}
             initialSelectedCourse={course}
             />
             <div>

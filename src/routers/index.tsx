@@ -1,4 +1,4 @@
-import React from "react";
+import React, {createRef} from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Page } from "./types";
 import ScrollToTop from "./ScrollToTop";
@@ -39,9 +39,11 @@ import ServiceInner from "containers/ServiceInner"
 import PageCourses from 'containers/PageCourses'
 import PagePost from 'containers/PagePost/PagePost'
 import TeamInner from "containers/TeamInner"
+import {Toast} from 'containers/Toast'
 // @ts-ignore
 import MessengerCustomerChat from 'react-messenger-customer-chat';
 import Header from "components/Header/Header";
+import { saveToastRef } from "utils/toast";
 
 
 export const pages: Page[] = [
@@ -115,6 +117,7 @@ const Routes = () => {
     <BrowserRouter basename="">
       <ScrollToTop />
       <HeaderContainer />
+      <Toast ref={saveToastRef} />
       <Switch>
         {pages.map(({ component, path, exact }) => {
           return (

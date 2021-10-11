@@ -13,6 +13,7 @@ import debounce from 'lodash.debounce'
 import axios from 'utils/axios'
 import { AxiosResponse } from "axios";
 import { BackendCourse, BackendService, CustomerInput } from "types";
+import {showToast} from 'utils/toast'
 
 export interface ProblemPlan {
   name: string;
@@ -286,7 +287,7 @@ const ModalCourse: FC<ModalReportItemProps> = ({
       }
       console.log(object, selectedCourse)
       await axios.post<CustomerInput, any>('customer', object).then(() => {
-        console.log('done')
+        showToast()
       })
       onCloseModalReportItem()
     })()
