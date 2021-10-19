@@ -309,15 +309,11 @@ const templateChilds: NavItemType[] = [
 ];
 
 export const NAVIGATION_DEMO: NavItemType[] = [
-  {
-    id: ncNanoId(),
-    href: "/",
-    name: "მთავარი",
-  },
+
   {
     id: ncNanoId(),
     href: "/about",
-    name: "ცენტრის შესახებ",
+    name: "ჩვენ შესახებ",
   },
 
   {

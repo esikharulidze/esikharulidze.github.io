@@ -39,6 +39,7 @@ import ServiceInner from "containers/ServiceInner"
 import PageCourses from 'containers/PageCourses'
 import PagePost from 'containers/PagePost/PagePost'
 import TeamInner from "containers/TeamInner"
+import CardUser from "components/CardUser/CardUser"
 import {Toast} from 'containers/Toast'
 // @ts-ignore
 import MessengerCustomerChat from 'react-messenger-customer-chat';

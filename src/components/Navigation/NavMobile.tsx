@@ -9,6 +9,8 @@ import { NAVIGATION_DEMO } from "data/navigation";
 import ButtonPrimary from "components/Button/ButtonPrimary";
 import SocialsList from "components/SocialsList/SocialsList";
 import { ChevronDownIcon } from "@heroicons/react/solid";
+import ButtonSecondary from "components/Button/ButtonSecondary";
+import NcImage from "components/NcImage/NcImage";
 
 export interface NavMobileProps {
   data?: NavItemType[];
@@ -124,11 +126,16 @@ const NavMobile: React.FC<NavMobileProps> = ({
       <ul className="flex flex-col py-6 px-2 space-y-1">
         {data.map(_renderItem)}
       </ul>
-      {/* <div className="flex items-center justify-between py-6 px-5 space-x-4">
-        <a href="/#" target="_blank" rel="noopener noreferrer">
-          <ButtonPrimary>Get Template</ButtonPrimary>
-        </a>
-      </div> */}
+      <div className="flex items-center py-6 px-5 space-x-4">
+        
+        <ButtonPrimary  href="">შეხვედრის დაჯავშნა</ButtonPrimary>
+     
+
+            <ButtonSecondary href="/signup">ავტორიზაცია</ButtonSecondary>
+
+      
+        
+      </div>
     </div>
   );
 };

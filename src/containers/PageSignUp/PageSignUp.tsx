@@ -14,17 +14,12 @@ export interface PageSignUpProps {
 
 const loginSocials = [
   {
-    name: "Continue with Facebook",
+    name: "ფეისბუქით რეგისტრაცია",
     href: "#",
     icon: facebookSvg,
   },
   {
-    name: "Continue with Twitter",
-    href: "#",
-    icon: twitterSvg,
-  },
-  {
-    name: "Continue with Google",
+    name: "გუგლით რეგისტრაცია",
     href: "#",
     icon: googleSvg,
   },
@@ -34,12 +29,12 @@ const PageSignUp: FC<PageSignUpProps> = ({ className = "" }) => {
   return (
     <div className={`nc-PageSignUp ${className}`} data-nc-id="PageSignUp">
       <Helmet>
-        <title>Sign up || Blog Magazine React Template</title>
+        <title>Animus.ge - რეგისტრაცია</title>
       </Helmet>
       <LayoutPage
-        subHeading="Welcome to our blog magazine Community"
+        subHeading="შეიყვანეთ სწორი ინფორმაცია, ასე შევძლებთ მოგაწოდოთ უკეთესი სერვისი"
         headingEmoji="🎉"
-        heading="Sign up"
+        heading="რეგისტრაცია"
       >
         <div className="max-w-md mx-auto space-y-6">
           <div className="grid gap-3">
@@ -63,7 +58,7 @@ const PageSignUp: FC<PageSignUpProps> = ({ className = "" }) => {
           {/* OR */}
           <div className="relative text-center">
             <span className="relative z-10 inline-block px-4 font-medium text-sm bg-white dark:text-neutral-400 dark:bg-neutral-900">
-              OR
+              ან
             </span>
             <div className="absolute left-0 w-full top-1/2 transform -translate-y-1/2 border border-neutral-100 dark:border-neutral-800"></div>
           </div>
@@ -71,27 +66,61 @@ const PageSignUp: FC<PageSignUpProps> = ({ className = "" }) => {
           <form className="grid grid-cols-1 gap-6" action="#" method="post">
             <label className="block">
               <span className="text-neutral-800 dark:text-neutral-200">
-                Email address
+                როგორ მოგმართოთ?
               </span>
               <Input
-                type="email"
-                placeholder="example@example.com"
+                type="text"
+                placeholder="სახელი და გვარი ან ზედმეტსახელი"
                 className="mt-1"
               />
             </label>
             <label className="block">
-              <span className="flex justify-between items-center text-neutral-800 dark:text-neutral-200">
-                Password
+              <span className="text-neutral-800 dark:text-neutral-200">
+                ტელეფონის ნომერი
               </span>
-              <Input type="password" className="mt-1" />
+              <Input
+                type="tel"
+                placeholder="5--------"
+                className="mt-1 tracking-widest"
+              />
             </label>
-            <ButtonPrimary type="submit">Continue</ButtonPrimary>
+            <label className="block">
+              <span className="text-neutral-800 dark:text-neutral-200">
+                ელ.ფოსტა
+              </span>
+              <Input
+                type="email"
+                placeholder="example@animus.ge"
+                className="mt-1"
+              />
+            </label>
+            <label className="block">
+              <span className="text-neutral-800 dark:text-neutral-200">
+                პაროლი
+              </span>
+              <Input
+                type="password"
+                placeholder="••••••••"
+                className="mt-1 tracking-widest"
+              />
+            </label>
+            <label className="block">
+              <span className="text-neutral-800 dark:text-neutral-200">
+                გაიმეორეთ პაროლი
+              </span>
+              <Input
+                type="password"
+                placeholder="••••••••"
+                className="mt-1 tracking-widest"
+              />
+            </label>
+            <ButtonPrimary type="submit">რეგისტრაცია</ButtonPrimary>
           </form>
 
           {/* ==== */}
           <span className="block text-center text-neutral-700 dark:text-neutral-300">
-            Already have an account? {` `}
-            <NcLink to="/login">Sign in</NcLink>
+            უკვე გაქვთ ანგარიში? {` `}
+            <NcLink to="/login">ავტორიზაცია</NcLink>
           </span>
         </div>
       </LayoutPage>

@@ -7,6 +7,10 @@ import MenuBar from "components/MenuBar/MenuBar";
 import DarkModeContainer from "containers/DarkModeContainer/DarkModeContainer";
 import NcModal from "components/NcModal/NcModal";
 import ModalCourse from "components/ModalCourse/ModalCourse";
+import ButtonSecondary from "components/Button/ButtonSecondary";
+import NcImage from "components/NcImage/NcImage";
+import CardAuthor from "components/CardAuthor/CardAuthor";
+import CardUser from "components/CardUser/CardUser";
 
 export interface MainNav1Props {
   isTop: boolean;
@@ -32,7 +36,13 @@ const closeModalReportComment = () => setIsReporting(false);
             <DarkModeContainer />
             {/* <SearchDropdown /> */}
             <div className="px-1" />
+            
             <ButtonPrimary onClick={openModalReportComment} href="">შეხვედრის დაჯავშნა</ButtonPrimary>
+            {/* <div className="px-1" /> */}
+
+            {/* <ButtonSecondary href="/signup">ავტორიზაცია</ButtonSecondary> */}
+            <div className="px-1" />
+            <CardUser className="flex items-center rounded-xl p-3 xl:p-3 hover:bg-neutral-200 dark:hover:bg-neutral-700"></CardUser>
             <ModalCourse
             show={isReporting}
             id={1}
