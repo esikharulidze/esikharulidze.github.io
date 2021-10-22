@@ -54,6 +54,7 @@ export interface LocationStates {
   "/home-demo-2"?: {};
   "/home-demo-3"?: {};
   "/home-demo-4"?: {};
+  "/privacy-policy": {}
 }
 
 export type PathName = keyof LocationStates;

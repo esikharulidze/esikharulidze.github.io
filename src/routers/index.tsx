@@ -44,6 +44,7 @@ import {Toast} from 'containers/Toast'
 import MessengerCustomerChat from 'react-messenger-customer-chat';
 import Header from "components/Header/Header";
 import { saveToastRef } from "utils/toast";
+import PrivacyPolicy from 'containers/PrivacyPolicy'
 
 
 export const pages: Page[] = [
@@ -110,6 +111,7 @@ export const pages: Page[] = [
   { path: "/home-demo-3", component: PageHomeDemo3 },
   { path: "/home-demo-4", component: PageHomeDemo4 },
   //
+  {path: '/privacy-policy', component: PrivacyPolicy}
 ];
 
 const Routes = () => {
