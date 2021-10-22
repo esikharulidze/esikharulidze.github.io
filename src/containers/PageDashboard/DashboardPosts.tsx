@@ -5,53 +5,65 @@ import Pagination from "components/Pagination/Pagination";
 const people = [
   {
     id: 1,
-    title: "Tokyo Fashion Week Is Making Itself Great Again",
+    title: "ფსიქოლოგთან ვიზიტი",
     image:
       "https://images.unsplash.com/photo-1617059063772-34532796cdb5?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=60",
     liveStatus: true,
-    payment: "Not Applicable",
+    payment: "ელენე სიხარულიძე",
+    date: "25 ოქტ, 18:30",
+    visitid: "58524"
   },
   {
     id: 2,
-    title: "Traveling Tends to Magnify All Human Emotions",
+    title: "ემოციური ინტელექტის ონლაინ კურსი",
     image:
       "https://images.unsplash.com/photo-1622987437805-5c6f7c2609d7?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=60",
-    liveStatus: true,
-    payment: "Not Applicable",
+    liveStatus: false,
+    payment: "ელენე სიხარულიძე",
+    date: "25 ოქტ, 18:30",
+    visitid: "11624"
   },
   {
     id: 3,
-    title: "Interior Design: Hexagon is the New Circle in 2018",
+    title: "თვითშეფასების კურსი",
     image:
       "https://images.unsplash.com/photo-1617201277988-f0efcc14e626?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=60",
-    liveStatus: true,
-    payment: "Not Applicable",
+    liveStatus: false,
+    payment: "ეკატერინე ჩიქოვანი",
+    date: "25 ოქტ, 18:30",
+    visitid: "22624"
   },
   {
     id: 4,
-    title: "Heritage Museums & Gardens to Open with New Landscape",
+    title: "EMDR თერაპია",
     image:
       "https://images.unsplash.com/photo-1622960748096-1983e5f17824?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=60",
-    liveStatus: true,
-    payment: "Not Applicable",
+    liveStatus: false,
+    payment: "სოფი კოკოლიშვილი",
+    date: "25 ოქტ, 18:30",
+    visitid: "44624"
   },
   {
     id: 5,
     title:
-      "Man agrees to complete $5,000 Hereford Inlet Lighthouse painting job",
+      "ფსიქიატრთან ვიზიტი",
     image:
       "https://images.unsplash.com/photo-1617202227468-7597afc7046d?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyNHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=60",
     liveStatus: false,
-    payment: "Not Applicable",
+    payment: "სოფო სალია",
+    date: "25 ოქტ, 18:30",
+    visitid: "73624"
   },
   {
     id: 6,
     title:
-      "Denton Corker Marshall the mysterious black box is biennale pavilion",
+      "ფსიქოლოგთან ვიზიტი",
     image:
       "https://images.unsplash.com/photo-1622978147823-33d5e241e976?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzM3x8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=60",
-    liveStatus: true,
-    payment: "Not Applicable",
+    liveStatus: false,
+    payment: "ელენე სიხარულიძე",
+    date: "25 ოქტ, 18:30",
+    visitid: "12624"
   },
 ];
 
@@ -65,13 +77,19 @@ const DashboardPosts = () => {
               <thead className="bg-neutral-50 dark:bg-neutral-800">
                 <tr className="text-left text-xs font-medium text-neutral-500 dark:text-neutral-300 uppercase tracking-wider">
                   <th scope="col" className="px-6 py-3">
-                    Article
+                    შეხვედრის ტიპი
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    Status
+                    კოდი
                   </th>
                   <th scope="col" className="px-6 py-3">
-                    Payment
+                    თარიღი
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    სტატუსი
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    თერაპევტი
                   </th>
 
                   <th scope="col" className="relative px-6 py-3">
@@ -82,46 +100,53 @@ const DashboardPosts = () => {
               <tbody className="bg-white dark:bg-neutral-900 divide-y divide-neutral-200 dark:divide-neutral-800">
                 {people.map((item) => (
                   <tr key={item.id}>
-                    <td className="px-6 py-4">
-                      <div className="flex items-center w-96 lg:w-auto max-w-md overflow-hidden">
-                        <NcImage
+                    <td className="px-2 py-4">
+                      <div className="flex items-center lg:w-auto max-w-md overflow-hidden">
+                        {/* <NcImage
                           containerClassName="flex-shrink-0 h-12 w-12 rounded-lg overflow-hidden lg:h-14 lg:w-14"
                           src={item.image}
-                        />
+                        /> */}
+                        
                         <div className="ml-4 flex-grow">
                           <h2 className="inline-flex line-clamp-2 text-sm font-semibold  dark:text-neutral-300">
                             {item.title}
                           </h2>
                         </div>
                       </div>
+                    </td> <td className="px-6 py-4 whitespace-nowrap text-sm text-neutral-500 font-semibold dark:text-neutral-400">
+                      <span> {item.visitid}</span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-neutral-500 dark:text-neutral-400">
+                      <span> {item.date}</span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       {item.liveStatus ? (
                         <span className="px-2 inline-flex text-xs leading-5 font-medium rounded-full bg-teal-100 text-teal-900 lg:text-sm">
-                          Active
+                          მიმდინარე
                         </span>
                       ) : (
                         <span className="px-2 inline-flex text-sm text-neutral-500 dark:text-neutral-400 rounded-full">
-                          Offline
+                          დასრულებული
                         </span>
                       )}
                     </td>
+                  
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-neutral-500 dark:text-neutral-400">
                       <span> {item.payment}</span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium text-neutral-300">
-                      <a
+                      {/* <a
                         href="/#"
                         className="text-primary-800 dark:text-primary-500 hover:text-primary-900"
                       >
-                        Edit
+                        შეცვლა
                       </a>
-                      {` | `}
+                      {` | `} */}
                       <a
                         href="/#"
                         className="text-rose-600 hover:text-rose-900"
                       >
-                        Delete
+                        გაუქმება
                       </a>
                     </td>
                   </tr>

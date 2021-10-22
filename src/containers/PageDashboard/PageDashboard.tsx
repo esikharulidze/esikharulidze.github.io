@@ -15,7 +15,7 @@ export interface PageDashboardProps {
 }
 
 interface DashboardLocationState {
-  "/root"?: {};
+  "/profile"?: {};
   "/posts"?: {};
   "/edit-profile"?: {};
   "/subscription"?: {};
@@ -34,42 +34,42 @@ interface DashboardPage {
 
 const subPages: DashboardPage[] = [
   {
-    sPath: "/root",
-    exact: true,
-    component: DashboardRoot,
-    emoij: "🕹",
-    pageName: "Dash board",
+    sPath: "/profile",
+    component: DashboardSubcription,
+    emoij: "📃",
+    pageName: "პროფილი",
   },
+  // {
+  //   sPath: "/root",
+  //   exact: true,
+  //   component: DashboardRoot,
+  //   emoij: "🕹",
+  //   pageName: "პროფილი",
+  // },
   {
     sPath: "/posts",
     component: DashboardPosts,
-    emoij: "📕",
-    pageName: "Posts",
+    emoij: "📃",
+    pageName: "შეხვედრები",
   },
   {
     sPath: "/edit-profile",
     component: DashboardEditProfile,
     emoij: "🛠",
-    pageName: "Edit profile",
+    pageName: "პარამეტრები",
   },
-  {
-    sPath: "/subscription",
-    component: DashboardSubcription,
-    emoij: "📃",
-    pageName: "Subscription",
-  },
-  {
-    sPath: "/billing-address",
-    component: DashboardBillingAddress,
-    emoij: "✈",
-    pageName: "Billing address",
-  },
-  {
-    sPath: "/submit-post",
-    component: DashboardSubmitPost,
-    emoij: "✍",
-    pageName: "Submit post",
-  },
+  // {
+  //   sPath: "/billing-address",
+  //   component: DashboardBillingAddress,
+  //   emoij: "✈",
+  //   pageName: "Billing address",
+  // },
+  // {
+  //   sPath: "/submit-post",
+  //   component: DashboardSubmitPost,
+  //   emoij: "✍",
+  //   pageName: "Submit post",
+  // },
 ];
 
 const PageDashboard: FC<PageDashboardProps> = ({ className = "" }) => {
@@ -81,15 +81,15 @@ const PageDashboard: FC<PageDashboardProps> = ({ className = "" }) => {
         <title>Dashboard || Blog Magazine React Template</title>
       </Helmet>
       <LayoutPage
-        subHeading="View your dashboard, manage your Posts, Subscription, edit password and profile"
+        subHeading="იხილეთ თქვენი შეხვედრების ისტორია, მიმდინარე ჯავშანი, შეცვალეთ პარამეტრები ან წაშალეთ ანგარიში"
         headingEmoji="⚙"
-        heading="Dash board"
+        heading="პროფილი"
       >
-        <div className="flex flex-col space-y-8 xl:space-y-0 xl:flex-row">
+        <div className="flex flex-col space-y-8 xl:space-y-8 xl:flex-col">
           {/* SIDEBAR */}
 
-          <div className="flex-shrink-0 max-w-xl xl:w-80 xl:pr-8">
-            <ul className="text-base space-y-1 text-neutral-6000 dark:text-neutral-400">
+          <div className="flex flex-row flex-shrink-0">
+            <ul className="grid grid-cols-2 gap-6 text-base text-neutral-6000 dark:text-neutral-400 xl:grid-cols-3 md:grid-cols-3 ">
               {subPages.map(({ sPath, pageName, emoij }, index) => {
                 return (
                   <li key={index}>
@@ -119,7 +119,7 @@ const PageDashboard: FC<PageDashboardProps> = ({ className = "" }) => {
                   />
                 );
               })}
-              <Redirect to={path + "/root"} />
+              <Redirect to={path + "/profile"} />
             </Switch>
           </div>
         </div>

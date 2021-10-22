@@ -42,7 +42,7 @@ const closeModalReportComment = () => setIsReporting(false);
 
             {/* <ButtonSecondary href="/signup">ავტორიზაცია</ButtonSecondary> */}
             <div className="px-1" />
-            <CardUser className="flex items-center rounded-xl p-3 xl:p-3 hover:bg-neutral-200 dark:hover:bg-neutral-700"></CardUser>
+            <CardUser className="flex items-center rounded-xl p-2 xl:p-2 hover:bg-neutral-200 dark:hover:bg-neutral-700"></CardUser>
             <ModalCourse
             show={isReporting}
             id={1}
