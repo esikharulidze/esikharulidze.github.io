@@ -33,7 +33,7 @@ const Card3: FC<Card3Props> = ({
 
   return (
     <div
-      className={`nc-Card3 relative flex flex-col-reverse sm:flex-row sm:items-center rounded-[40px] group ${className}`}
+      className={`nc-Card3 relative flex flex-col-reverse sm:flex-row sm:items-center rounded-lg group ${className}`}
       data-nc-id="Card3"
     >
       <Link to={href} className="absolute inset-0"></Link>
@@ -71,8 +71,8 @@ const Card3: FC<Card3Props> = ({
       <div
         className={`block flex-shrink-0 ${
           size === "large"
-            ? "sm:w-56 sm:ml-6 rounded-3xl"
-            : "sm:w-40 sm:ml-5 rounded-2xl"
+            ? "sm:w-56 sm:ml-6 rounded-xl"
+            : "sm:w-40 sm:ml-5 rounded-xl"
         } overflow-hidden mb-5 sm:mb-0`}
       >
         <div className={`w-full h-0 aspect-h-9 sm:aspect-h-16 aspect-w-16 `}>

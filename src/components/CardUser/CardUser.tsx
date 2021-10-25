@@ -37,7 +37,7 @@ const CardUser: FC<CardUserProps> = ({ className = "", author }) => {
         strict
         target={item.targetBlank ? "_blank" : undefined}
         rel="noopener noreferrer"
-        className="inline-flex items-center text-sm xl:text-base font-normal text-neutral-700 dark:text-neutral-300 py-2 px-4 xl:px-5 rounded-full hover:text-neutral-900 hover:bg-neutral-100 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
+        className="inline-flex items-center text-sm xl:text-base font-normal text-neutral-700 dark:text-neutral-300 py-2 px-2 xl:px-2 rounded-md hover:text-neutral-900 hover:bg-neutral-100 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
         to={`/dashboard`}
         activeClassName="!font-semibold !text-neutral-900 bg-neutral-100 dark:bg-neutral-800 dark:!text-neutral-100"
       >
@@ -189,18 +189,18 @@ const CardUser: FC<CardUserProps> = ({ className = "", author }) => {
       // },
       {
         id: ncNanoId(),
-        href: "/services/adults",
-        name: "ზრდასრულებისთვის",
+        href: "/dashboard/profile",
+        name: "პროფილი",
       },
       {
         id: ncNanoId(),
-        href: "/services/teens",
-        name: "მოზარდებისთვის",
+        href: "/dashboard/edit-profile",
+        name: "პარამეტრები",
       },
       {
         id: ncNanoId(),
-        href: "/services/kids",
-        name: "ბავშვებისთვის",
+        href: "/logout",
+        name: "გასვლა",
       },
     ],
   },)}

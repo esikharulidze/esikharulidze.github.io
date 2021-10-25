@@ -91,7 +91,7 @@ const NavigationItem: FC<NavigationItemWithRouterProps> = ({
                 static
                 className={`nc-will-change-transform sub-menu absolute transform z-10 w-screen max-w-sm px-4 pt-3 sm:px-0 lg:max-w-max ${classPanel}`}
               >
-                <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black dark:ring-white ring-opacity-5 dark:ring-opacity-10 text-sm">
+                <div className="overflow-hidden rounded-xl shadow-lg ring-1 ring-black dark:ring-white ring-opacity-5 dark:ring-opacity-10 text-sm">
                   <div
                     className={`relative bg-white dark:bg-neutral-900 px-3 py-6 grid gap-1 grid-cols-${menu.megaMenu?.length}`}
                   >
@@ -99,7 +99,7 @@ const NavigationItem: FC<NavigationItemWithRouterProps> = ({
                       <div key={item.id}>
                         <div className="px-2">
                           <NcImage
-                            containerClassName="w-36 h-24 rounded-lg overflow-hidden relative flex"
+                            containerClassName="w-36 h-24 rounded-xl overflow-hidden relative flex"
                             src={item.image}
                           />
                         </div>
@@ -247,7 +247,7 @@ const NavigationItem: FC<NavigationItemWithRouterProps> = ({
         strict
         target={item.targetBlank ? "_blank" : undefined}
         rel="noopener noreferrer"
-        className="flex items-center font-normal text-neutral-6000 dark:text-neutral-300 py-2 px-4 rounded-md hover:text-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
+        className="flex items-center font-normal text-neutral-6000 dark:text-neutral-300 py-2 px-4 rounded-lg hover:text-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
         to={{
           pathname: item.href || undefined,
         }}
@@ -272,7 +272,7 @@ const NavigationItem: FC<NavigationItemWithRouterProps> = ({
         strict
         target={item.targetBlank ? "_blank" : undefined}
         rel="noopener noreferrer"
-        className="inline-flex items-center text-sm xl:text-base font-normal text-neutral-700 dark:text-neutral-300 py-2 px-4 xl:px-5 rounded-full hover:text-neutral-900 hover:bg-neutral-100 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
+        className="inline-flex items-center text-sm xl:text-base font-normal text-neutral-700 dark:text-neutral-300 py-2 px-4 xl:px-5 rounded-lg hover:text-neutral-900 hover:bg-neutral-100 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
         to={{
           pathname: item.href || undefined,
         }}

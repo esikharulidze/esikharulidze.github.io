@@ -24,7 +24,7 @@ const CardCategory2: FC<CardCategory2Props> = ({
   return (
     <Link
       to={href}
-      className={`nc-CardCategory2 relative flex flex-col items-center justify-center text-center px-3 py-5 sm:p-6  [ nc-box-has-hover ] [ nc-dark-box-bg-has-hover ]  ${className}`}
+      className={`nc-CardCategory2 relative flex flex-col rounded-lg items-center justify-center text-center px-3 py-5 sm:p-6  [ nc-box-has-hover ] [ nc-dark-box-bg-has-hover ]  ${className}`}
       data-nc-id="CardCategory2"
       onClick={(event) => {
        if (optionalClick) {

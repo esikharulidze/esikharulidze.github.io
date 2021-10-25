@@ -15,7 +15,7 @@ const WidgetCategories: FC<WidgetCategoriesProps> = ({
 }) => {
   return (
     <div
-      className={`nc-WidgetCategories rounded-3xl  overflow-hidden ${className}`}
+      className={`nc-WidgetCategories rounded-lg  overflow-hidden ${className}`}
       data-nc-id="WidgetCategories"
     >
       <WidgetHeading1

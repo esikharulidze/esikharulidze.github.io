@@ -17,10 +17,10 @@ export interface ButtonProps {
   onClick?: () => void;
 }
 
-const Button: FC<ButtonProps> = ({
+const ButtonQuizz2: FC<ButtonProps> = ({
   className = "text-neutral-700 dark:text-neutral-200",
   translate = "",
-  sizeClass = "px-4 py-3 sm:px-6",
+  sizeClass = "px-4 py-4 sm:px-6",
   fontSize = "text-sm sm:text-base font-medium",
   disabled = false,
   href,
@@ -31,7 +31,7 @@ const Button: FC<ButtonProps> = ({
   onClick = () => {},
 }) => {
   const CLASSES =
-    `nc-Button relative h-auto inline-flex items-center justify-center rounded-lg transition-colors ${fontSize} ${sizeClass} ${translate} ${className} ` +
+    `nc-Button  h-auto inline-flex rounded-lg transition-colors ${fontSize} ${sizeClass} ${translate} ${className} ` +
     twFocusClass(true);
 
   const _renderLoading = () => {
@@ -86,4 +86,4 @@ const Button: FC<ButtonProps> = ({
   );
 };
 
-export default Button;
+export default ButtonQuizz2;

@@ -5,10 +5,10 @@ import { BackendCourse, BackendService } from 'types'
 
 interface Props {
     placeholder: string
-    data: BackendService
+    data?: BackendService
     className: string
     selectedCourse?: BackendCourse
-    setSelectedCourse: (course: BackendCourse) => void
+    setSelectedCourse: (course: any) => void
     onShowMore: (cb: () => void) => void
     disabled?: boolean
 }  
@@ -24,7 +24,9 @@ const DropDown: FC<Props> = ({data, disabled= false, placeholder, className, set
     }, [show])
     useOnBlur(dropDownRef, () => {setShow(false)})
     const history = useHistory()
+    if (data)
     return (
+        
         <div ref={dropDownRef} className="relative">
             {!disabled&&selectedCourse ? <div onClick={() => onShowMore(() => history.push(`/services/${data.slug}/${selectedCourse.slug}`))} className="absolute right-6 top-4 text-xs font-bold bg-transparent">გაიგე მეტი</div>: <></>}
             <div ref={selectorRef} onClick={() => setShow(!show)} className={!disabled ? show ? `border-primary-300 ring ring-primary-200 ring-opacity-50 dark:ring-primary-6000 dark:ring-opacity-25 ${className}` : className : className + ' opacity-75'} onFocus={() => console.log('focused')}>
@@ -37,6 +39,19 @@ const DropDown: FC<Props> = ({data, disabled= false, placeholder, className, set
             {/* </div> */}
         </div>
     );
+    else 
+    return (
+        <div ref={dropDownRef} className="relative">
+            <div ref={selectorRef} onClick={() => setShow(!show)} className={!disabled ? show ? `border-primary-300 ring ring-primary-200 ring-opacity-50 dark:ring-primary-6000 dark:ring-opacity-25 ${className}` : className : className + ' opacity-75'} onFocus={() => console.log('focused')}>
+                {selectedCourse ? selectedCourse.title : placeholder}
+                
+            </div>
+            
+            {!disabled && show ? <div className="border bg-white p-2 mt-2 mb-4 w-full absolute rounded-md overflow-hidden dark:border-neutral-700 dark:bg-neutral-900">
+                {[18,20,22].map((item, i) => <div onClick={() => {setSelectedCourse(item); setShow(false)}} className="rounded-md h-8 pl-2 mt-1 py-1 text-sm font-normal cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-800" key={i}>{item}</div>)}
+            </div>: <></>}
+        </div>
+    )
 }
 
 export default DropDown

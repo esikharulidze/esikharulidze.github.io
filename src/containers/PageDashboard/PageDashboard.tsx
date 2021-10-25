@@ -16,7 +16,7 @@ export interface PageDashboardProps {
 
 interface DashboardLocationState {
   "/profile"?: {};
-  "/posts"?: {};
+  "/appointments"?: {};
   "/edit-profile"?: {};
   "/subscription"?: {};
   "/billing-address"?: {};
@@ -47,7 +47,7 @@ const subPages: DashboardPage[] = [
   //   pageName: "პროფილი",
   // },
   {
-    sPath: "/posts",
+    sPath: "/appointments",
     component: DashboardPosts,
     emoij: "📃",
     pageName: "შეხვედრები",
