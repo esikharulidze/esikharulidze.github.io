@@ -88,3 +88,11 @@ export interface CustomerInput {
 	parent?: string
 	course?: string
 }
+
+export interface TrainingInput {
+    name: string
+  email: string
+  phone: string
+  age: number
+  }
+  
