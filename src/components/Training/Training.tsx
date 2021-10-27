@@ -7,10 +7,11 @@ import React, { FC, FormEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BackendCourse, TrainingInput } from "types";
 import axios from "utils/axios";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import Heading from "components/Heading/Heading";
 import Input from "components/Input/Input";
 import DropDown from "components/DropDown";
+
 
 export interface ServiceInnerProps {
   className?: string;
@@ -36,6 +37,7 @@ const Training: FC<ServiceInnerProps> = ({ className = "" }) => {
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [status, setStatus] = useState('')
+  const [success, setSuccess] = useState(false)
   const handleClickSubmitForm = (e:FormEvent) => {
     (async () => {
     e.preventDefault()
@@ -55,7 +57,8 @@ const Training: FC<ServiceInnerProps> = ({ className = "" }) => {
     }
     await axios.post<TrainingInput, any>("https://sheet.best/api/sheets/b7a639b8-5d9a-42c4-b3cc-2e6e8e800ab8", object).then(() => {
     })
-  })()};
+  })()
+    setSuccess(true)};
   useEffect(() => {
     (async () => {
       try {
@@ -158,10 +161,11 @@ const Training: FC<ServiceInnerProps> = ({ className = "" }) => {
               onChange={({target: { value }}) => setEmail(value)}
             />
           </label>
-
+          
           <ButtonPrimary type="submit">რეგისტრაცია</ButtonPrimary>
         </form>
       </LayoutPage>
+      {success && <Redirect to="/trainingsuccess"/>}
     </div>
   );
 };
