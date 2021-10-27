@@ -128,7 +128,7 @@ const NavMobile: React.FC<NavMobileProps> = ({
       </ul>
       <div className="flex items-center py-6 px-5 space-x-4">
         
-        <ButtonPrimary  href="">შეხვედრის დაჯავშნა</ButtonPrimary>
+        <ButtonPrimary  href="">ვიზიტის დაჯავშნა</ButtonPrimary>
      
 
             <ButtonSecondary href="/signup">ავტორიზაცია</ButtonSecondary>

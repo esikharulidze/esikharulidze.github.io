@@ -37,7 +37,7 @@ const closeModalReportComment = () => setIsReporting(false);
             {/* <SearchDropdown /> */}
             <div className="px-1" />
             
-            <ButtonPrimary onClick={openModalReportComment} href="">შეხვედრის დაჯავშნა</ButtonPrimary>
+            <ButtonPrimary onClick={openModalReportComment} href="">ვიზიტის დაჯავშნა</ButtonPrimary>
             {/* <div className="px-1" /> */}
 
             {/* <ButtonSecondary href="/signup">ავტორიზაცია</ButtonSecondary> */}

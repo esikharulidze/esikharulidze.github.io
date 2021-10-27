@@ -1,39 +1,39 @@
 [
     {
       "id": 1,
-      "name": "ინდივიდუალური",
+      "name": "ფსიქოლოგი",
       "href": "/services/individual",
       "thumbnail": "Individual",
       "count": 13,
       "color": "indigo",
-      "description": "პირადი ტიპის შეხვედრა"
+      "description": "სპეციალისტთან ვიზიტი"
     },
     {
       "id": 2,
-      "name": "ზრდასრულებისთვის",
+      "name": "ფსიქიატრი",
       "href": "/services/adults",
       "thumbnail": "Adult",
       "count": 16,
       "color": "red",
-      "description": "ფსიქოკონსულტაცია"
+      "description": "ექიმთან კონსულტაცია"
     },
     {
       "id": 3,
-      "name": "მოზარდებისთვის",
+      "name": "ჯგუფური თერაპია",
       "href": "/services/teens",
       "thumbnail": "Children",
       "count": 15,
       "color": "yellow",
-      "description": "ბავშვები, თინეიჯერები"
+      "description": "სოციალიზაცია და კომუნიკაციები"
     },
     {
       "id": 4,
-      "name": "ბავშვებისთვის",
+      "name": "საგანმანათლებლო",
       "href": "/services/kids",
       "thumbnail": "kids",
       "count": 21,
       "color": "pink",
-      "description": "აღზრდის მეთოდები"
+      "description": "სასწავლო კურსები და სემინარები"
     }
   ]
   
