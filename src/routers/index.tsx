@@ -123,7 +123,7 @@ export const pages: Page[] = [
   { path: "/quizzv2", component: QuizzV2 },
   { path: "/quizzv3", component: QuizzV3 },
   { path: "/training", component: Training },
- 
+  {path: "/survey/:slug", component: Quizz}
   //
 ];
 

@@ -47,8 +47,8 @@ const DropDown: FC<Props> = ({data, disabled= false, placeholder, className, set
                 
             </div>
             
-            {!disabled && show ? <div className="border bg-white p-2 mt-2 mb-4 w-full absolute rounded-md overflow-hidden dark:border-neutral-700 dark:bg-neutral-900">
-                {[18,20,22].map((item, i) => <div onClick={() => {setSelectedCourse(item); setShow(false)}} className="rounded-md h-8 pl-2 mt-1 py-1 text-sm font-normal cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-800" key={i}>{item}</div>)}
+            {!disabled && show ? <div className="max-h-40 border bg-white p-2 mt-2 mb-4 w-full absolute rounded-md overflow-y-scroll dark:border-neutral-700 dark:bg-neutral-900">
+                {Array.from(Array(95).keys()).slice(0).map((item, i) => <div onClick={() => {setSelectedCourse(item + 6); setShow(false)}} className="rounded-md h-8 pl-2 mt-1 py-1 text-sm font-normal cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-800" key={i}>{item+6}</div>)}
             </div>: <></>}
         </div>
     )

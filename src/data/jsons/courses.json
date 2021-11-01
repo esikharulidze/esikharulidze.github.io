@@ -2,7 +2,7 @@
     {
       "id": 1,
       "name": "ფსიქოლოგი",
-      "href": "/psychologist",
+      "href": "/survey/psychologist",
       "thumbnail": "Individual",
       "count": 13,
       "color": "indigo",
@@ -11,7 +11,7 @@
     {
       "id": 2,
       "name": "ფსიქიატრი",
-      "href": "/psychiatrist",
+      "href": "/survey/psychiatrist",
       "thumbnail": "Adult",
       "count": 16,
       "color": "red",

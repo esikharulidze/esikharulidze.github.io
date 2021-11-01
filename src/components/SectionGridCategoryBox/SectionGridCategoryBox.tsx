@@ -90,14 +90,14 @@ const SectionGridCategoryBox: React.FC<SectionGridCategoryBoxProps> = ({
             index={i < 4 && services.filter(service => service.title === item.name).length > 0 ? `${services.filter(service => service.title === item.name)[0].courses.length} შეთავაზება` : undefined}
             key={item.id}
             taxonomy={item}
-            optionalClick={i < 0 ? () => {setSelectedField(i); setShowModal(true)}: undefined}
+            // optionalClick={i < 0 ? () => {setSelectedField(i); setShowModal(true)}: undefined}
           /> : 
           <CardComponentName
             index={"ვიზიტის დაჯავშნა"}
             key={item.id}
             
             taxonomy={item}
-            optionalClick={i < 0 ? () => {setSelectedField(i); setShowModal(true)}: undefined}
+            // optionalClick={i < 0 ? () => {setSelectedField(i); setShowModal(true)}: undefined}
           />
         ))}
       </div>

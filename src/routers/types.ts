@@ -59,7 +59,7 @@ export interface LocationStates {
   "/quizzv3"?: {};
   "/training"?: {};
   "/educational"?: {};
-  
+  "/survey/:slug": {}
  
 }
 
