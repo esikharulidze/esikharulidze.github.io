@@ -2,7 +2,7 @@
     {
       "id": 1,
       "name": "ფსიქოლოგი",
-      "href": "/services/individual",
+      "href": "/psychologist",
       "thumbnail": "Individual",
       "count": 13,
       "color": "indigo",
@@ -11,7 +11,7 @@
     {
       "id": 2,
       "name": "ფსიქიატრი",
-      "href": "/services/adults",
+      "href": "/psychiatrist",
       "thumbnail": "Adult",
       "count": 16,
       "color": "red",
@@ -20,7 +20,7 @@
     {
       "id": 3,
       "name": "ჯგუფური თერაპია",
-      "href": "/services/teens",
+      "href": "/grouptherapy",
       "thumbnail": "Children",
       "count": 15,
       "color": "yellow",
@@ -29,7 +29,7 @@
     {
       "id": 4,
       "name": "საგანმანათლებლო",
-      "href": "/services/kids",
+      "href": "/educational",
       "thumbnail": "kids",
       "count": 21,
       "color": "pink",

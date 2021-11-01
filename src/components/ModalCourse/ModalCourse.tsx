@@ -14,6 +14,7 @@ import axios from 'utils/axios'
 import { AxiosResponse } from "axios";
 import { BackendCourse, BackendService, CustomerInput } from "types";
 import {showToast} from 'utils/toast'
+import ButtonQuizz from "components/Button/ButtonQuizz";
 
 export interface ProblemPlan {
   name: string;
@@ -296,8 +297,11 @@ const ModalCourse: FC<ModalReportItemProps> = ({
   const renderContent = () => {
     return (
       <form onSubmit={onSubmit}>
-        {/* RADIO PROBLEM PLANS */}
-        {!initialSelectedCourse ? <RadioGroup value={problemSelected} onChange={setProblemSelected}>
+        <div className="flex flex-direction-row gap-6 justify-center">
+        <ButtonQuizz>ფსიქოლოგთან ვიზიტი</ButtonQuizz>
+        <ButtonQuizz>ფსიქიატრთან კონსულტაცია</ButtonQuizz>
+        </div>
+        {/* {!initialSelectedCourse ? <RadioGroup value={problemSelected} onChange={setProblemSelected}>
           <RadioGroup.Label className="sr-only">Problem Plans</RadioGroup.Label>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
             {problemPlans.map((plan) => (
@@ -339,12 +343,9 @@ const ModalCourse: FC<ModalReportItemProps> = ({
               </RadioGroup.Option>
             ))}
           </div>
-        </RadioGroup> : <></>}
+        </RadioGroup> : <></>} */}
 
-        {/* FIELDS */}
-
-        {/* <form className="grid grid-cols-1 gap-6" action="#" method="post"> */}
-          <div className="mt-8">
+          {/* <div className="mt-8">
             
           {
               problemSelected.select ? <label className='block mb-4'>
@@ -430,13 +431,9 @@ const ModalCourse: FC<ModalReportItemProps> = ({
               />
             </label> 
             
-            </div>
-        {/* </form> */}
+            </div> */}
 
-        
-
-        {/* TEXAREA MESSAGER */}
-        <div className="my-5">
+        {/* <div className="my-5">
           <h4 className="text-lg font-semibold text-neutral-700 dark:text-neutral-200">
             დამატებითი კომენტარი
           </h4>
@@ -460,7 +457,7 @@ const ModalCourse: FC<ModalReportItemProps> = ({
           <ButtonSecondary type="button" onClick={onCloseModalReportItem}>
             გაუქმება
           </ButtonSecondary>
-        </div>
+        </div> */}
       </form>
     );
   };

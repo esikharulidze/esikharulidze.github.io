@@ -49,7 +49,7 @@ const TABS = [
     label: 'ბავშვებისთვის'
   },
 ]
-const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
+const Educational: FC<PageSubcriptionProps> = ({ className = "" }) => {
   let timeOut: NodeJS.Timeout | null = null;
   const [courses, setCourses] = useState<BackendCourse[]>([])
   const [services, setServices] = useState<BackendService[]>([])
@@ -64,7 +64,7 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
     }
     // setIsLoading(true);
     // setTabActive(item);
-    history.push(`/services${item.value === 'all' ? '': '/' + item.value}`)
+    history.push(`/grouptherapy${item.value === 'all' ? '': '/' + item.value}`)
     if (timeOut) {
       clearTimeout(timeOut);
     }
@@ -177,7 +177,7 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
             <ButtonPrimary>Submit</ButtonPrimary>
           ) : ( */}
           
-            <ButtonPrimary onClick={() => history.push(`/services/${pricing.service.slug || selectedService?.slug}/${pricing.slug}`)}>
+            <ButtonPrimary onClick={() => history.push(`/grouptherapy/${pricing.service.slug || selectedService?.slug}/${pricing.slug}`)}>
               <h2 className="font-medium mt-1">გაიგეთ მეტი</h2>
             </ButtonPrimary>
           {/* )} */}
@@ -198,11 +198,11 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
       <LayoutPage
         subHeading={selectedService ? selectedService.description : "აირჩიეთ თქვენთვის სასურველი კურსი, შეხვედრა ან შეთავაზება."}
         // headingEmoji="💎"
-        heading={selectedService ? selectedService.title: "სერვისები"}
+        heading={selectedService ? selectedService.title: "საგანმანათლებლო"}
         isInner={false}
       >
         {/* <div className="flex flex-col sm:items-center sm:justify-between sm:flex-row mb-10"> */}
-            <Nav className="sm:space-x-2 mb-10 flex flex-wrap">
+            {/* <Nav className="sm:space-x-2 mb-10 flex flex-wrap">
               {TABS.map((item, index) => (
                 <NavItem
                   key={index}
@@ -212,7 +212,7 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
                   {item.label}
                 </NavItem>
               ))}
-            </Nav>
+            </Nav> */}
             {/* <div className="block my-4 border-b w-full border-neutral-100 sm:hidden"></div> */}
             {/* <div className="flex justify-end">
               <ArchiveFilterListBox lists={FILTERS} />
@@ -231,4 +231,4 @@ const PageSubcription: FC<PageSubcriptionProps> = ({ className = "" }) => {
   );
 };
 
-export default PageSubcription;
+export default Educational;

@@ -324,23 +324,28 @@ export const NAVIGATION_DEMO: NavItemType[] = [
     children: [
       // {
       //   id: ncNanoId(),
-      //   href: "/services/individual",
+      //   href: "#",
       //   name: "ინდივიდუალური",
       // },
       {
         id: ncNanoId(),
-        href: "/services/adults",
-        name: "ზრდასრულებისთვის",
+        href: "/psychologist",
+        name: "ფსიქოლოგი",
       },
       {
         id: ncNanoId(),
-        href: "/services/teens",
-        name: "მოზარდებისთვის",
+        href: "/psychiatrist",
+        name: "ფსიქიატრი",
       },
       {
         id: ncNanoId(),
-        href: "/services/kids",
-        name: "ბავშვებისთვის",
+        href: "/grouptherapy",
+        name: "ჯგუფური თერაპია",
+      },
+      {
+        id: ncNanoId(),
+        href: "/educational",
+        name: "საგანმანათლებლო",
       },
     ],
   },

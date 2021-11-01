@@ -5,9 +5,9 @@ export interface LocationStates {
   "/#"?: {};
   "/post/:slug"?: {}
   "/article/:slug"?: {};
-  "/services/:slug"?: {};
-  "/services/:slug/:slag"?: {};
-  "/services": {};
+  "/grouptherapy/:slug"?: {};
+  "/grouptherapy/:slug/:slag"?: {};
+  "/grouptherapy": {};
   "/archive-video/:slug"?: {};
   "/archive-audio/:slug"?: {};
   //
@@ -58,6 +58,7 @@ export interface LocationStates {
   "/quizzv2"?: {};
   "/quizzv3"?: {};
   "/training"?: {};
+  "/educational"?: {};
   
  
 }

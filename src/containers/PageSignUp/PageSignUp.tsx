@@ -64,13 +64,23 @@ const PageSignUp: FC<PageSignUpProps> = ({ className = "" }) => {
           </div>
           {/* FORM */}
           <form className="grid grid-cols-1 gap-6" action="#" method="post">
-            <label className="block">
+          <label className="block">
               <span className="text-neutral-800 dark:text-neutral-200">
                 როგორ მოგმართოთ?
               </span>
               <Input
                 type="text"
-                placeholder="სახელი და გვარი ან ზედმეტსახელი"
+                placeholder="შეიყვანეთ სახელი"
+                className="mt-1"
+              />
+            </label>
+            <label className="block">
+              <span className="text-neutral-800 dark:text-neutral-200">
+                თქვენი გვარი
+              </span>
+              <Input
+                type="text"
+                placeholder="შეიყვანეთ გვარი"
                 className="mt-1"
               />
             </label>
@@ -82,6 +92,8 @@ const PageSignUp: FC<PageSignUpProps> = ({ className = "" }) => {
                 type="tel"
                 placeholder="5--------"
                 className="mt-1 tracking-widest"
+                required
+                onInvalid={() => {alert("aeee")}}
               />
             </label>
             <label className="block">

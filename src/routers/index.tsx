@@ -19,7 +19,8 @@ import PageLogin from "containers/PageLogin/PageLogin";
 import PageSignUp from "containers/PageSignUp/PageSignUp";
 import PageForgotPass from "containers/PageForgotPass/PageForgotPass";
 import PageDashboard from "containers/PageDashboard/PageDashboard";
-import PageSubcription from "containers/PageSubcription/PageSubcription";
+import GroupTherapy from "containers/GroupTherapy/GroupTherapy";
+import Educational from "containers/Educational/Educational";
 import HeaderContainer from "containers/HeaderContainer/HeaderContainer";
 import PageHome from "containers/PageHome/PageHome";
 import PageHomeDemo2 from "containers/PageHome/PageHomeDemo2";
@@ -59,9 +60,10 @@ export const pages: Page[] = [
   { path: "/#", exact: true, component: PageHomeDemo3 },
   {path: '/post/:slug', component: PagePost},
   { path: "/article/:slug", component: PageArchive },
-  {path: "/services/:slug/:slag", component: ServiceInner},
-  { path: "/services/:slug", component: PageSubcription},
-  {path: "/services", component: PageSubcription},
+  {path: "/grouptherapy/:slug/:slag", component: ServiceInner},
+  { path: "/grouptherapy/:slug", component: GroupTherapy},
+  {path: "/grouptherapy", component: GroupTherapy},
+  {path: "/educational", component: Educational},
 
   { path: "/archive-video/:slug", component: PageArchiveVideo },
   { path: "/archive-audio/:slug", component: PageArchiveAudio },
@@ -112,7 +114,7 @@ export const pages: Page[] = [
   { path: "/signup", component: PageSignUp },
   { path: "/forgot-pass", component: PageForgotPass },
   { path: "/dashboard", component: PageDashboard },
-  { path: "/subscription", component: PageSubcription },
+  { path: "/subscription", component: GroupTherapy },
   //
   { path: "/home-demo-2", component: PageHomeDemo2 },
   { path: "/home-demo-3", component: PageHomeDemo3 },
@@ -121,6 +123,7 @@ export const pages: Page[] = [
   { path: "/quizzv2", component: QuizzV2 },
   { path: "/quizzv3", component: QuizzV3 },
   { path: "/training", component: Training },
+ 
   //
 ];
 

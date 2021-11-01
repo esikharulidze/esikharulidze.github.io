@@ -95,3 +95,15 @@ export interface TrainingInput {
 	phone: string
 	age: number
 }
+
+export interface Answer {
+    id: number
+    answer: string
+  }
+  
+  export interface Quizz {
+    id: number
+    slug: string
+    question: string
+    answers: Answer[]
+  }
