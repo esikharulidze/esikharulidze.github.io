@@ -74,7 +74,7 @@ const [checkedAnswers, setCheckedAnswers] = useState(new Set<string>())
 			))}
 			<ButtonQuizz className="w-full rounded-lg mt-8" onClick={() => question.multiple && onSubmit && onSubmit(Array.from(checkedAnswers))}>გაგრძელება</ButtonQuizz>
 		</div>): (
-			<div className="grid grid-cols-1 gap-2">
+			<div className={`grid grid-cols-1 gap-2 ${question && question.answers.length > 3 ? 'sm:gird-cols-2': 'sm:gird-cols-1'}`}>
 			{question ? question.answers.map(answer => <ButtonQuizz key={answer._id} className="w-full rounded-lg text-left" onClick={() => {
 				!question.multiple && onSubmit && onSubmit([answer._id])
 			}}>{answer.answer}</ButtonQuizz>): null}</div>
