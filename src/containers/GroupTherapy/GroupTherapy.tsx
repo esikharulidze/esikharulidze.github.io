@@ -84,12 +84,13 @@ const GroupTherapy: FC<PageSubcriptionProps> = ({ className = "" }) => {
   useEffect(() => {
     (async () => {
       try {
-        await axios.get<any, AxiosResponse<BackendService[]>>('service').then(({data}) => {
-          setServices(data)
+        await axios.get<any, AxiosResponse<BackendService>>('service/grouptherapy').then(({data}) => {
+          // setServices(data)
+          setCourses(data.courses)
         })
-        await axios.get<any, AxiosResponse<BackendCourse[]>>('course').then(({data}) => {
-          setCourses(data)
-        })
+        // await axios.get<any, AxiosResponse<BackendCourse[]>>('course').then(({data}) => {
+        //   setCourses(data)
+        // })
       } catch (e) {
         console.log(e)
       }
@@ -177,7 +178,7 @@ const GroupTherapy: FC<PageSubcriptionProps> = ({ className = "" }) => {
             <ButtonPrimary>Submit</ButtonPrimary>
           ) : ( */}
           
-            <ButtonPrimary onClick={() => history.push(`/grouptherapy/${pricing.service.slug || selectedService?.slug}/${pricing.slug}`)}>
+            <ButtonPrimary onClick={() => history.push(`/grouptherapy/${pricing.slug}`)}>
               <h2 className="font-medium mt-1">გაიგეთ მეტი</h2>
             </ButtonPrimary>
           {/* )} */}

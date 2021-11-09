@@ -7,7 +7,7 @@ import React, { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BackendCourse } from "types";
 import axios from 'utils/axios'
-import {useHistory} from "react-router-dom";
+import {useHistory, useLocation} from "react-router-dom";
 
 export interface ServiceInnerProps {
   className?: string;
@@ -22,20 +22,24 @@ const services = {
 
 const ServiceInner: FC<ServiceInnerProps> = ({ className = "" }) => {
   const [course, setCourse] = useState<BackendCourse>()
-  const {slag, slug} = useParams<{slag: string, slug: 'individual'|
-  'adults'|
-  'teens'|
-  'kids'}>()
+  // const {slag, slug} = useParams<{slag: string, slug: 'individual'|
+  // 'adults'|
+  // 'teens'|
+  // 'kids'}>()
+  const {slug} = useParams<{slug: string}>()
   const [isReporting, setIsReporting] = useState(false);
   const openModalReportComment = () => setIsReporting(true);
 const closeModalReportComment = () => setIsReporting(false);  
 
 const history = useHistory();
+const location = useLocation()
+
+console.log(location.pathname)
 
   useEffect(() => {
     (async () => {
       try {
-        await axios.get<any, AxiosResponse<BackendCourse>>(`course/${slag}`).then(({data}) => {
+        await axios.get<any, AxiosResponse<BackendCourse>>(`course/${slug}`).then(({data}) => {
           setCourse(data)
         })
       } catch(e) {
@@ -71,15 +75,15 @@ const history = useHistory();
         {course?.content ? (<div style={{marginTop: 20}} dangerouslySetInnerHTML={{__html: course.content!}}></div>) : <></>}
         
         <div className="flex flex-row gap-2 align-center justify-items-center">
-        <ButtonPrimary className="mt-6" onClick={openModalReportComment} href="">შეხვედრის დაჯავშნა</ButtonPrimary>
+        <ButtonPrimary className="mt-6" onClick={() => history.push(`/survey/${location.pathname.split('/')[1]}`)}>შეხვედრის დაჯავშნა</ButtonPrimary>
         
-            <ModalCourse
+            {/* <ModalCourse
             show={isReporting}
             id={1}
             onCloseModalReportItem={closeModalReportComment}
             selectedPlanIndex={services[slug || 'individual']}
             initialSelectedCourse={course}
-            />
+            /> */}
             <div>
             <ButtonSecondary className="mt-6" onClick={() => history.goBack()}>უკან დაბრუნება</ButtonSecondary></div>
             </div>

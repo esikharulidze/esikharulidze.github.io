@@ -3,7 +3,7 @@ import ButtonPrimary from "components/Button/ButtonPrimary";
 import ButtonSecondary from "components/Button/ButtonSecondary";
 import LayoutPage from "components/LayoutPage/LayoutPage";
 import ModalCourse from "components/ModalCourse/ModalCourse";
-import React, { FC, useEffect, useState, useCallback } from "react";
+import React, { FC, useEffect, useState, useCallback, useMemo } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { BackendCourse } from "types";
 import axios from 'utils/axios'
@@ -15,6 +15,7 @@ import ButtonQuizz from "components/Button/ButtonQuizz";
 import FirstStep from './FirstStep'
 import SecondStep from './SecondStep'
 import QuizItem from './QuizItem'
+import Comment from './Comment'
 
 export interface ServiceInnerProps {
   className?: string;
@@ -86,14 +87,68 @@ const [surveyId, setSurveyId] = useState('')
     setStep(2)
   }, [slug])
 
-  switch(step) {
-    case 1:
-      return <FirstStep psychiatrist={slug === 'psychiatrist'} onChoose={onFirstStepChoice} />
-    case 2:
-      return <SecondStep onSubmit={startQuiz} withPartner={withPartner} forElse={forElse} setAge={setAge} setPartner={setPartner} age={age} partner={partner} />
-    default:
-      return <QuizItem question={currentQuestion} onSubmit={resumeQuiz} />
+  useEffect(() => {
+    if (slug === 'grouptherapy' || slug === 'educational') {
+      setStep(2)
+    }
+  }, [slug])
+
+  const renderContent = () => {
+    switch(step) {
+      case 1:
+        return <FirstStep psychiatrist={slug === 'psychiatrist'} onChoose={onFirstStepChoice} />
+      case 2:
+        return <SecondStep onSubmit={startQuiz} forMe={slug === 'psychiatrist' && forElse === false} withPartner={withPartner} forElse={forElse} setAge={setAge} setPartner={setPartner} age={age} partner={partner} />
+      case 3: 
+        return <QuizItem question={currentQuestion} onSubmit={resumeQuiz} />
+      default:
+        return <Comment onSubmit={() => {}} />
+    }
   }
+
+  const title = useMemo(() => {
+    switch(slug) {
+      case 'educational': 
+        return '☂️ პირველი ახალი ნაბიჯი'
+      case 'grouptherapy': 
+        return '☂️ პირველი ახალი ნაბიჯი'
+      case 'psychiatrist': 
+        return '☂️ პირველი ახალი ნაბიჯი'
+      default:
+        return '☂️ პირველი ახალი ნაბიჯი'
+    }
+  }, [slug])
+
+  const description = useMemo(() => {
+    switch(slug) {
+      case 'educational': 
+        return 'რომელიც ვფიქრობთ დაგეხმარება და უკეთ გაგრძნობინებს თავს.'
+      case 'grouptherapy': 
+        return 'რომელიც ვფიქრობთ დაგეხმარება და უკეთ გაგრძნობინებს თავს.'
+      case 'psychiatrist': 
+        return 'რომელიც ვფიქრობთ დაგეხმარება და უკეთ გაგრძნობინებს თავს.'
+      default:
+        return 'რომელიც ვფიქრობთ დაგეხმარება და უკეთ გაგრძნობინებს თავს.'
+    }
+  }, [slug])
+
+  return (
+    <div className="min-h-screen bg-primary-100 dark:bg-neutral-800 bg-opacity-25">
+      <div className="grid justify-content-center grid-cols-1 xl:grid-cols-4 md:grid-cols-1 lg:grid-cols-1">
+        <div className="grid col-start-2 col-span-4 col-end-4 row-start-2 row-end-4">
+        <header className="text-center mt-24 mb-10">
+          <h1 className="text-4xl font-semibold">{title}</h1>  
+          <span className="block text-sm mt-2 text-neutral-700 sm:text-base dark:text-neutral-200 mb-10">
+            {description}
+          </span>
+        </header>
+
+      {renderContent()}
+        </div>
+      </div>
+    </div>
+  )
+
 };
 
 export default Quizz;

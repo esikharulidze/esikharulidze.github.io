@@ -61,8 +61,10 @@ export const pages: Page[] = [
   {path: '/post/:slug', component: PagePost},
   { path: "/article/:slug", component: PageArchive },
   {path: "/grouptherapy/:slug/:slag", component: ServiceInner},
-  { path: "/grouptherapy/:slug", component: GroupTherapy},
+  // { path: "/grouptherapy/:slug", component: GroupTherapy},
+  { path: "/grouptherapy/:slug", component: ServiceInner},
   {path: "/grouptherapy", component: GroupTherapy},
+  { path: "/educational/:slug", component: ServiceInner},
   {path: "/educational", component: Educational},
 
   { path: "/archive-video/:slug", component: PageArchiveVideo },

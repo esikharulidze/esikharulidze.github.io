@@ -32,7 +32,7 @@ const DropDown: FC<Props> = ({data, disabled= false, placeholder, className, set
             </div>
             
             {!disabled && show ? <div className="z-10 max-h-40 border bg-white p-2 mt-2 mb-4 w-full absolute rounded-md overflow-y-scroll dark:border-neutral-700 dark:bg-neutral-900">
-                {data.map((item, i) => <div onClick={() => {setSelected(item + 6); setShow(false)}} className="rounded-md h-8 pl-2 mt-1 py-1 text-sm font-normal cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-800" key={i}>{item+6}</div>)}
+                {data.map((item, i) => <div onClick={() => {setSelected(item ); setShow(false)}} className="rounded-md h-8 pl-2 mt-1 py-1 text-sm font-normal cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-800" key={i}>{item}</div>)}
             </div>: null}
         </div>
     )
