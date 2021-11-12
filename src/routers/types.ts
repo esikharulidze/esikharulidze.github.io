@@ -59,8 +59,9 @@ export interface LocationStates {
   "/quizzv3"?: {};
   "/training"?: {};
   "/educational"?: {};
-  "/survey/:slug": {}
- "/educational/:slug": {}
+  "/survey/:slug": {};
+ "/educational/:slug": {};
+ "/quizztest": {};
 }
 
 export type PathName = keyof LocationStates;

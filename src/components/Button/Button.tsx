@@ -8,6 +8,7 @@ export interface ButtonProps {
   translate?: string;
   sizeClass?: string;
   fontSize?: string;
+  textArrangement?: string;
   //
   loading?: boolean;
   disabled?: boolean;
@@ -22,6 +23,7 @@ const Button: FC<ButtonProps> = ({
   translate = "",
   sizeClass = "px-4 py-3 sm:px-6",
   fontSize = "text-sm sm:text-base font-medium",
+  textArrangement = "items-center justify-center",
   disabled = false,
   href,
   children,
@@ -31,7 +33,7 @@ const Button: FC<ButtonProps> = ({
   onClick = () => {},
 }) => {
   const CLASSES =
-    `nc-Button relative h-auto inline-flex items-center justify-center rounded-lg transition-colors ${fontSize} ${sizeClass} ${translate} ${className} ` +
+    `nc-Button relative h-auto inline-flex rounded-lg transition-colors ${textArrangement} ${fontSize} ${sizeClass} ${translate} ${className} ` +
     twFocusClass(true);
 
   const _renderLoading = () => {

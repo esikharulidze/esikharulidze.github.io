@@ -47,6 +47,7 @@ import MessengerCustomerChat from 'react-messenger-customer-chat';
 import Header from "components/Header/Header";
 import { saveToastRef } from "utils/toast";
 import Quizz from "containers/Quizz/Quizz"
+import QuizzItemTest from "containers/Quizz/QuizItemTest"
 import QuizzV2 from "containers/QuizzV2/QuizzV2"
 import QuizzV3 from "containers/QuizzV3/QuizzV3"
 import ButtonQuizz from "components/Button/ButtonQuizz"
@@ -125,7 +126,8 @@ export const pages: Page[] = [
   { path: "/quizzv2", component: QuizzV2 },
   { path: "/quizzv3", component: QuizzV3 },
   { path: "/training", component: Training },
-  {path: "/survey/:slug", component: Quizz}
+  {path: "/survey/:slug", component: Quizz},
+  {path: "/quizztest", component: QuizzItemTest},
   //
 ];
 
