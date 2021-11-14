@@ -17,6 +17,13 @@ import SecondStep from './SecondStep'
 import QuizItem from './QuizItem'
 import Comment from './Comment'
 import Calendar from './Calendar'
+import CreateOrNotQuestion from './CreateOrNotQuestion'
+import Contact from './Contact'
+import ChoosePaymentMethod from './ChoosePaymentMethod'
+import Success from './Success'
+import CustomerName from './CustomerName'
+import CustomerPassword from './CustomerPassword'
+import AccountSuccess from './AccountSuccess'
 
 export interface ServiceInnerProps {
 	className?: string
@@ -36,6 +43,12 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 
 	const [currentQuestion, setCurrentQuestion] = useState<Question>()
 	const [surveyId, setSurveyId] = useState('')
+
+	const [customerFirstName, setCustomerFirstName] = useState('')
+	const [customerLastName, setCustomerLastName] = useState('')
+
+	const [customerEmail, setCustomerEmail] = useState('')
+	const [customerPhone, setCustomerPhone] = useState('')
 
 	// useEffect(() => {
 	//   (async () => {
@@ -108,6 +121,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 		async val => {
 			try {
 				await axios.patch('survey/comment', { comment: val, surveyId })
+				setStep(5)
 			} catch (e) {
 				console.log('err')
 			}
@@ -125,6 +139,84 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 				setStep(6)
 			} catch (e) {
 				console.log(e, 'errrrr')
+			}
+		},
+		[surveyId]
+	)
+
+	const onCreateAccountChoose = useCallback((guest?: boolean) => {
+		if (guest) {
+			setStep(7)
+		} else {
+			setStep(10)
+		}
+	}, [])
+
+	const onCustomerNameChange = useCallback(
+		({ firstName, lastName }: { firstName: string; lastName: string }) => {
+			setCustomerFirstName(firstName)
+			setCustomerLastName(lastName)
+			setStep(7)
+		},
+		[]
+	)
+
+	const onCustomerPassword = useCallback(
+		async (val: string) => {
+			try {
+				await axios.post('customer', {
+					firstName: customerFirstName,
+					lastName: customerLastName,
+					phone: customerPhone,
+					email: customerEmail,
+					password: val,
+					surveyId
+				})
+				setStep(12)
+			} catch (e) {
+				console.log(e)
+			}
+		},
+		[surveyId, customerFirstName, customerEmail, customerLastName, customerPhone]
+	)
+
+	const onContactSubmit = useCallback(
+		async (val: { email: string; phone: string }) => {
+			try {
+				setCustomerEmail(val.email)
+				setCustomerPhone(val.phone)
+				await axios.patch('survey/contact', {
+					surveyId,
+					...val
+				})
+				if (customerFirstName) {
+					setStep(11)
+				} else {
+					setStep(8)
+				}
+			} catch (e) {
+				console.log(e)
+			}
+		},
+		[surveyId, customerFirstName]
+	)
+
+	const onAccountSuccessContinue = useCallback(() => {
+		setStep(8)
+	}, [])
+
+	const onPaymentChoose = useCallback(
+		async (cash?: boolean) => {
+			try {
+				await axios.patch('survey/payment-method', {
+					surveyId,
+					paymentMethod: cash ? 'cash' : 'card'
+				})
+				if (cash) {
+					setStep(9)
+				}
+			} catch (e) {
+				console.log(e)
 			}
 		},
 		[surveyId]
@@ -148,10 +240,25 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 					/>
 				)
 			case 3:
-				return <Calendar onSubmit={onDateChoose} type={slug} />
-			// return <QuizItem question={currentQuestion} onSubmit={resumeQuiz} />
+				return <QuizItem question={currentQuestion} onSubmit={resumeQuiz} />
 			case 4:
 				return <Comment onSubmit={onComment} />
+			case 5:
+				return <Calendar onSubmit={onDateChoose} type={slug} />
+			case 6:
+				return <CreateOrNotQuestion onSubmit={onCreateAccountChoose} />
+			case 7:
+				return <Contact onSubmit={onContactSubmit} />
+			case 8:
+				return <ChoosePaymentMethod onSubmit={onPaymentChoose} />
+			case 9:
+				return <Success />
+			case 10:
+				return <CustomerName onSubmit={onCustomerNameChange} />
+			case 11:
+				return <CustomerPassword onSubmit={onCustomerPassword} />
+			case 12:
+				return <AccountSuccess onSubmit={onAccountSuccessContinue} />
 			default:
 				return <Calendar onSubmit={() => {}} type={slug} />
 		}
@@ -187,12 +294,14 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 		<div className='min-h-screen bg-primary-100 dark:bg-neutral-800 bg-opacity-25'>
 			<div className='grid justify-content-center grid-cols-1 xl:grid-cols-4 md:grid-cols-1 lg:grid-cols-1'>
 				<div className='grid col-start-2 col-span-4 col-end-4 row-start-2 row-end-4'>
-					<header className='text-center mt-24 mb-10'>
-						<h1 className='text-4xl font-semibold'>{title}</h1>
-						<span className='block text-sm mt-2 text-neutral-700 sm:text-base dark:text-neutral-200 mb-10'>
-							{description}
-						</span>
-					</header>
+					{step !== 9 ? (
+						<header className='text-center mt-24 mb-10'>
+							<h1 className='text-4xl font-semibold'>{title}</h1>
+							<span className='block text-sm mt-2 text-neutral-700 sm:text-base dark:text-neutral-200 mb-10'>
+								{description}
+							</span>
+						</header>
+					) : null}
 
 					{renderContent()}
 				</div>
