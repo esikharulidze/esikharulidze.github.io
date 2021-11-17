@@ -22,7 +22,7 @@ const CustomerPassword = ({ onSubmit }: Props) => {
 				<label className='block'>
 					<span className='text-neutral-800 dark:text-neutral-200'>{'შეიყვანეთ პაროლი'}</span>
 					<Input
-						type='text'
+						type='password'
 						placeholder={'*********'}
 						className='mt-1'
 						value={firstValue}
@@ -32,7 +32,7 @@ const CustomerPassword = ({ onSubmit }: Props) => {
 				<label className='block'>
 					<span className='text-neutral-800 dark:text-neutral-200'>{'გაიმეორეთ პაროლი'}</span>
 					<Input
-						type='text'
+						type='password'
 						placeholder={'*********'}
 						className='mt-1'
 						value={lastValue}
@@ -41,7 +41,7 @@ const CustomerPassword = ({ onSubmit }: Props) => {
 				</label>
 				{firstValue && lastValue === firstValue ? (
 					<ButtonQuizz className='w-full rounded-lg mt-4' onClick={() => onSubmit(firstValue)}>
-						შემდეგი ნაბიჯი
+						ანგარიშის შექმნა
 					</ButtonQuizz>
 				) : null}
 			</form>

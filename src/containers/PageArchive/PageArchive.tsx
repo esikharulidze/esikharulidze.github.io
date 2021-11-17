@@ -70,9 +70,14 @@ const PageArchive: FC<PageArchiveProps> = ({ className = "" }) => {
             <h2 className="inline-block align-middle text-5xl font-semibold md:text-5xl ">
               {category?.title}
             </h2>
-            <span className="block mt-2 text-neutral-6000 dark:text-neutral-400">
-              {category?.posts.length} სტატია
-            </span>
+            
+              {category?.posts.length 
+
+              ? <span className="block mt-2 text-neutral-6000 dark:text-neutral-400">`${category?.posts.length} სტატია` 
+              </span>
+              : null
+              }
+
             </div>
           
       

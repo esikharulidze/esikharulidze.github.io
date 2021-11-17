@@ -1,4 +1,5 @@
 import ButtonPrimary from 'components/Button/ButtonPrimary'
+import ButtonSecondary from 'components/Button/ButtonSecondary'
 
 interface Props {
 	onSubmit: (val?: boolean) => void
@@ -15,19 +16,19 @@ const ChoosePaymentMethod = ({ onSubmit }: Props) => {
 			<ButtonPrimary onClick={onSubmit} className='w-full mt-4' textArrangement='text-left'>
 				ბარათით
 			</ButtonPrimary>
-			<ButtonPrimary
+			<ButtonSecondary
 				onClick={() => onSubmit(true)}
-				className='w-full mt-4 bg-successgreen-500'
+				className='w-full mt-4'
 				textArrangement='text-left'
 			>
 				ნაღდი ანგარიშსწორებით
-			</ButtonPrimary>
+			</ButtonSecondary>
 			<div className='mt-5'>
-				<div className='flex flex-row gap-4 block bg-yellow-600	 mb-2 w-full rounded-md p-5'>
+				<div className='flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'>
 					<div>
 						<svg
-							width='48'
-							height='48'
+							width='40'
+							height='40'
 							viewBox='0 0 48 48'
 							fill='none'
 							xmlns='http://www.w3.org/2000/svg'
@@ -52,9 +53,8 @@ const ChoosePaymentMethod = ({ onSubmit }: Props) => {
 							/>
 						</svg>
 					</div>
-					<p className='text-white'>
-						კითხვარი გამოიყენება პროფესიონალი ფსიქოლოგის მიერ, რათა მას წინასწარი ზოგადი
-						ინფორმაცია ჰქონდეს თქვენ შესახებ, რაც დაეხმარება თერაპიის უკეთესად წარმართვაში.
+					<p className='text-white md:text-sm lg:text-sm'>
+						კითხვარს გაეცნობა მხოლოდ თქვენ მიერ არჩეული სპეციალისტი, რათა შემოგთავაზოთ თქვენზე მორგებული თერაპია ან მკურნალობა. კონფიდენციალურობის პოლიტიკა <a className="font-semibold" target="_blank" href="https://animus.ge/privacy-policy">იხილეთ ბმულზე.</a>
 					</p>
 				</div>
 			</div>

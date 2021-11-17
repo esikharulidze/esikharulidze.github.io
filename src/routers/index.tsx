@@ -53,8 +53,8 @@ import QuizzV3 from "containers/QuizzV3/QuizzV3"
 import ButtonQuizz from "components/Button/ButtonQuizz"
 import ButtonQuizz2 from "components/Button/ButtonQuizz2"
 import Training from "containers/Training/Training"
-
-
+import AppointmentModal from "containers/PageDashboard/AppointmentModal"
+import ResumeQuizz from "containers/Quizz/ResumeQuizz"
 
 export const pages: Page[] = [
   { path: "/", exact: true, component: PageHomeDemo3 },
@@ -128,6 +128,7 @@ export const pages: Page[] = [
   { path: "/training", component: Training },
   {path: "/survey/:slug", component: Quizz},
   {path: "/quizztest", component: QuizzItemTest},
+  {path: "/resume-survay", component: ResumeQuizz}
   //
 ];
 

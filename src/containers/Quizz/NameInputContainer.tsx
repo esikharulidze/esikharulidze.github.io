@@ -8,6 +8,7 @@ interface Props {
 	lastNamePlaceholder: string
 	lasNameInputPlaceholder?: string
 	onSubmit: (val: string) => void
+	withPartner?: Boolean
 }
 
 const NameInputContainer = ({
@@ -15,7 +16,8 @@ const NameInputContainer = ({
 	nameInputPlaceholder,
 	lasNameInputPlaceholder,
 	lastNamePlaceholder,
-	onSubmit
+	onSubmit,
+	withPartner
 }: Props) => {
 	const [firstValue, setFirstValue] = useState('')
 	const [lastValue, setLastValue] = useState('')
@@ -43,10 +45,10 @@ const NameInputContainer = ({
 			</label>
 			{firstValue && lastValue ? (
 				<ButtonQuizz
-					className='w-full rounded-lg mt-4'
+					className={withPartner ? 'w-full rounded-lg  bg-red-500 hover:bg-red-600' : 'w-full rounded-lg'}
 					onClick={() => onSubmit(`${firstValue} ${lastValue}`)}
 				>
-					გაგრძელება
+					შემდეგი ნაბიჯი
 				</ButtonQuizz>
 			) : null}
 		</form>

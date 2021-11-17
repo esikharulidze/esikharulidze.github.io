@@ -329,12 +329,12 @@ export const NAVIGATION_DEMO: NavItemType[] = [
       // },
       {
         id: ncNanoId(),
-        href: "/psychologist",
+        href: "survey/psychologist",
         name: "ფსიქოლოგი",
       },
       {
         id: ncNanoId(),
-        href: "/psychiatrist",
+        href: "/survey/psychiatrist",
         name: "ფსიქიატრი",
       },
       {

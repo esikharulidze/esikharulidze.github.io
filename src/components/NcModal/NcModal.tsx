@@ -89,10 +89,10 @@ const NcModal: FC<NcModalProps> = ({
               <div
                 className={`inline-block w-full my-5 overflow-hidden text-left align-middle transition-all transform bg-white border border-black border-opacity-5 shadow-xl rounded-2xl sm:my-8 dark:bg-neutral-800 dark:border-neutral-700 text-neutral-900 dark:text-neutral-300 ${contentExtraClass}`}
               >
-                <div className="py-4 px-6 text-center relative border-neutral-100 dark:border-neutral-700 md:py-5">
+                <div className="px-6 text-center relative border-neutral-100 dark:border-neutral-700">
                   <ButtonClose
                     onClick={closeModal}
-                    className="absolute left-2 top-1/2 transform -translate-y-1/2 sm:left-4"
+                    className="absolute right-2 top-3 transform sm:right-4"
                   />
                   {modalTitle && (
                     <Dialog.Title
@@ -104,6 +104,11 @@ const NcModal: FC<NcModalProps> = ({
                   )}
                 </div>
                 <div className={contentPaddingClass}>{renderContent()}</div>
+                {/* <div className="px-6 text-center absolute right-0 top-0 mt-4 border-neutral-100 dark:border-neutral-700">
+                  <ButtonClose
+                    onClick={closeModal}
+                    className=""
+                  /></div> */}
               </div>
             </Transition.Child>
           </div>

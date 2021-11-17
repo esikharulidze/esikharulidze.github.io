@@ -40,6 +40,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const [age, setAge] = useState<number>()
 	const [forElse, setForElse] = useState(false)
 	const [step, setStep] = useState(1)
+	const [appointmentId, setAppointmentId] = useState()
 
 	const [currentQuestion, setCurrentQuestion] = useState<Question>()
 	const [surveyId, setSurveyId] = useState('')
@@ -132,10 +133,11 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const onDateChoose = useCallback(
 		async ({ therapistId, ...rest }: { therapistId: string; date: string; hour: string }) => {
 			try {
-				await axios.put(`user/reserve/${therapistId}`, {
+				const {data} = await axios.put(`user/reserve/${therapistId}`, {
 					...rest,
 					surveyId
 				})
+				setAppointmentId(data)
 				setStep(6)
 			} catch (e) {
 				console.log(e, 'errrrr')
@@ -164,20 +166,23 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const onCustomerPassword = useCallback(
 		async (val: string) => {
 			try {
-				await axios.post('customer', {
+				const {data} =await axios.post('customer', {
 					firstName: customerFirstName,
 					lastName: customerLastName,
 					phone: customerPhone,
 					email: customerEmail,
 					password: val,
-					surveyId
+					surveyId,
+					appointmentId
 				})
+				localStorage.setItem('customer-token', data.token)
 				setStep(12)
 			} catch (e) {
 				console.log(e)
+				setStep(7)
 			}
 		},
-		[surveyId, customerFirstName, customerEmail, customerLastName, customerPhone]
+		[surveyId, appointmentId, customerFirstName, customerEmail, customerLastName, customerPhone]
 	)
 
 	const onContactSubmit = useCallback(
@@ -208,8 +213,8 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const onPaymentChoose = useCallback(
 		async (cash?: boolean) => {
 			try {
-				await axios.patch('survey/payment-method', {
-					surveyId,
+				await axios.patch('appointment/payment-method', {
+					appointmentId,
 					paymentMethod: cash ? 'cash' : 'card'
 				})
 				if (cash) {
@@ -219,7 +224,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 				console.log(e)
 			}
 		},
-		[surveyId]
+		[appointmentId]
 	)
 
 	const renderContent = () => {
@@ -240,7 +245,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 					/>
 				)
 			case 3:
-				return <QuizItem question={currentQuestion} onSubmit={resumeQuiz} />
+				return <QuizItem question={currentQuestion} withPartner onSubmit={resumeQuiz} />
 			case 4:
 				return <Comment onSubmit={onComment} />
 			case 5:
@@ -267,9 +272,9 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const title = useMemo(() => {
 		switch (slug) {
 			case 'educational':
-				return '☂️ პირველი ახალი ნაბიჯი'
+				return '☂️ ახალი ხედვა განათლებაში'
 			case 'grouptherapy':
-				return '☂️ პირველი ახალი ნაბიჯი'
+				return '☂️ გაუზიარე და გაიზიარე'
 			case 'psychiatrist':
 				return '☂️ პირველი ახალი ნაბიჯი'
 			default:
@@ -280,9 +285,9 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const description = useMemo(() => {
 		switch (slug) {
 			case 'educational':
-				return 'რომელიც ვფიქრობთ დაგეხმარება და უკეთ გაგრძნობინებს თავს.'
+				return 'დღეს ვიცი, რომ მსურს ვიცოდე მეტი ხვალ, ვიდრე ვიცოდი გუშინ.'
 			case 'grouptherapy':
-				return 'რომელიც ვფიქრობთ დაგეხმარება და უკეთ გაგრძნობინებს თავს.'
+				return 'შექმენი შენი კომუნიაცია ჯგუფში და დარჩი სოციალურად აქტიური.'
 			case 'psychiatrist':
 				return 'რომელიც ვფიქრობთ დაგეხმარება და უკეთ გაგრძნობინებს თავს.'
 			default:

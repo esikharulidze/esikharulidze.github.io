@@ -11,9 +11,10 @@ import ncNanoId from "utils/ncNanoId";
 export interface CardUserProps {
   className?: string;
   author?: BackendUser;
+  name?: string
 }
 
-const CardUser: FC<CardUserProps> = ({ className = "", author }) => {
+const CardUser: FC<CardUserProps> = ({ className = "", author, name }) => {
   // const { firstName, lastName, avatar, jobTitle, slug } = author;
   // const displayName = `${firstName} ${lastName}`
   const [menuCurrentHovers, setMenuCurrentHovers] = useState<string[]>([]);
@@ -46,14 +47,15 @@ const CardUser: FC<CardUserProps> = ({ className = "", author }) => {
         containerClassName="flex-shrink-0 mr-3"
         radius="rounded-full"
         // imgUrl={avatar}
-        imgUrl="https://i.ibb.co/v36BcYv/1.jpg"
+        // imgUrl="https://i.ibb.co/v36BcYv/1.jpg"
+        userName={name}
         // userName={displayName}
       />
       <div>
         <h2
           className={`text-sm text-neutral-900 dark:text-neutral-100 font-semibold`}
         >
-          {/* {displayName} */} გამარჯობა, ლევან
+          {/* {displayName} */} გამარჯობა, {name?.toUpperCase()}
         </h2>
         <span
           className={`block mt-[1px] text-xs text-neutral-500 dark:text-neutral-400`}

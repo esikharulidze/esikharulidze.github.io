@@ -1,5 +1,5 @@
 import LayoutPage from "components/LayoutPage/LayoutPage";
-import React, { ComponentType, FC } from "react";
+import React, { ComponentType, FC, useEffect, useState } from "react";
 import { Redirect, Route, Switch, useRouteMatch } from "react-router";
 import { NavLink } from "react-router-dom";
 import DashboardBillingAddress from "./DashboardBillingAddress";
@@ -9,6 +9,10 @@ import DashboardRoot from "./DashboardRoot";
 import DashboardSubcription from "./DashboardSubcription";
 import DashboardSubmitPost from "./DashboardSubmitPost";
 import { Helmet } from "react-helmet";
+import AppointmentModal from "./AppointmentModal"
+import { BackendCustomer } from "types";
+import axios from "utils/axios";
+import { AxiosResponse } from "axios";
 
 export interface PageDashboardProps {
   className?: string;
@@ -114,8 +118,10 @@ const PageDashboard: FC<PageDashboardProps> = ({ className = "" }) => {
                   <Route
                     key={index}
                     exact={exact}
+                    
                     component={component}
                     path={!!sPath ? `${path}${sPath}` : path}
+                    
                   />
                 );
               })}

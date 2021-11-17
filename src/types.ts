@@ -16,6 +16,33 @@ export interface BackendPost {
 	updatedAt: string
 }
 
+export interface BackendSurvey {
+	age: number
+	contact: {
+		email: string
+		phone: string
+	}
+	fullName: string
+	partnerAge?: number
+	partnerName?: string
+	parentName?: string
+
+}
+
+export interface BackendAppointment {
+	_id: string
+	code: string
+	date: string
+	paid: boolean
+	paymentMethod: 'cash' | 'card'
+	price: number
+	status:  'closed'| 'current'| 'rejected'| 'refunded'
+	therapist: BackendUser
+	survey: BackendSurvey
+	time: string
+	type: 'psychologist' | 'psychiatrist' | 'grouptherapy' | 'educational'
+}
+
 export interface BackendUser {
 	_id: string
 	id: string
@@ -32,6 +59,17 @@ export interface BackendUser {
 	posts: BackendPost[]
 	avatar?: string
 	calendar: TherapistCalendar
+}
+
+export interface BackendCustomer {
+	_id: string
+	id: string
+	firstName: string
+	lastName: string
+	email: string
+	age: number
+	phone: string
+	gender: string
 }
 
 export interface TherapistCalendar {

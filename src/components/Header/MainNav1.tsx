@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Logo from "components/Logo/Logo";
 import Navigation from "components/Navigation/Navigation";
 import SearchDropdown from "./SearchDropdown";
@@ -11,6 +11,9 @@ import ButtonSecondary from "components/Button/ButtonSecondary";
 import NcImage from "components/NcImage/NcImage";
 import CardAuthor from "components/CardAuthor/CardAuthor";
 import CardUser from "components/CardUser/CardUser";
+import { BackendCustomer } from "types";
+import axios from 'utils/axios'
+import { AxiosResponse } from "axios";
 
 export interface MainNav1Props {
   isTop: boolean;
@@ -20,6 +23,18 @@ const MainNav1: FC<MainNav1Props> = ({ isTop }) => {
 const [isReporting, setIsReporting] = useState(false);
 const openModalReportComment = () => setIsReporting(true);
 const closeModalReportComment = () => setIsReporting(false);  
+const [customer, setCustomer] = useState<BackendCustomer>()
+
+useEffect(() => {
+  (async () => {
+    try {
+      const {data} = await axios.get<any, AxiosResponse<BackendCustomer>>('customer/profile')
+      setCustomer(data)
+    } catch(e) {
+      console.log(e)
+    }
+  })()
+}, [])
   return (
     <div
       className={`nc-MainNav1 relative z-10 ${
@@ -40,9 +55,10 @@ const closeModalReportComment = () => setIsReporting(false);
             <ButtonPrimary onClick={openModalReportComment} href="">ვიზიტის დაჯავშნა</ButtonPrimary>
             {/* <div className="px-1" /> */}
 
-            {/* <ButtonSecondary href="/signup">ავტორიზაცია</ButtonSecondary> */}
             <div className="px-1" />
-            <CardUser className="flex items-center rounded-xl p-2 xl:p-2 hover:bg-neutral-200 dark:hover:bg-neutral-700"></CardUser>
+            {customer ?
+            <CardUser className="flex items-center rounded-xl p-2 xl:p-2 hover:bg-neutral-200 dark:hover:bg-neutral-700" name={customer?.firstName}></CardUser>
+            : <ButtonSecondary href="/login">ავტორიზაცია</ButtonSecondary>}
             <ModalCourse
             show={isReporting}
             id={1}

@@ -1,15 +1,19 @@
 import Button, { ButtonProps } from "components/Button/Button";
 import React from "react";
 
-export interface ButtonSecondaryProps extends ButtonProps {}
+export interface ButtonSecondaryProps extends ButtonProps {
+  textArrangement?: string
+}
 
 const ButtonSecondary: React.FC<ButtonSecondaryProps> = ({
   className = " ",
+  textArrangement = "items-center justify-center",
   ...args
 }) => {
   return (
     <Button
       className={`ttnc-ButtonSecondary font-medium border bg-white border-neutral-200 text-neutral-700 dark:bg-neutral-900 dark:text-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 ${className}`}
+      textArrangement={textArrangement}
       {...args}
     />
   );

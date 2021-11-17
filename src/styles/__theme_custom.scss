@@ -21,6 +21,10 @@
   will-change: top;
 }
 
+.nc-will-change-bottom {
+  will-change: bottom;
+}
+
 //
 .nc-card-title {
   @apply transition-colors  hover:text-primary-900 dark:hover:text-primary-300 duration-75;

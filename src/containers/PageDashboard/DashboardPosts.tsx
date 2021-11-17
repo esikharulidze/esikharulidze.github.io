@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NcImage from "components/NcImage/NcImage";
 import Pagination from "components/Pagination/Pagination";
+import AppointmentModal from "./AppointmentModal";
+import { BackendAppointment, BackendCustomer } from "types";
+import axios from "utils/axios";
+import { AxiosResponse } from "axios";
+import { format } from "date-fns";
+import { ka } from "date-fns/locale";
 
 const people = [
   {
@@ -68,8 +74,24 @@ const people = [
 ];
 
 const DashboardPosts = () => {
+  const [show, setShow] = useState(false)
+  const [appointments, setAppointments] = useState<BackendAppointment[]>()
+  const [selectedAppointment, setSelectedAppointment] = useState<BackendAppointment>()
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const {data} = await axios.get<any, AxiosResponse<BackendAppointment[]>>('appointment')
+        setAppointments(data)
+      } catch(e) {
+        console.log(e)
+      }
+    })()
+  }, [])
   return (
+    
     <div className="flex flex-col space-y-8">
+      {/* <AppointmentModal></AppointmentModal> */}
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="py-2 align-middle inline-block min-w-full px-1 sm:px-6 lg:px-8">
           <div className="shadow dark:border dark:border-neutral-800 overflow-hidden sm:rounded-lg">
@@ -98,8 +120,8 @@ const DashboardPosts = () => {
                 </tr>
               </thead>
               <tbody className="bg-white dark:bg-neutral-900 divide-y divide-neutral-200 dark:divide-neutral-800">
-                {people.map((item) => (
-                  <tr key={item.id}>
+                {appointments ? appointments.map((item) => (
+                  <tr key={item._id}>
                     <td className="px-2 py-4">
                       <div className="flex items-center lg:w-auto max-w-md overflow-hidden">
                         {/* <NcImage
@@ -109,18 +131,18 @@ const DashboardPosts = () => {
                         
                         <div className="ml-4 flex-grow">
                           <h2 className="inline-flex line-clamp-2 text-sm font-semibold  dark:text-neutral-300">
-                            {item.title}
+                            {item.type}
                           </h2>
                         </div>
                       </div>
                     </td> <td className="px-6 py-4 whitespace-nowrap text-sm text-neutral-500 font-semibold dark:text-neutral-400">
-                      <span> {item.visitid}</span>
+                      <span> {item.code}</span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-neutral-500 dark:text-neutral-400">
-                      <span> {item.date}</span>
+                      <span> {format(new Date(item.date), 'dd MMM. ', {locale: ka})}{item.time}</span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      {item.liveStatus ? (
+                      {item.date ? (
                         <span className="px-2 inline-flex text-xs leading-5 font-medium rounded-full bg-teal-100 text-teal-900 lg:text-sm">
                           მიმდინარე
                         </span>
@@ -132,7 +154,7 @@ const DashboardPosts = () => {
                     </td>
                   
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-neutral-500 dark:text-neutral-400">
-                      <span> {item.payment}</span>
+                      <span>{item.therapist.firstName}{' '}{item.therapist.lastName}</span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium text-neutral-300">
                       {/* <a
@@ -142,19 +164,18 @@ const DashboardPosts = () => {
                         შეცვლა
                       </a>
                       {` | `} */}
-                      <a
-                        href="/#"
-                        className="text-rose-600 hover:text-rose-900"
-                      >
-                        გაუქმება
-                      </a>
+                      <div className="text-primary-800 dark:text-primary-500 hover:text-primary-900 cursor-pointer" onClick={() => {setSelectedAppointment(item); setShow(true)}}>
+                        დეტალები
+                      </div>
+                      
                     </td>
                   </tr>
-                ))}
+                )): null}
               </tbody>
             </table>
           </div>
         </div>
+        {show && selectedAppointment ? <AppointmentModal onClose={() => setShow(false)} data={selectedAppointment} /> : null}
       </div>
 
       <Pagination />

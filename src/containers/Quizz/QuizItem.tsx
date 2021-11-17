@@ -17,6 +17,7 @@ import NameInputContainer from './NameInputContainer'
 export interface ServiceInnerProps {
 	question?: Question
 	onSubmit?: (val: string[]) => void
+	withPartner?: Boolean
 }
 
 const services = {
@@ -26,7 +27,7 @@ const services = {
 	kids: 3
 }
 
-const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit }) => {
+const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner }) => {
 	const [course, setCourse] = useState<BackendCourse>()
 	const { slag, slug } = useParams<{ slag: string; slug: 'individual' | 'adults' | 'teens' | 'kids' }>()
 	const [isReporting, setIsReporting] = useState(false)
@@ -86,13 +87,13 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit }) => {
 			: givenQuestion.question.includes('შვილ')
 			? 'ჩაწერეთ გვარი'
 			: 'ჩაწერეთ გვარი'
-
 		return (
 			<NameInputContainer
 				namePlaceholder={namePlaceholder}
 				lastNamePlaceholder={lastNamePlaceholder}
 				nameInputPlaceholder={nameInputPlaceholder}
 				lasNameInputPlaceholder={lastNameInputPlaceholder}
+				withPartner={withPartner}
 				onSubmit={(val: string) => (onSubmit ? onSubmit([val]) : {})}
 			/>
 		)
@@ -117,7 +118,7 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit }) => {
 			<h2 className='font-semibold text-2xl mb-4'>{question ? question.question : 'loading'}</h2>
 
 			{question && question.multiple ? (
-				<div className='space-y-6'>
+				<div className='space-y-5'>
 					{question.answers.map(answer => (
 						<div key={answer._id}>
 							<label className='inline-flex items-center'>
@@ -150,14 +151,20 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit }) => {
 						className='w-full rounded-lg mt-8'
 						onClick={() => question.multiple && onSubmit && onSubmit(Array.from(checkedAnswers))}
 					>
-						გაგრძელება
+						შემდეგი ნაბიჯი
 					</ButtonQuizz>
 				</div>
 			) : (
+
 				<div
-					className={`grid grid-cols-1 gap-2 ${
-						question && question.answers.length > 3 ? 'sm:gird-cols-2' : 'sm:gird-cols-1'
-					}`}
+					// className={`grid grid-cols-1 gap-2 ${
+					// 	question && question.answers.length > 3 ? 'sm:gird-cols-2  md:gird-cols-2' : ''
+					// }`}
+
+					className={question && question.answers.length > 3 
+						? "grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-2"
+						: "grid grid-cols-1 gap-2"
+					}
 				>
 					{question
 						? question.answers.length
@@ -180,12 +187,12 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit }) => {
 			{/* <ButtonQuizz className="w-full rounded-lg text-left" onClick={() => onChoose&& onChoose('first')}>{psychiatrist ? 'მსურს ვიზიტი დავჯავშნო ჩემთვის' : 'ინდივიდუალური ვიზიტი ფსიქოლოგთან'}</ButtonQuizz>
         <ButtonQuizz className="w-full rounded-lg text-left" onClick={() => onChoose&& onChoose('second')}>{psychiatrist ? 'მსურს ვიზიტი დავჯავშნო სხვისთვის' : 'წყვილების თერაპია ფსიქოლოგთან'}</ButtonQuizz> */}
 
-			<div className=''>
-				<div className='flex flex-row mt-6 gap-4 block bg-yellow-600	 mb-2 w-full rounded-md p-5'>
+<div className='mt-5'>
+				<div className='flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'>
 					<div>
 						<svg
-							width='48'
-							height='48'
+							width='40'
+							height='40'
 							viewBox='0 0 48 48'
 							fill='none'
 							xmlns='http://www.w3.org/2000/svg'
@@ -210,9 +217,8 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit }) => {
 							/>
 						</svg>
 					</div>
-					<p className='text-white'>
-						კითხვარი გამოიყენება პროფესიონალი ფსიქოლოგის მიერ, რათა მას წინასწარი ზოგადი
-						ინფორმაცია ჰქონდეს თქვენ შესახებ, რაც დაეხმარება თერაპიის უკეთესად წარმართვაში.
+					<p className='text-white md:text-sm lg:text-sm'>
+						კითხვარს გაეცნობა მხოლოდ თქვენ მიერ არჩეული სპეციალისტი, რათა შემოგთავაზოთ თქვენზე მორგებული თერაპია ან მკურნალობა. კონფიდენციალურობის პოლიტიკა <a className="font-semibold" target="_blank" href="https://animus.ge/privacy-policy">იხილეთ ბმულზე.</a>
 					</p>
 				</div>
 			</div>

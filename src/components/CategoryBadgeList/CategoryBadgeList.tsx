@@ -21,12 +21,13 @@ const CategoryBadgeList: FC<CategoryBadgeListProps> = ({
       className={`nc-CategoryBadgeList ${className}`}
       data-nc-id="CategoryBadgeList"
     >
+      {console.log("categories: ", categories)}
       {categories.map((item, index) => (
         <Badge
           className={itemClass}
           key={index}
           name={item.title}
-          href={item.slug}
+          href={"/article/"+item.slug}
           color={COLORS[index%7]}
         />
       ))}

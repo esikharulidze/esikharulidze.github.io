@@ -1,4 +1,5 @@
 import ButtonPrimary from 'components/Button/ButtonPrimary'
+import ButtonQuizz from 'components/Button/ButtonQuizz'
 
 interface Props {
 	onSubmit: (val?: boolean) => void
@@ -9,18 +10,18 @@ const CreateOrNotQuestion = ({ onSubmit }: Props) => {
 		<div className=' bg-white rounded-lg px-10 p-10 dark:bg-neutral-900 '>
 			<h2 className='font-semibold text-2xl mb-4'>გსურთ ანგარიშის შექმნა?</h2>
 			<div className='grid grid-cols-2 gap-4'></div>
-			<ButtonPrimary onClick={() => onSubmit(false)} className='w-full mt-4'>
+			<ButtonQuizz onClick={() => onSubmit(false)} className='w-full mt-4'>
 				დიახ, მსურს ანგარიშის შექმნა(რეკომენდებულია)
-			</ButtonPrimary>
-			<ButtonPrimary onClick={() => onSubmit(true)} className='w-full mt-4 bg-white'>
+			</ButtonQuizz>
+			<ButtonQuizz onClick={() => onSubmit(true)} className='w-full mt-4 bg-white'>
 				არა, ვიზიტს ჩავნიშნავ როგორც "სტუმარი"
-			</ButtonPrimary>
+			</ButtonQuizz>
 			<div className='mt-5'>
-				<div className='flex flex-row gap-4 block bg-yellow-600	 mb-2 w-full rounded-md p-5'>
+				<div className='flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'>
 					<div>
 						<svg
-							width='48'
-							height='48'
+							width='40'
+							height='40'
 							viewBox='0 0 48 48'
 							fill='none'
 							xmlns='http://www.w3.org/2000/svg'
@@ -45,9 +46,8 @@ const CreateOrNotQuestion = ({ onSubmit }: Props) => {
 							/>
 						</svg>
 					</div>
-					<p className='text-white'>
-						კითხვარი გამოიყენება პროფესიონალი ფსიქოლოგის მიერ, რათა მას წინასწარი ზოგადი
-						ინფორმაცია ჰქონდეს თქვენ შესახებ, რაც დაეხმარება თერაპიის უკეთესად წარმართვაში.
+					<p className='text-white md:text-sm lg:text-sm'>
+						კითხვარს გაეცნობა მხოლოდ თქვენ მიერ არჩეული სპეციალისტი, რათა შემოგთავაზოთ თქვენზე მორგებული თერაპია ან მკურნალობა. კონფიდენციალურობის პოლიტიკა <a className="font-semibold" target="_blank" href="https://animus.ge/privacy-policy">იხილეთ ბმულზე.</a>
 					</p>
 				</div>
 			</div>

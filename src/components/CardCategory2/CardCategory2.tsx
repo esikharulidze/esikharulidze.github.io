@@ -7,6 +7,10 @@ import ChildrenIMG from "data/serviceicons/ChildrenIMG"
 import AdultIMG from "data/serviceicons/AdultIMG"
 import IndividualIMG from "data/serviceicons/InduvidualIMG"
 import KidsIMG from "data/serviceicons/KidsIMG"
+import Educational from "data/serviceicons/Educational";
+import Group from "data/serviceicons/Group";
+import Psychiatrist from "data/serviceicons/Psychiatrist";
+import Psychologist from "data/serviceicons/Psychologist";
 export interface CardCategory2Props {
   className?: string;
   taxonomy: TaxonomyType;
@@ -41,10 +45,10 @@ const CardCategory2: FC<CardCategory2Props> = ({
         />
       )}
       <br/>
-      {thumbnail == "Children" ? <ChildrenIMG/> : <></>}
-      {thumbnail == "Adult" ? <AdultIMG/> : <></>}
-      {thumbnail == "Individual" ? <IndividualIMG/> : <></>}
-      {thumbnail == "kids" ? <KidsIMG/> : <></>}
+      {thumbnail == "Children" ? <Group/> : <></>}
+      {thumbnail == "Adult" ? <Psychiatrist/> : <></>}
+      {thumbnail == "Individual" ? <Psychologist/> : <></>}
+      {thumbnail == "kids" ? <Educational/> : <></>}
       
       {/* <NcImage
       containerClassName={`flex-shrink-0 w-20 h-20 rounded-full overflow-hidden`}

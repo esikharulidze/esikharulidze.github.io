@@ -34,68 +34,46 @@ const PageLogin: FC<PageLoginProps> = ({ className = "" }) => {
   return (
     <div className={`nc-PageLogin ${className}`} data-nc-id="PageLogin">
       <Helmet>
-        <title>Login || Blog Magazine React Template</title>
+        <title>ანიმუსი - ავტორიზაცია </title>
       </Helmet>
       <LayoutPage
-        subHeading="Welcome to our blog magazine Community"
+        subHeading="მართეთ თქვენი ანგარიში, ვიზიტები და კითხვარები"
         headingEmoji="🔑"
-        heading="Login"
+        heading="ავტორიზაცია"
       >
         <div className="max-w-md mx-auto space-y-6">
-          <div className="grid gap-3">
-            {loginSocials.map((item, index) => (
-              <a
-                key={index}
-                href={item.href}
-                className="nc-will-change-transform flex w-full rounded-lg bg-primary-50 dark:bg-neutral-800 px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]"
-              >
-                <img
-                  className="flex-shrink-0"
-                  src={item.icon}
-                  alt={item.name}
-                />
-                <h3 className="flex-grow text-center text-sm font-medium text-neutral-700 dark:text-neutral-300 sm:text-sm">
-                  {item.name}
-                </h3>
-              </a>
-            ))}
-          </div>
           {/* OR */}
-          <div className="relative text-center">
-            <span className="relative z-10 inline-block px-4 font-medium text-sm bg-white dark:text-neutral-400 dark:bg-neutral-900">
-              OR
-            </span>
-            <div className="absolute left-0 w-full top-1/2 transform -translate-y-1/2 border border-neutral-100 dark:border-neutral-800"></div>
-          </div>
           {/* FORM */}
           <form className="grid grid-cols-1 gap-6" action="#" method="post">
             <label className="block">
               <span className="text-neutral-800 dark:text-neutral-200">
-                Email address
+                მომხმარებელი
               </span>
               <Input
-                type="email"
-                placeholder="example@example.com"
+                type="text"
+                placeholder="ელ.ფოსტა ან ტელეფონი"
                 className="mt-1"
               />
             </label>
             <label className="block">
               <span className="flex justify-between items-center text-neutral-800 dark:text-neutral-200">
-                Password
+                პაროლი
                 <NcLink to="/forgot-pass" className="text-sm">
-                  Forgot password?
+                  პაროლის აღდგენა
                 </NcLink>
               </span>
-              <Input type="password" className="mt-1" />
+              <Input type="password" className="mt-1" 
+              placeholder="﹡﹡﹡﹡﹡﹡﹡﹡"
+              />
             </label>
-            <ButtonPrimary type="submit">Continue</ButtonPrimary>
+            <ButtonPrimary type="submit">ავტორიზაცია</ButtonPrimary>
           </form>
 
           {/* ==== */}
-          <span className="block text-center text-neutral-700 dark:text-neutral-300">
+          {/* <span className="block text-center text-neutral-700 dark:text-neutral-300">
             New user? {` `}
             <NcLink to="/signup">Create an account</NcLink>
-          </span>
+          </span> */}
         </div>
       </LayoutPage>
     </div>

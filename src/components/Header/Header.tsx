@@ -7,8 +7,9 @@ import PostCardLikeContainer from "containers/PostCardLikeContainer/PostCardLike
 import MainNav1 from "./MainNav1";
 import { PageItemType } from "app/pages/pages";
 import { useParams } from "react-router-dom";
-import { BackendPost } from "types";
+import { BackendCustomer, BackendPost } from "types";
 import axios, { AxiosResponse } from "axios";
+import appAxios from 'utils/axios'
 
 export interface HeaderProps {
   mainNavStyle?: "style1" | "style2";
@@ -28,6 +29,7 @@ const Header: FC<HeaderProps> = ({ mainNavStyle = "style1", currentPage }) => {
   const [isTop, setIsTop] = useState(true);
   const {slug} = useParams<{slug: string}>()
   const [post, setPost] = useState<BackendPost>()
+  
   
   useEffect(() => {
     (async () => {

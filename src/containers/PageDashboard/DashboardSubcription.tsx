@@ -1,4 +1,7 @@
-import React from "react";
+import { AxiosResponse } from "axios";
+import React, { useEffect, useState, useMemo } from "react";
+import { BackendCustomer } from "types";
+import axios from "utils/axios";
 
 const data = [
   { name: "სახელი", content: " ლაშა მირზელაშვილი" },
@@ -8,6 +11,23 @@ const data = [
 ];
 
 const DashboardSubcription = () => {
+  const [customer, setCustomer] = useState<BackendCustomer>()
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const {data} = await axios.get<any, AxiosResponse<BackendCustomer>>('customer/profile')
+        setCustomer(data)
+      } catch(e) {
+        console.log(e)
+      }
+    })()
+  }, [])
+
+  const customerData = useMemo(() => ([{ name: "სახელი", content: `${customer?.firstName} ${customer?.lastName}` },
+  { name: "ასაკი", content: customer?.age.toString() },
+  { name: "ელ.ფოსტა", content: customer?.email },
+  { name: "ტელეფონი", content: customer?.phone },]), [customer])
   return (
     <div className="bg-white dark:bg-neutral-900 dark:border dark:border-neutral-800 shadow overflow-hidden sm:rounded-lg">
       {/* <div className="px-4 py-5 sm:px-6">
@@ -20,7 +40,7 @@ const DashboardSubcription = () => {
       </div> */}
       <div className="border-neutral-200 dark:border-neutral-900">
         <dl>
-          {data.map((item, index) => {
+          {customerData.map((item, index) => {
             return (
               <div
                 key={index}

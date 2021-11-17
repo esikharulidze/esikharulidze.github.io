@@ -45,7 +45,7 @@ const CustomerName = ({ onSubmit }: Props) => {
 				</label>
 				{firstValue && lastValue ? (
 					<ButtonQuizz
-						className='w-full rounded-lg mt-4'
+						className='w-full rounded-lg'
 						onClick={() =>
 							onSubmit({
 								firstName: firstValue,

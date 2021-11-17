@@ -7,7 +7,7 @@ const Page404: React.FC = () => (
     <Helmet>
       <title>404 || Blog Magazine React Template</title>
     </Helmet>
-    <div className="container relative py-16 lg:py-20">
+    <div className="container relative py-16 lg:py-20 my-10">
       {/* HEADER */}
       <header className="text-center max-w-2xl mx-auto space-y-7">
         <h2 className="text-7xl md:text-8xl">🪔</h2>
@@ -23,6 +23,7 @@ const Page404: React.FC = () => (
       </header>
     </div>
   </div>
+  
 );
 
 export default Page404;

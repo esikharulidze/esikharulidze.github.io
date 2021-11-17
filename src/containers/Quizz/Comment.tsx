@@ -18,8 +18,8 @@ const Quizz: FC<ServiceInnerProps> = ({ onSubmit }) => {
 
 			<label className='block text-left'>
 				<textarea
-					className='form-textarea border-none mt-4 block w-full rounded-md py-4 px-5 mb-4'
-					style={{ backgroundColor: '#F8F8F8', borderStyle: 'none', resize: 'none' }}
+					className='p-4 block w-full text-sm rounded-xl border-neutral-200 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white dark:border-neutral-700 dark:focus:ring-primary-6000 dark:focus:ring-opacity-25 dark:bg-neutral-800 mt-4 mb-4'
+					// style={{ backgroundColor: '#F8F8F8', borderStyle: 'none', resize: 'none' }}
 					rows={8}
 					placeholder='შეიყვანეთ ტექსტი'
 					value={value}
@@ -27,18 +27,18 @@ const Quizz: FC<ServiceInnerProps> = ({ onSubmit }) => {
 				></textarea>
 			</label>
 			<ButtonPrimary
-				className='w-full bg-successgreen-500'
+				className='w-full'
 				textArrangement='text-left'
 				onClick={() => onSubmit && onSubmit(value)}
 			>
-				გაგრძელება
+				შემდეგი ნაბიჯი
 			</ButtonPrimary>
-			<div className=''>
-				<div className='flex flex-row mt-6 gap-4 block bg-yellow-600	 mb-2 w-full rounded-md p-5'>
+			<div className='mt-5'>
+				<div className='flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'>
 					<div>
 						<svg
-							width='48'
-							height='48'
+							width='40'
+							height='40'
 							viewBox='0 0 48 48'
 							fill='none'
 							xmlns='http://www.w3.org/2000/svg'
@@ -63,9 +63,8 @@ const Quizz: FC<ServiceInnerProps> = ({ onSubmit }) => {
 							/>
 						</svg>
 					</div>
-					<p className='text-white'>
-						კითხვარი გამოიყენება პროფესიონალი ფსიქოლოგის მიერ, რათა მას წინასწარი ზოგადი
-						ინფორმაცია ჰქონდეს თქვენ შესახებ, რაც დაეხმარება თერაპიის უკეთესად წარმართვაში.
+					<p className='text-white md:text-sm lg:text-sm'>
+						კითხვარს გაეცნობა მხოლოდ თქვენ მიერ არჩეული სპეციალისტი, რათა შემოგთავაზოთ თქვენზე მორგებული თერაპია ან მკურნალობა. კონფიდენციალურობის პოლიტიკა <a className="font-semibold" target="_blank" href="https://animus.ge/privacy-policy">იხილეთ ბმულზე.</a>
 					</p>
 				</div>
 			</div>
