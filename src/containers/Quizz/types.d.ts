@@ -21,6 +21,6 @@ interface Question {
 	isReligionQuestion?: boolean
 	isGenderQuestion?: boolean
 	isNameInput?: boolean
-	isParentInput?: boolean
-	isPartnerInput?: boolean
+	isParentNameInput?: boolean
+	isPartnerNameInput?: boolean
 }

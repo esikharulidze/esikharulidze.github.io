@@ -2,13 +2,14 @@ export type WeekDays = 'ორშაბათი' | 'სამშაბათი
 type TherapistHours = '10:00' | '12:00' | '14:00' | '16:00' | '18:00'
 
 export interface BackendPost {
+	_id: string
 	id: string
 	slug: string
 	title: string
 	author: BackendUser
 	categories: BackendCategory[]
 	comments: BackendComment[]
-	likes: number
+	likes: BackendCustomer[]
 	content?: string
 	avatar?: string
 	cover?: string
@@ -26,7 +27,6 @@ export interface BackendSurvey {
 	partnerAge?: number
 	partnerName?: string
 	parentName?: string
-
 }
 
 export interface BackendAppointment {
@@ -36,7 +36,7 @@ export interface BackendAppointment {
 	paid: boolean
 	paymentMethod: 'cash' | 'card'
 	price: number
-	status:  'closed'| 'current'| 'rejected'| 'refunded'
+	status: 'closed' | 'current' | 'rejected' | 'refunded'
 	therapist: BackendUser
 	survey: BackendSurvey
 	time: string

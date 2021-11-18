@@ -27,7 +27,7 @@ const services = {
 	kids: 3
 }
 
-const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner }) => {
+const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner = false }) => {
 	const [course, setCourse] = useState<BackendCourse>()
 	const { slag, slug } = useParams<{ slag: string; slug: 'individual' | 'adults' | 'teens' | 'kids' }>()
 	const [isReporting, setIsReporting] = useState(false)
@@ -40,7 +40,7 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner }) => 
 	const [checkedAnswers, setCheckedAnswers] = useState(new Set<string>())
 
 	const renderContent = (givenQuestion: Question) => {
-		const namePlaceholder = givenQuestion.isPartnerInput
+		const namePlaceholder = givenQuestion.isPartnerNameInput
 			? 'თქვენი პარტნიორის სახელი'
 			: givenQuestion.forElse
 			? 'პაციენტის სახელი'
@@ -50,7 +50,7 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner }) => 
 			? 'თქვენი შვილის სახელი'
 			: 'თქვენი სახელი'
 
-		const lastNamePlaceholder = givenQuestion.isPartnerInput
+		const lastNamePlaceholder = givenQuestion.isPartnerNameInput
 			? 'თქვენი პარტნიორის გვარი'
 			: givenQuestion.forElse
 			? 'პაციენტის გვარი'
@@ -62,7 +62,7 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner }) => 
 
 		const nameInputPlaceholder = givenQuestion.couple
 			? 'ჩაწერეთ თქვენი სახელი ან ზედმეტსახელი'
-			: givenQuestion.isPartnerInput
+			: givenQuestion.isPartnerNameInput
 			? 'ჩაწერეთ პარტნიორის სახელი ან ზედმეტსახელი'
 			: givenQuestion.forMe
 			? 'ჩაწერეთ თქვენი სახელი ან ზედმეტსახელი'
@@ -76,7 +76,7 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner }) => 
 
 		const lastNameInputPlaceholder = givenQuestion.couple
 			? 'ჩაწერეთ თქვენი გვარი'
-			: givenQuestion.isPartnerInput
+			: givenQuestion.isPartnerNameInput
 			? 'ჩაწერეთ პარტნიორის გვარი'
 			: givenQuestion.forMe
 			? 'ჩაწერეთ თქვენი გვარი'
@@ -155,15 +155,15 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner }) => 
 					</ButtonQuizz>
 				</div>
 			) : (
-
 				<div
 					// className={`grid grid-cols-1 gap-2 ${
 					// 	question && question.answers.length > 3 ? 'sm:gird-cols-2  md:gird-cols-2' : ''
 					// }`}
 
-					className={question && question.answers.length > 3 
-						? "grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-2"
-						: "grid grid-cols-1 gap-2"
+					className={
+						question && question.answers.length > 3
+							? 'grid grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-2'
+							: 'grid grid-cols-1 gap-2'
 					}
 				>
 					{question
@@ -187,7 +187,7 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner }) => 
 			{/* <ButtonQuizz className="w-full rounded-lg text-left" onClick={() => onChoose&& onChoose('first')}>{psychiatrist ? 'მსურს ვიზიტი დავჯავშნო ჩემთვის' : 'ინდივიდუალური ვიზიტი ფსიქოლოგთან'}</ButtonQuizz>
         <ButtonQuizz className="w-full rounded-lg text-left" onClick={() => onChoose&& onChoose('second')}>{psychiatrist ? 'მსურს ვიზიტი დავჯავშნო სხვისთვის' : 'წყვილების თერაპია ფსიქოლოგთან'}</ButtonQuizz> */}
 
-<div className='mt-5'>
+			<div className='mt-5'>
 				<div className='flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'>
 					<div>
 						<svg
@@ -218,7 +218,11 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner }) => 
 						</svg>
 					</div>
 					<p className='text-white md:text-sm lg:text-sm'>
-						კითხვარს გაეცნობა მხოლოდ თქვენ მიერ არჩეული სპეციალისტი, რათა შემოგთავაზოთ თქვენზე მორგებული თერაპია ან მკურნალობა. კონფიდენციალურობის პოლიტიკა <a className="font-semibold" target="_blank" href="https://animus.ge/privacy-policy">იხილეთ ბმულზე.</a>
+						კითხვარს გაეცნობა მხოლოდ თქვენ მიერ არჩეული სპეციალისტი, რათა შემოგთავაზოთ თქვენზე
+						მორგებული თერაპია ან მკურნალობა. კონფიდენციალურობის პოლიტიკა{' '}
+						<a className='font-semibold' target='_blank' href='https://animus.ge/privacy-policy'>
+							იხილეთ ბმულზე.
+						</a>
 					</p>
 				</div>
 			</div>

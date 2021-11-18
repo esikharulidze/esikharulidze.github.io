@@ -17,7 +17,7 @@ const NameInputContainer = ({
 	lasNameInputPlaceholder,
 	lastNamePlaceholder,
 	onSubmit,
-	withPartner
+	withPartner = false
 }: Props) => {
 	const [firstValue, setFirstValue] = useState('')
 	const [lastValue, setLastValue] = useState('')
@@ -45,8 +45,14 @@ const NameInputContainer = ({
 			</label>
 			{firstValue && lastValue ? (
 				<ButtonQuizz
-					className={withPartner ? 'w-full rounded-lg  bg-red-500 hover:bg-red-600' : 'w-full rounded-lg'}
-					onClick={() => onSubmit(`${firstValue} ${lastValue}`)}
+					className={
+						withPartner ? 'w-full rounded-lg  bg-red-500 hover:bg-red-600' : 'w-full rounded-lg'
+					}
+					onClick={() => {
+						onSubmit(`${firstValue} ${lastValue}`)
+						setFirstValue('')
+						setLastValue('')
+					}}
 				>
 					შემდეგი ნაბიჯი
 				</ButtonQuizz>

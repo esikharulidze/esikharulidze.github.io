@@ -74,7 +74,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 		} catch (e) {
 			console.log(e)
 		}
-	}, [age, slug])
+	}, [age, slug, partner])
 
 	const resumeQuiz = useCallback(
 		async (answerIds: string[]) => {
@@ -133,7 +133,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const onDateChoose = useCallback(
 		async ({ therapistId, ...rest }: { therapistId: string; date: string; hour: string }) => {
 			try {
-				const {data} = await axios.put(`user/reserve/${therapistId}`, {
+				const { data } = await axios.put(`user/reserve/${therapistId}`, {
 					...rest,
 					surveyId
 				})
@@ -166,7 +166,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const onCustomerPassword = useCallback(
 		async (val: string) => {
 			try {
-				const {data} =await axios.post('customer', {
+				const { data } = await axios.post('customer', {
 					firstName: customerFirstName,
 					lastName: customerLastName,
 					phone: customerPhone,
@@ -226,7 +226,6 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 		},
 		[appointmentId]
 	)
-
 	const renderContent = () => {
 		switch (step) {
 			case 1:
@@ -245,7 +244,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 					/>
 				)
 			case 3:
-				return <QuizItem question={currentQuestion} withPartner onSubmit={resumeQuiz} />
+				return <QuizItem question={currentQuestion} withPartner={withPartner} onSubmit={resumeQuiz} />
 			case 4:
 				return <Comment onSubmit={onComment} />
 			case 5:
