@@ -4,7 +4,7 @@ import ButtonSecondary from 'components/Button/ButtonSecondary'
 import LayoutPage from 'components/LayoutPage/LayoutPage'
 import ModalCourse from 'components/ModalCourse/ModalCourse'
 import React, { FC, useEffect, useState, useCallback, useMemo } from 'react'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams, useHistory, useLocation } from 'react-router-dom'
 import { BackendCourse } from 'types'
 import axios from 'utils/axios'
 import { DropDown } from './components'
@@ -29,8 +29,15 @@ export interface ServiceInnerProps {
 	className?: string
 }
 
+function useQuery() {
+	const { search } = useLocation()
+
+	return useMemo(() => new URLSearchParams(search), [search])
+}
+
 const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const [course, setCourse] = useState<BackendCourse>()
+	const query = useQuery()
 	const { slug } = useParams<{ slug: 'psychologist' | 'psychiatrist' | 'grouptherapy' | 'educational' }>()
 	const [isReporting, setIsReporting] = useState(false)
 	const openModalReportComment = () => setIsReporting(true)
@@ -67,7 +74,9 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 		try {
 			setStep(3)
 			const { data } = await axios.get<any, AxiosResponse<{ question: any; surveyId: string }>>(
-				`survey/start/${slug}?age=${age}&forElse=${forElse}${partner ? '&partner=' + partner : ''}`
+				`survey/start/${slug}?age=${age}&forElse=${forElse}${partner ? '&partner=' + partner : ''}${
+					query.get('course') ? '&course=' + query.get('course') : null
+				}`
 			)
 			setSurveyId(data.surveyId)
 			setCurrentQuestion(data.question)

@@ -27,6 +27,7 @@ export interface BackendSurvey {
 	partnerAge?: number
 	partnerName?: string
 	parentName?: string
+	course?: BackendCourse
 }
 
 export interface BackendAppointment {
