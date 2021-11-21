@@ -54,7 +54,12 @@ const Calendar = ({ type, onSubmit }: Props) => {
 					format(parseISO(reserved.date), 'dd/MM') ===
 					format(parseISO(selectedDate?.id || new Date().toISOString()), 'dd/MM')
 			)
-			.map(ui => ui.time)
+			.map(ui =>  { 
+				if (format(parseISO(ui.date), 'dd/MM') === format(parseISO(new Date().toISOString()), 'dd/MM')) {
+					return Number(ui.time.substr(0,2)) - new Date().getHours() > 0 ? ui.time : ""
+				}
+				return ui.time
+			})
 		return therapistCalendar?.hours.filter(hour => !res?.includes(hour))
 	}, [therapistCalendar, selectedDate])
 
@@ -64,7 +69,7 @@ const Calendar = ({ type, onSubmit }: Props) => {
 				const { data } = await axios.get<any, AxiosResponse<BackendUser[]>>(`user/available/${type}`)
 				setTherapists(data)
 			} catch (e) {
-				console.log('erroria dzma', e)
+				console.log('erroria dzma ui tetaia', e)
 			}
 		})()
 	}, [])

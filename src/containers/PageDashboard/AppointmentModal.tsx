@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import NcImage from 'components/NcImage/NcImage'
 import Pagination from 'components/Pagination/Pagination'
 import NcModal from 'components/NcModal/NcModal'
@@ -8,6 +8,7 @@ import { BackendAppointment } from 'types'
 import { format } from 'date-fns'
 import { ka } from 'date-fns/locale'
 import axios from 'utils/axios'
+import CancelAppointmentModal from './CancelAppointmentModal'
 
 interface Props {
 	onClose?: () => void
@@ -15,6 +16,7 @@ interface Props {
 }
 
 const AppointmentModal = ({ data, onClose }: Props) => {
+	const [showCancel, setShowCancel] = useState(false)
 	const getName = (item: BackendAppointment) => {
 		switch (item.type) {
 			case 'grouptherapy':
@@ -61,40 +63,7 @@ const AppointmentModal = ({ data, onClose }: Props) => {
 							შემთხვევაში თანხა არ დაგიბრუნდებათ ან დაგეკისრებათ ჯარიმა.
 						</p>
 					</div>
-					{/* </div> */}
-					{/* <table className="table-auto">
-            <thead>
-                <tr>
-                <th>მისამართი</th>
-                <th>თარიღი</th>
-                <th>სტატუსი</th>
-                <th>თერაპევტი</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <td>მცხეთის ქუჩა 48/50</td>
-                <td>მიმდინარე</td>
-                <td>25 ოქტ, 18:30</td>
-                <td>ელენე სიხარულიძე</td>
-                </tr>
-            </tbody>
-        </table> */}
-					{/* <p className="text-sm mt-4 mb-2">
-            მისამართი: მცხეთის ქუჩა 48/50
-        </p>
-        <hr />
-        <p className="text-sm my-2">
-        სტატუსი: მიმდინარე
-        </p>
-        <hr />
-        <p className="text-sm my-2">
-        თარიღი: 25 ოქტ, 18:30
-        </p>
-        <hr />
-        <p className="text-sm mt-2 mb-6">
-        თერაპევტი: ელენე სიხარულიძე
-        </p> */}
+
 					<div className='border-neutral-200 dark:border-neutral-900'>
 						<dl>
 							<div className='px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 bg-neutral-50 dark:bg-neutral-800 rounded-xl'>
@@ -184,11 +153,14 @@ const AppointmentModal = ({ data, onClose }: Props) => {
 					</div>
 					<div className='mt-4 grid grid-cols-2 gap-4'>
 						<ButtonPrimary type='submit'>თარიღის შეცვლა</ButtonPrimary>
-						<ButtonSecondary type='submit' onClick={cancel}>
+						<ButtonSecondary type='submit' onClick={() => setShowCancel(true)}>
 							ვიზიტის გაუქმება
 						</ButtonSecondary>
 					</div>
 				</form>
+				{showCancel  ? (
+					<CancelAppointmentModal onClose={() => setShowCancel(false)} cancel={cancel}/>
+				) : null}
 			</div>
 		)
 	}
@@ -199,7 +171,7 @@ const AppointmentModal = ({ data, onClose }: Props) => {
 		<NcModal
 			isOpenProp={true}
 			onCloseModal={onClose}
-			contentExtraClass='max-w-screen-md'
+			contentExtraClass={showCancel ? "opacity-0 max-w-screen-md": "max-w-screen-md"}
 			renderContent={renderContent}
 			renderTrigger={renderTrigger}
 			modalTitle=''

@@ -36,12 +36,12 @@ const QuizzItemTest: FC<ServiceInnerProps> = () => {
           </span>
         </header>
         <div className=" bg-white rounded-lg px-10 p-10 dark:bg-neutral-900 ">
-          <h2 className="font-semibold text-2xl mb-4">გადახდა ვერ განხორციელდა</h2>
+          <h2 className="font-semibold text-2xl mb-4">გსურთ შეავსოთ კითხვარი თავიდან?</h2>
           <div className="grid grid-cols-2 gap-4">
         </div>
-          <div className="flex gap-4">
-          <ButtonPrimary className="w-full mt-4" textArrangement="text-left">ვცადოთ თავიდან</ButtonPrimary>
-          <ButtonPrimary className="w-full mt-4 bg-successgreen-500" textArrangement="text-left">მეთოდის შეცვლა</ButtonPrimary>
+          <div className="grid grid-cols-1">
+          <ButtonPrimary className="w-full" textArrangement="text-left">დიახ, კითხვარს შევავსებ თავიდან</ButtonPrimary>
+          <ButtonSecondary className="w-full mt-4" textArrangement="text-left">არა, გამოვიყენებ აქამდე შევსებულ კითხვარს</ButtonSecondary>
           </div>
           <div className="mt-5">
           <div className="flex flex-row gap-4 block bg-yellow-600	 mb-2 w-full rounded-md p-5">

@@ -7,6 +7,7 @@ import axios from 'utils/axios'
 import { AxiosResponse } from 'axios'
 import { format } from 'date-fns'
 import { ka } from 'date-fns/locale'
+import CancelAppointmentModal from './CancelAppointmentModal'
 
 const people = [
 	{
@@ -109,7 +110,6 @@ const DashboardPosts = () => {
 
 	return (
 		<div className='flex flex-col space-y-8'>
-			{/* <AppointmentModal></AppointmentModal> */}
 			<div className='-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
 				<div className='py-2 align-middle inline-block min-w-full px-1 sm:px-6 lg:px-8'>
 					<div className='shadow dark:border dark:border-neutral-800 overflow-hidden sm:rounded-lg'>
