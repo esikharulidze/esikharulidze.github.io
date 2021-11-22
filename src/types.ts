@@ -18,6 +18,7 @@ export interface BackendPost {
 }
 
 export interface BackendSurvey {
+	_id: string
 	age: number
 	contact: {
 		email: string

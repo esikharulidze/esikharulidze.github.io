@@ -5,7 +5,7 @@ import LayoutPage from 'components/LayoutPage/LayoutPage'
 import ModalCourse from 'components/ModalCourse/ModalCourse'
 import React, { FC, useEffect, useState, useCallback, useMemo } from 'react'
 import { useParams, useHistory, useLocation } from 'react-router-dom'
-import { BackendCourse } from 'types'
+import { BackendCourse, BackendSurvey } from 'types'
 import axios from 'utils/axios'
 import { DropDown } from './components'
 import Label from 'components/Label/Label'
@@ -24,6 +24,8 @@ import Success from './Success'
 import CustomerName from './CustomerName'
 import CustomerPassword from './CustomerPassword'
 import AccountSuccess from './AccountSuccess'
+import RepeatSurvey from './RepeatSurvey'
+import { useAppSelector } from 'app/hooks'
 
 export interface ServiceInnerProps {
 	className?: string
@@ -58,6 +60,8 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const [customerEmail, setCustomerEmail] = useState('')
 	const [customerPhone, setCustomerPhone] = useState('')
 
+	const { customer } = useAppSelector(state => state.auth)
+
 	// useEffect(() => {
 	//   (async () => {
 	//     try {
@@ -75,7 +79,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 			setStep(3)
 			const { data } = await axios.get<any, AxiosResponse<{ question: any; surveyId: string }>>(
 				`survey/start/${slug}?age=${age}&forElse=${forElse}${partner ? '&partner=' + partner : ''}${
-					query.get('course') ? '&course=' + query.get('course') : null
+					query.get('course') ? '&course=' + query.get('course') : ''
 				}`
 			)
 			setSurveyId(data.surveyId)
@@ -122,6 +126,21 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	)
 
 	useEffect(() => {
+		;(async () => {
+			try {
+				if (customer) {
+					const { data } = await axios.get<any, AxiosResponse<BackendSurvey>>(
+						`customer/check-survey/${slug}`
+					)
+					console.log(data)
+					setSurveyId(data._id)
+					setStep(0)
+				}
+			} catch (e) {}
+		})()
+	}, [customer, slug])
+
+	useEffect(() => {
 		if (slug === 'grouptherapy' || slug === 'educational') {
 			setStep(2)
 		}
@@ -144,15 +163,20 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 			try {
 				const { data } = await axios.put(`user/reserve/${therapistId}`, {
 					...rest,
-					surveyId
+					surveyId,
+					customerId: customer ? customer._id : undefined
 				})
 				setAppointmentId(data)
-				setStep(6)
+				if (customer) {
+					setStep(8)
+				} else {
+					setStep(6)
+				}
 			} catch (e) {
 				console.log(e, 'errrrr')
 			}
 		},
-		[surveyId]
+		[surveyId, customer]
 	)
 
 	const onCreateAccountChoose = useCallback((guest?: boolean) => {
@@ -172,27 +196,17 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 		[]
 	)
 
-	const onCustomerPassword = useCallback(
-		async (val: string) => {
-			try {
-				const { data } = await axios.post('customer', {
-					firstName: customerFirstName,
-					lastName: customerLastName,
-					phone: customerPhone,
-					email: customerEmail,
-					password: val,
-					surveyId,
-					appointmentId
-				})
-				localStorage.setItem('customer-token', data.token)
-				setStep(12)
-			} catch (e) {
-				console.log(e)
-				setStep(7)
-			}
-		},
-		[surveyId, appointmentId, customerFirstName, customerEmail, customerLastName, customerPhone]
-	)
+	const onCustomerPassword = useCallback(async (val: string) => {
+		try {
+			const { data } = await axios.put('customer/password', {
+				password: val
+			})
+			setStep(12)
+		} catch (e) {
+			console.log(e)
+			setStep(7)
+		}
+	}, [])
 
 	const onContactSubmit = useCallback(
 		async (val: { email: string; phone: string }) => {
@@ -204,6 +218,15 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 					...val
 				})
 				if (customerFirstName) {
+					const { data } = await axios.post('customer', {
+						firstName: customerFirstName,
+						lastName: customerLastName,
+						phone: val.phone,
+						email: val.email,
+						surveyId,
+						appointmentId
+					})
+					localStorage.setItem('customer-token', data.token)
 					setStep(11)
 				} else {
 					setStep(8)
@@ -212,7 +235,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 				console.log(e)
 			}
 		},
-		[surveyId, customerFirstName]
+		[surveyId, customerFirstName, customerLastName, appointmentId]
 	)
 
 	const onAccountSuccessContinue = useCallback(() => {
@@ -235,6 +258,27 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 		},
 		[appointmentId]
 	)
+
+	const onRepeatSurvey = useCallback((val?: boolean) => {
+		if (val) {
+			setStep(1)
+		} else {
+			setStep(5)
+		}
+	}, [])
+
+	useEffect(() => {
+		;(async () => {
+			try {
+				if (step === 9) {
+					await axios.get(`appointment/success/${appointmentId}`)
+				}
+			} catch (e) {
+				console.log(e)
+			}
+		})()
+	}, [slug, step, appointmentId])
+
 	const renderContent = () => {
 		switch (step) {
 			case 1:
@@ -273,7 +317,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 			case 12:
 				return <AccountSuccess onSubmit={onAccountSuccessContinue} />
 			default:
-				return <Calendar onSubmit={() => {}} type={slug} />
+				return <RepeatSurvey onSubmit={onRepeatSurvey} />
 		}
 	}
 
