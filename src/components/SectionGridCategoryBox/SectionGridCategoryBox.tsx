@@ -78,7 +78,7 @@ const SectionGridCategoryBox: React.FC<SectionGridCategoryBoxProps> = ({
   return (
     
     <div className={`nc-SectionGridCategoryBox relative ${className}`}>
-      {headingDisplay && <Heading desc="აირჩიეთ თქვენთვის სასურველი შეხვედრის ან შეთავაზების ტიპი" isCenter={headingCenter}>
+      {headingDisplay && <Heading desc="აირჩიეთ თქვენთვის სასურველი ვიზიტის ან შეთავაზების ტიპი" isCenter={headingCenter}>
         კონსულტაციები და შეხვედრები
       </Heading>}
       

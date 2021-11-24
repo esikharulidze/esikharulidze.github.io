@@ -18,6 +18,7 @@ import { useDispatch } from 'react-redux'
 import { setCustomer } from 'app/auth/authSlice'
 import { useAppSelector } from 'app/hooks'
 import { useHistory } from 'react-router'
+import BookVisit from "components/BookVisit/BookVisit"
 
 export interface MainNav1Props {
 	isTop: boolean
@@ -55,9 +56,10 @@ const MainNav1: FC<MainNav1Props> = ({ isTop }) => {
 						{/* <SearchDropdown /> */}
 						<div className='px-1' />
 
-						<ButtonPrimary onClick={openModalReportComment} href=''>
+						{/* <ButtonPrimary onClick={() => {}} href=''>
 							ვიზიტის დაჯავშნა
-						</ButtonPrimary>
+						</ButtonPrimary> */}
+						<BookVisit/>
 						{/* <div className="px-1" /> */}
 
 						<div className='px-1' />

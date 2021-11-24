@@ -15,7 +15,7 @@ export interface PageContactProps {
 const info = [
   {
     title: "🗺 მისამართი",
-    desc: "#12 სულხან ცინცაძის ქ, აქსისი პალასი",
+    desc: "მცხეთის ქუჩა 48/50 (ვაკე)",
   },
   {
     title: "💌 ელ.ფოსტა",
@@ -23,7 +23,7 @@ const info = [
   },
   {
     title: "☎ ტელეფონი",
-    desc: "+995 598 991 414",
+    desc: "+995 32 2112 144",
   },
 ];
 

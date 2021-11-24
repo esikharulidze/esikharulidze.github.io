@@ -318,7 +318,7 @@ export const NAVIGATION_DEMO: NavItemType[] = [
 
   {
     id: ncNanoId(),
-    href: "/services",
+    href: "",
     name: "სერვისები",
     type: "dropdown",
     children: [

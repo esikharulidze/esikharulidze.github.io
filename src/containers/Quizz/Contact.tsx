@@ -28,7 +28,7 @@ const Contact = ({ onSubmit }: Props) => {
 					<span className='text-neutral-800 dark:text-neutral-200'>თქვენი ტელეფონი</span>
 					<Input
 						type='text'
-						placeholder='+995 5__ ___ ___'
+						placeholder='5__ ___ ___'
 						className='mt-1'
 						value={phone}
 						onChange={({ target: { value } }) => setPhone(value)}

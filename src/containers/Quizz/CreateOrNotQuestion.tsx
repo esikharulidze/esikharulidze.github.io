@@ -1,5 +1,6 @@
 import ButtonPrimary from 'components/Button/ButtonPrimary'
 import ButtonQuizz from 'components/Button/ButtonQuizz'
+import ButtonSecondary from 'components/Button/ButtonSecondary'
 
 interface Props {
 	onSubmit: (val?: boolean) => void
@@ -11,11 +12,11 @@ const CreateOrNotQuestion = ({ onSubmit }: Props) => {
 			<h2 className='font-semibold text-2xl mb-4'>გსურთ ანგარიშის შექმნა?</h2>
 			<div className='grid grid-cols-2 gap-4'></div>
 			<ButtonQuizz onClick={() => onSubmit(false)} className='w-full mt-4'>
-				დიახ, მსურს ანგარიშის შექმნა(რეკომენდებულია)
+				დიახ, მსურს ანგარიშის შექმნა (რეკომენდებულია)
 			</ButtonQuizz>
-			<ButtonQuizz onClick={() => onSubmit(true)} className='w-full mt-4 bg-white'>
+			<ButtonSecondary onClick={() => onSubmit(true)} className='w-full mt-4 bg-white' textArrangement="text-left">
 				არა, ვიზიტს ჩავნიშნავ როგორც "სტუმარი"
-			</ButtonQuizz>
+			</ButtonSecondary>
 			<div className='mt-5'>
 				<div className='flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'>
 					<div>
