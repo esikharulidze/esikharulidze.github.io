@@ -49,10 +49,11 @@ const PhoneValidation: FC<PhoneValidationProps> = ({ show, onCloseModalDeleteCom
 			}
 			await axios.post('customer/otp', data)
 			next()
+			onCloseModalDeleteComment()
 		} catch (e) {
 			setError(true)
 		}
-	}, [customerId, otp, next])
+	}, [customerId, otp, next, onCloseModalDeleteComment])
 
 	const renderContent = () => {
 		return (

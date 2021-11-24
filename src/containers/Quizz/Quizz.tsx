@@ -199,18 +199,21 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 		[]
 	)
 
-	const onCustomerPassword = useCallback(async (val: string) => {
-		try {
-			const { data } = await axios.put('customer/password', {
-				password: val
-			})
-			localStorage.setItem('customer-token', data.token)
-			setStep(12)
-		} catch (e) {
-			console.log(e)
-			setStep(7)
-		}
-	}, [])
+	const onCustomerPassword = useCallback(
+		async (val: string) => {
+			try {
+				const { data } = await axios.put('customer/password', {
+					password: val,
+					customerId: savedCustomerId
+				})
+				localStorage.setItem('customer-token', data.token)
+				setStep(12)
+			} catch (e) {
+				console.log(e)
+			}
+		},
+		[savedCustomerId]
+	)
 
 	const onContactSubmit = useCallback(
 		async (val: { email: string; phone: string }) => {
