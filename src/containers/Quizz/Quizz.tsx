@@ -26,6 +26,7 @@ import CustomerPassword from './CustomerPassword'
 import AccountSuccess from './AccountSuccess'
 import RepeatSurvey from './RepeatSurvey'
 import { useAppSelector } from 'app/hooks'
+import PhoneValidation from 'components/PhoneValidation/PhoneValidation'
 
 export interface ServiceInnerProps {
 	className?: string
@@ -59,6 +60,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 
 	const [customerEmail, setCustomerEmail] = useState('')
 	const [customerPhone, setCustomerPhone] = useState('')
+	const [showValidation, setShowValidation] = useState(false)
 
 	const { customer } = useAppSelector(state => state.auth)
 
@@ -228,6 +230,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 					})
 					localStorage.setItem('customer-token', data.token)
 					setStep(11)
+					setShowValidation(true)
 				} else {
 					setStep(8)
 				}
@@ -361,6 +364,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 					) : null}
 
 					{renderContent()}
+					<PhoneValidation show={showValidation} onCloseModalDeleteComment={() => {setShowValidation(false)}}></PhoneValidation>
 				</div>
 			</div>
 		</div>

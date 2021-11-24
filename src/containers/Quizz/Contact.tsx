@@ -1,6 +1,7 @@
 import ButtonPrimary from 'components/Button/ButtonPrimary'
 import Input from 'components/Input/Input'
 import { useState } from 'react'
+import PhoneValidation from 'components/PhoneValidation/PhoneValidation'
 
 interface Props {
 	onSubmit: (val: { email: string; phone: string }) => void
@@ -9,6 +10,7 @@ interface Props {
 const Contact = ({ onSubmit }: Props) => {
 	const [email, setEmail] = useState('')
 	const [phone, setPhone] = useState('')
+	const [show, setShow] = useState(false)
 	return (
 		<div className=' bg-white rounded-lg px-10 p-10 dark:bg-neutral-900 '>
 			<h2 className='font-semibold text-2xl mb-4'>როგორ დაგეკონტაქტოთ?</h2>

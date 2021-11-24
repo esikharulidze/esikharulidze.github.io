@@ -11,6 +11,7 @@ export interface NcModalProps {
   triggerText?: ReactNode;
   modalTitle?: ReactNode;
   isOpenProp?: boolean;
+  closeButton?: boolean
   onCloseModal?: () => void;
 }
 
@@ -22,6 +23,7 @@ const NcModal: FC<NcModalProps> = ({
   triggerText = "Open Modal",
   modalTitle = "Modal title",
   isOpenProp,
+  closeButton = true,
   onCloseModal,
 }) => {
   let [isOpen, setIsOpen] = useState(!!isOpenProp);
@@ -90,10 +92,11 @@ const NcModal: FC<NcModalProps> = ({
                 className={`inline-block w-full my-5 overflow-hidden text-left align-middle transition-all transform bg-white border border-black border-opacity-5 shadow-xl rounded-2xl sm:my-8 dark:bg-neutral-800 dark:border-neutral-700 text-neutral-900 dark:text-neutral-300 ${contentExtraClass}`}
               >
                 <div className="px-6 text-center relative border-neutral-100 dark:border-neutral-700">
-                  <ButtonClose
+                  {closeButton ? <ButtonClose
                     onClick={closeModal}
                     className="absolute right-2 top-3 transform sm:right-4"
                   />
+                  : null}
                   {modalTitle && (
                     <Dialog.Title
                       as="h3"

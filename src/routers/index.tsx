@@ -55,6 +55,7 @@ import ButtonQuizz2 from 'components/Button/ButtonQuizz2'
 import Training from 'containers/Training/Training'
 import AppointmentModal from 'containers/PageDashboard/AppointmentModal'
 import ResumeQuizz from 'containers/Quizz/ResumeQuizz'
+import PhoneValidation from 'components/PhoneValidation/PhoneValidation'
 // import CancelAppointmentModal from 'containers/PageDashboard/CancelAppointmentModal'
 
 export const pages: Page[] = [

@@ -39,7 +39,7 @@ const BookVisit: FC<BookVisitProps> = ({ className = '', author, name, onLogout 
 				exact
 				strict
 				target={item.targetBlank ? '_blank' : undefined}
-				rel='noopener noreferrer'
+				rel=''
 				className='inline-flex items-center text-sm xl:text-base font-normal text-neutral-700 dark:text-neutral-300 py-2 px-2 xl:px-2 rounded-md'
 				to={``}
 				activeClassName='!font-semibold !text-neutral-900 dark:!text-neutral-100'
@@ -60,14 +60,17 @@ const BookVisit: FC<BookVisitProps> = ({ className = '', author, name, onLogout 
 				strict
 				target={item.targetBlank ? '_blank' : undefined}
 				rel='noopener noreferrer'
-				className='flex items-center font-normal text-neutral-6000 dark:text-neutral-300 py-2 px-4 rounded-md hover:text-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 dark:hover:text-neutral-200'
+				className='flex items-center font-normal text-neutral-6000 dark:text-neutral-300 py-1 px-1 rounded-md hover:text-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 dark:hover:text-neutral-200'
 				to={{
 					pathname: item.href || undefined
 				}}
 				onClick={() => (item.href ? null : onLogout && onLogout())}
 				activeClassName='font-semibold text-neutral-700 dark:!text-neutral-200'
 			>
-				<ButtonPrimary>{item.name}</ButtonPrimary>
+				{item.name === "ფსიქიატრთან" 
+				? <ButtonPrimary className="w-full bg-yellow-500 hover:bg-yellow-500">{item.name}</ButtonPrimary>
+				: <ButtonPrimary className="w-full bg-red-500 hover:bg-red-600">{item.name}</ButtonPrimary>
+				}
 				{item.type && (
 					<ChevronDownIcon className='ml-2 h-4 w-4 text-neutral-500' aria-hidden='true' />
 				)}
@@ -102,7 +105,7 @@ const BookVisit: FC<BookVisitProps> = ({ className = '', author, name, onLogout 
 								static
 								className='sub-menu nc-will-change-transform absolute transform z-10 w-56 pt-3 left-0'
 							>
-								<ul className='rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 text-sm relative bg-white dark:bg-neutral-900 py-4 grid space-y-1'>
+								<ul className='rounded-lg ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 text-sm relative bg-white dark:bg-neutral-900 py-2 grid space-y-1'>
 									{menuDropdown.children?.map((i: any) => {
 										if (i.type) {
 											// return renderDropdownMenuNavlinkHasChild(i);
@@ -138,12 +141,12 @@ const BookVisit: FC<BookVisitProps> = ({ className = '', author, name, onLogout 
 					{
 						id: ncNanoId(),
 						href: "survey/psychologist",
-						name: "ფსიქოლოგი",
+						name: "ფსიქოლოგთან",
 					  },
 					  {
 						id: ncNanoId(),
 						href: "/survey/psychiatrist",
-						name: "ფსიქიატრი",
+						name: "ფსიქიატრთან",
 					  },
 				]
 			})}
