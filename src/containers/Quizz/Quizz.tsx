@@ -61,6 +61,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const [customerEmail, setCustomerEmail] = useState('')
 	const [customerPhone, setCustomerPhone] = useState('')
 	const [showValidation, setShowValidation] = useState(false)
+	const [savedCustomerId, setSavedCustomerId] = useState('')
 
 	const { customer } = useAppSelector(state => state.auth)
 
@@ -203,6 +204,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 			const { data } = await axios.put('customer/password', {
 				password: val
 			})
+			localStorage.setItem('customer-token', data.token)
 			setStep(12)
 		} catch (e) {
 			console.log(e)
@@ -228,8 +230,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 						surveyId,
 						appointmentId
 					})
-					localStorage.setItem('customer-token', data.token)
-					setStep(11)
+					setSavedCustomerId(data._id)
 					setShowValidation(true)
 				} else {
 					setStep(8)
@@ -364,7 +365,14 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 					) : null}
 
 					{renderContent()}
-					<PhoneValidation show={showValidation} onCloseModalDeleteComment={() => {setShowValidation(false)}}></PhoneValidation>
+					<PhoneValidation
+						show={showValidation}
+						onCloseModalDeleteComment={() => {
+							setShowValidation(false)
+						}}
+						customerId={savedCustomerId}
+						next={() => setStep(11)}
+					></PhoneValidation>
 				</div>
 			</div>
 		</div>
