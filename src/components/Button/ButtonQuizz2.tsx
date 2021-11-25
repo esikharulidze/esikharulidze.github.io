@@ -8,6 +8,7 @@ export interface ButtonProps {
   translate?: string;
   sizeClass?: string;
   fontSize?: string;
+  bgColor?: string;
   //
   loading?: boolean;
   disabled?: boolean;
@@ -28,10 +29,11 @@ const ButtonQuizz2: FC<ButtonProps> = ({
   targetBlank,
   type,
   loading,
+  bgColor = "",
   onClick = () => {},
 }) => {
   const CLASSES =
-    `nc-Button  h-auto inline-flex rounded-lg transition-colors ${fontSize} ${sizeClass} ${translate} ${className} ` +
+    `nc-Button  h-auto inline-flex rounded-lg transition-colors ${bgColor} ${fontSize} ${sizeClass} ${translate} ${className} ` +
     twFocusClass(true);
 
   const _renderLoading = () => {

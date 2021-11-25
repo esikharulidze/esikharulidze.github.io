@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 const Page404: React.FC = () => (
   <div className="nc-Page404">
     <Helmet>
-      <title>404 || Blog Magazine React Template</title>
+      <title>ანიმუსი - ადამიანი ინტელექტს მიღმა</title>
     </Helmet>
     <div className="container relative py-16 lg:py-20 my-10">
       {/* HEADER */}
@@ -15,10 +15,10 @@ const Page404: React.FC = () => (
           404
         </h1>
         <span className="block text-sm text-neutral-800 sm:text-base dark:text-neutral-200 tracking-wider font-medium">
-          THE PAGE YOU WERE LOOKING FOR DOESN'T EXIST.{" "}
+          სამწუხაროდ გვერდი ვერ მოიძებნა.
         </span>
         <ButtonPrimary href="/" className="mt-4">
-          Return Home Page
+          მთავარ გვერდზე დაბრუნება
         </ButtonPrimary>
       </header>
     </div>

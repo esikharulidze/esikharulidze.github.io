@@ -66,7 +66,7 @@ const PageCourse: FC<PageCourseProps> = ({ className = "" }) => {
   return (
     <div className={`nc-PageCourse  ${className}`} data-nc-id="PageCourse">
       <Helmet>
-        <title>Animus.ge - სერვისები</title>
+        <title>ანიმუსი - სერვისები</title>
       </Helmet>
       {/* <HeadBackgroundCommon className="h-24 2xl:h-28" /> */}
       <div className="container">

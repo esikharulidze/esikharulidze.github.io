@@ -2,9 +2,11 @@ import ButtonPrimary from 'components/Button/ButtonPrimary'
 import React, { FC, useEffect, useState, useCallback } from 'react'
 export interface ServiceInnerProps {
 	onSubmit: (text: string) => void
+	withPartner?: Boolean
+	isPsychiatrist?: Boolean
 }
 
-const Quizz: FC<ServiceInnerProps> = ({ onSubmit }) => {
+const Quizz: FC<ServiceInnerProps> = ({ onSubmit, withPartner = false, isPsychiatrist=false }) => {
 	const [value, setValue] = useState<string>('')
 
 	return (
@@ -28,13 +30,14 @@ const Quizz: FC<ServiceInnerProps> = ({ onSubmit }) => {
 			</label>
 			<ButtonPrimary
 				className='w-full'
+				bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"}
 				textArrangement='text-left'
 				onClick={() => onSubmit && onSubmit(value)}
 			>
 				შემდეგი ნაბიჯი
 			</ButtonPrimary>
 			<div className='mt-5'>
-				<div className='flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'>
+				<div className={isPsychiatrist ? 'flex flex-row gap-4 block bg-red-500 mb-2 w-full rounded-md p-5':'flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'}>
 					<div>
 						<svg
 							width='40'
@@ -45,7 +48,7 @@ const Quizz: FC<ServiceInnerProps> = ({ onSubmit }) => {
 						>
 							<path
 								d='M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z'
-								fill='#BA7F02'
+								fill={isPsychiatrist ? '#dc3c3c': '#BA7F02'}
 							/>
 							<path
 								d='M24 32V24'

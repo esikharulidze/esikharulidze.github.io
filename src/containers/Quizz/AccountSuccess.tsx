@@ -3,9 +3,10 @@ import NcImage from 'components/NcImage/NcImage'
 
 interface Props {
 	onSubmit: () => void
+	withPartner?: Boolean
 }
 
-const AccountSuccess = ({ onSubmit }: Props) => {
+const AccountSuccess = ({ onSubmit, withPartner=false }: Props) => {
 	return (
 		<div className=' bg-white rounded-lg px-10 p-10 dark:bg-neutral-900'>
 			<div className='grid grid-cols-4 mt-4 mb-8'>
@@ -22,7 +23,7 @@ const AccountSuccess = ({ onSubmit }: Props) => {
 			</h3>
 			<div className='grid grid-cols-2 gap-4'></div>
 
-			<ButtonPrimary className='w-full mt-4' textArrangement='text-left' onClick={onSubmit}>
+			<ButtonPrimary className='w-full mt-4' textArrangement='text-left' bgColor={withPartner ? "bg-red-500 hover:bg-red-600" :"bg-primary-6000 hover:bg-primary-700"} onClick={onSubmit}>
 				შემდეგი ნაბიჯი
 			</ButtonPrimary>
 		</div>

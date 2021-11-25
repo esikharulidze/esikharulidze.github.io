@@ -15,6 +15,7 @@ import ButtonQuizz from "components/Button/ButtonQuizz";
 
 export interface ServiceInnerProps {
   withPartner?: boolean
+  isPsychiatrist?: Boolean
   forElse?: boolean
   setAge: (val: number) => void
   age?: number
@@ -31,7 +32,7 @@ const services = {
   'kids': 3
 }
 
-const Quizz: FC<ServiceInnerProps> = ({ onSubmit, setAge, setPartner, age, partner, withPartner = false, forElse = false, forMe = false }) => {
+const Quizz: FC<ServiceInnerProps> = ({ onSubmit, setAge, setPartner, age, partner, withPartner = false, forElse = false, forMe = false, isPsychiatrist=false }) => {
   const [course, setCourse] = useState<BackendCourse>()
   const {slug} = useParams<{slug: 'psychologist' | 'psychiatrist' | 'grouptherapy' | 'educational'}>()
   const [isReporting, setIsReporting] = useState(false);
@@ -85,7 +86,7 @@ const history = useHistory();
 			{withPartner ? 'თქვენი ასაკი': null}
                 <DropDown className={`cursor-pointer  form-select block w-full mt-1 border-neutral-200 bg-white dark:border-neutral-700 dark:bg-neutral-900 rounded-md h-11 px-4 py-3 text-sm font-normal border`} placeholder="აირჩიეთ ასაკი" 
                   selected={age}
-                  data={Array.from(Array((withPartner || forMe) ? 83: 95).keys()).slice(0).map((item) => item + ((withPartner || forMe) ? 18: 6))}
+                  data={Array.from(Array((withPartner || forMe || forElse) ? 83: 95).keys()).slice(0).map((item) => item + ((withPartner || forMe || forElse) ? 18: 6))}
                   setSelected={setAge}
                 />
                  
@@ -100,10 +101,10 @@ const history = useHistory();
                  
         </label>: null}
         <div>
-        <ButtonQuizz onClick={onSubmit} className={withPartner ? "w-full rounded-lg mb-4 mt-4 bg-red-500 hover:bg-red-600": "w-full rounded-lg mb-4 mt-4"}>შემდეგი ნაბიჯი</ButtonQuizz>
+        <ButtonQuizz onClick={onSubmit} className={"w-full rounded-lg mb-4 mt-4"} bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"}>შემდეგი ნაბიჯი</ButtonQuizz>
         </div>
         <div className='mt-5'>
-				<div className='flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'>
+				<div className={isPsychiatrist ? 'flex flex-row gap-4 block bg-red-500 mb-2 w-full rounded-md p-5':'flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'}>
 					<div>
 						<svg
 							width='40'
@@ -114,7 +115,7 @@ const history = useHistory();
 						>
 							<path
 								d='M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z'
-								fill='#BA7F02'
+								fill={isPsychiatrist ? '#dc3c3c': '#BA7F02'}
 							/>
 							<path
 								d='M24 32V24'

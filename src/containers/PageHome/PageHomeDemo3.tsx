@@ -73,7 +73,7 @@ const PageHomeDemo3: React.FC = () => {
   return (
     <div className="nc-PageHomeDemo3 overflow-hidden relative">
       <Helmet>
-        <title>Animus.ge - ინტელექტი ადამიანს მიღმა</title>
+        <title>ანიმუსი - ინტელექტი ადამიანს მიღმა</title>
       </Helmet>
 
       {/* ======== BG GLASS ======== */}

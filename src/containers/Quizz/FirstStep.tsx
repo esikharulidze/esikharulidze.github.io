@@ -72,11 +72,11 @@ const history = useHistory();
         
                  
         <div className="grid grid-cols-1 gap-2">
-        <ButtonQuizz className="w-full rounded-lg text-left" onClick={() => onChoose&& onChoose('first')}>{psychiatrist ? 'მსურს ვიზიტი დავჯავშნო ჩემთვის' : 'ინდივიდუალური ვიზიტი ფსიქოლოგთან'}</ButtonQuizz>
-        <ButtonQuizz className={psychiatrist ? "w-full rounded-lg text-left": "w-full rounded-lg text-left bg-red-500 hover:bg-red-600"} onClick={() => onChoose && onChoose('second')}>{psychiatrist ? 'მსურს ვიზიტი დავჯავშნო სხვისთვის' : 'წყვილების თერაპია ფსიქოლოგთან'}</ButtonQuizz>
+        <ButtonQuizz className="w-full rounded-lg text-left" bgColor={psychiatrist ? "bg-yellow-600 hover:bg-yellow-700": "bg-primary-6000 hover:bg-primary-700"} onClick={() => onChoose&& onChoose('first')}>{psychiatrist ? 'მსურს ვიზიტი დავჯავშნო ჩემთვის' : 'ინდივიდუალური ვიზიტი ფსიქოლოგთან'}</ButtonQuizz>
+        <ButtonQuizz className={"w-full rounded-lg text-left"} bgColor={psychiatrist ? "bg-yellow-600 hover:bg-yellow-700": "bg-red-500 hover:bg-red-600"} onClick={() => onChoose && onChoose('second')}>{psychiatrist ? 'მსურს ვიზიტი დავჯავშნო სხვისთვის' : 'წყვილების თერაპია ფსიქოლოგთან'}</ButtonQuizz>
         </div>
         <div className='mt-5'>
-				<div className='flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'>
+				<div className={psychiatrist ? 'flex flex-row gap-4 block bg-red-500 mb-2 w-full rounded-md p-5':'flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'}>
 					<div>
 						<svg
 							width='40'
@@ -87,7 +87,7 @@ const history = useHistory();
 						>
 							<path
 								d='M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z'
-								fill='#BA7F02'
+								fill={psychiatrist ? '#dc3c3c': '#BA7F02'}
 							/>
 							<path
 								d='M24 32V24'

@@ -46,6 +46,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const openModalReportComment = () => setIsReporting(true)
 	const closeModalReportComment = () => setIsReporting(false)
 	const [withPartner, setWithPartner] = useState(false)
+	const isPsychiatrist = slug === "psychiatrist"
 	const [partner, setPartner] = useState<number>()
 	const [age, setAge] = useState<number>()
 	const [forElse, setForElse] = useState(false)
@@ -296,6 +297,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 						onSubmit={startQuiz}
 						forMe={slug === 'psychiatrist' && forElse === false}
 						withPartner={withPartner}
+						isPsychiatrist={isPsychiatrist}
 						forElse={forElse}
 						setAge={setAge}
 						setPartner={setPartner}
@@ -304,23 +306,23 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 					/>
 				)
 			case 3:
-				return <QuizItem question={currentQuestion} withPartner={withPartner} onSubmit={resumeQuiz} />
+				return <QuizItem question={currentQuestion} withPartner={withPartner} onSubmit={resumeQuiz} isPsychiatrist={isPsychiatrist}/>
 			case 4:
-				return <Comment onSubmit={onComment} />
+				return <Comment onSubmit={onComment} withPartner={withPartner} isPsychiatrist={isPsychiatrist}/>
 			case 5:
-				return <Calendar onSubmit={onDateChoose} type={slug} />
+				return <Calendar onSubmit={onDateChoose} type={slug} withPartner={withPartner} isPsychiatrist={isPsychiatrist}/>
 			case 6:
-				return <CreateOrNotQuestion onSubmit={onCreateAccountChoose} />
+				return <CreateOrNotQuestion onSubmit={onCreateAccountChoose} withPartner={withPartner} isPsychiatrist={isPsychiatrist}/>
 			case 7:
-				return <Contact onSubmit={onContactSubmit} />
+				return <Contact onSubmit={onContactSubmit} withPartner={withPartner} isPsychiatrist={isPsychiatrist}/>
 			case 8:
-				return <ChoosePaymentMethod onSubmit={onPaymentChoose} />
+				return <ChoosePaymentMethod onSubmit={onPaymentChoose} withPartner={withPartner} isPsychiatrist={isPsychiatrist}/>
 			case 9:
 				return <Success />
 			case 10:
-				return <CustomerName onSubmit={onCustomerNameChange} />
+				return <CustomerName onSubmit={onCustomerNameChange} withPartner={withPartner} isPsychiatrist={isPsychiatrist}/>
 			case 11:
-				return <CustomerPassword onSubmit={onCustomerPassword} />
+				return <CustomerPassword onSubmit={onCustomerPassword} withPartner={withPartner} isPsychiatrist={isPsychiatrist}/>
 			case 12:
 				return <AccountSuccess onSubmit={onAccountSuccessContinue} />
 			default:
@@ -355,6 +357,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	}, [slug])
 
 	return (
+
 		<div className='min-h-screen bg-primary-100 dark:bg-neutral-800 bg-opacity-25'>
 			<div className='grid justify-content-center grid-cols-1 xl:grid-cols-4 md:grid-cols-1 lg:grid-cols-1'>
 				<div className='grid col-start-2 col-span-4 col-end-4 row-start-2 row-end-4'>

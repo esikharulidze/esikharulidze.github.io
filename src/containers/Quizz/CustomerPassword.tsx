@@ -4,9 +4,11 @@ import { useState } from 'react'
 
 interface Props {
 	onSubmit: (val: string) => void
+	withPartner?: Boolean
+	isPsychiatrist?: Boolean
 }
 
-const CustomerPassword = ({ onSubmit }: Props) => {
+const CustomerPassword = ({ onSubmit, withPartner=false, isPsychiatrist=false }: Props) => {
 	const [firstValue, setFirstValue] = useState('')
 	const [lastValue, setLastValue] = useState('')
 	return (
@@ -40,7 +42,7 @@ const CustomerPassword = ({ onSubmit }: Props) => {
 					/>
 				</label>
 				{firstValue && lastValue === firstValue ? (
-					<ButtonQuizz className='w-full rounded-lg mt-4' onClick={() => onSubmit(firstValue)}>
+					<ButtonQuizz className='w-full rounded-lg mt-4' bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"} onClick={() => onSubmit(firstValue)}>
 						ანგარიშის შექმნა
 					</ButtonQuizz>
 				) : null}

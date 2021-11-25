@@ -32,7 +32,7 @@ const PageContact: FC<PageContactProps> = ({ className = "" }) => {
   return (
     <div className={`nc-PageContact ${className}`} data-nc-id="PageContact">
       <Helmet>
-        <title>Animus.ge - ინტელექტი ადამიანს მიღმა</title>
+        <title>ანიმუსი - კონტაქტი</title>
       </Helmet>
       <LayoutPage
         subHeading="მოგვწერეთ თქვენთვის სასურველ თემაზე და ჩვენ აუცილებლად გიპასუხებთ."

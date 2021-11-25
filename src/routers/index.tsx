@@ -116,7 +116,7 @@ export const pages: Page[] = [
 	{ path: '/contact', component: PageContact },
 	{ path: '/page404', component: Page404 },
 	{ path: '/login', component: PageLogin },
-	{ path: '/signup', component: PageSignUp },
+	// { path: '/signup', component: PageSignUp },
 	{ path: '/forgot-pass', component: PageForgotPass },
 	{ path: '/dashboard', component: PageDashboard },
 	{ path: '/subscription', component: GroupTherapy },

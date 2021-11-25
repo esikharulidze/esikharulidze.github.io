@@ -57,10 +57,9 @@ const PageArchive: FC<PageArchiveProps> = ({ className = "" }) => {
   return (
     <div className={`nc-PageArchive ${className}`} data-nc-id="PageArchive">
       <Helmet>
-        <title>Animus.ge - ინტელექტი ადამიანს მიღმა</title>
+
+        <title>ანიმუსი - {category?.title}</title>
       </Helmet>
-
-
 
       {/* HEADER */}
       
@@ -73,7 +72,7 @@ const PageArchive: FC<PageArchiveProps> = ({ className = "" }) => {
             
               {category?.posts.length 
 
-              ? <span className="block mt-2 text-neutral-6000 dark:text-neutral-400">`${category?.posts.length} სტატია` 
+              ? <span className="block mt-2 text-neutral-6000 dark:text-neutral-400">{category?.posts.length} სტატია 
               </span>
               : null
               }

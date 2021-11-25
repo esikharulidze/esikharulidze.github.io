@@ -26,7 +26,7 @@ const SingleHeader: FC<SingleHeaderProps> = ({
   return (
     <>
       <Helmet>
-        <title>Animus.ge - ინტელექტი ადამიანს მიღმა</title>
+        <title>ანიმუსი - ინტელექტი ადამიანს მიღმა</title>
       </Helmet>
       <div className={`nc-SingleHeader ${className}`}>
         <div className="space-y-5">

@@ -18,6 +18,7 @@ export interface ServiceInnerProps {
 	question?: Question
 	onSubmit?: (val: string[]) => void
 	withPartner?: Boolean
+	isPsychiatrist?: Boolean
 }
 
 const services = {
@@ -27,7 +28,7 @@ const services = {
 	kids: 3
 }
 
-const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner = false }) => {
+const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner = false, isPsychiatrist=false }) => {
 	const [course, setCourse] = useState<BackendCourse>()
 	const { slag, slug } = useParams<{ slag: string; slug: 'individual' | 'adults' | 'teens' | 'kids' }>()
 	const [isReporting, setIsReporting] = useState(false)
@@ -94,6 +95,7 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner = fals
 				nameInputPlaceholder={nameInputPlaceholder}
 				lasNameInputPlaceholder={lastNameInputPlaceholder}
 				withPartner={withPartner}
+				isPsychiatrist={isPsychiatrist}
 				onSubmit={(val: string) => (onSubmit ? onSubmit([val]) : {})}
 			/>
 		)
@@ -149,6 +151,7 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner = fals
 					))}
 					<ButtonQuizz
 						className='w-full rounded-lg mt-8'
+						bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"}
 						onClick={() => question.multiple && onSubmit && onSubmit(Array.from(checkedAnswers))}
 					>
 						შემდეგი ნაბიჯი
@@ -171,6 +174,7 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner = fals
 							? question.answers.map(answer => (
 									<ButtonQuizz
 										key={answer._id}
+										bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"}
 										className='w-full rounded-lg text-left'
 										onClick={() => {
 											!question.multiple && onSubmit && onSubmit([answer._id])
@@ -187,8 +191,8 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner = fals
 			{/* <ButtonQuizz className="w-full rounded-lg text-left" onClick={() => onChoose&& onChoose('first')}>{psychiatrist ? 'მსურს ვიზიტი დავჯავშნო ჩემთვის' : 'ინდივიდუალური ვიზიტი ფსიქოლოგთან'}</ButtonQuizz>
         <ButtonQuizz className="w-full rounded-lg text-left" onClick={() => onChoose&& onChoose('second')}>{psychiatrist ? 'მსურს ვიზიტი დავჯავშნო სხვისთვის' : 'წყვილების თერაპია ფსიქოლოგთან'}</ButtonQuizz> */}
 
-			<div className='mt-5'>
-				<div className='flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'>
+<div className='mt-5'>
+				<div className={isPsychiatrist ? 'flex flex-row gap-4 block bg-red-500 mb-2 w-full rounded-md p-5':'flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'}>
 					<div>
 						<svg
 							width='40'
@@ -199,7 +203,7 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner = fals
 						>
 							<path
 								d='M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z'
-								fill='#BA7F02'
+								fill={isPsychiatrist ? '#dc3c3c': '#BA7F02'}
 							/>
 							<path
 								d='M24 32V24'
@@ -218,11 +222,7 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner = fals
 						</svg>
 					</div>
 					<p className='text-white md:text-sm lg:text-sm'>
-						კითხვარს გაეცნობა მხოლოდ თქვენ მიერ არჩეული სპეციალისტი, რათა შემოგთავაზოთ თქვენზე
-						მორგებული თერაპია ან მკურნალობა. კონფიდენციალურობის პოლიტიკა{' '}
-						<a className='font-semibold' target='_blank' href='https://animus.ge/privacy-policy'>
-							იხილეთ ბმულზე.
-						</a>
+						კითხვარს გაეცნობა მხოლოდ თქვენ მიერ არჩეული სპეციალისტი, რათა შემოგთავაზოთ თქვენზე მორგებული თერაპია ან მკურნალობა. კონფიდენციალურობის პოლიტიკა <a className="font-semibold" target="_blank" href="https://animus.ge/privacy-policy">იხილეთ ბმულზე.</a>
 					</p>
 				</div>
 			</div>

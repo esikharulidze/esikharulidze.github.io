@@ -9,6 +9,7 @@ interface Props {
 	lasNameInputPlaceholder?: string
 	onSubmit: (val: string) => void
 	withPartner?: Boolean
+	isPsychiatrist?: Boolean
 }
 
 const NameInputContainer = ({
@@ -17,7 +18,8 @@ const NameInputContainer = ({
 	lasNameInputPlaceholder,
 	lastNamePlaceholder,
 	onSubmit,
-	withPartner = false
+	withPartner = false,
+	isPsychiatrist = false
 }: Props) => {
 	const [firstValue, setFirstValue] = useState('')
 	const [lastValue, setLastValue] = useState('')
@@ -45,9 +47,8 @@ const NameInputContainer = ({
 			</label>
 			{firstValue && lastValue ? (
 				<ButtonQuizz
-					className={
-						withPartner ? 'w-full rounded-lg  bg-red-500 hover:bg-red-600' : 'w-full rounded-lg'
-					}
+					className='w-full rounded-lg'
+					bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"}
 					onClick={() => {
 						onSubmit(`${firstValue} ${lastValue}`)
 						setFirstValue('')

@@ -68,8 +68,8 @@ const BookVisit: FC<BookVisitProps> = ({ className = '', author, name, onLogout 
 				activeClassName='font-semibold text-neutral-700 dark:!text-neutral-200'
 			>
 				{item.name === "ფსიქიატრთან" 
-				? <ButtonPrimary className="w-full bg-yellow-500 hover:bg-yellow-500">{item.name}</ButtonPrimary>
-				: <ButtonPrimary className="w-full bg-red-500 hover:bg-red-600">{item.name}</ButtonPrimary>
+				? <ButtonPrimary className="w-full" href="/survey/psychiatrist" bgColor="bg-yellow-600 hover:bg-yellow-700">{item.name}</ButtonPrimary>
+				: <ButtonPrimary className="w-full" href="/survey/psychologist" bgColor="bg-red-500 hover:bg-red-600">{item.name}</ButtonPrimary>
 				}
 				{item.type && (
 					<ChevronDownIcon className='ml-2 h-4 w-4 text-neutral-500' aria-hidden='true' />
@@ -105,15 +105,15 @@ const BookVisit: FC<BookVisitProps> = ({ className = '', author, name, onLogout 
 								static
 								className='sub-menu nc-will-change-transform absolute transform z-10 w-56 pt-3 left-0'
 							>
-								<ul className='rounded-lg ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 text-sm relative bg-white dark:bg-neutral-900 py-2 grid space-y-1'>
+								<ul className='rounded-lg ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 text-sm relative bg-white dark:bg-neutral-900 py-2 px-2 grid space-y-1'>
 									{menuDropdown.children?.map((i: any) => {
 										if (i.type) {
 											// return renderDropdownMenuNavlinkHasChild(i);
 										} else {
 											return (
-												<li key={i.id} className='px-2'>
+												<div>
 													{renderDropdownMenuNavlink(i)}
-												</li>
+													</div>
 											)
 										}
 									})}

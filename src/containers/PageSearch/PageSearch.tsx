@@ -67,7 +67,7 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
   return (
     <div className={`nc-PageSearch ${className}`} data-nc-id="PageSearch">
       <Helmet>
-        <title>Animus.ge - ძიება</title>
+        <title>ანიმუსი - ძიება</title>
       </Helmet>
 
       {/* HEADER */}

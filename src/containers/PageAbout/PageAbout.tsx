@@ -20,7 +20,7 @@ const PageAbout: FC<PageAboutProps> = ({ className = "" }) => {
       data-nc-id="PageAbout"
     >
       <Helmet>
-        <title>Animus.ge - ინტელექტი ადამიანს მიღმა</title>
+        <title>ანიმუსი - ჩვენ შესახებ</title>
       </Helmet>
 
       {/* ======== BG GLASS ======== */}

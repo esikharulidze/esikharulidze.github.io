@@ -29,7 +29,7 @@ const PageSignUp: FC<PageSignUpProps> = ({ className = "" }) => {
   return (
     <div className={`nc-PageSignUp ${className}`} data-nc-id="PageSignUp">
       <Helmet>
-        <title>Animus.ge - რეგისტრაცია</title>
+        <title>ანიმუსი - რეგისტრაცია</title>
       </Helmet>
       <LayoutPage
         subHeading="შეიყვანეთ სწორი ინფორმაცია, ასე შევძლებთ მოგაწოდოთ უკეთესი სერვისი"

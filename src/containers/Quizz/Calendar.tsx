@@ -10,9 +10,11 @@ import { ka } from 'date-fns/locale'
 interface Props {
 	type: 'psychologist' | 'psychiatrist' | 'grouptherapy' | 'educational'
 	onSubmit: (val: { therapistId: string; date: string; hour: string }) => void
+	withPartner?: Boolean
+	isPsychiatrist?: Boolean
 }
 
-const Calendar = ({ type, onSubmit }: Props) => {
+const Calendar = ({ type, onSubmit, withPartner = false, isPsychiatrist=false }: Props) => {
 	const [step, setStep] = useState(1)
 	const [therapists, setTherapists] = useState<BackendUser[]>()
 
@@ -101,13 +103,14 @@ const Calendar = ({ type, onSubmit }: Props) => {
 				/>
 				<ButtonPrimary
 					className='w-full mt-5'
+					bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"}
 					textArrangement='text-left'
 					onClick={onTherapistChoose}
 				>
 					შემდეგი ნაბიჯი
 				</ButtonPrimary>
 				<div className='mt-5'>
-				<div className='flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'>
+				<div className={isPsychiatrist ? 'flex flex-row gap-4 block bg-red-500 mb-2 w-full rounded-md p-5':'flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'}>
 					<div>
 						<svg
 							width='40'
@@ -118,7 +121,7 @@ const Calendar = ({ type, onSubmit }: Props) => {
 						>
 							<path
 								d='M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z'
-								fill='#BA7F02'
+								fill={isPsychiatrist ? '#dc3c3c': '#BA7F02'}
 							/>
 							<path
 								d='M24 32V24'
@@ -167,6 +170,7 @@ const Calendar = ({ type, onSubmit }: Props) => {
 			</div>
 			<ButtonPrimary
 				className='w-full mt-5 text-left'
+				bgColor={withPartner ? "bg-red-500 hover:bg-red-600" :"bg-primary-6000 hover:bg-primary-700"}
 				textArrangement='text-left'
 				onClick={() => {
 					onSubmit({
@@ -179,7 +183,7 @@ const Calendar = ({ type, onSubmit }: Props) => {
 				შემდეგი ნაბიჯი
 			</ButtonPrimary>
 			<div className='mt-5'>
-				<div className='flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'>
+				<div className={isPsychiatrist ? 'flex flex-row gap-4 block bg-red-500 mb-2 w-full rounded-md p-5':'flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'}>
 					<div>
 						<svg
 							width='40'
@@ -190,7 +194,7 @@ const Calendar = ({ type, onSubmit }: Props) => {
 						>
 							<path
 								d='M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z'
-								fill='#BA7F02'
+								fill={isPsychiatrist ? '#dc3c3c': '#BA7F02'}
 							/>
 							<path
 								d='M24 32V24'
