@@ -14,7 +14,7 @@ interface Props {
 	isPsychiatrist?: Boolean
 }
 
-const Calendar = ({ type, onSubmit, withPartner = false, isPsychiatrist=false }: Props) => {
+const Calendar = ({ type, onSubmit, withPartner = false, isPsychiatrist = false }: Props) => {
 	const [step, setStep] = useState(1)
 	const [therapists, setTherapists] = useState<BackendUser[]>()
 
@@ -33,7 +33,9 @@ const Calendar = ({ type, onSubmit, withPartner = false, isPsychiatrist=false }:
 			Array.from(Array(7).keys())
 				.slice(0)
 				.map(key => {
-					const usableDate = new Date(new Date().setDate(new Date().getDate() + key))
+					const usableDate = new Date(
+						new Date().setDate(new Date(new Date().setHours(0, 0, 0, 0)).getDate() + key)
+					)
 					console.log(usableDate)
 					return {
 						id: usableDate.toISOString(),
@@ -56,9 +58,11 @@ const Calendar = ({ type, onSubmit, withPartner = false, isPsychiatrist=false }:
 					format(parseISO(reserved.date), 'dd/MM') ===
 					format(parseISO(selectedDate?.id || new Date().toISOString()), 'dd/MM')
 			)
-			.map(ui =>  { 
-				if (format(parseISO(ui.date), 'dd/MM') === format(parseISO(new Date().toISOString()), 'dd/MM')) {
-					return Number(ui.time.substr(0,2)) - new Date().getHours() > 0 ? ui.time : ""
+			.map(ui => {
+				if (
+					format(parseISO(ui.date), 'dd/MM') === format(parseISO(new Date().toISOString()), 'dd/MM')
+				) {
+					return Number(ui.time.substr(0, 2)) - new Date().getHours() > 0 ? ui.time : ''
 				}
 				return ui.time
 			})
@@ -103,47 +107,67 @@ const Calendar = ({ type, onSubmit, withPartner = false, isPsychiatrist=false }:
 				/>
 				<ButtonPrimary
 					className='w-full mt-5'
-					bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"}
+					bgColor={
+						withPartner
+							? 'bg-red-500 hover:bg-red-600'
+							: isPsychiatrist
+							? 'bg-yellow-600 hover:bg-yellow-700'
+							: 'bg-primary-6000 hover:bg-primary-700'
+					}
 					textArrangement='text-left'
 					onClick={onTherapistChoose}
 				>
 					შემდეგი ნაბიჯი
 				</ButtonPrimary>
 				<div className='mt-5'>
-				<div className={isPsychiatrist ? 'flex flex-row gap-4 block bg-red-500 mb-2 w-full rounded-md p-5':'flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'}>
-					<div>
-						<svg
-							width='40'
-							height='40'
-							viewBox='0 0 48 48'
-							fill='none'
-							xmlns='http://www.w3.org/2000/svg'
-						>
-							<path
-								d='M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z'
-								fill={isPsychiatrist ? '#dc3c3c': '#BA7F02'}
-							/>
-							<path
-								d='M24 32V24'
-								stroke='white'
-								stroke-width='4'
-								stroke-linecap='round'
-								stroke-linejoin='round'
-							/>
-							<path
-								d='M24 16H24.0204'
-								stroke='white'
-								stroke-width='4'
-								stroke-linecap='round'
-								stroke-linejoin='round'
-							/>
-						</svg>
+					<div
+						className={
+							isPsychiatrist
+								? 'flex flex-row gap-4 block bg-red-500 mb-2 w-full rounded-md p-5'
+								: 'flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'
+						}
+					>
+						<div>
+							<svg
+								width='40'
+								height='40'
+								viewBox='0 0 48 48'
+								fill='none'
+								xmlns='http://www.w3.org/2000/svg'
+							>
+								<path
+									d='M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z'
+									fill={isPsychiatrist ? '#dc3c3c' : '#BA7F02'}
+								/>
+								<path
+									d='M24 32V24'
+									stroke='white'
+									stroke-width='4'
+									stroke-linecap='round'
+									stroke-linejoin='round'
+								/>
+								<path
+									d='M24 16H24.0204'
+									stroke='white'
+									stroke-width='4'
+									stroke-linecap='round'
+									stroke-linejoin='round'
+								/>
+							</svg>
+						</div>
+						<p className='text-white md:text-sm lg:text-sm'>
+							კითხვარს გაეცნობა მხოლოდ თქვენ მიერ არჩეული სპეციალისტი, რათა შემოგთავაზოთ თქვენზე
+							მორგებული თერაპია ან მკურნალობა. კონფიდენციალურობის პოლიტიკა{' '}
+							<a
+								className='font-semibold'
+								target='_blank'
+								href='https://animus.ge/privacy-policy'
+							>
+								იხილეთ ბმულზე.
+							</a>
+						</p>
 					</div>
-					<p className='text-white md:text-sm lg:text-sm'>
-						კითხვარს გაეცნობა მხოლოდ თქვენ მიერ არჩეული სპეციალისტი, რათა შემოგთავაზოთ თქვენზე მორგებული თერაპია ან მკურნალობა. კონფიდენციალურობის პოლიტიკა <a className="font-semibold" target="_blank" href="https://animus.ge/privacy-policy">იხილეთ ბმულზე.</a>
-					</p>
 				</div>
-			</div>
 			</div>
 		)
 	}
@@ -170,7 +194,7 @@ const Calendar = ({ type, onSubmit, withPartner = false, isPsychiatrist=false }:
 			</div>
 			<ButtonPrimary
 				className='w-full mt-5 text-left'
-				bgColor={withPartner ? "bg-red-500 hover:bg-red-600" :"bg-primary-6000 hover:bg-primary-700"}
+				bgColor={withPartner ? 'bg-red-500 hover:bg-red-600' : 'bg-primary-6000 hover:bg-primary-700'}
 				textArrangement='text-left'
 				onClick={() => {
 					onSubmit({
@@ -183,7 +207,13 @@ const Calendar = ({ type, onSubmit, withPartner = false, isPsychiatrist=false }:
 				შემდეგი ნაბიჯი
 			</ButtonPrimary>
 			<div className='mt-5'>
-				<div className={isPsychiatrist ? 'flex flex-row gap-4 block bg-red-500 mb-2 w-full rounded-md p-5':'flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'}>
+				<div
+					className={
+						isPsychiatrist
+							? 'flex flex-row gap-4 block bg-red-500 mb-2 w-full rounded-md p-5'
+							: 'flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'
+					}
+				>
 					<div>
 						<svg
 							width='40'
@@ -194,7 +224,7 @@ const Calendar = ({ type, onSubmit, withPartner = false, isPsychiatrist=false }:
 						>
 							<path
 								d='M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z'
-								fill={isPsychiatrist ? '#dc3c3c': '#BA7F02'}
+								fill={isPsychiatrist ? '#dc3c3c' : '#BA7F02'}
 							/>
 							<path
 								d='M24 32V24'
@@ -213,7 +243,11 @@ const Calendar = ({ type, onSubmit, withPartner = false, isPsychiatrist=false }:
 						</svg>
 					</div>
 					<p className='text-white md:text-sm lg:text-sm'>
-						კითხვარს გაეცნობა მხოლოდ თქვენ მიერ არჩეული სპეციალისტი, რათა შემოგთავაზოთ თქვენზე მორგებული თერაპია ან მკურნალობა. კონფიდენციალურობის პოლიტიკა <a className="font-semibold" target="_blank" href="https://animus.ge/privacy-policy">იხილეთ ბმულზე.</a>
+						კითხვარს გაეცნობა მხოლოდ თქვენ მიერ არჩეული სპეციალისტი, რათა შემოგთავაზოთ თქვენზე
+						მორგებული თერაპია ან მკურნალობა. კონფიდენციალურობის პოლიტიკა{' '}
+						<a className='font-semibold' target='_blank' href='https://animus.ge/privacy-policy'>
+							იხილეთ ბმულზე.
+						</a>
 					</p>
 				</div>
 			</div>
