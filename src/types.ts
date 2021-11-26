@@ -94,11 +94,11 @@ export interface BackendCategory {
 }
 
 export interface BackendComment {
-	id: string
+	_id: string
 	author: string
 	parent?: BackendComment
 	replies: BackendComment[]
-	likes: number
+	likes: BackendCustomer[]
 	abuse: boolean
 	content: string
 	updatedAt: string
