@@ -13,10 +13,18 @@ const CreateOrNotQuestion = ({ onSubmit, withPartner = false, isPsychiatrist=fal
 		<div className=' bg-white rounded-lg px-10 p-10 dark:bg-neutral-900 '>
 			<h2 className='font-semibold text-2xl mb-4'>გსურთ ანგარიშის შექმნა?</h2>
 			<div className='grid grid-cols-2 gap-4'></div>
-			<ButtonQuizz onClick={() => onSubmit(false)} bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"} className='w-full mt-4'>
+			<ButtonQuizz onClick={() => onSubmit(false)} 
+			bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"} 
+			className='w-full mt-4'
+			ringColor={withPartner ? "focus:ring-red-500" : isPsychiatrist ? "focus:ring-yellow-600": "focus:ring-primary-6000"}
+			>
 				დიახ, მსურს ანგარიშის შექმნა (რეკომენდებულია)
 			</ButtonQuizz>
-			<ButtonQuizz onClick={() => onSubmit(true)} className='w-full mt-4 bg-white' bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"}>
+			<ButtonQuizz onClick={() => onSubmit(true)} 
+			className='w-full mt-4 bg-white' 
+			bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"}
+			ringColor={withPartner ? "focus:ring-red-500" : isPsychiatrist ? "focus:ring-yellow-600": "focus:ring-primary-6000"}
+			>
 				არა, ვიზიტს ჩავნიშნავ როგორც "სტუმარი"
 			</ButtonQuizz>
 			<div className='mt-5'>

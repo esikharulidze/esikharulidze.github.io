@@ -324,9 +324,9 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 			case 11:
 				return <CustomerPassword onSubmit={onCustomerPassword} withPartner={withPartner} isPsychiatrist={isPsychiatrist}/>
 			case 12:
-				return <AccountSuccess onSubmit={onAccountSuccessContinue} />
+				return <AccountSuccess onSubmit={onAccountSuccessContinue} withPartner={withPartner} isPsychiatrist={isPsychiatrist}/>
 			default:
-				return <RepeatSurvey onSubmit={onRepeatSurvey} />
+				return <RepeatSurvey onSubmit={onRepeatSurvey} withPartner={withPartner} isPsychiatrist={isPsychiatrist}/>
 		}
 	}
 

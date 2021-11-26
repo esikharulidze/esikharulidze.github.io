@@ -42,7 +42,10 @@ const CustomerPassword = ({ onSubmit, withPartner=false, isPsychiatrist=false }:
 					/>
 				</label>
 				{firstValue && lastValue === firstValue ? (
-					<ButtonQuizz className='w-full rounded-lg mt-4' bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"} onClick={() => onSubmit(firstValue)}>
+					<ButtonQuizz className='w-full rounded-lg mt-4' 
+					bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"} onClick={() => onSubmit(firstValue)}
+					ringColor={withPartner ? "focus:ring-red-500" : isPsychiatrist ? "focus:ring-yellow-600": "focus:ring-primary-6000"}
+					>
 						ანგარიშის შექმნა
 					</ButtonQuizz>
 				) : null}

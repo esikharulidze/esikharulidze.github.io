@@ -31,6 +31,7 @@ const Quizz: FC<ServiceInnerProps> = ({ onSubmit, withPartner = false, isPsychia
 			<ButtonPrimary
 				className='w-full'
 				bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"}
+				ringColor={withPartner ? "focus:ring-red-500" : isPsychiatrist ? "focus:ring-yellow-600": "focus:ring-primary-6000"}
 				textArrangement='text-left'
 				onClick={() => onSubmit && onSubmit(value)}
 			>

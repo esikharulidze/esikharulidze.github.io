@@ -101,7 +101,15 @@ const history = useHistory();
                  
         </label>: null}
         <div>
-        <ButtonQuizz onClick={onSubmit} className={"w-full rounded-lg mb-4 mt-4"} bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"}>შემდეგი ნაბიჯი</ButtonQuizz>
+        { age && (withPartner ? partner : true) ?
+        <ButtonQuizz onClick={onSubmit} className={"w-full rounded-lg mb-4 mt-4"} 
+        bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"}
+        ringColor={withPartner ? "focus:ring-red-500" : isPsychiatrist ? "focus:ring-yellow-600": "focus:ring-primary-6000"}
+        >
+        შემდეგი ნაბიჯი
+        </ButtonQuizz>
+        : null
+        }
         </div>
         <div className='mt-5'>
 				<div className={isPsychiatrist ? 'flex flex-row gap-4 block bg-red-500 mb-2 w-full rounded-md p-5':'flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'}>
