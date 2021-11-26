@@ -9,6 +9,7 @@ export interface ButtonProps {
   sizeClass?: string;
   fontSize?: string;
   bgColor?: string;
+  ringColor?: string;
   //
   loading?: boolean;
   disabled?: boolean;
@@ -30,11 +31,12 @@ const ButtonQuizz2: FC<ButtonProps> = ({
   type,
   loading,
   bgColor = "",
+  ringColor = "focus:ring-primary-6000",
   onClick = () => {},
 }) => {
   const CLASSES =
-    `nc-Button  h-auto inline-flex rounded-lg transition-colors ${bgColor} ${fontSize} ${sizeClass} ${translate} ${className} ` +
-    twFocusClass(true);
+    `nc-Button  h-auto inline-flex rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2  dark:focus:ring-offset-0 ${ringColor} ${bgColor} ${fontSize} ${sizeClass} ${translate} ${className} `
+    // twFocusClass(true);
 
   const _renderLoading = () => {
     return (

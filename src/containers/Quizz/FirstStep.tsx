@@ -72,8 +72,8 @@ const history = useHistory();
         
                  
         <div className="grid grid-cols-1 gap-2">
-        <ButtonQuizz className="w-full rounded-lg text-left" bgColor={psychiatrist ? "bg-yellow-600 hover:bg-yellow-700": "bg-primary-6000 hover:bg-primary-700"} onClick={() => onChoose&& onChoose('first')}>{psychiatrist ? 'მსურს ვიზიტი დავჯავშნო ჩემთვის' : 'ინდივიდუალური ვიზიტი ფსიქოლოგთან'}</ButtonQuizz>
-        <ButtonQuizz className={"w-full rounded-lg text-left"} bgColor={psychiatrist ? "bg-yellow-600 hover:bg-yellow-700": "bg-red-500 hover:bg-red-600"} onClick={() => onChoose && onChoose('second')}>{psychiatrist ? 'მსურს ვიზიტი დავჯავშნო სხვისთვის' : 'წყვილების თერაპია ფსიქოლოგთან'}</ButtonQuizz>
+        <ButtonQuizz className="w-full rounded-lg text-left" bgColor={psychiatrist ? "bg-yellow-600 hover:bg-yellow-700": "bg-primary-6000 hover:bg-primary-700"} ringColor={psychiatrist ? "ring-yellow-600": "ring-primary-6000"} onClick={() => onChoose&& onChoose('first')}>{psychiatrist ? 'მსურს ვიზიტი დავჯავშნო ჩემთვის' : 'ინდივიდუალური ვიზიტი ფსიქოლოგთან'}</ButtonQuizz>
+        <ButtonQuizz className={"w-full rounded-lg text-left"} bgColor={psychiatrist ? "bg-yellow-600 hover:bg-yellow-700": "bg-red-500 hover:bg-red-600"} ringColor={psychiatrist ? "ring-yellow-600": "ring-red-500"} onClick={() => onChoose && onChoose('second')}>{psychiatrist ? 'მსურს ვიზიტი დავჯავშნო სხვისთვის' : 'წყვილების თერაპია ფსიქოლოგთან'}</ButtonQuizz>
         </div>
         <div className='mt-5'>
 				<div className={psychiatrist ? 'flex flex-row gap-4 block bg-red-500 mb-2 w-full rounded-md p-5':'flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'}>

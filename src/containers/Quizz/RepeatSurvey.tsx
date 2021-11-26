@@ -3,15 +3,20 @@ import ButtonSecondary from 'components/Button/ButtonSecondary'
 
 interface Props {
 	onSubmit: (val?: boolean) => void
+	withPartner?: Boolean
+	isPsychiatrist?: Boolean
 }
 
-const RepeatSurvey = ({ onSubmit }: Props) => {
+const RepeatSurvey = ({ onSubmit, withPartner=false, isPsychiatrist=false }: Props) => {
 	return (
 		<div className=' bg-white rounded-lg px-10 p-10 dark:bg-neutral-900 '>
 			<h2 className='font-semibold text-2xl mb-4'>გსურთ შეავსოთ კითხვარი თავიდან?</h2>
 			<div className='grid grid-cols-2 gap-4'></div>
 			<div className='grid grid-cols-1'>
-				<ButtonPrimary className='w-full' textArrangement='text-left' onClick={() => onSubmit(true)}>
+				<ButtonPrimary className='w-full' textArrangement='text-left' onClick={() => onSubmit(true)}
+				bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"}
+				ringColor={withPartner ? "focus:ring-red-500" : isPsychiatrist ? "focus:ring-yellow-600": "focus:ring-primary-6000"}
+				>
 					დიახ, კითხვარს შევავსებ თავიდან
 				</ButtonPrimary>
 				<ButtonSecondary

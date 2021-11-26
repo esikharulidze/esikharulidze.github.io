@@ -15,7 +15,12 @@ const ChoosePaymentMethod = ({ onSubmit, withPartner=false, isPsychiatrist=false
 				ფსიქოლოგთან ვიზიტის საფასურია <span className='text-successgreen-500'>70₾</span>
 			</h3>
 			<div className='grid grid-cols-2 gap-4'></div>
-			<ButtonPrimary onClick={onSubmit} className='w-full mt-4' textArrangement='text-left' bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"}>
+			<ButtonPrimary onClick={onSubmit} 
+			className='w-full mt-4' 
+			textArrangement='text-left' 
+			bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"}
+			ringColor={withPartner ? "focus:ring-red-500" : isPsychiatrist ? "focus:ring-yellow-600": "focus:ring-primary-6000"}
+			>
 				ბარათით
 			</ButtonPrimary>
 			<ButtonSecondary

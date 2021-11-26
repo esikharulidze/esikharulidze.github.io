@@ -149,13 +149,18 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner = fals
 							</label>
 						</div>
 					))}
+					{
+						checkedAnswers.size ?
 					<ButtonQuizz
 						className='w-full rounded-lg mt-8'
 						bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"}
+						ringColor={withPartner ? "focus:ring-red-500" : isPsychiatrist ? "focus:ring-yellow-600": "focus:ring-primary-6000"}
 						onClick={() => question.multiple && onSubmit && onSubmit(Array.from(checkedAnswers))}
 					>
 						შემდეგი ნაბიჯი
 					</ButtonQuizz>
+					: null
+					}
 				</div>
 			) : (
 				<div
@@ -175,6 +180,7 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner = fals
 									<ButtonQuizz
 										key={answer._id}
 										bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"}
+										ringColor={withPartner ? "focus:ring-red-500" : isPsychiatrist ? "focus:ring-yellow-600": "focus:ring-primary-6000"}
 										className='w-full rounded-lg text-left'
 										onClick={() => {
 											!question.multiple && onSubmit && onSubmit([answer._id])

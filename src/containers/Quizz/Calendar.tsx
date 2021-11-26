@@ -105,6 +105,8 @@ const Calendar = ({ type, onSubmit, withPartner = false, isPsychiatrist = false 
 					setSelected={setSelectedTherapist}
 					dataExtractor={(item: any) => item.value}
 				/>
+				{
+				selectedTherapist ?
 				<ButtonPrimary
 					className='w-full mt-5'
 					bgColor={
@@ -114,11 +116,14 @@ const Calendar = ({ type, onSubmit, withPartner = false, isPsychiatrist = false 
 							? 'bg-yellow-600 hover:bg-yellow-700'
 							: 'bg-primary-6000 hover:bg-primary-700'
 					}
+					ringColor={withPartner ? "focus:ring-red-500" : isPsychiatrist ? "focus:ring-yellow-600": "focus:ring-primary-6000"}
 					textArrangement='text-left'
 					onClick={onTherapistChoose}
 				>
 					შემდეგი ნაბიჯი
 				</ButtonPrimary>
+				: null
+				}
 				<div className='mt-5'>
 					<div
 						className={
@@ -192,9 +197,12 @@ const Calendar = ({ type, onSubmit, withPartner = false, isPsychiatrist = false 
 					setSelected={setSelectedTime}
 				/>
 			</div>
+			{
+				selectedDate && selectedTime ?
 			<ButtonPrimary
 				className='w-full mt-5 text-left'
 				bgColor={withPartner ? 'bg-red-500 hover:bg-red-600' : 'bg-primary-6000 hover:bg-primary-700'}
+				ringColor={withPartner ? "focus:ring-red-500" : isPsychiatrist ? "focus:ring-yellow-600": "focus:ring-primary-6000"}
 				textArrangement='text-left'
 				onClick={() => {
 					onSubmit({
@@ -206,6 +214,8 @@ const Calendar = ({ type, onSubmit, withPartner = false, isPsychiatrist = false 
 			>
 				შემდეგი ნაბიჯი
 			</ButtonPrimary>
+			: null
+			}
 			<div className='mt-5'>
 				<div
 					className={

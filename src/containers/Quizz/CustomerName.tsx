@@ -45,10 +45,11 @@ const CustomerName = ({ onSubmit, withPartner = false, isPsychiatrist=false }: P
 						onChange={({ target: { value } }) => setLastValue(value)}
 					/>
 				</label>
-				{firstValue && lastValue ? (
+				{firstValue && lastValue.length > 2 ? (
 					<ButtonQuizz
 						className='w-full rounded-lg'
 						bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"}
+						ringColor={withPartner ? "focus:ring-red-500" : isPsychiatrist ? "focus:ring-yellow-600": "focus:ring-primary-6000"}
 						onClick={() =>
 							onSubmit({
 								firstName: firstValue,

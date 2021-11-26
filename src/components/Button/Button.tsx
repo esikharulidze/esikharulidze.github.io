@@ -10,6 +10,7 @@ export interface ButtonProps {
   fontSize?: string;
   textArrangement?: string;
   bgColor?: string;
+  ringColor?: string;
   //
   loading?: boolean;
   disabled?: boolean;
@@ -26,6 +27,7 @@ const Button: FC<ButtonProps> = ({
   fontSize = "text-sm sm:text-base font-medium",
   textArrangement = "items-center justify-center",
   bgColor = "",
+  ringColor = "focus:ring-primary-6000",
   disabled = false,
   href,
   children,
@@ -35,8 +37,8 @@ const Button: FC<ButtonProps> = ({
   onClick = () => {},
 }) => {
   const CLASSES =
-    `nc-Button relative h-auto inline-flex rounded-lg transition-colors text-neutral-100 ${bgColor} ${textArrangement} ${fontSize} ${sizeClass} ${translate}  ${className} ` +
-    twFocusClass(true);
+    `nc-Button relative h-auto inline-flex rounded-lg transition-colors text-neutral-100 focus:outline-none focus:ring-2 focus:ring-offset-2  dark:focus:ring-offset-0  ${ringColor} ${bgColor} ${textArrangement} ${fontSize} ${sizeClass} ${translate}  ${className}`
+    // twFocusClass(true);
 
   const _renderLoading = () => {
     return (
