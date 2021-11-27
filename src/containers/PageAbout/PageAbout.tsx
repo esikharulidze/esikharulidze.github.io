@@ -28,7 +28,7 @@ const PageAbout: FC<PageAboutProps> = ({ className = "" }) => {
 
       <div className="container py-16 lg:py-28 space-y-16 lg:space-y-28">
         <SectionHero
-          rightImg={rightImg}
+          rightImg={"https://animuscontent.s3.eu-central-1.amazonaws.com/aboutus-hero.png"}
           displayImg={true}
           heading="👋 ჩვენ შესახებ"
           btnText=""

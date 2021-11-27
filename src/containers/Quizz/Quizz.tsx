@@ -47,6 +47,8 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const closeModalReportComment = () => setIsReporting(false)
 	const [withPartner, setWithPartner] = useState(false)
 	const isPsychiatrist = slug === "psychiatrist"
+	const isGroup = slug === "grouptherapy"
+	const isEdu = slug === "educational"
 	const [partner, setPartner] = useState<number>()
 	const [age, setAge] = useState<number>()
 	const [forElse, setForElse] = useState(false)
@@ -63,6 +65,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const [customerPhone, setCustomerPhone] = useState('')
 	const [showValidation, setShowValidation] = useState(false)
 	const [savedCustomerId, setSavedCustomerId] = useState('')
+	const [isLoading, setIsLoading] = useState(false)
 
 	const { customer } = useAppSelector(state => state.auth)
 
@@ -161,7 +164,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 		},
 		[surveyId]
 	)
-
+	
 	const onDateChoose = useCallback(
 		async ({ therapistId, ...rest }: { therapistId: string; date: string; hour: string }) => {
 			try {
@@ -290,7 +293,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const renderContent = () => {
 		switch (step) {
 			case 1:
-				return <FirstStep psychiatrist={slug === 'psychiatrist'} onChoose={onFirstStepChoice} />
+				return <FirstStep psychiatrist={isPsychiatrist} isGroup={isGroup} isEdu={isEdu} onChoose={onFirstStepChoice} />
 			case 2:
 				return (
 					<SecondStep
@@ -298,6 +301,8 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 						forMe={slug === 'psychiatrist' && forElse === false}
 						withPartner={withPartner}
 						isPsychiatrist={isPsychiatrist}
+						isGroup={isGroup}
+						isEdu={isEdu}
 						forElse={forElse}
 						setAge={setAge}
 						setPartner={setPartner}
@@ -306,27 +311,27 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 					/>
 				)
 			case 3:
-				return <QuizItem question={currentQuestion} withPartner={withPartner} onSubmit={resumeQuiz} isPsychiatrist={isPsychiatrist}/>
+				return <QuizItem question={currentQuestion} withPartner={withPartner} onSubmit={resumeQuiz} isPsychiatrist={isPsychiatrist} isEdu={isEdu} isGroup={isGroup}/>
 			case 4:
-				return <Comment onSubmit={onComment} withPartner={withPartner} isPsychiatrist={isPsychiatrist}/>
+				return <Comment onSubmit={onComment} withPartner={withPartner} isPsychiatrist={isPsychiatrist} isEdu={isEdu} isGroup={isGroup}/>
 			case 5:
-				return <Calendar onSubmit={onDateChoose} type={slug} withPartner={withPartner} isPsychiatrist={isPsychiatrist}/>
+				return <Calendar onSubmit={onDateChoose} type={slug} withPartner={withPartner} isPsychiatrist={isPsychiatrist} isEdu={isEdu} isGroup={isGroup}/>
 			case 6:
-				return <CreateOrNotQuestion onSubmit={onCreateAccountChoose} withPartner={withPartner} isPsychiatrist={isPsychiatrist}/>
+				return <CreateOrNotQuestion onSubmit={onCreateAccountChoose} withPartner={withPartner} isPsychiatrist={isPsychiatrist} isEdu={isEdu} isGroup={isGroup}/>
 			case 7:
-				return <Contact onSubmit={onContactSubmit} withPartner={withPartner} isPsychiatrist={isPsychiatrist}/>
+				return <Contact onSubmit={onContactSubmit} withPartner={withPartner} isPsychiatrist={isPsychiatrist} isEdu={isEdu} isGroup={isGroup}/>
 			case 8:
-				return <ChoosePaymentMethod onSubmit={onPaymentChoose} withPartner={withPartner} isPsychiatrist={isPsychiatrist}/>
+				return <ChoosePaymentMethod onSubmit={onPaymentChoose} withPartner={withPartner} isPsychiatrist={isPsychiatrist} isEdu={isEdu} isGroup={isGroup}/>
 			case 9:
 				return <Success />
 			case 10:
-				return <CustomerName onSubmit={onCustomerNameChange} withPartner={withPartner} isPsychiatrist={isPsychiatrist}/>
+				return <CustomerName onSubmit={onCustomerNameChange} withPartner={withPartner} isPsychiatrist={isPsychiatrist} isEdu={isEdu} isGroup={isGroup}/>
 			case 11:
-				return <CustomerPassword onSubmit={onCustomerPassword} withPartner={withPartner} isPsychiatrist={isPsychiatrist}/>
+				return <CustomerPassword onSubmit={onCustomerPassword} withPartner={withPartner} isPsychiatrist={isPsychiatrist} isEdu={isEdu} isGroup={isGroup}/>
 			case 12:
-				return <AccountSuccess onSubmit={onAccountSuccessContinue} withPartner={withPartner} isPsychiatrist={isPsychiatrist}/>
+				return <AccountSuccess onSubmit={onAccountSuccessContinue} withPartner={withPartner} isPsychiatrist={isPsychiatrist} isEdu={isEdu} isGroup={isGroup}/>
 			default:
-				return <RepeatSurvey onSubmit={onRepeatSurvey} withPartner={withPartner} isPsychiatrist={isPsychiatrist}/>
+				return <RepeatSurvey onSubmit={onRepeatSurvey} withPartner={withPartner} isPsychiatrist={isPsychiatrist} isEdu={isEdu} isGroup={isGroup}/>
 		}
 	}
 

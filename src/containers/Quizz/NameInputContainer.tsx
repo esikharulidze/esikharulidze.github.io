@@ -24,6 +24,7 @@ const NameInputContainer = ({
 	const [firstValue, setFirstValue] = useState('')
 	const [lastValue, setLastValue] = useState('')
 	return (
+		<div>
 		<form className='grid grid-cols-1 gap-6' action='#' method='post' onSubmit={e => e.preventDefault()}>
 			<label className='block'>
 				<span className='text-neutral-800 dark:text-neutral-200'>{namePlaceholder}</span>
@@ -60,6 +61,26 @@ const NameInputContainer = ({
 				</ButtonQuizz>
 			) : null}
 		</form>
+		{/* <div className='mt-5'>
+				<div className="flex flex-row gap-4 block bg-red-500 mb-2 w-full rounded-md p-4">
+					<div>
+					<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z" fill="#EF5858"/>
+						<path d="M28.5 19.5L19.5 28.5" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+						<path d="M19.5 19.5L28.5 28.5" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+					</div>
+					<div>
+						<h2 className="text-white font-semibold">
+						დაფიქსირდა ლათინური შრიფტი!
+						</h2>
+					<p className='text-white md:text-sm lg:text-sm'>
+							გთხოვთ ინფორმაცია შეიყვანოთ ქართულად.
+						</p>
+					</div>
+				</div>
+			</div> */}
+		</div>
 	)
 }
 

@@ -38,7 +38,7 @@ const SingleCommentForm: FC<SingleCommentFormProps> = ({
 				/>
 			)}
 			<Textarea
-				placeholder='ჩაერთე დისკუსიაში'
+				placeholder='ჩაერთეთ დისკუსიაში'
 				ref={textareaRef}
 				required={true}
 				defaultValue={defaultValue}
@@ -51,7 +51,7 @@ const SingleCommentForm: FC<SingleCommentFormProps> = ({
 					onClick={() => onClickSubmit(customer ? customer.firstName : nameState, content)}
 					type='submit'
 				>
-					დამატება
+					დააფიქსირეთ თქვენი აზრი
 				</ButtonPrimary>
 				{/* <ButtonSecondary type='button' onClick={() => onClickCancel(commentId)}>
 					გაუქმება

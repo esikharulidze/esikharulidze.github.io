@@ -45,7 +45,7 @@ const BookVisit: FC<BookVisitProps> = ({ className = '', author, name, onLogout 
 				activeClassName='!font-semibold !text-neutral-900 dark:!text-neutral-100'
 			>
 				<div>
-					<ButtonPrimary>ვიზიტის დაჯავშნა</ButtonPrimary>
+					<ButtonPrimary >ვიზიტის დაჯავშნა</ButtonPrimary>
 				</div>
 				{/* {item.type && ( */}
 				{/* )} */}

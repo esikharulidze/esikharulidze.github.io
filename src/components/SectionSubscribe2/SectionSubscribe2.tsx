@@ -56,7 +56,7 @@ const SectionSubscribe2: FC<SectionSubscribe2Props> = ({ className = "" }) => {
         </form>
       </div>
       <div className="flex-grow">
-        <NcImage src={rightImg} />
+        <NcImage src={"https://animuscontent.s3.eu-central-1.amazonaws.com/subscription-hero.png"} />
       </div>
     </div>
   );

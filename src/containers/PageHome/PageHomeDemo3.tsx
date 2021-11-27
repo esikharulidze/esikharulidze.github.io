@@ -83,7 +83,7 @@ const PageHomeDemo3: React.FC = () => {
       <div className="container relative">
         {/* === SECTION HERO === */}
         <SectionHero
-          rightImg={rightImg}
+          rightImg={"https://animuscontent.s3.eu-central-1.amazonaws.com/five-emotions.png"}
           className="pt-10 pb-16 md:py-16 lg:py-28"
           heading={
             <span>

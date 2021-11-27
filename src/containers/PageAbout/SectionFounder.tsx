@@ -15,28 +15,28 @@ const FOUNDER_DEMO: People[] = [
     name: `ელენე სიხარულიძე`,
     job: "დამფუძნებელი, ფსიქოლოგი",
     avatar:
-      "https://i.ibb.co/5W1kbzY/elene.jpg",
+      "https://animuscontent.s3.eu-central-1.amazonaws.com/elene.jpg",
   },
   {
     id: "4",
     name: `ეკატერინე ჩიქოვანი`,
     job: "პედაგოგი, არტთერაპევტი",
     avatar:
-      "https://i.ibb.co/PWFV04q/ekaterine.jpg",
+      "https://animuscontent.s3.eu-central-1.amazonaws.com/ekaterine.jpg",
   },
   {
     id: "3",
     name: `ქეთია ბელქანია`,
     job: "მთავარი რედაქტორი",
     avatar:
-      "https://i.ibb.co/KVvRnbt/belkania.jpg",
+      "https://animuscontent.s3.eu-central-1.amazonaws.com/ketia.jpg",
   },
   {
     id: "2",
     name: `ნათია ლეკიშვილი`,
     job: "მენეჯერი, კოორდინატორი",
     avatar:
-      "https://i.ibb.co/WcQVGCF/natia.jpg",
+      "https://animuscontent.s3.eu-central-1.amazonaws.com/natia.jpg",
   },
 ];
 

@@ -55,7 +55,7 @@ const PageSingleTemp3Sidebar: FC<PageSingleTemp3SidebarProps> = ({
             <div className="hidden md:block absolute top-0 left-0 bottom-0 w-1/5 from-neutral-900 dark:from-black bg-gradient-to-r"></div>
             <img
               className="block w-full h-full object-cover"
-              src="https://i.ibb.co/Ss8Qdh9/Bust.png"
+              src="https://animuscontent.s3.eu-central-1.amazonaws.com/Bust.png"
               alt=""
             />
           </div>

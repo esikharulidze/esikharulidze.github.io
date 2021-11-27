@@ -12,7 +12,7 @@ const ResumeQuizz = () => {
 		<div className=' bg-white rounded-lg px-10 p-10 dark:bg-neutral-900 mt-24'>
         <div className='grid grid-cols-4 mt-4 mb-10'>
 				<div className='col-start-2 col-span-2'>
-					<NcImage src='https://i.ibb.co/7VsCF3d/psychologist-Frame.png'></NcImage>
+					<NcImage src='https://animuscontent.s3.eu-central-1.amazonaws.com/resume-quizz.png'></NcImage>
 				</div>
 			</div>
 			<h2 className='font-semibold text-2xl'>
