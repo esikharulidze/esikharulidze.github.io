@@ -13,6 +13,7 @@ import axios from 'utils/axios'
 import { AxiosResponse } from 'axios'
 import { BackendCategory, BackendPost } from 'types'
 import { setCurrentPost } from 'app/post/postSlice'
+import Loader from 'components/Loader/Loader'
 
 export interface PageSingleTemp3SidebarProps {
 	className?: string
@@ -30,6 +31,7 @@ const PageSingleTemp3Sidebar: FC<PageSingleTemp3SidebarProps> = ({ className = '
 	const [post, setPost] = useState<BackendPost>()
 	const [categories, setCategories] = useState<BackendCategory[]>([])
 	const { currentPost } = useAppSelector(state => state.post)
+	const [isLoading, setIsLoading] = useState(true)
 
 	useEffect(() => {
 		;(async () => {
@@ -39,6 +41,7 @@ const PageSingleTemp3Sidebar: FC<PageSingleTemp3SidebarProps> = ({ className = '
 					setPost(data)
 					dispatch(changeCurrentPage({ type: '/post/:slug', data }))
 				})
+				setTimeout(() => setIsLoading(false), 1000)
 			} catch (e) {
 				console.log(e)
 			}
@@ -69,6 +72,7 @@ const PageSingleTemp3Sidebar: FC<PageSingleTemp3SidebarProps> = ({ className = '
 	}, [])
 	return (
 		<>
+			{isLoading ? <Loader absolute /> : null}
 			<div className={`nc-PageSingleTemp3Sidebar ${className}`} data-nc-id='PageSingleTemp3Sidebar'>
 				<header className='relative pt-16 z-10 md:py-20 lg:py-28 bg-neutral-900 dark:bg-black'>
 					{/* SINGLE HEADER */}
@@ -86,7 +90,9 @@ const PageSingleTemp3Sidebar: FC<PageSingleTemp3SidebarProps> = ({ className = '
 						<div className='hidden md:block absolute top-0 left-0 bottom-0 w-1/5 from-neutral-900 dark:from-black bg-gradient-to-r'></div>
 						<img
 							className='block w-full h-full object-cover'
-							src={post?.cover || 'https://animuscontent.s3.eu-central-1.amazonaws.com/Bust.png'}
+							src={
+								post?.cover || 'https://animuscontent.s3.eu-central-1.amazonaws.com/Bust.png'
+							}
 							alt=''
 						/>
 					</div>

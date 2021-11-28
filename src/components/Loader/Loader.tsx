@@ -1,19 +1,32 @@
-import { useState } from "react";
-import { css } from "@emotion/react";
-import PuffLoader from "react-spinners/PuffLoader";
+import { useState } from 'react'
+import { css } from '@emotion/react'
+import PuffLoader from 'react-spinners/PuffLoader'
 
 const override = css`
-  display: block;
-  margin: 0 auto;
-  border-color: #c026d3;
-`;
+	display: block;
+	margin: 0 auto;
+	border-color: #c026d3;
+`
 
-const Loader = () => {
-  return (
-    <div className="sweet-loading">
-      <PuffLoader color="#c026d3" loading={true} css={override} size={150} />
-    </div>
-  );
+interface Props {
+	absolute?: boolean
 }
 
-export default Loader;
+const Loader = ({ absolute }: Props) => {
+	if (absolute) {
+		return (
+			<div className='w-screen h-screen fixed flex items-center justify-center z-50 top-0 left-0 bg-white'>
+				<div className='sweet-loading'>
+					<PuffLoader color='#c026d3' loading={true} css={override} size={150} />
+				</div>
+			</div>
+		)
+	}
+	return (
+		<div className='sweet-loading'>
+			<PuffLoader color='#c026d3' loading={true} css={override} size={150} />
+		</div>
+	)
+}
+
+export default Loader

@@ -30,7 +30,14 @@ const services = {
 	kids: 3
 }
 
-const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner = false, isPsychiatrist=false, isEdu=false, isGroup=false }) => {
+const QuizzV2: FC<ServiceInnerProps> = ({
+	question,
+	onSubmit,
+	withPartner = false,
+	isPsychiatrist = false,
+	isEdu = false,
+	isGroup = false
+}) => {
 	const [course, setCourse] = useState<BackendCourse>()
 	const { slag, slug } = useParams<{ slag: string; slug: 'individual' | 'adults' | 'teens' | 'kids' }>()
 	const [isReporting, setIsReporting] = useState(false)
@@ -41,6 +48,10 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner = fals
 	const history = useHistory()
 
 	const [checkedAnswers, setCheckedAnswers] = useState(new Set<string>())
+
+	useEffect(() => {
+		window.scrollTo({ top: 80 })
+	}, [])
 
 	const renderContent = (givenQuestion: Question) => {
 		const namePlaceholder = givenQuestion.isPartnerNameInput
@@ -151,18 +162,38 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner = fals
 							</label>
 						</div>
 					))}
-					{
-						checkedAnswers.size ?
-					<ButtonQuizz
-						className='w-full rounded-lg mt-8'
-						bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" : isGroup ? "bg-pink-500 hover:bg-pink-600" : isEdu ? "bg-green-700 hover:bg-green-800" :"bg-primary-6000 hover:bg-primary-700"}
-        ringColor={withPartner ? "focus:ring-red-500" : isPsychiatrist ? "focus:ring-yellow-600": isGroup ? "focus:ring-pink-600" : isEdu ? "focus:ring-green-600": "focus:ring-primary-6000"}
-						onClick={() => question.multiple && onSubmit && onSubmit(Array.from(checkedAnswers))}
-					>
-						შემდეგი ნაბიჯი
-					</ButtonQuizz>
-					: null
-					}
+					{checkedAnswers.size ? (
+						<ButtonQuizz
+							className='w-full rounded-lg mt-8'
+							bgColor={
+								withPartner
+									? 'bg-red-500 hover:bg-red-600'
+									: isPsychiatrist
+									? 'bg-yellow-600 hover:bg-yellow-700'
+									: isGroup
+									? 'bg-pink-500 hover:bg-pink-600'
+									: isEdu
+									? 'bg-green-700 hover:bg-green-800'
+									: 'bg-primary-6000 hover:bg-primary-700'
+							}
+							ringColor={
+								withPartner
+									? 'focus:ring-red-500'
+									: isPsychiatrist
+									? 'focus:ring-yellow-600'
+									: isGroup
+									? 'focus:ring-pink-600'
+									: isEdu
+									? 'focus:ring-green-600'
+									: 'focus:ring-primary-6000'
+							}
+							onClick={() =>
+								question.multiple && onSubmit && onSubmit(Array.from(checkedAnswers))
+							}
+						>
+							შემდეგი ნაბიჯი
+						</ButtonQuizz>
+					) : null}
 				</div>
 			) : (
 				<div
@@ -181,8 +212,28 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner = fals
 							? question.answers.map(answer => (
 									<ButtonQuizz
 										key={answer._id}
-										bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" : isGroup ? "bg-pink-500 hover:bg-pink-600" : isEdu ? "bg-green-700 hover:bg-green-800" :"bg-primary-6000 hover:bg-primary-700"}
-        ringColor={withPartner ? "focus:ring-red-500" : isPsychiatrist ? "focus:ring-yellow-600": isGroup ? "focus:ring-pink-600" : isEdu ? "focus:ring-green-600": "focus:ring-primary-6000"}
+										bgColor={
+											withPartner
+												? 'bg-red-500 hover:bg-red-600'
+												: isPsychiatrist
+												? 'bg-yellow-600 hover:bg-yellow-700'
+												: isGroup
+												? 'bg-pink-500 hover:bg-pink-600'
+												: isEdu
+												? 'bg-green-700 hover:bg-green-800'
+												: 'bg-primary-6000 hover:bg-primary-700'
+										}
+										ringColor={
+											withPartner
+												? 'focus:ring-red-500'
+												: isPsychiatrist
+												? 'focus:ring-yellow-600'
+												: isGroup
+												? 'focus:ring-pink-600'
+												: isEdu
+												? 'focus:ring-green-600'
+												: 'focus:ring-primary-6000'
+										}
 										className='w-full rounded-lg text-left'
 										onClick={() => {
 											!question.multiple && onSubmit && onSubmit([answer._id])
@@ -199,43 +250,59 @@ const QuizzV2: FC<ServiceInnerProps> = ({ question, onSubmit, withPartner = fals
 			{/* <ButtonQuizz className="w-full rounded-lg text-left" onClick={() => onChoose&& onChoose('first')}>{psychiatrist ? 'მსურს ვიზიტი დავჯავშნო ჩემთვის' : 'ინდივიდუალური ვიზიტი ფსიქოლოგთან'}</ButtonQuizz>
         <ButtonQuizz className="w-full rounded-lg text-left" onClick={() => onChoose&& onChoose('second')}>{psychiatrist ? 'მსურს ვიზიტი დავჯავშნო სხვისთვის' : 'წყვილების თერაპია ფსიქოლოგთან'}</ButtonQuizz> */}
 
-		{!isEdu ?
-        <div className='mt-5'>
-				<div className={isPsychiatrist ? 'flex flex-row gap-4 block bg-red-500 mb-2 w-full rounded-md p-5': isGroup ? 'flex flex-row gap-4 block bg-red-500 mb-2 w-full rounded-md p-5' :'flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'}>
-					<div>
-						<svg
-							width='40'
-							height='40'
-							viewBox='0 0 48 48'
-							fill='none'
-							xmlns='http://www.w3.org/2000/svg'
-						>
-							<path
-								d='M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z'
-								fill={isPsychiatrist ? '#dc3c3c': isGroup ? '#dc3c3c': '#BA7F02'}
-							/>
-							<path
-								d='M24 32V24'
-								stroke='white'
-								stroke-width='4'
-								stroke-linecap='round'
-								stroke-linejoin='round'
-							/>
-							<path
-								d='M24 16H24.0204'
-								stroke='white'
-								stroke-width='4'
-								stroke-linecap='round'
-								stroke-linejoin='round'
-							/>
-						</svg>
+			{!isEdu ? (
+				<div className='mt-5'>
+					<div
+						className={
+							isPsychiatrist
+								? 'flex flex-row gap-4 block bg-red-500 mb-2 w-full rounded-md p-5'
+								: isGroup
+								? 'flex flex-row gap-4 block bg-red-500 mb-2 w-full rounded-md p-5'
+								: 'flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'
+						}
+					>
+						<div>
+							<svg
+								width='40'
+								height='40'
+								viewBox='0 0 48 48'
+								fill='none'
+								xmlns='http://www.w3.org/2000/svg'
+							>
+								<path
+									d='M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z'
+									fill={isPsychiatrist ? '#dc3c3c' : isGroup ? '#dc3c3c' : '#BA7F02'}
+								/>
+								<path
+									d='M24 32V24'
+									stroke='white'
+									stroke-width='4'
+									stroke-linecap='round'
+									stroke-linejoin='round'
+								/>
+								<path
+									d='M24 16H24.0204'
+									stroke='white'
+									stroke-width='4'
+									stroke-linecap='round'
+									stroke-linejoin='round'
+								/>
+							</svg>
+						</div>
+						<p className='text-white md:text-sm lg:text-sm'>
+							კითხვარს გაეცნობა მხოლოდ თქვენ მიერ არჩეული სპეციალისტი, რათა შემოგთავაზოთ თქვენზე
+							მორგებული თერაპია ან მკურნალობა. კონფიდენციალურობის პოლიტიკა{' '}
+							<a
+								className='font-semibold'
+								target='_blank'
+								href='https://animus.ge/privacy-policy'
+							>
+								იხილეთ ბმულზე.
+							</a>
+						</p>
 					</div>
-					<p className='text-white md:text-sm lg:text-sm'>
-						კითხვარს გაეცნობა მხოლოდ თქვენ მიერ არჩეული სპეციალისტი, რათა შემოგთავაზოთ თქვენზე მორგებული თერაპია ან მკურნალობა. კონფიდენციალურობის პოლიტიკა <a className="font-semibold" target="_blank" href="https://animus.ge/privacy-policy">იხილეთ ბმულზე.</a>
-					</p>
 				</div>
-			</div> : null
-      }
+			) : null}
 		</div>
 		//   </div>
 		// </div>

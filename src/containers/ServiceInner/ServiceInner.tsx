@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom'
 import { BackendCourse } from 'types'
 import axios from 'utils/axios'
 import { useHistory, useLocation } from 'react-router-dom'
+import Loader from 'components/Loader/Loader'
 
 export interface ServiceInnerProps {
 	className?: string
@@ -30,6 +31,7 @@ const ServiceInner: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const [isReporting, setIsReporting] = useState(false)
 	const openModalReportComment = () => setIsReporting(true)
 	const closeModalReportComment = () => setIsReporting(false)
+	const [isLoading, setIsLoading] = useState(true)
 
 	const history = useHistory()
 	const location = useLocation()
@@ -39,16 +41,20 @@ const ServiceInner: FC<ServiceInnerProps> = ({ className = '' }) => {
 	useEffect(() => {
 		;(async () => {
 			try {
+				setIsLoading(true)
 				await axios.get<any, AxiosResponse<BackendCourse>>(`course/${slug}`).then(({ data }) => {
 					setCourse(data)
 				})
+				setTimeout(() => setIsLoading(false), 1000)
 			} catch (e) {
 				console.log(e)
+				setTimeout(() => setIsLoading(false), 1000)
 			}
 		})()
-	}, [])
+	}, [slug])
 	return (
 		<div>
+			{isLoading ? <Loader absolute /> : null}
 			<LayoutPage isInner={true} heading='' cover={course?.cover}>
 				<h2
 					className={`flex items-center text-3xl leading-[115%] md:text-3xl md:leading-[115%] font-semibold text-neutral-900 dark:text-neutral-100 mb-4`}

@@ -27,6 +27,7 @@ import AccountSuccess from './AccountSuccess'
 import RepeatSurvey from './RepeatSurvey'
 import { useAppSelector } from 'app/hooks'
 import PhoneValidation from 'components/PhoneValidation/PhoneValidation'
+import Loader from 'components/Loader/Loader'
 
 export interface ServiceInnerProps {
 	className?: string
@@ -46,9 +47,9 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const openModalReportComment = () => setIsReporting(true)
 	const closeModalReportComment = () => setIsReporting(false)
 	const [withPartner, setWithPartner] = useState(false)
-	const isPsychiatrist = slug === "psychiatrist"
-	const isGroup = slug === "grouptherapy"
-	const isEdu = slug === "educational"
+	const isPsychiatrist = slug === 'psychiatrist'
+	const isGroup = slug === 'grouptherapy'
+	const isEdu = slug === 'educational'
 	const [partner, setPartner] = useState<number>()
 	const [age, setAge] = useState<number>()
 	const [forElse, setForElse] = useState(false)
@@ -63,7 +64,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 
 	const [customerEmail, setCustomerEmail] = useState('')
 	const [customerPhone, setCustomerPhone] = useState('')
-	const [showValidation, setShowValidation] = useState(false)
+	const [showValidation, setShowValidation] = useState('')
 	const [savedCustomerId, setSavedCustomerId] = useState('')
 	const [isLoading, setIsLoading] = useState(false)
 
@@ -84,14 +85,17 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const startQuiz = useCallback(async () => {
 		try {
 			setStep(3)
+			setIsLoading(true)
 			const { data } = await axios.get<any, AxiosResponse<{ question: any; surveyId: string }>>(
 				`survey/start/${slug}?age=${age}&forElse=${forElse}${partner ? '&partner=' + partner : ''}${
 					query.get('course') ? '&course=' + query.get('course') : ''
 				}`
 			)
+			setIsLoading(false)
 			setSurveyId(data.surveyId)
 			setCurrentQuestion(data.question)
 		} catch (e) {
+			setIsLoading(false)
 			console.log(e)
 		}
 	}, [age, slug, partner])
@@ -99,6 +103,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const resumeQuiz = useCallback(
 		async (answerIds: string[]) => {
 			try {
+				setIsLoading(true)
 				const { data } = await axios.patch<any, AxiosResponse<Question | { age: number }>>(
 					`survey/continue/${surveyId}`,
 					{
@@ -106,12 +111,14 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 						answerIds: answerIds
 					}
 				)
+				setIsLoading(false)
 				if ('age' in data) {
 					setStep(4)
 				} else {
 					setCurrentQuestion(data)
 				}
 			} catch (e) {
+				setIsLoading(false)
 				console.log(e)
 			}
 		},
@@ -136,14 +143,18 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 		;(async () => {
 			try {
 				if (customer) {
+					setIsLoading(true)
 					const { data } = await axios.get<any, AxiosResponse<BackendSurvey>>(
 						`customer/check-survey/${slug}`
 					)
 					console.log(data)
+					setIsLoading(false)
 					setSurveyId(data._id)
 					setStep(0)
 				}
-			} catch (e) {}
+			} catch (e) {
+				setIsLoading(false)
+			}
 		})()
 	}, [customer, slug])
 
@@ -156,23 +167,28 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const onComment = useCallback(
 		async val => {
 			try {
+				setIsLoading(true)
 				await axios.patch('survey/comment', { comment: val, surveyId })
+				setIsLoading(false)
 				setStep(5)
 			} catch (e) {
+				setIsLoading(false)
 				console.log('err')
 			}
 		},
 		[surveyId]
 	)
-	
+
 	const onDateChoose = useCallback(
 		async ({ therapistId, ...rest }: { therapistId: string; date: string; hour: string }) => {
 			try {
+				setIsLoading(true)
 				const { data } = await axios.put(`user/reserve/${therapistId}`, {
 					...rest,
 					surveyId,
 					customerId: customer ? customer._id : undefined
 				})
+				setIsLoading(false)
 				setAppointmentId(data)
 				if (customer) {
 					setStep(8)
@@ -180,6 +196,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 					setStep(6)
 				}
 			} catch (e) {
+				setIsLoading(false)
 				console.log(e, 'errrrr')
 			}
 		},
@@ -206,13 +223,16 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const onCustomerPassword = useCallback(
 		async (val: string) => {
 			try {
+				setIsLoading(true)
 				const { data } = await axios.put('customer/password', {
 					password: val,
 					customerId: savedCustomerId
 				})
+				setIsLoading(false)
 				localStorage.setItem('customer-token', data.token)
 				setStep(12)
 			} catch (e) {
+				setIsLoading(false)
 				console.log(e)
 			}
 		},
@@ -224,6 +244,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 			try {
 				setCustomerEmail(val.email)
 				setCustomerPhone(val.phone)
+				setIsLoading(true)
 				await axios.patch('survey/contact', {
 					surveyId,
 					...val
@@ -238,11 +259,13 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 						appointmentId
 					})
 					setSavedCustomerId(data._id)
-					setShowValidation(true)
+					setShowValidation(val.phone.slice(-3))
 				} else {
 					setStep(8)
 				}
+				setIsLoading(false)
 			} catch (e) {
+				setIsLoading(false)
 				console.log(e)
 			}
 		},
@@ -256,14 +279,17 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const onPaymentChoose = useCallback(
 		async (cash?: boolean) => {
 			try {
+				setIsLoading(true)
 				await axios.patch('appointment/payment-method', {
 					appointmentId,
 					paymentMethod: cash ? 'cash' : 'card'
 				})
+				setIsLoading(false)
 				if (cash) {
 					setStep(9)
 				}
 			} catch (e) {
+				setIsLoading(false)
 				console.log(e)
 			}
 		},
@@ -282,9 +308,12 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 		;(async () => {
 			try {
 				if (step === 9) {
+					setIsLoading(true)
 					await axios.get(`appointment/success/${appointmentId}`)
+					setIsLoading(false)
 				}
 			} catch (e) {
+				setIsLoading(false)
 				console.log(e)
 			}
 		})()
@@ -293,7 +322,14 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const renderContent = () => {
 		switch (step) {
 			case 1:
-				return <FirstStep psychiatrist={isPsychiatrist} isGroup={isGroup} isEdu={isEdu} onChoose={onFirstStepChoice} />
+				return (
+					<FirstStep
+						psychiatrist={isPsychiatrist}
+						isGroup={isGroup}
+						isEdu={isEdu}
+						onChoose={onFirstStepChoice}
+					/>
+				)
 			case 2:
 				return (
 					<SecondStep
@@ -311,27 +347,109 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 					/>
 				)
 			case 3:
-				return <QuizItem question={currentQuestion} withPartner={withPartner} onSubmit={resumeQuiz} isPsychiatrist={isPsychiatrist} isEdu={isEdu} isGroup={isGroup}/>
+				return (
+					<QuizItem
+						question={currentQuestion}
+						withPartner={withPartner}
+						onSubmit={resumeQuiz}
+						isPsychiatrist={isPsychiatrist}
+						isEdu={isEdu}
+						isGroup={isGroup}
+					/>
+				)
 			case 4:
-				return <Comment onSubmit={onComment} withPartner={withPartner} isPsychiatrist={isPsychiatrist} isEdu={isEdu} isGroup={isGroup}/>
+				return (
+					<Comment
+						onSubmit={onComment}
+						withPartner={withPartner}
+						isPsychiatrist={isPsychiatrist}
+						isEdu={isEdu}
+						isGroup={isGroup}
+					/>
+				)
 			case 5:
-				return <Calendar onSubmit={onDateChoose} type={slug} withPartner={withPartner} isPsychiatrist={isPsychiatrist} isEdu={isEdu} isGroup={isGroup}/>
+				return (
+					<Calendar
+						onSubmit={onDateChoose}
+						type={slug}
+						withPartner={withPartner}
+						isPsychiatrist={isPsychiatrist}
+						isEdu={isEdu}
+						isGroup={isGroup}
+					/>
+				)
 			case 6:
-				return <CreateOrNotQuestion onSubmit={onCreateAccountChoose} withPartner={withPartner} isPsychiatrist={isPsychiatrist} isEdu={isEdu} isGroup={isGroup}/>
+				return (
+					<CreateOrNotQuestion
+						onSubmit={onCreateAccountChoose}
+						withPartner={withPartner}
+						isPsychiatrist={isPsychiatrist}
+						isEdu={isEdu}
+						isGroup={isGroup}
+					/>
+				)
 			case 7:
-				return <Contact onSubmit={onContactSubmit} withPartner={withPartner} isPsychiatrist={isPsychiatrist} isEdu={isEdu} isGroup={isGroup}/>
+				return (
+					<Contact
+						onSubmit={onContactSubmit}
+						withPartner={withPartner}
+						isPsychiatrist={isPsychiatrist}
+						isEdu={isEdu}
+						isGroup={isGroup}
+					/>
+				)
 			case 8:
-				return <ChoosePaymentMethod onSubmit={onPaymentChoose} withPartner={withPartner} isPsychiatrist={isPsychiatrist} isEdu={isEdu} isGroup={isGroup}/>
+				return (
+					<ChoosePaymentMethod
+						onSubmit={onPaymentChoose}
+						withPartner={withPartner}
+						isPsychiatrist={isPsychiatrist}
+						isEdu={isEdu}
+						isGroup={isGroup}
+					/>
+				)
 			case 9:
 				return <Success />
 			case 10:
-				return <CustomerName onSubmit={onCustomerNameChange} withPartner={withPartner} isPsychiatrist={isPsychiatrist} isEdu={isEdu} isGroup={isGroup}/>
+				return (
+					<CustomerName
+						onSubmit={onCustomerNameChange}
+						withPartner={withPartner}
+						isPsychiatrist={isPsychiatrist}
+						isEdu={isEdu}
+						isGroup={isGroup}
+					/>
+				)
 			case 11:
-				return <CustomerPassword onSubmit={onCustomerPassword} withPartner={withPartner} isPsychiatrist={isPsychiatrist} isEdu={isEdu} isGroup={isGroup}/>
+				return (
+					<CustomerPassword
+						onSubmit={onCustomerPassword}
+						withPartner={withPartner}
+						isPsychiatrist={isPsychiatrist}
+						isEdu={isEdu}
+						isGroup={isGroup}
+					/>
+				)
 			case 12:
-				return <AccountSuccess onSubmit={onAccountSuccessContinue} withPartner={withPartner} isPsychiatrist={isPsychiatrist} isEdu={isEdu} isGroup={isGroup}/>
+				return (
+					<AccountSuccess
+						onSubmit={onAccountSuccessContinue}
+						withPartner={withPartner}
+						isPsychiatrist={isPsychiatrist}
+						isEdu={isEdu}
+						isGroup={isGroup}
+					/>
+				)
 			default:
-				return <RepeatSurvey onSubmit={onRepeatSurvey} withPartner={withPartner} isPsychiatrist={isPsychiatrist} isEdu={isEdu} isGroup={isGroup}/>
+				return (
+					<RepeatSurvey
+						onSubmit={onRepeatSurvey}
+						withPartner={withPartner}
+						isPsychiatrist={isPsychiatrist}
+						isEdu={isEdu}
+						isGroup={isGroup}
+					/>
+				)
 		}
 	}
 
@@ -362,7 +480,6 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	}, [slug])
 
 	return (
-
 		<div className='min-h-screen bg-primary-100 dark:bg-neutral-800 bg-opacity-25'>
 			<div className='grid justify-content-center grid-cols-1 xl:grid-cols-4 md:grid-cols-1 lg:grid-cols-1'>
 				<div className='grid col-start-2 col-span-4 col-end-4 row-start-2 row-end-4'>
@@ -375,11 +492,17 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 						</header>
 					) : null}
 
-					{renderContent()}
+					{isLoading ? (
+						<div className='bg-white rounded-lg px-10 p-10 dark:bg-neutral-900 mt-24'>
+							<Loader />
+						</div>
+					) : (
+						renderContent()
+					)}
 					<PhoneValidation
 						show={showValidation}
 						onCloseModalDeleteComment={() => {
-							setShowValidation(false)
+							setShowValidation('')
 						}}
 						customerId={savedCustomerId}
 						next={() => setStep(11)}

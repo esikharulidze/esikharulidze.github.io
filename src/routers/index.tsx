@@ -56,7 +56,7 @@ import Training from 'containers/Training/Training'
 import AppointmentModal from 'containers/PageDashboard/AppointmentModal'
 import ResumeQuizz from 'containers/Quizz/ResumeQuizz'
 import PhoneValidation from 'components/PhoneValidation/PhoneValidation'
-import Loader from "components/Loader/Loader"
+import Loader from 'components/Loader/Loader'
 // import CancelAppointmentModal from 'containers/PageDashboard/CancelAppointmentModal'
 
 export const pages: Page[] = [
@@ -131,8 +131,7 @@ export const pages: Page[] = [
 	{ path: '/training', component: Training },
 	{ path: '/survey/:slug', component: Quizz },
 	{ path: '/quizztest', component: QuizzItemTest },
-	{ path: '/resume-survay', component: ResumeQuizz },
-	{ path: '/loader', component: Loader}
+	{ path: '/resume-survay', component: ResumeQuizz }
 	//
 ]
 

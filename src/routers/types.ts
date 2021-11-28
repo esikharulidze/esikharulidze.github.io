@@ -63,7 +63,6 @@ export interface LocationStates {
 	'/educational/:slug': {}
 	'/quizztest': {}
 	'/resume-survay': {}
-	'/loader': {}
 }
 
 export type PathName = keyof LocationStates

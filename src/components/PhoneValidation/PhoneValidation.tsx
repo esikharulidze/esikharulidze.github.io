@@ -6,11 +6,13 @@ import Input from 'components/Input/Input'
 import axios from 'utils/axios'
 
 export interface PhoneValidationProps {
-	show: boolean
+	show: string
 	onCloseModalDeleteComment: () => void
 	next: () => void
 	customerId: string
 }
+
+let interval: NodeJS.Timeout
 
 const PhoneValidation: FC<PhoneValidationProps> = ({ show, onCloseModalDeleteComment, customerId, next }) => {
 	const firstInput = useRef<HTMLInputElement>(null)
@@ -19,6 +21,8 @@ const PhoneValidation: FC<PhoneValidationProps> = ({ show, onCloseModalDeleteCom
 	const fourthInput = useRef<HTMLInputElement>(null)
 	const [error, setError] = useState(false)
 	const [otp, setOtp] = useState<(number | null)[]>([null, null, null, null])
+	const [time, setTime] = useState(59)
+
 	useEffect(() => {
 		if (firstInput.current) {
 			firstInput.current.focus()
@@ -40,6 +44,14 @@ const PhoneValidation: FC<PhoneValidationProps> = ({ show, onCloseModalDeleteCom
 		}
 	}, [otp, fourthInput])
 
+	useEffect(() => {
+		if (show) {
+			interval = setInterval(() => {
+				setTime(prevTime => prevTime - 1)
+			}, 1000)
+		}
+	}, [show])
+
 	const onSubmit = useCallback(async () => {
 		try {
 			setError(false)
@@ -48,18 +60,38 @@ const PhoneValidation: FC<PhoneValidationProps> = ({ show, onCloseModalDeleteCom
 				otp: '' + otp[0] + otp[1] + otp[2] + otp[3]
 			}
 			await axios.post('customer/otp', data)
+			clearInterval(interval)
 			next()
 			onCloseModalDeleteComment()
 		} catch (e) {
 			setError(true)
 		}
-	}, [customerId, otp, next, onCloseModalDeleteComment])
+	}, [customerId, otp, next, onCloseModalDeleteComment, interval])
+
+	const onResend = useCallback(async () => {
+		try {
+			setTime(59)
+			await axios.put('customer/otp', { customerId })
+
+			interval = setInterval(() => {
+				setTime(prevTime => prevTime - 1)
+			}, 1000)
+		} catch (e) {
+			console.log(e)
+		}
+	}, [customerId, interval])
+
+	useEffect(() => {
+		if (interval && time === 0) {
+			clearInterval(interval)
+		}
+	}, [interval, time])
 
 	const renderContent = () => {
 		return (
 			<div>
 				<h2 className='text-xl mb-2 mt-2 font-bold ml-3'>დაადასტურეთ ტელეფონი</h2>
-				<p className='ml-3 mb-6 text-sm'>კოდი გამოგზავნილია ნომერზე ******123</p>
+				<p className='ml-3 mb-6 text-sm'>კოდი გამოგზავნილია ნომერზე ******{show}</p>
 				<div className='flex gap-5 justify-center'>
 					<Input
 						type='text'
@@ -128,7 +160,12 @@ const PhoneValidation: FC<PhoneValidationProps> = ({ show, onCloseModalDeleteCom
 						დადასტურება
 					</ButtonPrimary>
 				</div>
-				<p className='ml-3 mt-4 cursor-pointer font-semibold'>კოდის თავიდან გაგზავნა</p>
+				<p
+					className='ml-3 mt-4 cursor-pointer font-semibold'
+					onClick={() => (time === 0 ? onResend() : null)}
+				>
+					კოდის თავიდან გაგზავნა {time ? `0:${time.toString().padStart(2, '0')}` : null}
+				</p>
 			</div>
 		)
 	}
@@ -139,7 +176,7 @@ const PhoneValidation: FC<PhoneValidationProps> = ({ show, onCloseModalDeleteCom
 
 	return (
 		<NcModal
-			isOpenProp={show}
+			isOpenProp={!!show}
 			onCloseModal={onCloseModalDeleteComment}
 			contentExtraClass='max-w-sm'
 			renderContent={renderContent}
