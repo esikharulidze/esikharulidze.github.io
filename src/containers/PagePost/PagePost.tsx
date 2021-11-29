@@ -14,6 +14,7 @@ import { AxiosResponse } from 'axios'
 import { BackendCategory, BackendPost } from 'types'
 import { setCurrentPost } from 'app/post/postSlice'
 import Loader from 'components/Loader/Loader'
+import { Helmet } from 'react-helmet'
 
 export interface PageSingleTemp3SidebarProps {
 	className?: string
@@ -72,6 +73,13 @@ const PageSingleTemp3Sidebar: FC<PageSingleTemp3SidebarProps> = ({ className = '
 	}, [])
 	return (
 		<>
+			<Helmet>
+				<meta property='og:title' content={currentPost?.title} />
+				<meta property='og:image' content={currentPost?.avatar} />
+				<meta content='image/*' property='og:image:type' />
+				<meta property='og:url' content={`https://animus.ge/post/${slug}`} />
+				<meta property='og:description' content={currentPost?.content} />
+			</Helmet>
 			{isLoading ? <Loader absolute /> : null}
 			<div className={`nc-PageSingleTemp3Sidebar ${className}`} data-nc-id='PageSingleTemp3Sidebar'>
 				<header className='relative pt-16 z-10 md:py-20 lg:py-28 bg-neutral-900 dark:bg-black'>

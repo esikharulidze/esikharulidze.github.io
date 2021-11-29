@@ -76,6 +76,14 @@ const PageHomeDemo3: React.FC = () => {
 		<div className='nc-PageHomeDemo3 overflow-hidden relative'>
 			<Helmet>
 				<title>ანიმუსი - ინტელექტი ადამიანს მიღმა</title>
+				<meta property='og:title' content={'WWW.ANIMUS.GE'} />
+				<meta
+					property='og:image'
+					content={'https://animuscontent.s3.eu-central-1.amazonaws.com/Animus-OG.png'}
+				/>
+				<meta content='image/*' property='og:image:type' />
+				<meta property='og:url' content={`https://animus.ge`} />
+				<meta property='og:description' content={'ფსიქოთერაპიული და საგანამანათლებლო ცენტრი'} />
 			</Helmet>
 			{isLoading ? <Loader absolute /> : null}
 			{/* ======== BG GLASS ======== */}

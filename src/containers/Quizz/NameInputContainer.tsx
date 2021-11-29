@@ -12,6 +12,8 @@ interface Props {
 	isPsychiatrist?: Boolean
 }
 
+const nameField = /^[ა-ჰ]*$/
+
 const NameInputContainer = ({
 	namePlaceholder,
 	nameInputPlaceholder,
@@ -23,45 +25,85 @@ const NameInputContainer = ({
 }: Props) => {
 	const [firstValue, setFirstValue] = useState('')
 	const [lastValue, setLastValue] = useState('')
+	const [firstError, setFirstError] = useState(false)
+	const [secondError, setSecondError] = useState(false)
 	return (
 		<div>
-		<form className='grid grid-cols-1 gap-6' action='#' method='post' onSubmit={e => e.preventDefault()}>
-			<label className='block'>
-				<span className='text-neutral-800 dark:text-neutral-200'>{namePlaceholder}</span>
-				<Input
-					type='text'
-					placeholder={nameInputPlaceholder || 'ჩაწერეთ სახელი'}
-					className='mt-1'
-					value={firstValue}
-					onChange={({ target: { value } }) => setFirstValue(value)}
-				/>
-			</label>
-			<label className='block'>
-				<span className='text-neutral-800 dark:text-neutral-200'>{lastNamePlaceholder}</span>
-				<Input
-					type='text'
-					placeholder={lasNameInputPlaceholder || 'ჩაწერეთ გვარი'}
-					className='mt-1'
-					value={lastValue}
-					onChange={({ target: { value } }) => setLastValue(value)}
-				/>
-			</label>
-			{firstValue  && lastValue.length > 2 ? (
-				<ButtonQuizz
-					className='w-full rounded-lg'
-					bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" :"bg-primary-6000 hover:bg-primary-700"}
-					ringColor={withPartner ? "focus:ring-red-500" : isPsychiatrist ? "focus:ring-yellow-600": "focus:ring-primary-6000"}
-					onClick={() => {
-						onSubmit(`${firstValue} ${lastValue}`)
-						setFirstValue('')
-						setLastValue('')
-					}}
-				>
-					შემდეგი ნაბიჯი
-				</ButtonQuizz>
-			) : null}
-		</form>
-		{/* <div className='mt-5'>
+			<form
+				className='grid grid-cols-1 gap-6'
+				action='#'
+				method='post'
+				onSubmit={e => e.preventDefault()}
+			>
+				<label className='block'>
+					<span className='text-neutral-800 dark:text-neutral-200'>{namePlaceholder}</span>
+					<Input
+						type='text'
+						placeholder={nameInputPlaceholder || 'ჩაწერეთ სახელი'}
+						className='mt-1'
+						value={firstValue}
+						error={firstError}
+						onChange={({ target: { value } }) => {
+							if (!nameField.test(value)) {
+								setFirstError(true)
+							} else {
+								setFirstError(false)
+							}
+							setFirstValue(value)
+						}}
+					/>
+				</label>
+				<label className='block'>
+					<span className='text-neutral-800 dark:text-neutral-200'>{lastNamePlaceholder}</span>
+					<Input
+						type='text'
+						placeholder={lasNameInputPlaceholder || 'ჩაწერეთ გვარი'}
+						className='mt-1'
+						value={lastValue}
+						error={secondError}
+						onChange={({ target: { value } }) => {
+							if (!nameField.test(value)) {
+								setSecondError(true)
+							} else {
+								setSecondError(false)
+							}
+							setLastValue(value)
+						}}
+					/>
+				</label>
+				{firstError || secondError ? (
+					<p style={{ marginTop: -10 }} className='text-sm text-red-500'>
+						*გთხოვთ გამოიყენოთ მხოლოდ ქართული სიმბოლოები
+					</p>
+				) : null}
+				{firstValue && !firstError && !secondError && lastValue.length > 2 ? (
+					<ButtonQuizz
+						className='w-full rounded-lg'
+						bgColor={
+							withPartner
+								? 'bg-red-500 hover:bg-red-600'
+								: isPsychiatrist
+								? 'bg-yellow-600 hover:bg-yellow-700'
+								: 'bg-primary-6000 hover:bg-primary-700'
+						}
+						ringColor={
+							withPartner
+								? 'focus:ring-red-500'
+								: isPsychiatrist
+								? 'focus:ring-yellow-600'
+								: 'focus:ring-primary-6000'
+						}
+						onClick={() => {
+							onSubmit(`${firstValue} ${lastValue}`)
+							setFirstValue('')
+							setLastValue('')
+						}}
+					>
+						შემდეგი ნაბიჯი
+					</ButtonQuizz>
+				) : null}
+			</form>
+			{/* <div className='mt-5'>
 				<div className="flex flex-row gap-4 block bg-red-500 mb-2 w-full rounded-md p-4">
 					<div>
 					<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">

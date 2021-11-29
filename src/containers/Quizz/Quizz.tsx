@@ -28,6 +28,7 @@ import RepeatSurvey from './RepeatSurvey'
 import { useAppSelector } from 'app/hooks'
 import PhoneValidation from 'components/PhoneValidation/PhoneValidation'
 import Loader from 'components/Loader/Loader'
+import { Helmet } from 'react-helmet'
 
 export interface ServiceInnerProps {
 	className?: string
@@ -67,6 +68,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const [showValidation, setShowValidation] = useState('')
 	const [savedCustomerId, setSavedCustomerId] = useState('')
 	const [isLoading, setIsLoading] = useState(false)
+	const [error, setError] = useState('')
 
 	const { customer } = useAppSelector(state => state.auth)
 
@@ -103,6 +105,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const resumeQuiz = useCallback(
 		async (answerIds: string[]) => {
 			try {
+				setError('')
 				setIsLoading(true)
 				const { data } = await axios.patch<any, AxiosResponse<Question | { age: number }>>(
 					`survey/continue/${surveyId}`,
@@ -119,6 +122,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 				}
 			} catch (e) {
 				setIsLoading(false)
+				setError('ამ მონაცემებით მომხმარებელი უკვე არსებობს')
 				console.log(e)
 			}
 		},
@@ -396,6 +400,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 						isPsychiatrist={isPsychiatrist}
 						isEdu={isEdu}
 						isGroup={isGroup}
+						error={error}
 					/>
 				)
 			case 8:
@@ -480,36 +485,72 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	}, [slug])
 
 	return (
-		<div className='min-h-screen bg-primary-100 dark:bg-neutral-800 bg-opacity-25'>
-			<div className='grid justify-content-center grid-cols-1 xl:grid-cols-4 md:grid-cols-1 lg:grid-cols-1'>
-				<div className='grid col-start-2 col-span-4 col-end-4 row-start-2 row-end-4'>
-					{step !== 9 ? (
-						<header className='text-center mt-24 mb-10'>
-							<h1 className='text-4xl font-semibold'>{title}</h1>
-							<span className='block text-sm mt-2 text-neutral-700 sm:text-base dark:text-neutral-200 mb-10'>
-								{description}
-							</span>
-						</header>
-					) : null}
+		<>
+			<Helmet>
+				<meta
+					property='og:title'
+					content={`ანიმუსი - ${
+						slug === 'educational'
+							? 'საგანმანათლებლო პროგრამები'
+							: slug === 'grouptherapy'
+							? 'ჯგუფური შეხვედრები'
+							: slug === 'psychiatrist'
+							? 'ფსიქიატრთან კონსულტაცია'
+							: 'ფსიქოლოგთან ვიზიტი'
+					}`}
+				/>
+				<meta
+					property='og:description'
+					content={`${
+						slug === 'educational'
+							? 'მიიღეთ მონაწილეობა საგანმანათლებლო პროგრამებში.'
+							: slug === 'grouptherapy'
+							? 'მიიღეთ მონაწილეობა თერაპიულ ჯგუფებში.'
+							: slug === 'psychiatrist'
+							? 'გაიარეთ კონსულტაცია ემოციის ექიმთან.'
+							: 'ჩანიშნეთ იდნვიდუალური ვიზიტი სპეციალისტთან.'
+					}`}
+				/>
+				<meta
+					property='og:image'
+					content={`https://animuscontent.s3.eu-central-1.amazonaws.com/${
+						slug[0].toUpperCase() + slug.slice(1)
+					}-Appointment-OG.png`}
+				/>
+				<meta content='image/*' property='og:image:type' />
+				<meta property='og:url' content={`https://animus.ge/survey/${slug}`} />
+			</Helmet>
+			<div className='min-h-screen bg-primary-100 dark:bg-neutral-800 bg-opacity-25'>
+				<div className='grid justify-content-center grid-cols-1 xl:grid-cols-4 md:grid-cols-1 lg:grid-cols-1'>
+					<div className='grid col-start-2 col-span-4 col-end-4 row-start-2 row-end-4'>
+						{step !== 9 ? (
+							<header className='text-center mt-24 mb-10'>
+								<h1 className='text-4xl font-semibold'>{title}</h1>
+								<span className='block text-sm mt-2 text-neutral-700 sm:text-base dark:text-neutral-200 mb-10'>
+									{description}
+								</span>
+							</header>
+						) : null}
 
-					{isLoading ? (
-						<div className='bg-white rounded-lg px-10 p-10 dark:bg-neutral-900 mt-24'>
-							<Loader />
-						</div>
-					) : (
-						renderContent()
-					)}
-					<PhoneValidation
-						show={showValidation}
-						onCloseModalDeleteComment={() => {
-							setShowValidation('')
-						}}
-						customerId={savedCustomerId}
-						next={() => setStep(11)}
-					></PhoneValidation>
+						{isLoading ? (
+							<div className='bg-white rounded-lg px-10 p-10 dark:bg-neutral-900 mt-24'>
+								<Loader />
+							</div>
+						) : (
+							renderContent()
+						)}
+						<PhoneValidation
+							show={showValidation}
+							onCloseModalDeleteComment={() => {
+								setShowValidation('')
+							}}
+							customerId={savedCustomerId}
+							next={() => setStep(11)}
+						></PhoneValidation>
+					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	)
 }
 
