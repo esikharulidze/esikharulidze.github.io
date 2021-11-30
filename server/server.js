@@ -143,6 +143,20 @@ app.get('/*', (req, res, next) => {
 	})
 })
 
+app.get(['/index.html', '/'], (req, res) => {
+	fs.readFile(indexPath, 'utf8', function (error, data) {
+		if (error) {
+			console.log(error)
+			return res.status(404).end()
+		}
+		data = data
+			.replace(/\$OG_TITLE/g, 'WWW.ANIMUS.GE')
+			.replace(/\$OG_DESCRIPTION/g, 'ფსიქოთერაპიული და საგანამანათლებლო ცენტრი')
+			.replace(/\$OG_IMAGE/g, 'https://animuscontent.s3.eu-central-1.amazonaws.com/Animus-OG.png')
+		return res.send(data)
+	})
+})
+
 app.listen(PORT, error => {
 	if (error) {
 		return console.log('Error', error)
