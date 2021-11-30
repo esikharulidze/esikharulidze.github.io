@@ -127,9 +127,7 @@ app.get('/survey/*', (req, res, next) => {
 	})
 })
 
-app.get('/*', (req, res, next) => {
-	console.log('other')
-	console.log(req.params)
+app.get(['/index.html', '/'], (req, res) => {
 	fs.readFile(indexPath, 'utf8', function (error, data) {
 		if (error) {
 			console.log(error)
@@ -143,7 +141,9 @@ app.get('/*', (req, res, next) => {
 	})
 })
 
-app.get(['/index.html', '/'], (req, res) => {
+app.get('/*', (req, res, next) => {
+	console.log('other')
+	console.log(req.params)
 	fs.readFile(indexPath, 'utf8', function (error, data) {
 		if (error) {
 			console.log(error)
