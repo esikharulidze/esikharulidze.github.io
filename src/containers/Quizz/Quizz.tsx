@@ -174,7 +174,16 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 				setIsLoading(true)
 				await axios.patch('survey/comment', { comment: val, surveyId })
 				setIsLoading(false)
-				setStep(5)
+				if (query.get('course')) {
+					if (customer) {
+						setStep(8)
+					} else {
+						setStep(6)
+					}
+				} else {
+
+					setStep(5)
+				}
 			} catch (e) {
 				setIsLoading(false)
 				console.log('err')
