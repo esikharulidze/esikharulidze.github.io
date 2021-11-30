@@ -11,8 +11,6 @@ const { getTeamBySlug } = require('./team')
 
 const indexPath = path.resolve(__dirname, '..', 'build', 'index.html')
 
-app.use(express.static(path.resolve(__dirname, '..', 'build'), { maxAge: '30d' }))
-
 app.get('/team/*', (req, res) => {
 	fs.readFile(indexPath, 'utf8', function (error, data) {
 		const team = getTeamBySlug(req.params[0])
@@ -156,6 +154,8 @@ app.get('/*', (req, res, next) => {
 		return res.send(data)
 	})
 })
+
+app.use(express.static(path.resolve(__dirname, '..', 'build'), { maxAge: '30d' }))
 
 app.listen(PORT, error => {
 	if (error) {
