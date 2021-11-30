@@ -12,10 +12,10 @@ interface Props {
 const ChoosePaymentMethod = ({ onSubmit, withPartner=false, isPsychiatrist=false, isEdu=false, isGroup=false }: Props) => {
 	return (
 		<div className=' bg-white rounded-lg px-10 p-10 dark:bg-neutral-900 '>
-			<h2 className='font-semibold text-2xl mb-4'>რომელი გადახდის მეთოდი გსურთ?</h2>
-			<h3>
-				ფსიქოლოგთან ვიზიტის საფასურია <span className='text-successgreen-500'>70₾</span>
-			</h3>
+			<h2 className='font-semibold text-2xl mb-1'>რომელი გადახდის მეთოდი გსურთ?</h2>
+			<p>
+				ფსიქოლოგთან ვიზიტის საფასურია <span className='text-yellow-600 font-semibold'>70₾</span>
+			</p>
 			<div className='grid grid-cols-2 gap-4'></div>
 			<ButtonPrimary onClick={onSubmit} 
 			className='w-full mt-4' 

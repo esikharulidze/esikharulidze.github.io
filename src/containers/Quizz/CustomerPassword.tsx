@@ -44,7 +44,7 @@ const CustomerPassword = ({ onSubmit, withPartner=false, isPsychiatrist=false, i
 					/>
 				</label>
 				{firstValue && lastValue === firstValue && lastValue.length > 5 ? (
-					<ButtonQuizz className='w-full rounded-lg mt-4' 
+					<ButtonQuizz className='w-full rounded-lg mt-1' 
 					onClick={() => onSubmit(firstValue)}
 					bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" : isGroup ? "bg-pink-500 hover:bg-pink-600" : isEdu ? "bg-green-700 hover:bg-green-800" :"bg-primary-6000 hover:bg-primary-700"}
         ringColor={withPartner ? "focus:ring-red-500" : isPsychiatrist ? "focus:ring-yellow-600": isGroup ? "focus:ring-pink-600" : isEdu ? "focus:ring-green-600": "focus:ring-primary-6000"}

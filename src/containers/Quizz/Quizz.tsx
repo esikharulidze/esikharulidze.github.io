@@ -532,14 +532,12 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 			<div className='min-h-screen bg-primary-100 dark:bg-neutral-800 bg-opacity-25'>
 				<div className='grid justify-content-center grid-cols-1 xl:grid-cols-4 md:grid-cols-1 lg:grid-cols-1'>
 					<div className='grid col-start-2 col-span-4 col-end-4 row-start-2 row-end-4'>
-						{step !== 9 ? (
 							<header className='text-center mt-24 mb-10'>
 								<h1 className='text-4xl font-semibold'>{title}</h1>
 								<span className='block text-sm mt-2 text-neutral-700 sm:text-base dark:text-neutral-200 mb-10'>
 									{description}
 								</span>
 							</header>
-						) : null}
 
 						{isLoading ? (
 							<div className='bg-white rounded-lg px-10 p-10 dark:bg-neutral-900 mt-24'>

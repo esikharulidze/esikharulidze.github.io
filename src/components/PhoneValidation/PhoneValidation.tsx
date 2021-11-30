@@ -160,12 +160,16 @@ const PhoneValidation: FC<PhoneValidationProps> = ({ show, onCloseModalDeleteCom
 						დადასტურება
 					</ButtonPrimary>
 				</div>
-				<p
-					className='ml-3 mt-4 cursor-pointer font-semibold'
-					onClick={() => (time === 0 ? onResend() : null)}
+				<div
 				>
-					კოდის თავიდან გაგზავნა {time ? `0:${time.toString().padStart(2, '0')}` : null}
-				</p>
+					{time
+					? <p className="ml-3 mt-4 cursor-pointer text-neutral-6000">კოდის მოქმედების ვადაა: {`0:${time.toString().padStart(2, '0')}`}</p>
+					: <p className='ml-3 mt-4 cursor-pointer font-semibold text-yellow-600' 
+					onClick={() => (time === 0 ? onResend() : null)}
+					>ახალი კოდის გაგზავნა</p>
+					}
+					{/* კოდის თავიდან გაგზავნა {time ? `0:${time.toString().padStart(2, '0')}` : null} */}
+				</div>
 			</div>
 		)
 	}

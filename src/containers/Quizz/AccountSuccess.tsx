@@ -20,7 +20,7 @@ const AccountSuccess = ({
 		<div className=' bg-white rounded-lg px-10 p-10 dark:bg-neutral-900'>
 			<div className='grid grid-cols-4 mt-4 mb-8'>
 				<div className='col-start-2 col-span-2'>
-					<NcImage src='https://i.ibb.co/7W4LJDQ/psychologist-Animus-Bust-2.png'></NcImage>
+					<NcImage src={`https://animuscontent.s3.eu-central-1.amazonaws.com/Signup-Completion-${withPartner ? "Red" : isPsychiatrist ? "Yellow" : isGroup ? "Pink" : isEdu ? "Green" : "Blue"}.png`}></NcImage>
 				</div>
 			</div>
 			<h2 className='font-bold text-3xl mb-2'>

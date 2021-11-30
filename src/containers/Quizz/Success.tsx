@@ -3,7 +3,7 @@ import NcImage from 'components/NcImage/NcImage'
 
 const Success = () => {
 	return (
-		<div className=' bg-white rounded-lg px-10 p-10 dark:bg-neutral-900 mt-24'>
+		<div className=' bg-white rounded-lg px-10 p-10 dark:bg-neutral-900'>
 			<div className='grid grid-cols-4 mt-4 mb-0'>
 				<div className='col-start-2 col-span-2'>
 					{/* <NcImage src='https://i.ibb.co/7W4LJDQ/psychologist-Animus-Bust-2.png'></NcImage> */}
@@ -13,7 +13,7 @@ const Success = () => {
 				ვიზიტი <span className='text-yellow-600'>წარმატებით ჩაინიშნა</span>
 			</h2>
 			<p>
-				ვიზიტის შესახებ დეტალები გამოგზავნილია თქვენს მიერ მითითებულ ტელეფონის ნომერზე, დამატებითი
+				ვიზიტის შესახებ დეტალები გამოგზავნილია თქვენს მიერ მითითებულ ნომერზე, დამატებითი
 				ინფორმაციისთვის გთხოვთ დაუკავშირდეთ ანიმუსის ოპერატორს ნომერზე: +995 32 2112 144
 				{/* <span className='text-successgreen-500'>70₾</span> */}
 			</p>
