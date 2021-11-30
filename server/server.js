@@ -144,7 +144,7 @@ app.get('/*', (req, res, next) => {
 	})
 })
 
-app.use(express.static(path.resolve(__dirname, '../build', 'static'), { maxAge: '30d' }))
+app.use(express.static(path.resolve(__dirname, '..', 'build'), { maxAge: '30d' }))
 
 app.listen(PORT, error => {
 	if (error) {
