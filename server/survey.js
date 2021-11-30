@@ -3,7 +3,7 @@ const survey = [
 		slug: 'psychologist',
 		title: 'ანიმუსი - ფსიქოლოგთან ვიზიტი',
 		description: 'ჩანიშნეთ იდნვიდუალური ვიზიტი სპეციალისტთან.',
-		image: '{https://animuscontent.s3.eu-central-1.amazonaws.com/Psychologist-Appointment-OG.png'
+		image: 'https://animuscontent.s3.eu-central-1.amazonaws.com/Psychologist-Appointment-OG.png'
 	},
 	{
 		slug: 'psychiatrist',

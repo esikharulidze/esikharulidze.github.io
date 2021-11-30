@@ -135,9 +135,6 @@ app.get('/*', (req, res, next) => {
 			console.log(error)
 			return res.status(404).end()
 		}
-		if (req.params[0] === 'post') {
-			console.log('post')
-		}
 		data = data
 			.replace(/\$OG_TITLE/g, 'WWW.ANIMUS.GE')
 			.replace(/\$OG_DESCRIPTION/g, 'ფსიქოთერაპიული და საგანამანათლებლო ცენტრი')
