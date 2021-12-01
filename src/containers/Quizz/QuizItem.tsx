@@ -109,6 +109,8 @@ const QuizzV2: FC<ServiceInnerProps> = ({
 				lasNameInputPlaceholder={lastNameInputPlaceholder}
 				withPartner={withPartner}
 				isPsychiatrist={isPsychiatrist}
+				isEdu={isEdu}
+				isGroup={isGroup}
 				onSubmit={(val: string) => (onSubmit ? onSubmit([val]) : {})}
 			/>
 		)

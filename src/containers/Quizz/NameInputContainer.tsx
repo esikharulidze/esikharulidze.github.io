@@ -10,6 +10,8 @@ interface Props {
 	onSubmit: (val: string) => void
 	withPartner?: Boolean
 	isPsychiatrist?: Boolean
+	isEdu?: Boolean
+	isGroup?: Boolean
 }
 
 const nameField = /^[ა-ჰ]*$/
@@ -21,7 +23,9 @@ const NameInputContainer = ({
 	lastNamePlaceholder,
 	onSubmit,
 	withPartner = false,
-	isPsychiatrist = false
+	isPsychiatrist = false,
+	isEdu = false,
+	isGroup = false
 }: Props) => {
 	const [firstValue, setFirstValue] = useState('')
 	const [lastValue, setLastValue] = useState('')
@@ -81,17 +85,25 @@ const NameInputContainer = ({
 						className='w-full rounded-lg'
 						bgColor={
 							withPartner
-								? 'bg-red-500 hover:bg-red-600'
-								: isPsychiatrist
-								? 'bg-yellow-600 hover:bg-yellow-700'
-								: 'bg-primary-6000 hover:bg-primary-700'
+							? 'bg-red-500 hover:bg-red-600'
+							: isPsychiatrist
+							? 'bg-yellow-600 hover:bg-yellow-700'
+							: isGroup
+							? 'bg-pink-500 hover:bg-pink-600'
+							: isEdu
+							? 'bg-green-700 hover:bg-green-800'
+							: 'bg-primary-6000 hover:bg-primary-700'
 						}
 						ringColor={
 							withPartner
-								? 'focus:ring-red-500'
-								: isPsychiatrist
-								? 'focus:ring-yellow-600'
-								: 'focus:ring-primary-6000'
+							? 'focus:ring-red-500'
+							: isPsychiatrist
+							? 'focus:ring-yellow-600'
+							: isGroup
+							? 'focus:ring-pink-600'
+							: isEdu
+							? 'focus:ring-green-600'
+							: 'focus:ring-primary-6000'
 						}
 						onClick={() => {
 							onSubmit(`${firstValue} ${lastValue}`)

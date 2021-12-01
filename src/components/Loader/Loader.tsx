@@ -15,7 +15,7 @@ interface Props {
 const Loader = ({ absolute }: Props) => {
 	if (absolute) {
 		return (
-			<div className='w-screen h-screen fixed flex items-center justify-center z-50 top-0 left-0 bg-white'>
+			<div className='w-screen h-screen fixed flex items-center justify-center z-50 top-0 left-0 bg-white dark:bg-neutral-900'>
 				<div className='sweet-loading'>
 					<PuffLoader color='#c026d3' loading={true} css={override} size={150} />
 				</div>
