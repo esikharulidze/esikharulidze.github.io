@@ -9,6 +9,8 @@ const { getGroupTherapyBySlug } = require('./groupTherapy')
 const { getEducationalBySlug } = require('./educational')
 const { getTeamBySlug } = require('./team')
 
+app.use(express.static(path.resolve(__dirname, '..', 'build'), { maxAge: '30d' }))
+
 const indexPath = path.resolve(__dirname, '..', 'build', 'index.html')
 
 app.get('/team/*', (req, res) => {
@@ -154,8 +156,6 @@ app.get('/*', (req, res, next) => {
 		return res.send(data)
 	})
 })
-
-app.use(express.static(path.resolve(__dirname, '..', 'build'), { maxAge: '30d' }))
 
 app.listen(PORT, error => {
 	if (error) {
