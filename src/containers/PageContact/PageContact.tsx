@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState, useCallback } from 'react'
 import ButtonPrimary from 'components/Button/ButtonPrimary'
 import Input from 'components/Input/Input'
 import Label from 'components/Label/Label'
@@ -8,6 +8,7 @@ import Textarea from 'components/Textarea/Textarea'
 import { Helmet } from 'react-helmet'
 import SectionSubscribe2 from 'components/SectionSubscribe2/SectionSubscribe2'
 import Loader from 'components/Loader/Loader'
+import axios from 'utils/axios'
 
 export interface PageContactProps {
 	className?: string
@@ -30,11 +31,31 @@ const info = [
 
 const PageContact: FC<PageContactProps> = ({ className = '' }) => {
 	const [isLoading, setIsLoading] = useState(true)
+	const [email, setEmail] = useState('')
+	const [author, setAuthor] = useState('')
+	const [content, setContent] = useState('')
 	useEffect(() => {
 		setTimeout(() => {
 			setIsLoading(false)
 		}, 1000)
 	}, [])
+
+	const onSubmit = useCallback(async () => {
+		try {
+			setIsLoading(true)
+			await axios.post('contact/send', {
+				email,
+				author,
+				content
+			})
+			setEmail('')
+			setAuthor('')
+			setContent('')
+			setIsLoading(false)
+		} catch (e) {
+			setIsLoading(false)
+		}
+	}, [email, author, content])
 	return (
 		<div className={`nc-PageContact ${className}`} data-nc-id='PageContact'>
 			<Helmet>
@@ -67,23 +88,47 @@ const PageContact: FC<PageContactProps> = ({ className = '' }) => {
 					</div>
 					<div className='border border-neutral-100 dark:border-neutral-700 lg:hidden'></div>
 					<div>
-						<form className='grid grid-cols-1 gap-6' action='#' method='post'>
+						<form
+							className='grid grid-cols-1 gap-6'
+							action='#'
+							method='post'
+							onSubmit={e => e.preventDefault()}
+						>
 							<label className='block'>
 								<Label>შეტყობინების ავტორი</Label>
 
-								<Input placeholder='სახელი გვარი' type='text' className='mt-1' />
+								<Input
+									placeholder='სახელი გვარი'
+									type='text'
+									className='mt-1'
+									value={author}
+									onChange={({ target: { value } }) => setAuthor(value)}
+								/>
 							</label>
 							<label className='block'>
 								<Label>ელ.ფოსტა</Label>
 
-								<Input type='email' placeholder='example@animus.ge' className='mt-1' />
+								<Input
+									type='email'
+									placeholder='example@animus.ge'
+									className='mt-1'
+									value={email}
+									onChange={({ target: { value } }) => setEmail(value)}
+								/>
 							</label>
 							<label className='block'>
 								<Label>შეტყობინება</Label>
 
-								<Textarea className='mt-1' rows={6} />
+								<Textarea
+									className='mt-1'
+									rows={6}
+									value={content}
+									onChange={({ target: { value } }) => setContent(value)}
+								/>
 							</label>
-							<ButtonPrimary type='submit'>გაგზავნე</ButtonPrimary>
+							{author && email && content ? (
+								<ButtonPrimary onClick={onSubmit}>გაგზავნე</ButtonPrimary>
+							) : null}
 						</form>
 					</div>
 				</div>

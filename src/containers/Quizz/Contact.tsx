@@ -31,7 +31,12 @@ const Contact = ({
 		<div className=' bg-white rounded-lg px-10 p-10 dark:bg-neutral-900 '>
 			<h2 className='font-semibold text-2xl mb-4'>როგორ დაგეკონტაქტოთ?</h2>
 			<div className='grid grid-cols-2 gap-4'></div>
-			<form className='grid grid-cols-1 gap-6' action='#' method='post'>
+			<form
+				className='grid grid-cols-1 gap-6'
+				action='#'
+				method='post'
+				onSubmit={e => e.preventDefault()}
+			>
 				<label className='block'>
 					<span className='text-neutral-800 dark:text-neutral-200'>თქვენი ელ.ფოსტა</span>
 					<Input

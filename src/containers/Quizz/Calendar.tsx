@@ -16,7 +16,14 @@ interface Props {
 	isGroup?: Boolean
 }
 
-const Calendar = ({ type, onSubmit, withPartner = false, isPsychiatrist = false, isEdu=false, isGroup=false }: Props) => {
+const Calendar = ({
+	type,
+	onSubmit,
+	withPartner = false,
+	isPsychiatrist = false,
+	isEdu = false,
+	isGroup = false
+}: Props) => {
 	const [step, setStep] = useState(1)
 	const [therapists, setTherapists] = useState<BackendUser[]>()
 
@@ -30,41 +37,76 @@ const Calendar = ({ type, onSubmit, withPartner = false, isPsychiatrist = false,
 		[therapists]
 	)
 
-	const availableDates = useMemo(
-		() =>
-			Array.from(Array(7).keys())
-				.slice(0)
-				.map(key => {
-					const usableDate = new Date(
-						new Date().setDate(new Date(new Date().setHours(0, 0, 0, 0)).getDate() + key)
-					)
-					console.log(usableDate)
-					return {
-						id: usableDate.toISOString(),
-						value: format(usableDate, 'dd MMM. - EEEE', {
-							locale: ka
-						})
+	const availableDates = useMemo(() => {
+		const res = Array.from(Array(7).keys())
+			.slice(0)
+			.map(key => {
+				const usableDate = new Date(
+					new Date().setDate(new Date(new Date().setHours(0, 0, 0, 0)).getDate() + key)
+				)
+				console.log(usableDate)
+				return {
+					id: usableDate.toISOString(),
+					value: format(usableDate, 'dd MMM. - EEEE', {
+						locale: ka
+					})
+				}
+			})
+			.filter(res => {
+				console.log(res)
+				if (format(parseISO(res.id), 'dd/MM') === format(new Date(), 'dd/MM')) {
+					const currentHour = new Date().getHours()
+					const hours = therapistCalendar?.hours.filter(hour => Number(hour.slice(2)) > currentHour)
+					if (!hours?.length) {
+						return false
 					}
-				})
-				.filter(res => {
-					console.log(res)
-					return therapistCalendar?.days.includes(res.value.split(' ')[3] as WeekDays)
-				}),
-		[therapistCalendar]
-	)
+				}
+				const hours = therapistCalendar?.reserved
+					.filter(
+						reserved =>
+							format(parseISO(reserved.date), 'dd/MM') ===
+							format(parseISO(res.id || new Date().toISOString()), 'dd/MM')
+					)
+					.map(ui => {
+						if (
+							format(parseISO(ui.date), 'dd/MM') ===
+							format(parseISO(new Date().toISOString()), 'dd/MM')
+						) {
+							return Number(ui.time.substr(0, 2)) - new Date().getHours() - 5 > 0 ? ui.time : ''
+						}
+						return ui.time
+					})
+				console.log(hours)
+				return (
+					therapistCalendar?.days.includes(res.value.split(' ')[3] as WeekDays) &&
+					hours?.length !== 5
+				)
+			})
+
+		return res
+	}, [therapistCalendar])
 
 	const availableHours = useMemo(() => {
+		console.log('therapistCalendar', therapistCalendar?.reserved)
+		if (selectedDate) {
+			if (format(parseISO(selectedDate.id), 'dd/MM') === format(new Date(), 'dd/MM')) {
+				const currentHour = new Date().getHours()
+				return therapistCalendar?.hours.filter(hour => Number(hour.slice(2)) > currentHour)
+			}
+		}
 		const res = therapistCalendar?.reserved
-			.filter(
-				reserved =>
+			.filter(reserved => {
+				console.log(reserved, 'reserved')
+				return (
 					format(parseISO(reserved.date), 'dd/MM') ===
 					format(parseISO(selectedDate?.id || new Date().toISOString()), 'dd/MM')
-			)
+				)
+			})
 			.map(ui => {
 				if (
 					format(parseISO(ui.date), 'dd/MM') === format(parseISO(new Date().toISOString()), 'dd/MM')
 				) {
-					return Number(ui.time.substr(0, 2)) - new Date().getHours() > 0 ? ui.time : ''
+					return Number(ui.time.substr(0, 2)) - new Date().getHours() > 0 ? ui.time : undefined
 				}
 				return ui.time
 			})
@@ -107,56 +149,90 @@ const Calendar = ({ type, onSubmit, withPartner = false, isPsychiatrist = false,
 					setSelected={setSelectedTherapist}
 					dataExtractor={(item: any) => item.value}
 				/>
-				{
-				selectedTherapist ?
-				<ButtonPrimary
-					className='w-full mt-5'
-					bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" : isGroup ? "bg-pink-500 hover:bg-pink-600" : isEdu ? "bg-green-700 hover:bg-green-800" :"bg-primary-6000 hover:bg-primary-700"}
-        ringColor={withPartner ? "focus:ring-red-500" : isPsychiatrist ? "focus:ring-yellow-600": isGroup ? "focus:ring-pink-600" : isEdu ? "focus:ring-green-600": "focus:ring-primary-6000"}
-					textArrangement='text-left'
-					onClick={onTherapistChoose}
-				>
-					შემდეგი ნაბიჯი
-				</ButtonPrimary>
-				: null
-				}
-				{!isEdu ?
-        <div className='mt-5'>
-				<div className={isPsychiatrist ? 'flex flex-row gap-4 block bg-red-500 mb-2 w-full rounded-md p-5': isGroup ? 'flex flex-row gap-4 block bg-red-500 mb-2 w-full rounded-md p-5' :'flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'}>
-					<div>
-						<svg
-							width='40'
-							height='40'
-							viewBox='0 0 48 48'
-							fill='none'
-							xmlns='http://www.w3.org/2000/svg'
+				{selectedTherapist ? (
+					<ButtonPrimary
+						className='w-full mt-5'
+						bgColor={
+							withPartner
+								? 'bg-red-500 hover:bg-red-600'
+								: isPsychiatrist
+								? 'bg-yellow-600 hover:bg-yellow-700'
+								: isGroup
+								? 'bg-pink-500 hover:bg-pink-600'
+								: isEdu
+								? 'bg-green-700 hover:bg-green-800'
+								: 'bg-primary-6000 hover:bg-primary-700'
+						}
+						ringColor={
+							withPartner
+								? 'focus:ring-red-500'
+								: isPsychiatrist
+								? 'focus:ring-yellow-600'
+								: isGroup
+								? 'focus:ring-pink-600'
+								: isEdu
+								? 'focus:ring-green-600'
+								: 'focus:ring-primary-6000'
+						}
+						textArrangement='text-left'
+						onClick={onTherapistChoose}
+					>
+						შემდეგი ნაბიჯი
+					</ButtonPrimary>
+				) : null}
+				{!isEdu ? (
+					<div className='mt-5'>
+						<div
+							className={
+								isPsychiatrist
+									? 'flex flex-row gap-4 block bg-red-500 mb-2 w-full rounded-md p-5'
+									: isGroup
+									? 'flex flex-row gap-4 block bg-red-500 mb-2 w-full rounded-md p-5'
+									: 'flex flex-row gap-4 block bg-yellow-600 mb-2 w-full rounded-md p-5'
+							}
 						>
-							<path
-								d='M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z'
-								fill={isPsychiatrist ? '#dc3c3c': isGroup ? '#dc3c3c': '#BA7F02'}
-							/>
-							<path
-								d='M24 32V24'
-								stroke='white'
-								stroke-width='4'
-								stroke-linecap='round'
-								stroke-linejoin='round'
-							/>
-							<path
-								d='M24 16H24.0204'
-								stroke='white'
-								stroke-width='4'
-								stroke-linecap='round'
-								stroke-linejoin='round'
-							/>
-						</svg>
+							<div>
+								<svg
+									width='40'
+									height='40'
+									viewBox='0 0 48 48'
+									fill='none'
+									xmlns='http://www.w3.org/2000/svg'
+								>
+									<path
+										d='M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z'
+										fill={isPsychiatrist ? '#dc3c3c' : isGroup ? '#dc3c3c' : '#BA7F02'}
+									/>
+									<path
+										d='M24 32V24'
+										stroke='white'
+										stroke-width='4'
+										stroke-linecap='round'
+										stroke-linejoin='round'
+									/>
+									<path
+										d='M24 16H24.0204'
+										stroke='white'
+										stroke-width='4'
+										stroke-linecap='round'
+										stroke-linejoin='round'
+									/>
+								</svg>
+							</div>
+							<p className='text-white md:text-sm lg:text-sm'>
+								კითხვარს გაეცნობა მხოლოდ თქვენ მიერ არჩეული სპეციალისტი, რათა შემოგთავაზოთ
+								თქვენზე მორგებული თერაპია ან მკურნალობა. კონფიდენციალურობის პოლიტიკა{' '}
+								<a
+									className='font-semibold'
+									target='_blank'
+									href='https://animus.ge/privacy-policy'
+								>
+									იხილეთ ბმულზე.
+								</a>
+							</p>
+						</div>
 					</div>
-					<p className='text-white md:text-sm lg:text-sm'>
-						კითხვარს გაეცნობა მხოლოდ თქვენ მიერ არჩეული სპეციალისტი, რათა შემოგთავაზოთ თქვენზე მორგებული თერაპია ან მკურნალობა. კონფიდენციალურობის პოლიტიკა <a className="font-semibold" target="_blank" href="https://animus.ge/privacy-policy">იხილეთ ბმულზე.</a>
-					</p>
-				</div>
-			</div> : null
-      }
+				) : null}
 			</div>
 		)
 	}
@@ -179,38 +255,57 @@ const Calendar = ({ type, onSubmit, withPartner = false, isPsychiatrist = false,
 					selected={selectedTime ? selectedTime : undefined}
 					data={availableHours}
 					setSelected={setSelectedTime}
+					disabled={!selectedDate}
 				/>
 			</div>
-			{
-				selectedDate && selectedTime ?
-			<div className="flex gap-4">
-			<ButtonPrimary
-				className='w-full mt-5 text-left text-neutral-6000'
-				bgColor="bg-gray-100 hover:bg-gray-200"
-				ringColor="focus:ring-gray-100"
-				textArrangement='text-left'
-				onClick={() => setStep(1)}
-			>
-				უკან დაბრუნება
-			</ButtonPrimary>
-			<ButtonPrimary
-				className='w-full mt-5 text-left'
-				bgColor={withPartner ? "bg-red-500 hover:bg-red-600" : isPsychiatrist ? "bg-yellow-600 hover:bg-yellow-700" : isGroup ? "bg-pink-500 hover:bg-pink-600" : isEdu ? "bg-green-700 hover:bg-green-800" :"bg-primary-6000 hover:bg-primary-700"}
-        ringColor={withPartner ? "focus:ring-red-500" : isPsychiatrist ? "focus:ring-yellow-600": isGroup ? "focus:ring-pink-600" : isEdu ? "focus:ring-green-600": "focus:ring-primary-6000"}
-				textArrangement='text-left'
-				onClick={() => {
-					onSubmit({
-						therapistId: selectedTherapist!.id,
-						date: selectedDate!.id,
-						hour: selectedTime!
-					})
-				}}
-			>
-				შემდეგი ნაბიჯი
-			</ButtonPrimary>
-			</div>
-			: null
-			}
+			{selectedDate && selectedTime ? (
+				<div className='flex gap-4'>
+					<ButtonPrimary
+						className='w-full mt-5 text-left text-neutral-6000'
+						bgColor='bg-gray-100 hover:bg-gray-200'
+						ringColor='focus:ring-gray-100'
+						textArrangement='text-left'
+						onClick={() => setStep(1)}
+					>
+						უკან დაბრუნება
+					</ButtonPrimary>
+					<ButtonPrimary
+						className='w-full mt-5 text-left'
+						bgColor={
+							withPartner
+								? 'bg-red-500 hover:bg-red-600'
+								: isPsychiatrist
+								? 'bg-yellow-600 hover:bg-yellow-700'
+								: isGroup
+								? 'bg-pink-500 hover:bg-pink-600'
+								: isEdu
+								? 'bg-green-700 hover:bg-green-800'
+								: 'bg-primary-6000 hover:bg-primary-700'
+						}
+						ringColor={
+							withPartner
+								? 'focus:ring-red-500'
+								: isPsychiatrist
+								? 'focus:ring-yellow-600'
+								: isGroup
+								? 'focus:ring-pink-600'
+								: isEdu
+								? 'focus:ring-green-600'
+								: 'focus:ring-primary-6000'
+						}
+						textArrangement='text-left'
+						onClick={() => {
+							onSubmit({
+								therapistId: selectedTherapist!.id,
+								date: selectedDate!.id,
+								hour: selectedTime!
+							})
+						}}
+					>
+						შემდეგი ნაბიჯი
+					</ButtonPrimary>
+				</div>
+			) : null}
 			<div className='mt-5'>
 				<div
 					className={

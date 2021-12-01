@@ -105,7 +105,6 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const resumeQuiz = useCallback(
 		async (answerIds: string[]) => {
 			try {
-				setError('')
 				setIsLoading(true)
 				const { data } = await axios.patch<any, AxiosResponse<Question | { age: number }>>(
 					`survey/continue/${surveyId}`,
@@ -122,7 +121,6 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 				}
 			} catch (e) {
 				setIsLoading(false)
-				setError('ამ მონაცემებით მომხმარებელი უკვე არსებობს')
 				console.log(e)
 			}
 		},
@@ -130,22 +128,28 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	)
 
 	const onFirstStepChoice = useCallback(
-		(val: 'first' | 'second') => {
+		async (val: 'first' | 'second') => {
 			if (val === 'second') {
 				if (slug === 'psychiatrist') {
 					setForElse(true)
 				} else if (slug === 'psychologist') {
 					setWithPartner(true)
 				}
-			}
-			setStep(2)
-		},
-		[slug]
-	)
-
-	useEffect(() => {
-		;(async () => {
-			try {
+				if (customer) {
+					setIsLoading(true)
+					const { data } = await axios.get<any, AxiosResponse<BackendSurvey>>(
+						`customer/check-survey/${slug}?${
+							slug === 'psychologist' ? 'partner=true' : 'forElse=true'
+						}`
+					)
+					console.log(data)
+					setIsLoading(false)
+					setSurveyId(data._id)
+					setStep(0)
+				} else {
+					setStep(2)
+				}
+			} else {
 				if (customer) {
 					setIsLoading(true)
 					const { data } = await axios.get<any, AxiosResponse<BackendSurvey>>(
@@ -155,12 +159,13 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 					setIsLoading(false)
 					setSurveyId(data._id)
 					setStep(0)
+				} else {
+					setStep(2)
 				}
-			} catch (e) {
-				setIsLoading(false)
 			}
-		})()
-	}, [customer, slug])
+		},
+		[slug, customer]
+	)
 
 	useEffect(() => {
 		if (slug === 'grouptherapy' || slug === 'educational') {
@@ -181,7 +186,6 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 						setStep(6)
 					}
 				} else {
-
 					setStep(5)
 				}
 			} catch (e) {
@@ -255,6 +259,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 	const onContactSubmit = useCallback(
 		async (val: { email: string; phone: string }) => {
 			try {
+				setError('')
 				setCustomerEmail(val.email)
 				setCustomerPhone(val.phone)
 				setIsLoading(true)
@@ -278,6 +283,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 				}
 				setIsLoading(false)
 			} catch (e) {
+				setError('ამ მონაცემებით მომხმარებელი უკვე არსებობს')
 				setIsLoading(false)
 				console.log(e)
 			}
@@ -532,12 +538,12 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 			<div className='min-h-screen bg-primary-100 dark:bg-neutral-800 bg-opacity-25'>
 				<div className='grid justify-content-center grid-cols-1 xl:grid-cols-4 md:grid-cols-1 lg:grid-cols-1'>
 					<div className='grid col-start-2 col-span-4 col-end-4 row-start-2 row-end-4'>
-							<header className='text-center mt-24 mb-10'>
-								<h1 className='text-4xl font-semibold'>{title}</h1>
-								<span className='block text-sm mt-2 text-neutral-700 sm:text-base dark:text-neutral-200 mb-10'>
-									{description}
-								</span>
-							</header>
+						<header className='text-center mt-24 mb-10'>
+							<h1 className='text-4xl font-semibold'>{title}</h1>
+							<span className='block text-sm mt-2 text-neutral-700 sm:text-base dark:text-neutral-200 mb-10'>
+								{description}
+							</span>
+						</header>
 
 						{isLoading ? (
 							<div className='bg-white rounded-lg px-10 p-10 dark:bg-neutral-900 mt-24'>

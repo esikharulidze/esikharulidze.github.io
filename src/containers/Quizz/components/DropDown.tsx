@@ -70,39 +70,41 @@ const DropDown: FC<Props> = ({
 				</div>
 			) : null}
 			<div className='absolute right-4 top-4' onClick={() => setShow(!show)}>
-				{!disabled && show ? (
-					<svg
-						width='16'
-						height='16'
-						viewBox='0 0 16 16'
-						fill='none'
-						xmlns='http://www.w3.org/2000/svg'
-					>
-						<path
-							d='M12 10L8 6L4 10'
-							stroke='#555454'
-							stroke-width='2'
-							stroke-linecap='round'
-							stroke-linejoin='round'
-						/>
-					</svg>
-				) : (
-					<svg
-						width='16'
-						height='16'
-						viewBox='0 0 16 16'
-						fill='none'
-						xmlns='http://www.w3.org/2000/svg'
-					>
-						<path
-							d='M4 6L8 10L12 6'
-							stroke='#555454'
-							stroke-width='2'
-							stroke-linecap='round'
-							stroke-linejoin='round'
-						/>
-					</svg>
-				)}
+				{!disabled ? (
+					show ? (
+						<svg
+							width='16'
+							height='16'
+							viewBox='0 0 16 16'
+							fill='none'
+							xmlns='http://www.w3.org/2000/svg'
+						>
+							<path
+								d='M12 10L8 6L4 10'
+								stroke='#555454'
+								stroke-width='2'
+								stroke-linecap='round'
+								stroke-linejoin='round'
+							/>
+						</svg>
+					) : (
+						<svg
+							width='16'
+							height='16'
+							viewBox='0 0 16 16'
+							fill='none'
+							xmlns='http://www.w3.org/2000/svg'
+						>
+							<path
+								d='M4 6L8 10L12 6'
+								stroke='#555454'
+								stroke-width='2'
+								stroke-linecap='round'
+								stroke-linejoin='round'
+							/>
+						</svg>
+					)
+				) : null}
 			</div>
 		</div>
 	)

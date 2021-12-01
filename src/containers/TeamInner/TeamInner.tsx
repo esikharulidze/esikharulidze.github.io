@@ -1,60 +1,63 @@
-import ButtonPrimary from "components/Button/ButtonPrimary";
-import ButtonSecondary from "components/Button/ButtonSecondary";
-import LayoutPage from "components/LayoutPage/LayoutPage";
-import NcImage from "components/NcImage/NcImage";
-import React, { FC, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import ModalCourse from "components/ModalCourse/ModalCourse";
+import ButtonPrimary from 'components/Button/ButtonPrimary'
+import ButtonSecondary from 'components/Button/ButtonSecondary'
+import LayoutPage from 'components/LayoutPage/LayoutPage'
+import NcImage from 'components/NcImage/NcImage'
+import React, { FC, useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import ModalCourse from 'components/ModalCourse/ModalCourse'
 import axios from 'utils/axios'
-import { AxiosResponse } from "axios";
-import { BackendUser } from "types";
-
+import { AxiosResponse } from 'axios'
+import { BackendUser } from 'types'
+import Loader from 'components/Loader/Loader'
 
 export interface ServiceInnerProps {
-  className?: string;
+	className?: string
 }
 
+const ServiceInner: FC<ServiceInnerProps> = ({ className = '' }) => {
+	const [isReporting, setIsReporting] = useState(false)
+	const openModalReportComment = () => setIsReporting(true)
+	const closeModalReportComment = () => setIsReporting(false)
+	const [user, setUser] = useState<BackendUser>()
+	const [isLoading, setIsLoading] = useState(true)
 
-const ServiceInner: FC<ServiceInnerProps> = ({ className = "" }) => {
+	const { slug } = useParams<{ slug: string }>()
 
-const [isReporting, setIsReporting] = useState(false);
-const openModalReportComment = () => setIsReporting(true);
-const closeModalReportComment = () => setIsReporting(false);
-const [user, setUser] = useState<BackendUser>()
+	useEffect(() => {
+		;(async () => {
+			try {
+				setIsLoading(true)
+				await axios.get<any, AxiosResponse<BackendUser>>(`user/${slug}`).then(({ data }) => {
+					setUser(data)
+				})
+				setTimeout(() => {
+					setIsLoading(false)
+				}, 1000)
+			} catch (e) {
+				setTimeout(() => {
+					setIsLoading(false)
+				}, 1000)
+			}
+		})()
+	}, [slug])
 
-const {slug} = useParams<{slug: string}>()
+	return (
+		<div>
+			{isLoading ? <Loader absolute /> : null}
+			<LayoutPage isInner={true} heading=''>
+				<div className='grid lg:grid-cols-4 gap-8 sm:grid-cols-1 md:gird-cols-2'>
+					<NcImage className='rounded-2xl' src={user?.avatar}></NcImage>
 
-useEffect(() => {
-  (async () => {
-    try {
-      await axios.get<any, AxiosResponse<BackendUser>>(`user/${slug}`).then(({data}) => {
-        setUser(data)
-      })
-    } catch (e) {
-
-    }
-  })()
-}, [slug])
-
-  return (
-    <div>
-      <LayoutPage isInner={true} heading="">
-        <div className="grid lg:grid-cols-4 gap-8 sm:grid-cols-1 md:gird-cols-2">
-          <NcImage
-            className="rounded-2xl"
-            src={user?.avatar}
-          ></NcImage>
-          
-          <div className="lg:col-span-3 sm:col-span-1 md:col-span-2">
-            <h2 className="font-semibold text-3xl text-neutral-900 dark:text-neutral-100">
-              {user?.firstName + ' ' + user?.lastName}
-            </h2>
-            <h2 className="block text-base text-neutral-500 sm:text-base dark:text-neutral-400 mb-2">
-              {user?.jobTitle}
-            </h2>
-            <hr />
-            {user?.about ? <div dangerouslySetInnerHTML={{__html: user?.about}}></div> : <></>}
-            {/* <h2 className="text-center font-semibold text-neutral-900 sm:text-base dark:text-neutral-100 mt-5">
+					<div className='lg:col-span-3 sm:col-span-1 md:col-span-2'>
+						<h2 className='font-semibold text-3xl text-neutral-900 dark:text-neutral-100'>
+							{user?.firstName + ' ' + user?.lastName}
+						</h2>
+						<h2 className='block text-base text-neutral-500 sm:text-base dark:text-neutral-400 mb-2'>
+							{user?.jobTitle}
+						</h2>
+						<hr />
+						{user?.about ? <div dangerouslySetInnerHTML={{ __html: user?.about }}></div> : <></>}
+						{/* <h2 className="text-center font-semibold text-neutral-900 sm:text-base dark:text-neutral-100 mt-5">
               განათლება
             </h2>
             <div className="block text-base xl:text-base text-neutral-6000 dark:text-neutral-400 mt-2 ">
@@ -126,12 +129,11 @@ useEffect(() => {
                 ჯანმრთელობის ცენტრის ორგანიზებით.
               </p>
             </div> */}
-          </div>
-        </div>
+					</div>
+				</div>
+			</LayoutPage>
+		</div>
+	)
+}
 
-      </LayoutPage>
-    </div>
-  );
-};
-
-export default ServiceInner;
+export default ServiceInner
