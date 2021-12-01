@@ -22,14 +22,9 @@ app.get('/team/*', (req, res) => {
 		}
 		if (team) {
 			data = data
-				.replace(/\$OG_TITLE/g, team.title)
-				.replace(/\$OG_DESCRIPTION/g, team.description)
-				.replace(/\$OG_IMAGE/g, team.image)
-		} else {
-			data = data
-				.replace(/\$OG_TITLE/g, 'WWW.ANIMUS.GE')
-				.replace(/\$OG_DESCRIPTION/g, 'ფსიქოთერაპიული და საგანამანათლებლო ცენტრი')
-				.replace(/\$OG_IMAGE/g, 'https://animuscontent.s3.eu-central-1.amazonaws.com/Animus-OG.png')
+				.replace('WWW.ANIMUS.GE', team.title)
+				.replace('ფსიქოთერაპიული და საგანამანათლებლო ცენტრი', team.description)
+				.replace('https://animuscontent.s3.eu-central-1.amazonaws.com/Animus-OG.png', team.image)
 		}
 		return res.send(data)
 	})
@@ -44,14 +39,9 @@ app.get('/grouptherapy/*', (req, res) => {
 		}
 		if (therapy) {
 			data = data
-				.replace(/\$OG_TITLE/g, therapy.title)
-				.replace(/\$OG_DESCRIPTION/g, therapy.description)
-				.replace(/\$OG_IMAGE/g, therapy.image)
-		} else {
-			data = data
-				.replace(/\$OG_TITLE/g, 'WWW.ANIMUS.GE')
-				.replace(/\$OG_DESCRIPTION/g, 'ფსიქოთერაპიული და საგანამანათლებლო ცენტრი')
-				.replace(/\$OG_IMAGE/g, 'https://animuscontent.s3.eu-central-1.amazonaws.com/Animus-OG.png')
+				.replace('WWW.ANIMUS.GE', therapy.title)
+				.replace('ფსიქოთერაპიული და საგანამანათლებლო ცენტრი', therapy.description)
+				.replace('https://animuscontent.s3.eu-central-1.amazonaws.com/Animus-OG.png', therapy.image)
 		}
 		return res.send(data)
 	})
@@ -66,14 +56,9 @@ app.get('/educational/*', (req, res) => {
 		}
 		if (therapy) {
 			data = data
-				.replace(/\$OG_TITLE/g, therapy.title)
-				.replace(/\$OG_DESCRIPTION/g, therapy.description)
-				.replace(/\$OG_IMAGE/g, therapy.image)
-		} else {
-			data = data
-				.replace(/\$OG_TITLE/g, 'WWW.ANIMUS.GE')
-				.replace(/\$OG_DESCRIPTION/g, 'ფსიქოთერაპიული და საგანამანათლებლო ცენტრი')
-				.replace(/\$OG_IMAGE/g, 'https://animuscontent.s3.eu-central-1.amazonaws.com/Animus-OG.png')
+				.replace('WWW.ANIMUS.GE', therapy.title)
+				.replace('ფსიქოთერაპიული და საგანამანათლებლო ცენტრი', therapy.description)
+				.replace('https://animuscontent.s3.eu-central-1.amazonaws.com/Animus-OG.png', therapy.image)
 		}
 		return res.send(data)
 	})
@@ -91,14 +76,9 @@ app.get('/post/*', (req, res, next) => {
 		}
 		if (post) {
 			data = data
-				.replace(/\$OG_TITLE/g, post.title)
-				.replace(/\$OG_DESCRIPTION/g, post.description)
-				.replace(/\$OG_IMAGE/g, post.image)
-		} else {
-			data = data
-				.replace(/\$OG_TITLE/g, 'WWW.ANIMUS.GE')
-				.replace(/\$OG_DESCRIPTION/g, 'ფსიქოთერაპიული და საგანამანათლებლო ცენტრი')
-				.replace(/\$OG_IMAGE/g, 'https://animuscontent.s3.eu-central-1.amazonaws.com/Animus-OG.png')
+				.replace('WWW.ANIMUS.GE', post.title)
+				.replace('ფსიქოთერაპიული და საგანამანათლებლო ცენტრი', post.description)
+				.replace('https://animuscontent.s3.eu-central-1.amazonaws.com/Animus-OG.png', post.image)
 		}
 		return res.send(data)
 	})
@@ -114,14 +94,9 @@ app.get('/survey/*', (req, res, next) => {
 		}
 		if (survey) {
 			data = data
-				.replace(/\$OG_TITLE/g, survey.title)
-				.replace(/\$OG_DESCRIPTION/g, survey.description)
-				.replace(/\$OG_IMAGE/g, survey.image)
-		} else {
-			data = data
-				.replace(/\$OG_TITLE/g, 'WWW.ANIMUS.GE')
-				.replace(/\$OG_DESCRIPTION/g, 'ფსიქოთერაპიული და საგანამანათლებლო ცენტრი')
-				.replace(/\$OG_IMAGE/g, 'https://animuscontent.s3.eu-central-1.amazonaws.com/Animus-OG.png')
+				.replace('WWW.ANIMUS.GE', survey.title)
+				.replace('ფსიქოთერაპიული და საგანამანათლებლო ცენტრი', survey.description)
+				.replace('https://animuscontent.s3.eu-central-1.amazonaws.com/Animus-OG.png', survey.image)
 		}
 		return res.send(data)
 	})
@@ -133,10 +108,6 @@ app.get(['/index.html', '/'], (req, res) => {
 			console.log(error)
 			return res.status(404).end()
 		}
-		data = data
-			.replace(/\$OG_TITLE/g, 'WWW.ANIMUS.GE')
-			.replace(/\$OG_DESCRIPTION/g, 'ფსიქოთერაპიული და საგანამანათლებლო ცენტრი')
-			.replace(/\$OG_IMAGE/g, 'https://animuscontent.s3.eu-central-1.amazonaws.com/Animus-OG.png')
 		return res.send(data)
 	})
 })
@@ -149,10 +120,6 @@ app.get('/*', (req, res, next) => {
 			console.log(error)
 			return res.status(404).end()
 		}
-		data = data
-			.replace(/\$OG_TITLE/g, 'WWW.ANIMUS.GE')
-			.replace(/\$OG_DESCRIPTION/g, 'ფსიქოთერაპიული და საგანამანათლებლო ცენტრი')
-			.replace(/\$OG_IMAGE/g, 'https://animuscontent.s3.eu-central-1.amazonaws.com/Animus-OG.png')
 		return res.send(data)
 	})
 })
