@@ -180,8 +180,18 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 				await axios.patch('survey/comment', { comment: val, surveyId })
 				setIsLoading(false)
 				if (query.get('course')) {
+					const { data } = await axios.post('appointment/create', {
+						surveyId,
+						customer: customer ? customer._id : ''
+					})
+					setAppointmentId(data)
 					if (customer) {
-						setStep(8)
+						await axios.post('group/reserve', {
+							courseId: query.get('course'),
+							appointmentId: data,
+							remote: !!query.get('remote')
+						})
+						setStep(9)
 					} else {
 						setStep(6)
 					}
@@ -193,7 +203,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 				console.log('err')
 			}
 		},
-		[surveyId]
+		[surveyId, customer, query]
 	)
 
 	const onDateChoose = useCallback(
@@ -279,7 +289,16 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 					setSavedCustomerId(data._id)
 					setShowValidation(val.phone.slice(-3))
 				} else {
-					setStep(8)
+					if (query.get('course')) {
+						await axios.post('group/reserve', {
+							courseId: query.get('course'),
+							appointmentId,
+							remote: !!query.get('remote')
+						})
+						setStep(9)
+					} else {
+						setStep(8)
+					}
 				}
 				setIsLoading(false)
 			} catch (e) {
@@ -291,9 +310,18 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 		[surveyId, customerFirstName, customerLastName, appointmentId]
 	)
 
-	const onAccountSuccessContinue = useCallback(() => {
-		setStep(8)
-	}, [])
+	const onAccountSuccessContinue = useCallback(async () => {
+		if (query.get('course')) {
+			await axios.post('group/reserve', {
+				courseId: query.get('course'),
+				appointmentId,
+				remote: !!query.get('remote')
+			})
+			setStep(9)
+		} else {
+			setStep(8)
+		}
+	}, [appointmentId, query])
 
 	const onPaymentChoose = useCallback(
 		async (cash?: boolean) => {

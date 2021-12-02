@@ -78,35 +78,41 @@ const ServiceInner: FC<ServiceInnerProps> = ({ className = '' }) => {
 
 				{course?.content ? (
 					<div
-						className="ml-1"
+						className='ml-1'
 						style={{ marginTop: 20 }}
 						dangerouslySetInnerHTML={{ __html: course.content! }}
 					></div>
 				) : (
 					<></>
 				)}
-				<div className="grid justify-items-center absolute sticky z-10 bottom-0 bg-white drop-shadow-2xl dark:bg-neutral-900 ">
-				<div className='grid my-8 gap-4 grid-cols-1 md:grid-cols-2'>
-					<ButtonPrimary
-						className=''
-						sizeClass = "px-10 py-4 sm:px-10"
-						bgColor="bg-yellow-600"
-						onClick={() =>
-							history.push(`/survey/${location.pathname.split('/')[1]}?course=${course?._id}`)
-						}
-					>
-						ცოცხალ ჯგუფში ჩაწერა
-					</ButtonPrimary>
-					<ButtonPrimary
-						className=''
-						sizeClass = "px-10 py-4 sm:px-10"
-						onClick={() =>
-							history.push(`/survey/${location.pathname.split('/')[1]}?course=${course?._id}`)
-						}
-					>
-						ონლაინ ჯგუფში ჩაწერა
-					</ButtonPrimary>
-					{/* <div>
+				<div className='grid justify-items-center absolute sticky z-10 bottom-0 bg-white drop-shadow-2xl dark:bg-neutral-900 '>
+					<div className='grid my-8 gap-4 grid-cols-1 md:grid-cols-2'>
+						<ButtonPrimary
+							className=''
+							sizeClass='px-10 py-4 sm:px-10'
+							bgColor='bg-yellow-600'
+							onClick={() =>
+								history.push(
+									`/survey/${location.pathname.split('/')[1]}?course=${course?._id}`
+								)
+							}
+						>
+							ცოცხალ ჯგუფში ჩაწერა
+						</ButtonPrimary>
+						<ButtonPrimary
+							className=''
+							sizeClass='px-10 py-4 sm:px-10'
+							onClick={() =>
+								history.push(
+									`/survey/${location.pathname.split('/')[1]}?course=${
+										course?._id
+									}&remote=true`
+								)
+							}
+						>
+							ონლაინ ჯგუფში ჩაწერა
+						</ButtonPrimary>
+						{/* <div>
 						<ButtonSecondary className=' opacity-100' onClick={() => history.goBack()}>
 							უკან დაბრუნება
 						</ButtonSecondary>
