@@ -109,6 +109,7 @@ export interface BackendCourse {
 	title: string
 	description: string
 	slug: string
+	underage: boolean
 	content?: string
 	cost?: number
 	period?: string

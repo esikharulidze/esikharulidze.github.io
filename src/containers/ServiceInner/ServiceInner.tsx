@@ -93,7 +93,9 @@ const ServiceInner: FC<ServiceInnerProps> = ({ className = '' }) => {
 							bgColor='bg-yellow-600'
 							onClick={() =>
 								history.push(
-									`/survey/${location.pathname.split('/')[1]}?course=${course?._id}`
+									`/survey/${location.pathname.split('/')[1]}?course=${course?._id}${
+										!course?.underage ? '&underage=true' : ''
+									}`
 								)
 							}
 						>
@@ -106,7 +108,7 @@ const ServiceInner: FC<ServiceInnerProps> = ({ className = '' }) => {
 								history.push(
 									`/survey/${location.pathname.split('/')[1]}?course=${
 										course?._id
-									}&remote=true`
+									}&remote=true${course?.underage ? '&underage=true' : ''}`
 								)
 							}
 						>
