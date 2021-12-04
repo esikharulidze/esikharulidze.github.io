@@ -85,8 +85,8 @@ const ServiceInner: FC<ServiceInnerProps> = ({ className = '' }) => {
 				) : (
 					<></>
 				)}
-				<div className='grid justify-items-center absolute sticky z-10 bottom-0 bg-white drop-shadow-2xl dark:bg-neutral-900 '>
-					<div className='grid my-8 gap-4 grid-cols-1 md:grid-cols-2'>
+				<div className='grid justify-items-center absolute sticky z-10 bottom-4'>
+					<div className='grid p-6 gap-4 grid-cols-1 md:grid-cols-2 drop-shadow-2xl bg-white dark:bg-neutral-900 rounded-xl'>
 						<ButtonPrimary
 							className=''
 							sizeClass='px-10 py-4 sm:px-10'
