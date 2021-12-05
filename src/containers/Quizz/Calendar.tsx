@@ -42,9 +42,11 @@ const Calendar = ({
 			.slice(0)
 			.map(key => {
 				const usableDate = new Date(
-					new Date().setDate(new Date(new Date().setHours(0, 0, 0, 0)).getDate() + key)
+					new Date(
+						new Date().setDate(new Date(new Date().setHours(0, 0, 0, 0)).getDate() + key)
+					).setHours(4, 0, 0, 0)
 				)
-				console.log(usableDate)
+				console.log(usableDate, 'usable data')
 				return {
 					id: usableDate.toISOString(),
 					value: format(usableDate, 'dd MMM. - EEEE', {
@@ -94,9 +96,11 @@ const Calendar = ({
 				return therapistCalendar?.hours.filter(hour => Number(hour.slice(2)) > currentHour)
 			}
 		}
+		console.log('reserved', therapistCalendar?.reserved)
 		const res = therapistCalendar?.reserved
 			.filter(reserved => {
 				console.log(reserved, 'reserved')
+				console.log(parseISO(reserved.date))
 				return (
 					format(parseISO(reserved.date), 'dd/MM') ===
 					format(parseISO(selectedDate?.id || new Date().toISOString()), 'dd/MM')
@@ -110,6 +114,7 @@ const Calendar = ({
 				}
 				return ui.time
 			})
+		console.warn(res, 'reeeeees')
 		return therapistCalendar?.hours.filter(hour => !res?.includes(hour))
 	}, [therapistCalendar, selectedDate])
 
