@@ -327,13 +327,17 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 		async (cash?: boolean) => {
 			try {
 				setIsLoading(true)
-				await axios.patch('appointment/payment-method', {
+				const { data } = await axios.patch('appointment/payment-method', {
 					appointmentId,
 					paymentMethod: cash ? 'cash' : 'card'
 				})
 				setIsLoading(false)
 				if (cash) {
 					setStep(9)
+				} else {
+					if (data) {
+						window.location.href = data.links[1].href
+					}
 				}
 			} catch (e) {
 				setIsLoading(false)
@@ -458,12 +462,14 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 					/>
 				)
 			case 9:
-				return <Success 
-				withPartner={withPartner}
-				isPsychiatrist={isPsychiatrist}
-				isEdu={isEdu}
-				isGroup={isGroup}
-				/>
+				return (
+					<Success
+						withPartner={withPartner}
+						isPsychiatrist={isPsychiatrist}
+						isEdu={isEdu}
+						isGroup={isGroup}
+					/>
+				)
 			case 10:
 				return (
 					<CustomerName
