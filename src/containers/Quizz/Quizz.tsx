@@ -458,7 +458,12 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 					/>
 				)
 			case 9:
-				return <Success />
+				return <Success 
+				withPartner={withPartner}
+				isPsychiatrist={isPsychiatrist}
+				isEdu={isEdu}
+				isGroup={isGroup}
+				/>
 			case 10:
 				return (
 					<CustomerName

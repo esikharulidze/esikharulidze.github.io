@@ -1,5 +1,6 @@
 import ButtonPrimary from 'components/Button/ButtonPrimary'
 import ButtonSecondary from 'components/Button/ButtonSecondary'
+import NcImage from 'components/NcImage/NcImage'
 
 interface Props {
 	onSubmit: (val?: boolean) => void
@@ -12,6 +13,11 @@ interface Props {
 const RepeatSurvey = ({ onSubmit, withPartner=false, isPsychiatrist=false, isEdu=false, isGroup=false }: Props) => {
 	return (
 		<div className=' bg-white rounded-lg px-10 p-10 dark:bg-neutral-900 '>
+			<div className='grid grid-cols-4 mb-0'>
+				<div className='col-start-2 col-span-2'>
+					<NcImage src='https://animuscontent.s3.eu-central-1.amazonaws.com/continue-survey.png'></NcImage>
+				</div>
+			</div>
 			<h2 className='font-semibold text-2xl mb-4'>გსურთ შეავსოთ კითხვარი თავიდან?</h2>
 			<div className='grid grid-cols-2 gap-4'></div>
 			<div className='grid grid-cols-1'>
