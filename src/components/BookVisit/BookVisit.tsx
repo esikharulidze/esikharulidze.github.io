@@ -45,7 +45,7 @@ const BookVisit: FC<BookVisitProps> = ({ className = '', author, name, onLogout 
 				activeClassName='!font-semibold !text-neutral-900 dark:!text-neutral-100'
 			>
 				<div>
-					<ButtonPrimary >ვიზიტის დაჯავშნა</ButtonPrimary>
+					<ButtonPrimary href='#'>ვიზიტის დაჯავშნა</ButtonPrimary>
 				</div>
 				{/* {item.type && ( */}
 				{/* )} */}
@@ -67,10 +67,25 @@ const BookVisit: FC<BookVisitProps> = ({ className = '', author, name, onLogout 
 				onClick={() => (item.href ? null : onLogout && onLogout())}
 				activeClassName='font-semibold text-neutral-700 dark:!text-neutral-200'
 			>
-				{item.name === "ფსიქიატრთან" 
-				? <ButtonPrimary className="w-full" href="/survey/psychiatrist" bgColor="bg-yellow-600 hover:bg-yellow-700" ringColor="focus:ring-yellow-500">{item.name}</ButtonPrimary>
-				: <ButtonPrimary className="w-full" href="/survey/psychologist" bgColor="bg-red-500 hover:bg-red-600" ringColor="focus:ring-red-500">{item.name}</ButtonPrimary>
-				}
+				{item.name === 'ფსიქიატრთან' ? (
+					<ButtonPrimary
+						className='w-full'
+						href='/survey/psychiatrist'
+						bgColor='bg-yellow-600 hover:bg-yellow-700'
+						ringColor='focus:ring-yellow-500'
+					>
+						{item.name}
+					</ButtonPrimary>
+				) : (
+					<ButtonPrimary
+						className='w-full'
+						href='/survey/psychologist'
+						bgColor='bg-red-500 hover:bg-red-600'
+						ringColor='focus:ring-red-500'
+					>
+						{item.name}
+					</ButtonPrimary>
+				)}
 				{item.type && (
 					<ChevronDownIcon className='ml-2 h-4 w-4 text-neutral-500' aria-hidden='true' />
 				)}
@@ -110,11 +125,7 @@ const BookVisit: FC<BookVisitProps> = ({ className = '', author, name, onLogout 
 										if (i.type) {
 											// return renderDropdownMenuNavlinkHasChild(i);
 										} else {
-											return (
-												<div>
-													{renderDropdownMenuNavlink(i)}
-													</div>
-											)
+											return <div>{renderDropdownMenuNavlink(i)}</div>
 										}
 									})}
 								</ul>
@@ -140,14 +151,14 @@ const BookVisit: FC<BookVisitProps> = ({ className = '', author, name, onLogout 
 					// },
 					{
 						id: ncNanoId(),
-						href: "survey/psychologist",
-						name: "ფსიქოლოგთან",
-					  },
-					  {
+						href: 'survey/psychologist',
+						name: 'ფსიქოლოგთან'
+					},
+					{
 						id: ncNanoId(),
-						href: "/survey/psychiatrist",
-						name: "ფსიქიატრთან",
-					  },
+						href: '/survey/psychiatrist',
+						name: 'ფსიქიატრთან'
+					}
 				]
 			})}
 		</>

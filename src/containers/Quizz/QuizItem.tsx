@@ -111,7 +111,7 @@ const QuizzV2: FC<ServiceInnerProps> = ({
 				isPsychiatrist={isPsychiatrist}
 				isEdu={isEdu}
 				isGroup={isGroup}
-				onSubmit={(val: string) => (onSubmit ? onSubmit([val]) : {})}
+				onSubmit={(val: string) => (onSubmit ? onSubmit([val.trim()]) : {})}
 			/>
 		)
 	}
@@ -141,7 +141,17 @@ const QuizzV2: FC<ServiceInnerProps> = ({
 							<label className='inline-flex items-center'>
 								<input
 									type='checkbox'
-									className={`rounded cursor-pointer ${withPartner ? 'checked:bg-red-500 hover:checked:bg-red-500 focus:checked:bg-red-500 focus:ring-red-500': isPsychiatrist ? "checked:bg-yellow-600 hover:checked:bg-yellow-600 focus:checked:bg-yellow-600 focus:ring-yellow-600": isGroup ? "checked:bg-pink-600 hover:checked:bg-pink-600 focus:checked:bg-pink-600 focus:ring-pink-600" : isEdu ? "checked:bg-green-600 hover:checked:bg-green-500 focus:checked:bg-green-500 focus:ring-green-500" : ""}`}
+									className={`rounded cursor-pointer ${
+										withPartner
+											? 'checked:bg-red-500 hover:checked:bg-red-500 focus:checked:bg-red-500 focus:ring-red-500'
+											: isPsychiatrist
+											? 'checked:bg-yellow-600 hover:checked:bg-yellow-600 focus:checked:bg-yellow-600 focus:ring-yellow-600'
+											: isGroup
+											? 'checked:bg-pink-600 hover:checked:bg-pink-600 focus:checked:bg-pink-600 focus:ring-pink-600'
+											: isEdu
+											? 'checked:bg-green-600 hover:checked:bg-green-500 focus:checked:bg-green-500 focus:ring-green-500'
+											: ''
+									}`}
 									checked={checkedAnswers.has(answer._id)}
 									onClick={() =>
 										checkedAnswers.has(answer._id)

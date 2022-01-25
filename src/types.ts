@@ -116,6 +116,8 @@ export interface BackendCourse {
 	avatar?: string
 	cover?: string
 	service: BackendService
+	justOnline?: boolean
+	justLive?: boolean
 }
 
 export interface BackendService {

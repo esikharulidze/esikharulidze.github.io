@@ -87,33 +87,37 @@ const ServiceInner: FC<ServiceInnerProps> = ({ className = '' }) => {
 				)}
 				<div className='grid justify-items-center absolute sticky z-10 bottom-4'>
 					<div className='grid p-6 gap-4 grid-cols-1 md:grid-cols-2 drop-shadow-2xl bg-white dark:bg-neutral-900 rounded-xl'>
-						<ButtonPrimary
-							className=''
-							sizeClass='px-10 py-4 sm:px-10'
-							bgColor='bg-yellow-600'
-							onClick={() =>
-								history.push(
-									`/survey/${location.pathname.split('/')[1]}?course=${course?._id}${
-										!course?.underage ? '&underage=true' : ''
-									}`
-								)
-							}
-						>
-							ცოცხალ ჯგუფში ჩაწერა
-						</ButtonPrimary>
-						<ButtonPrimary
-							className=''
-							sizeClass='px-10 py-4 sm:px-10'
-							onClick={() =>
-								history.push(
-									`/survey/${location.pathname.split('/')[1]}?course=${
-										course?._id
-									}&remote=true${course?.underage ? '&underage=true' : ''}`
-								)
-							}
-						>
-							ონლაინ ჯგუფში ჩაწერა
-						</ButtonPrimary>
+						{course?.justOnline ? null : (
+							<ButtonPrimary
+								className={course?.justOnline ? '' : 'col-span-2'}
+								sizeClass='px-10 py-4 sm:px-10'
+								bgColor='bg-yellow-600'
+								onClick={() =>
+									history.push(
+										`/survey/${location.pathname.split('/')[1]}?course=${course?._id}${
+											!course?.underage ? '&underage=true' : ''
+										}`
+									)
+								}
+							>
+								ცოცხალ ჯგუფში ჩაწერა
+							</ButtonPrimary>
+						)}
+						{course?.justLive ? null : (
+							<ButtonPrimary
+								className={course?.justLive ? '' : 'col-span-2'}
+								sizeClass='px-10 py-4 sm:px-10'
+								onClick={() =>
+									history.push(
+										`/survey/${location.pathname.split('/')[1]}?course=${
+											course?._id
+										}&remote=true${course?.underage ? '&underage=true' : ''}`
+									)
+								}
+							>
+								ონლაინ ჯგუფში ჩაწერა
+							</ButtonPrimary>
+						)}
 						{/* <div>
 						<ButtonSecondary className=' opacity-100' onClick={() => history.goBack()}>
 							უკან დაბრუნება

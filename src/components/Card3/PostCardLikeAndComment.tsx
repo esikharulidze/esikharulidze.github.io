@@ -23,7 +23,7 @@ const PostCardLikeAndComment: FC<PostCardLikeAndCommentProps> = ({
 
 	const like = {
 		count: postData.likes.length,
-		isLiked: !!postData.likes.filter(l => l._id === customer?._id).length
+		isLiked: !!postData.likes.filter(l => (customer ? l._id === customer._id : false)).length
 	}
 
 	console.log(postData.likes.length)
