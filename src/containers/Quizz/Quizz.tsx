@@ -305,7 +305,11 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 						})
 						setStep(9)
 					} else {
-						setStep(8)
+						if (age && age < 19) {
+							setStep(12)
+						} else {
+							setStep(8)
+						}
 					}
 				}
 				setIsLoading(false)
