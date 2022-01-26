@@ -11,6 +11,7 @@ interface Props {
 	isEdu?: Boolean
 	isGroup?: Boolean
 	error?: string
+	underage?: boolean
 }
 
 const Contact = ({
@@ -19,6 +20,7 @@ const Contact = ({
 	isPsychiatrist = false,
 	isEdu = false,
 	isGroup = false,
+	underage = false,
 	error
 }: Props) => {
 	const [email, setEmail] = useState('')
@@ -29,7 +31,9 @@ const Contact = ({
 	const phoneValidation = /^5[0-9]{8}$/
 	return (
 		<div className=' bg-white rounded-lg px-10 p-10 dark:bg-neutral-900 '>
-			<h2 className='font-semibold text-2xl mb-4'>როგორ დაგეკონტაქტოთ?</h2>
+			<h2 className='font-semibold text-2xl mb-4'>
+				{underage ? 'თქვენი მშობლის ან მეურვის საკონტაქტო' : 'როგორ დაგეკონტაქტოთ?'}
+			</h2>
 			<div className='grid grid-cols-2 gap-4'></div>
 			<form
 				className='grid grid-cols-1 gap-6'
@@ -38,7 +42,9 @@ const Contact = ({
 				onSubmit={e => e.preventDefault()}
 			>
 				<label className='block'>
-					<span className='text-neutral-800 dark:text-neutral-200'>თქვენი ელ.ფოსტა</span>
+					<span className='text-neutral-800 dark:text-neutral-200'>
+						{underage ? '' : 'თქვენი '}ელ.ფოსტა
+					</span>
 					<Input
 						type='text'
 						placeholder='example@animus.ge'
@@ -49,7 +55,9 @@ const Contact = ({
 					/>
 				</label>
 				<label className='block'>
-					<span className='text-neutral-800 dark:text-neutral-200'>თქვენი ტელეფონი</span>
+					<span className='text-neutral-800 dark:text-neutral-200'>
+						{underage ? '' : 'თქვენი '}ტელეფონი
+					</span>
 					<Input
 						type='text'
 						placeholder='5__ ___ ___'

@@ -193,7 +193,11 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 						})
 						setStep(9)
 					} else {
-						setStep(6)
+						if (age && age < 19) {
+							setStep(7)
+						} else {
+							setStep(6)
+						}
 					}
 				} else {
 					setStep(5)
@@ -220,7 +224,11 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 				if (customer) {
 					setStep(8)
 				} else {
-					setStep(6)
+					if (age && age < 19) {
+						setStep(7)
+					} else {
+						setStep(6)
+					}
 				}
 			} catch (e) {
 				setIsLoading(false)
@@ -449,6 +457,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 						isEdu={isEdu}
 						isGroup={isGroup}
 						error={error}
+						underage={(age && age < 19) || false}
 					/>
 				)
 			case 8:
