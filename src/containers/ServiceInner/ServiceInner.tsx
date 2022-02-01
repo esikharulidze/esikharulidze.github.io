@@ -89,7 +89,7 @@ const ServiceInner: FC<ServiceInnerProps> = ({ className = '' }) => {
 					<div className='grid p-6 gap-4 grid-cols-1 md:grid-cols-2 drop-shadow-2xl bg-white dark:bg-neutral-900 rounded-xl'>
 						{course?.justOnline ? null : (
 							<ButtonPrimary
-								className={course?.justOnline ? '' : 'col-span-2'}
+								className={!course?.justOnline ? '' : 'col-span-2'}
 								sizeClass='px-10 py-4 sm:px-10'
 								bgColor='bg-yellow-600'
 								onClick={() =>
@@ -107,7 +107,7 @@ const ServiceInner: FC<ServiceInnerProps> = ({ className = '' }) => {
 						)}
 						{course?.justLive ? null : (
 							<ButtonPrimary
-								className={course?.justLive ? '' : 'col-span-2'}
+								className={!course?.justLive ? '' : 'col-span-2'}
 								sizeClass='px-10 py-4 sm:px-10'
 								onClick={() =>
 									history.push(
