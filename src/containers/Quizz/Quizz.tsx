@@ -399,6 +399,8 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 						onSubmit={startQuiz}
 						forMe={slug === 'psychiatrist' && forElse === false}
 						underage={!!query.get('underage')}
+						adults={!!query.get('adults')}
+						preSchool={!!query.get('preschool')}
 						withPartner={withPartner}
 						isPsychiatrist={isPsychiatrist}
 						isGroup={isGroup}

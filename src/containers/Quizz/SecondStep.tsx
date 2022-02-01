@@ -26,6 +26,8 @@ export interface ServiceInnerProps {
 	onSubmit: () => void
 	forMe?: boolean
 	underage?: boolean
+	adults?: boolean
+	preSchool?: boolean
 }
 
 const services = {
@@ -47,7 +49,9 @@ const Quizz: FC<ServiceInnerProps> = ({
 	isPsychiatrist = false,
 	isGroup = false,
 	isEdu = false,
-	underage = false
+	underage = false,
+	adults = false,
+	preSchool = false
 }) => {
 	const [course, setCourse] = useState<BackendCourse>()
 	const { slug } = useParams<{ slug: 'psychologist' | 'psychiatrist' | 'grouptherapy' | 'educational' }>()
@@ -104,10 +108,12 @@ const Quizz: FC<ServiceInnerProps> = ({
 					selected={age}
 					data={Array.from(
 						Array(
-							withPartner || forMe || forElse || ((isGroup || isEdu) && !underage)
+							withPartner || forMe || forElse || ((isGroup || isEdu) && !underage && adults)
 								? 83
 								: (isGroup || isEdu) && underage
-								? 12
+								? 13
+								: (isGroup || isEdu) && preSchool
+								? 4
 								: 95
 						).keys()
 					)
@@ -115,8 +121,13 @@ const Quizz: FC<ServiceInnerProps> = ({
 						.map(
 							item =>
 								item +
-								(withPartner || forMe || forElse || ((isGroup || isEdu) && !underage)
+								(withPartner ||
+								forMe ||
+								forElse ||
+								((isGroup || isEdu) && !underage && adults)
 									? 18
+									: (isGroup || isEdu) && preSchool
+									? 3
 									: 6)
 						)}
 					setSelected={setAge}

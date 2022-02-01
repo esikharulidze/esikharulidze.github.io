@@ -110,6 +110,7 @@ export interface BackendCourse {
 	description: string
 	slug: string
 	underage: boolean
+	adults: boolean
 	content?: string
 	cost?: number
 	period?: string
@@ -117,6 +118,7 @@ export interface BackendCourse {
 	cover?: string
 	service: BackendService
 	justOnline?: boolean
+	preSchool?: boolean
 	justLive?: boolean
 }
 
