@@ -444,16 +444,16 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 						isGroup={isGroup}
 					/>
 				)
-			case 6:
-				return (
-					<CreateOrNotQuestion
-						onSubmit={onCreateAccountChoose}
-						withPartner={withPartner}
-						isPsychiatrist={isPsychiatrist}
-						isEdu={isEdu}
-						isGroup={isGroup}
-					/>
-				)
+
+			// return (
+			// 	<CreateOrNotQuestion
+			// 		onSubmit={onCreateAccountChoose}
+			// 		withPartner={withPartner}
+			// 		isPsychiatrist={isPsychiatrist}
+			// 		isEdu={isEdu}
+			// 		isGroup={isGroup}
+			// 	/>
+			// )
 			case 7:
 				return (
 					<Contact
@@ -485,6 +485,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 						isGroup={isGroup}
 					/>
 				)
+			case 6:
 			case 10:
 				return (
 					<CustomerName

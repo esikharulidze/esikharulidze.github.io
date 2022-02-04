@@ -29,7 +29,10 @@ const Success = ({ withPartner = false, isPsychiatrist = false, isEdu = false, i
 				</div>
 			</div>
 			<h2 className='font-semibold text-3xl mb-2'>
-				<span className='text-yellow-600'>თქვენ წარმატებით დარეგისტრირდით კურსზე</span>
+				თქვენ წარმატებით
+				<span className='text-yellow-600'>
+					{!isEdu && !isGroup ? 'დაჯავშნეთ ვიზიტი' : 'დარეგისტრირდით კურსზე'}
+				</span>
 			</h2>
 			{isGroup || isEdu ? (
 				<p>
