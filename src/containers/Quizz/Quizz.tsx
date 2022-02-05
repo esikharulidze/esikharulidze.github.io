@@ -399,6 +399,8 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 						onSubmit={startQuiz}
 						forMe={slug === 'psychiatrist' && forElse === false}
 						underage={!!query.get('underage')}
+						adults={!!query.get('adults')}
+						preSchool={!!query.get('preschool')}
 						withPartner={withPartner}
 						isPsychiatrist={isPsychiatrist}
 						isGroup={isGroup}
@@ -442,16 +444,16 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 						isGroup={isGroup}
 					/>
 				)
-			case 6:
-				return (
-					<CreateOrNotQuestion
-						onSubmit={onCreateAccountChoose}
-						withPartner={withPartner}
-						isPsychiatrist={isPsychiatrist}
-						isEdu={isEdu}
-						isGroup={isGroup}
-					/>
-				)
+
+			// return (
+			// 	<CreateOrNotQuestion
+			// 		onSubmit={onCreateAccountChoose}
+			// 		withPartner={withPartner}
+			// 		isPsychiatrist={isPsychiatrist}
+			// 		isEdu={isEdu}
+			// 		isGroup={isGroup}
+			// 	/>
+			// )
 			case 7:
 				return (
 					<Contact
@@ -483,6 +485,7 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 						isGroup={isGroup}
 					/>
 				)
+			case 6:
 			case 10:
 				return (
 					<CustomerName
