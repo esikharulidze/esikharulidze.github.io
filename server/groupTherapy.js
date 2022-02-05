@@ -18,16 +18,10 @@ const groupTherapy = [
 		image: 'https://animuscontent.s3.eu-central-1.amazonaws.com/ogs/self-confidence.png'
 	},
 	{
-		slug: 'effective-communications',
-		title: 'კომუნიკაციის ეფექტური უნარები',
-		description: 'ეფექტური კომუნიკაცია გვაძლევს შესაძლებლობას მარტივად დავამყაროთ ურთიერთობა გარშემომყოფებთან, რაც თავის მხრივ, ერთ-ერთი გზაა წარმატებისკენ.',
-		image: 'https://animuscontent.s3.eu-central-1.amazonaws.com/ogs/self-confidence.png'
-	},
-	{
-		slug: 'arttherapy-development',
-		title: 'მოტორული განვითარება',
-		description: 'სასკოლო მზაობისა და ზოგადად დამოუკიდებლად ცხოვრებისათვის საჭირო უნარებისთვის აუცილებელი წინაპირობაა ბავშვის ნატიფი მოტორიკის განვითარება.',
-		image: 'https://animuscontent.s3.eu-central-1.amazonaws.com/ogs/Motor-development.png'
+		slug: 'ei-course',
+		title: 'ემოციური ინტელექტი - პიროვნული ზრდა',
+		description: 'ინოვაციურ სამყაროში მეცნიერებმა ყველაზე წარმატებული ადამიანების კვლევის შედეგად აღმოაჩინეს, რომ წარმატებისთვის ემოციური ინტელექტის (EI) განვითარება ბევრად მნიშვნელოვანია, ვიდრე გონებრივი ინტელექტის (IQ).',
+		image: 'https://animuscontent.s3.eu-central-1.amazonaws.com/emotionalog.png'
 	}
 ]
 

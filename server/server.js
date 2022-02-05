@@ -23,7 +23,7 @@ app.get('/team/*', (req, res) => {
 		if (team) {
 			data = data
 				.replace('WWW.ANIMUS.GE', team.title)
-				.replace('ფსიქოთერაპიული და საგანამანათლებლო ცენტრი', team.description)
+				.replace('ფსიქოთერაპიული და საგანამანათლებლო სივრცე', team.description)
 				.replace('https://animuscontent.s3.eu-central-1.amazonaws.com/Animus-OG.png', team.image)
 		}
 		return res.send(data)
@@ -40,7 +40,7 @@ app.get('/grouptherapy/*', (req, res) => {
 		if (therapy) {
 			data = data
 				.replace('WWW.ANIMUS.GE', therapy.title)
-				.replace('ფსიქოთერაპიული და საგანამანათლებლო ცენტრი', therapy.description)
+				.replace('ფსიქოთერაპიული და საგანამანათლებლო სივრცე', therapy.description)
 				.replace('https://animuscontent.s3.eu-central-1.amazonaws.com/Animus-OG.png', therapy.image)
 		}
 		return res.send(data)
@@ -57,7 +57,7 @@ app.get('/educational/*', (req, res) => {
 		if (therapy) {
 			data = data
 				.replace('WWW.ANIMUS.GE', therapy.title)
-				.replace('ფსიქოთერაპიული და საგანამანათლებლო ცენტრი', therapy.description)
+				.replace('ფსიქოთერაპიული და საგანამანათლებლო სივრცე', therapy.description)
 				.replace('https://animuscontent.s3.eu-central-1.amazonaws.com/Animus-OG.png', therapy.image)
 		}
 		return res.send(data)
@@ -77,7 +77,7 @@ app.get('/post/*', (req, res, next) => {
 		if (post) {
 			data = data
 				.replace('WWW.ANIMUS.GE', post.title)
-				.replace('ფსიქოთერაპიული და საგანამანათლებლო ცენტრი', post.description)
+				.replace('ფსიქოთერაპიული და საგანამანათლებლო სივრცე', post.description)
 				.replace('https://animuscontent.s3.eu-central-1.amazonaws.com/Animus-OG.png', post.image)
 		}
 		return res.send(data)
@@ -95,7 +95,7 @@ app.get('/survey/*', (req, res, next) => {
 		if (survey) {
 			data = data
 				.replace('WWW.ANIMUS.GE', survey.title)
-				.replace('ფსიქოთერაპიული და საგანამანათლებლო ცენტრი', survey.description)
+				.replace('ფსიქოთერაპიული და საგანამანათლებლო სივრცე', survey.description)
 				.replace('https://animuscontent.s3.eu-central-1.amazonaws.com/Animus-OG.png', survey.image)
 		}
 		return res.send(data)
