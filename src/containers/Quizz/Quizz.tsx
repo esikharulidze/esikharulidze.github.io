@@ -182,7 +182,8 @@ const Quizz: FC<ServiceInnerProps> = ({ className = '' }) => {
 				if (query.get('course')) {
 					const { data } = await axios.post('appointment/create', {
 						surveyId,
-						customer: customer ? customer._id : ''
+						customer: customer ? customer._id : '',
+						remote: !!query.get('remote')
 					})
 					setAppointmentId(data)
 					if (customer) {
