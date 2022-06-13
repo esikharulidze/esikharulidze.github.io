@@ -17,7 +17,7 @@ export interface PageContactProps {
 const info = [
 	{
 		title: '🗺 მისამართი',
-		desc: 'მცხეთის ქუჩა 48/50 (ვაკე)'
+		desc: 'ს. ცინცაძის ქ. 12, აქსის პალასი'
 	},
 	{
 		title: '💌 ელ.ფოსტა',

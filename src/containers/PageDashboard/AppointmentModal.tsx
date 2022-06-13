@@ -128,7 +128,7 @@ const AppointmentModal = ({ data, onClose }: Props) => {
 									ცენტრის მისამართი
 								</dt>
 								<dd className='mt-1 text-sm text-neutral-900 dark:text-neutral-200 font-medium sm:mt-0 sm:col-span-2'>
-									მცხეთის ქუჩა 48/50
+									ს. ცინცაძის ქ. 12, აქსის პალასი
 								</dd>
 							</div>
 							<div className='px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 bg-neutral-50 dark:bg-neutral-800 rounded-xl'>
